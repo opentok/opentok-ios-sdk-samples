@@ -1,3 +1,5 @@
+OpenTok.framework/
+
 # Xcode
 .DS_Store
 */build/*
