@@ -2,7 +2,6 @@
 //  TBSubscriber.m
 //  Lets-Build-OTPublisher
 //
-//  Created by Charley Robinson on 12/16/13.
 //  Copyright (c) 2013 TokBox, Inc. All rights reserved.
 //
 

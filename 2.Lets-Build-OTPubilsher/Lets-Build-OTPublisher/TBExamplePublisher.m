@@ -61,6 +61,25 @@
     [super dealloc];
 }
 
+#pragma mark - Overrides for public API
+
+/** 
+ * Intercept setter for video capture, so that a client override of our default
+ * capture implementation does not leak and make a mess.
+ */
+- (void)setVideoCapture:(id<OTVideoCapture>)videoCapture {
+    [super setVideoCapture:videoCapture];
+    [_myVideoCapture release];
+    _myVideoCapture = nil;
+    
+    // Save the new instance if it's still compatible with the
+    // TBExampleVideoRender contract
+    if ([videoCapture isKindOfClass:[TBExampleVideoCapture class]]) {
+        _myVideoCapture = (TBExampleVideoCapture*) videoCapture;
+        [_myVideoCapture retain];
+    }
+}
+
 # pragma mark - TBExamplePublisher API extensions
 
 - (void)setCameraPosition:(AVCaptureDevicePosition)cameraPosition

@@ -468,6 +468,7 @@ enum {
     int uStride = [[frame.format.bytesPerRow objectAtIndex:1] intValue] * 2;
     int vStride = [[frame.format.bytesPerRow objectAtIndex:2] intValue] * 2;
 
+    // Use libyuv to convert to the RGB colorspace that OpenGL groks.
     I420ToARGB(yPlane, yStride,
                vPlane, uStride,
                uPlane, vStride,
