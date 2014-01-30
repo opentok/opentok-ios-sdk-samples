@@ -138,7 +138,7 @@ static bool subscribeToSelf = YES;
 {
     _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
                                                      delegate:self];
-    [_subscriber subscribe];
+    [_session subscribe:_subscriber];
 }
 
 /**
@@ -146,6 +146,7 @@ static bool subscribeToSelf = YES;
  */
 - (void)doUnsubscribe
 {
+    [_session unsubscribe:_subscriber];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }

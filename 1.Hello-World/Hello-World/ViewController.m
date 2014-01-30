@@ -97,7 +97,7 @@ static bool subscribeToSelf = NO;
 - (void)doSubscribe:(OTStream*)stream
 {
     _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
-    [_subscriber subscribe];
+    [_session subscribe:_subscriber];
 }
 
 /**
@@ -105,6 +105,7 @@ static bool subscribeToSelf = NO;
  */
 - (void)doUnsubscribe
 {
+    [_session unsubscribe:_subscriber];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
