@@ -41,8 +41,9 @@ static bool subscribeToSelf = NO;
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithSessionId:kSessionId
-                                           delegate:self];
+    _session = [[OTSession alloc] initWithApiKey:kApiKey
+                                       sessionId:kSessionId
+                                        delegate:self];
     [self doConnect];
 }
 
@@ -71,7 +72,7 @@ static bool subscribeToSelf = NO;
  */
 - (void)doConnect
 {
-    [_session connectWithApiKey:kApiKey token:kToken];
+    [_session connectWithToken:kToken error:nil];
 }
 
 /**
@@ -83,7 +84,7 @@ static bool subscribeToSelf = NO;
 {
     _publisher = [[OTPublisher alloc] initWithDelegate:self];
     [_publisher setName:[[UIDevice currentDevice] name]];
-    [_session publish:_publisher];
+    [_session publish:_publisher error:nil];
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
 }
@@ -97,7 +98,7 @@ static bool subscribeToSelf = NO;
 - (void)doSubscribe:(OTStream*)stream
 {
     _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
-    [_session subscribe:_subscriber];
+    [_session subscribe:_subscriber error:nil];
 }
 
 /**
@@ -105,7 +106,7 @@ static bool subscribeToSelf = NO;
  */
 - (void)doUnsubscribe
 {
-    [_session unsubscribe:_subscriber];
+    [_session unsubscribe:_subscriber error:nil];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }

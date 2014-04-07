@@ -58,7 +58,8 @@ static bool subscribeToSelf = YES;
     [self.view addGestureRecognizer:singleFingerTap];
     [singleFingerTap release];
     
-    _session = [[OTSession alloc] initWithSessionId:kSessionId
+    _session = [[OTSession alloc] initWithApiKey:kApiKey
+                                       sessionId:kSessionId
                                            delegate:self];
     [self doConnect];
 }
@@ -107,7 +108,7 @@ static bool subscribeToSelf = YES;
  */
 - (void)doConnect
 {
-    [_session connectWithApiKey:kApiKey token:kToken];
+    [_session connectWithToken:kToken error:nil];
 }
 
 /**
@@ -123,7 +124,7 @@ static bool subscribeToSelf = YES;
     _publisher = [[TBExamplePublisher alloc] initWithDelegate:self];
     [_publisher setVideoCapture:_myPhotoVideoCaptureModule];
     [_publisher setName:[[UIDevice currentDevice] name]];
-    [_session publish:_publisher];
+    [_session publish:_publisher error:nil];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     [self.view addSubview:_publisher.view];
 }
@@ -138,7 +139,7 @@ static bool subscribeToSelf = YES;
 {
     _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
                                                      delegate:self];
-    [_session subscribe:_subscriber];
+    [_session subscribe:_subscriber error:nil];
 }
 
 /**
@@ -146,7 +147,7 @@ static bool subscribeToSelf = YES;
  */
 - (void)doUnsubscribe
 {
-    [_session unsubscribe:_subscriber];
+    [_session unsubscribe:_subscriber error:nil];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
