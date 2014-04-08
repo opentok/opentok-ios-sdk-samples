@@ -596,6 +596,8 @@ static NSString *const kToken = @"";
     // now publish
 	OTError *error;
 	[_session publish:_publisher error:&error];
+    if(error)
+        [self showAlert:[error localizedDescription]];
 }
 
 - (void)reArrangeSubscribers
@@ -647,7 +649,11 @@ static NSString *const kToken = @"";
 	
     // unsubscribe first
 	TBExampleSubscriber *subscriber = [allSubscribers objectForKey:stream.connection.connectionId];
-	[_session unsubscribe:subscriber error:nil];
+
+    OTError *error = nil;
+	[_session unsubscribe:subscriber error:&error];
+    if(error)
+        [self showAlert:[error localizedDescription]];
     
 	// remove from superview
 	[subscriber.view removeFromSuperview];
@@ -688,7 +694,10 @@ static NSString *const kToken = @"";
 	[videoContainerView insertSubview:subscriber.view belowSubview:_publisher.view];
     
     // subscribe now
-	[_session subscribe:subscriber error:nil];
+    OTError *error = nil;
+	[_session subscribe:subscriber error:&error];
+    if(error)
+        [self showAlert:[error localizedDescription]];
     
 	// default subscribe video to the first subscriber only
 	if (!_currentSubscriber) {
