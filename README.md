@@ -26,3 +26,14 @@ herein.
 	implemented in project 2, and demonstrates how the AVFoundation media 
 	capture APIs can be used to simultaneously stream video and capture 
 	high-resolution photos from the same camera.
+
+4.	**Overlay Graphics** - This project shows how to overlay graphics on 
+	publisher and subscriber views and uses SVG graphic format for icons.
+	This project barrows publisher and subscribers modules implemented in 
+	project 2.
+	
+5.	**Multi Party Call** - This project demonstrate how to use Opentok SDK for 
+	a multi party call. The application publish audio/video from iOS device and
+	can connect to N number of subscribers. However it shows only one subscriber 
+	video at a time due to cpu limitations on iOS devices. 
+	
