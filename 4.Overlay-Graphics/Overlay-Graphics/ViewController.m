@@ -75,8 +75,10 @@ static bool subscribeToSelf = YES;
 {
     OTError *error = nil;
     [_session connectWithToken:kToken error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
 }
 
 /**
@@ -91,8 +93,10 @@ static bool subscribeToSelf = YES;
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
 
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     [self.view addSubview:_publisher.view];
@@ -110,8 +114,10 @@ static bool subscribeToSelf = YES;
                                                      delegate:self];
     OTError *error = nil;
     [_session subscribe:_subscriber error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
 
 }
 
@@ -122,8 +128,10 @@ static bool subscribeToSelf = YES;
 {
     OTError *error = nil;
     [_session unsubscribe:_subscriber error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
 
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
