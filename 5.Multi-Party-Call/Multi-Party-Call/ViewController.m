@@ -705,8 +705,10 @@ static NSString *const kToken = @"";
     // now publish
 	OTError *error;
 	[_session publish:_publisher error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
 }
 
 - (void)reArrangeSubscribers
@@ -770,8 +772,10 @@ static NSString *const kToken = @"";
 
     OTError *error = nil;
 	[_session unsubscribe:subscriber error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
     
 	// remove from superview
 	[subscriber.view removeFromSuperview];
@@ -827,8 +831,10 @@ static NSString *const kToken = @"";
     // subscribe now
     OTError *error = nil;
 	[_session subscribe:subscriber error:&error];
-    if(error)
+    if (error)
+    {
         [self showAlert:[error localizedDescription]];
+    }
     
 	// default subscribe video to the first subscriber only
 	if (!_currentSubscriber) {
