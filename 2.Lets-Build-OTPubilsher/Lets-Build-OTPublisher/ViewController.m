@@ -43,7 +43,8 @@ static bool subscribeToSelf = YES;
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithSessionId:kSessionId
+    _session = [[OTSession alloc] initWithApiKey:kApiKey
+                                       sessionId:kSessionId
                                            delegate:self];
     [self doConnect];
 }
@@ -73,7 +74,12 @@ static bool subscribeToSelf = YES;
  */
 - (void)doConnect
 {
-    [_session connectWithApiKey:kApiKey token:kToken];
+    OTError *error;
+    [_session connectWithToken:kToken error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
 }
 
 /**
@@ -85,7 +91,14 @@ static bool subscribeToSelf = YES;
 {
     _publisher = [[TBExamplePublisher alloc] initWithDelegate:self];
     [_publisher setName:[[UIDevice currentDevice] name]];
-    [_session publish:_publisher];
+    
+    OTError *error;
+    [_session publish:_publisher error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     [self.view addSubview:_publisher.view];
 }
@@ -100,7 +113,13 @@ static bool subscribeToSelf = YES;
 {
     _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
                                                      delegate:self];
-    [_session subscribe:_subscriber];
+    OTError *error;
+    [_session subscribe:_subscriber error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
 }
 
 /**
@@ -108,7 +127,13 @@ static bool subscribeToSelf = YES;
  */
 - (void)doUnsubscribe
 {
-    [_session unsubscribe:_subscriber];
+    OTError *error;
+    [_session unsubscribe:_subscriber error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -226,6 +251,19 @@ didFailWithError:(OTError*)error
  didFailWithError:(OTError*) error
 {
     NSLog(@"publisher didFailWithError %@", error);
+}
+
+- (void)showAlert:(NSString *)string
+{
+    // show alertview on main UI
+	dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OTError"
+                                                        message:string
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil] ;
+        [alert show];
+    });
 }
 
 @end

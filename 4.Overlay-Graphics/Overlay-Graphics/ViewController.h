@@ -12,7 +12,5 @@
 {
     
 }
-- (IBAction)muteVideo:(id)sender;
-- (IBAction)unMuteVideo:(id)sender;
 
 @end

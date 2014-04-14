@@ -27,11 +27,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"100";
+static NSString *const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX4xMDB-flR1ZSBOb3YgMTkgMTE6MDk6NTggUFNUIDIwMTN-MC4zNzQxNzIxNX4";
+static NSString *const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9MGU0MWY0ZmQyNWFmNDgyODRkZTFkZWQ0ZGUwNjE5ZWVjYjFkMDc5NzpzZXNzaW9uX2lkPTJfTVg0eE1EQi1mbFIxWlNCT2IzWWdNVGtnTVRFNk1EazZOVGdnVUZOVUlESXdNVE4tTUM0ek56UXhOekl4Tlg0JmNyZWF0ZV90aW1lPTEzOTMyODkzOTEmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTM5MzI4OTM5MS4zNTUxMTc0Njg1ODQ5MSZleHBpcmVfdGltZT0xMzk1ODgxMzkx";
+static NSString *const kToken = @"";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = YES;
@@ -44,8 +44,7 @@ static bool subscribeToSelf = YES;
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithSessionId:kSessionId
-                                           delegate:self];
+    _session = [[OTSession alloc] initWithApiKey:kApiKey sessionId:kSessionId delegate:self];
     [self doConnect];
 }
 
@@ -74,7 +73,12 @@ static bool subscribeToSelf = YES;
  */
 - (void)doConnect
 {
-    [_session connectWithApiKey:kApiKey token:kToken];
+    OTError *error = nil;
+    [_session connectWithToken:kToken error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
 }
 
 /**
@@ -86,7 +90,14 @@ static bool subscribeToSelf = YES;
 {
     _publisher = [[TBExamplePublisher alloc] initWithDelegate:self];
     [_publisher setName:[[UIDevice currentDevice] name]];
-    [_session publish:_publisher];
+    
+    OTError *error = nil;
+    [_session publish:_publisher error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     [self.view addSubview:_publisher.view];
 }
@@ -101,7 +112,13 @@ static bool subscribeToSelf = YES;
 {
     _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
                                                      delegate:self];
-    [_session subscribe:_subscriber];
+    OTError *error = nil;
+    [_session subscribe:_subscriber error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
 }
 
 /**
@@ -109,7 +126,13 @@ static bool subscribeToSelf = YES;
  */
 - (void)doUnsubscribe
 {
-    [_session unsubscribe:_subscriber];
+    OTError *error = nil;
+    [_session unsubscribe:_subscriber error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -228,4 +251,18 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"publisher didFailWithError %@", error);
 }
+
+- (void)showAlert:(NSString *)string
+{
+    // show alertview on main UI
+	dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Message from video session"
+                                                         message:string
+                                                        delegate:self
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles:nil] autorelease];
+        [alert show];
+    });
+}
+
 @end
