@@ -35,6 +35,7 @@
     TBExampleOverlayButton* _muteButton;
     TBExampleOverlayButton* _switchCameraButton;
     TBExampleOverlayButton* _volumeButton;
+    UIImageView *_archiveImgView;
     UILabel* _nameLabel;
     
     UIImage* _imgTokboxLogo;
@@ -92,10 +93,13 @@
                OVERLAY_CONTROL_BAR_HEIGHT);
     
     //name in control bar
-    _nameLabel.frame = CGRectMake(18,
-                             0, 
-                             ((self.frame.size.width - _totalButtonsWidth - 18) > OVERLAY_NAME_MIN_WIDTH) ? (self.frame.size.width - _totalButtonsWidth - 18) : 0, 
-                             OVERLAY_CONTROL_BAR_HEIGHT);   
+    _nameLabel.frame =
+    CGRectMake(18,
+                0,
+               ((self.frame.size.width - _totalButtonsWidth - 18) >
+                OVERLAY_NAME_MIN_WIDTH) ?
+               (self.frame.size.width - _totalButtonsWidth - 18) : 0,
+                OVERLAY_CONTROL_BAR_HEIGHT);
     
     //buttons in control bar
     switch (_type) {
@@ -114,6 +118,12 @@
                        _buttonWidth,
                        OVERLAY_CONTROL_BAR_HEIGHT);
             [_muteButton setImageEdgeInsets:controlButtonEdgeInsets];
+
+            _archiveImgView.frame =
+            CGRectMake(self.frame.size.width - (_numButtons * _buttonWidth) - 40,
+                       0,
+                       30,
+                       OVERLAY_CONTROL_BAR_HEIGHT);
             break;
             
         case TBExampleOverlayViewTypeSubscriber:
@@ -176,7 +186,8 @@
         [_tokboxLogo setImageEdgeInsets:UIEdgeInsetsMake(4, 4, 4, 4)];
 
         _imgTokboxLogo =
-        [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons tokboxLogo]] retain];
+        [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons tokboxLogo]]
+         retain];
         
         [_tokboxLogo setImage:_imgTokboxLogo forState:UIControlStateNormal];
         [_tokboxLogo setImage:_imgTokboxLogo forState:UIControlStateSelected];
@@ -216,23 +227,36 @@
         
         //control bar at bottom
         _controlBar = [[UIView alloc] initWithFrame:CGRectZero];
-        [_controlBar setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.6]];
+        [_controlBar setBackgroundColor:[UIColor
+                                         colorWithRed:0.0
+                                         green:0.0
+                                         blue:0.0
+                                         alpha:0.6]];
         
         //publisher buttons
         //mute button
-        _muteButton = [[TBExampleOverlayButton alloc] initWithFrame:CGRectZero 
-                                           overlayButtonType:TBExampleOverlayButtonTypeMuteButton 
-                                                    delegate:self];
+        _muteButton = [[TBExampleOverlayButton alloc]
+                       initWithFrame:CGRectZero
+                   overlayButtonType:TBExampleOverlayButtonTypeMuteButton
+                            delegate:self];
         
         //switch camera button
-        _switchCameraButton = [[TBExampleOverlayButton alloc] initWithFrame:CGRectZero 
-                                                   overlayButtonType:TBExampleOverlayButtonTypeSwitchCameraButton
-                                                            delegate:self];
+        _switchCameraButton =
+        [[TBExampleOverlayButton alloc]
+                    initWithFrame:CGRectZero
+                overlayButtonType:TBExampleOverlayButtonTypeSwitchCameraButton
+                         delegate:self];
 
+        //archive image view
+        _archiveImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        _archiveImgView.image = [UIImage imageNamed:@"archiving_off-Small.png"];
+        _archiveImgView.contentMode = UIViewContentModeCenter;
+        
         //subscriber buttons
-        _volumeButton = [[TBExampleOverlayButton alloc] initWithFrame:CGRectZero 
-                                             overlayButtonType:TBExampleOverlayButtonTypeVolumeButton
-                                                      delegate:self];
+        _volumeButton = [[TBExampleOverlayButton alloc]
+                         initWithFrame:CGRectZero
+                     overlayButtonType:TBExampleOverlayButtonTypeVolumeButton
+                              delegate:self];
         
         //name of publisher/subscriber
         _nameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -249,6 +273,7 @@
         if (_type == TBExampleOverlayViewTypePublisher) {
             [_controlBar addSubview:_muteButton];
             [_controlBar addSubview:_switchCameraButton];
+            [_controlBar addSubview:_archiveImgView];
             _muteButton.enabled = YES;
         } else if (_type == TBExampleOverlayViewTypeSubscriber) {
             [_controlBar addSubview:_volumeButton];
@@ -282,6 +307,9 @@
     
     [_switchCameraButton removeFromSuperview];
     [_switchCameraButton release];
+    
+    [_archiveImgView removeFromSuperview];
+    [_archiveImgView release];
     
     [_volumeButton removeFromSuperview];
     [_volumeButton release];
@@ -345,11 +373,12 @@
     self.alpha = 1.0;
     [UIView commitAnimations];
     
-    _hideOverlayTimer = [[NSTimer scheduledTimerWithTimeInterval:OVERLAY_HIDE_TIME_MS/1000
-                                                         target:self 
-                                                       selector:@selector(hideOverlay:) 
-                                                       userInfo:nil 
-                                                        repeats:NO] retain];
+    _hideOverlayTimer = [[NSTimer
+                    scheduledTimerWithTimeInterval:OVERLAY_HIDE_TIME_MS/1000
+                                            target:self
+                                          selector:@selector(hideOverlay:)
+                                          userInfo:nil
+                                           repeats:NO] retain];
 }
 
 - (void)hideOverlay:(NSTimer*)timer
@@ -378,10 +407,12 @@
     
     [super setFrame:frame];
         
-    if (self.frame.size.width >= (OVERLAY_BUTTON_WIDTH_LG * _numButtons) + OVERLAY_NAME_MIN_WIDTH + _nameLabel.frame.origin.x) {
+    if (self.frame.size.width >= (OVERLAY_BUTTON_WIDTH_LG * _numButtons) +
+        OVERLAY_NAME_MIN_WIDTH + _nameLabel.frame.origin.x) {
         _buttonWidth = OVERLAY_BUTTON_WIDTH_LG;
     } else {
-        if (self.frame.size.width >= (OVERLAY_BUTTON_WIDTH_SM * _numButtons) + OVERLAY_NAME_MIN_WIDTH + _nameLabel.frame.origin.x) {
+        if (self.frame.size.width >= (OVERLAY_BUTTON_WIDTH_SM * _numButtons) +
+            OVERLAY_NAME_MIN_WIDTH + _nameLabel.frame.origin.x) {
             _buttonWidth = OVERLAY_BUTTON_WIDTH_SM;
         } else {
             _buttonWidth = (self.frame.size.width / 2);
@@ -442,21 +473,25 @@
     if (button == _muteButton) {
         _publisherMuted = button.selected;
             
-        if ([_delegate respondsToSelector:@selector(overlayView:publisherWasMuted:)]) {
+        if ([_delegate respondsToSelector:
+             @selector(overlayView:publisherWasMuted:)]) {
             [_delegate overlayView:self publisherWasMuted:_publisherMuted];
         }
         
     } else if (button == _switchCameraButton) {
         
-        if ([_delegate respondsToSelector:@selector(overlayViewDidToggleCamera:)]) {
+        if ([_delegate respondsToSelector:
+             @selector(overlayViewDidToggleCamera:)]) {
             [_delegate overlayViewDidToggleCamera:self];
         }
 
     } else if (button == _volumeButton) {
         _subscriberMuted = button.selected;
         
-        if ([_delegate respondsToSelector:@selector(overlayView:subscriberVolumeWasMuted:)]) {
-            [_delegate overlayView:self subscriberVolumeWasMuted:_subscriberMuted];
+        if ([_delegate respondsToSelector:
+             @selector(overlayView:subscriberVolumeWasMuted:)]) {
+            [_delegate overlayView:self
+          subscriberVolumeWasMuted:_subscriberMuted];
         }
     }
 }
@@ -465,7 +500,8 @@
 {
     //programmatically touch our switch camera button
     if (_type == TBExampleOverlayViewTypePublisher && _numButtons > 1) {
-        [_switchCameraButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+        [_switchCameraButton
+         sendActionsForControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -490,6 +526,23 @@
             [button sendActionsForControlEvents:UIControlEventTouchUpInside];
         }
     }
+}
+
+- (void)startArchiveAnimation
+{
+    UIImage *imageOne = [UIImage imageNamed:@"archiving_on-10.png"];
+    UIImage *imageTwo = [UIImage imageNamed:@"archiving_pulse-Small.png"];
+    NSArray *imagesArray = [NSArray arrayWithObjects:imageOne, imageTwo, nil];
+    _archiveImgView.animationImages = imagesArray;
+    _archiveImgView.animationDuration = 1.0f;
+    _archiveImgView.animationRepeatCount = 0;
+    [_archiveImgView startAnimating];
+  
+}
+- (void)stopArchiveAnimation
+{
+    [_archiveImgView stopAnimating];
+    _archiveImgView.animationImages = nil;
 }
 
 @end

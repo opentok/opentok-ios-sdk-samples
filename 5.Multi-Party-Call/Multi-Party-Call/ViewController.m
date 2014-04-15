@@ -759,6 +759,11 @@ static NSString *const kToken = @"";
 	_currentSubscriber = NULL;
 	[_publisher release];
 	_publisher = nil;
+    
+    if (self.archiveStatusImgView.isAnimating)
+    {
+        [self stopArchiveAnimation];
+    }
 }
 
 - (void)    session:(OTSession *)session
@@ -879,6 +884,9 @@ static NSString *const kToken = @"";
      [NSString stringWithFormat:@"There was an error connecting to session %@",
       session.sessionId]];
 	[self callAction:nil];
+    [self.callButton setEnabled:YES];
+    [self.callButton setTitle:@"Call" forState:UIControlStateNormal];
+
 }
 
 - (void)publisher:(OTPublisher *)publisher didFailWithError:(OTError *)error
@@ -990,28 +998,56 @@ static NSString *const kToken = @"";
 	}
 }
 
-- (void)publisher:(OTPublisherKit *)publisher
-        archivingStatusChanged:(BOOL)isArchiving
+- (void)startArchiveAnimation
 {
-	NSLog(@"publisher archivingStatusChanged %d", isArchiving);
-    
-	if (isArchiving) {
-        // set animation images
-		self.archiveStatusLbl.text = @"Archiving call";
-		UIImage *imageOne = [UIImage imageNamed:@"archiving_on-10.png"];
-		UIImage *imageTwo = [UIImage imageNamed:@"archiving_pulse-Small.png"];
-		NSArray *imagesArray =
-        [NSArray arrayWithObjects:imageOne, imageTwo, nil];
-		self.archiveStatusImgView.animationImages = imagesArray;
-		self.archiveStatusImgView.animationDuration = 1.0f;
-		self.archiveStatusImgView.animationRepeatCount = 0;
-		[self.archiveStatusImgView startAnimating];
-	} else {
-		[self.archiveStatusImgView stopAnimating];
-		self.archiveStatusLbl.text = @"Archiving off";
-		self.archiveStatusImgView.image =
-        [UIImage imageNamed:@"archiving_off-Small.png"];
-	}
+    // set animation images
+    self.archiveStatusLbl.text = @"Archiving call";
+    UIImage *imageOne = [UIImage imageNamed:@"archiving_on-10.png"];
+    UIImage *imageTwo = [UIImage imageNamed:@"archiving_pulse-Small.png"];
+    NSArray *imagesArray =
+    [NSArray arrayWithObjects:imageOne, imageTwo, nil];
+    self.archiveStatusImgView.animationImages = imagesArray;
+    self.archiveStatusImgView.animationDuration = 1.0f;
+    self.archiveStatusImgView.animationRepeatCount = 0;
+    [self.archiveStatusImgView startAnimating];
+
+}
+
+- (void)stopArchiveAnimation
+{
+    [self.archiveStatusImgView stopAnimating];
+    self.archiveStatusLbl.text = @"Archiving off";
+    self.archiveStatusImgView.image =
+    [UIImage imageNamed:@"archiving_off-Small.png"];
+}
+
+- (void)session:(OTSession*)session
+archiveCreatedWithId:(NSString*)archiveId
+           name:(NSString*)name
+         status:(NSString*)status
+{
+    NSLog(@"session archiving status changed %@", status);
+    if ([status isEqualToString:@"started"])
+    {
+        [self startArchiveAnimation];
+    } else
+    {
+        [self stopArchiveAnimation];
+    }
+}
+
+- (void)session:(OTSession*)session
+archiveUpdatedWithId:(NSString*)archiveId
+         status:(NSString*)status
+{
+    NSLog(@"session archiving status changed %@", status);
+    if ([status isEqualToString:@"started"])
+    {
+        [self startArchiveAnimation];
+    } else
+    {
+        [self stopArchiveAnimation];
+    }
 }
 
 @end

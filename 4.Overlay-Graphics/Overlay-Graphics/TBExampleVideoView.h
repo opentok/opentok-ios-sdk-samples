@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
 
-@class TBExampleGLViewRender;
+@class TBExampleGLViewRender,TBExampleOverlayView;
 @protocol TBExampleVideoViewDelegate;
 
 /**
@@ -36,6 +36,8 @@
 @property(nonatomic) BOOL streamHasVideo;
 
 @property(nonatomic) BOOL streamHasAudio;
+
+@property(nonatomic, retain) TBExampleOverlayView* overlayView;
 
 - (id)initWithFrame:(CGRect)frame
            delegate:(id<TBExampleVideoViewDelegate>)delegate

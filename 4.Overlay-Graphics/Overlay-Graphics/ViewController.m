@@ -10,6 +10,8 @@
 #import <OpenTok/OpenTok.h>
 #import "TBExamplePublisher.h"
 #import "TBExampleSubscriber.h"
+#import "TBExampleVideoView.h"
+#import "TBExampleOverlayView.h"
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
@@ -263,6 +265,38 @@ didFailWithError:(OTError*)error
                                                otherButtonTitles:nil] autorelease];
         [alert show];
     });
+}
+
+- (void)session:(OTSession*)session
+archiveCreatedWithId:(NSString*)archiveId
+           name:(NSString*)name
+         status:(NSString*)status
+{
+    NSLog(@"session archiving status changed %@", status);
+    TBExampleOverlayView *overlayView = [(TBExampleVideoView *)[_publisher view] overlayView];
+    if ([status isEqualToString:@"started"])
+    {
+        [overlayView startArchiveAnimation];
+    } else
+    {
+        [overlayView stopArchiveAnimation];
+    }
+
+}
+
+- (void)session:(OTSession*)session
+archiveUpdatedWithId:(NSString*)archiveId
+         status:(NSString*)status
+{
+    NSLog(@"session archiving status changed %@", status);
+    TBExampleOverlayView *overlayView = [(TBExampleVideoView *)[_publisher view] overlayView];
+    if ([status isEqualToString:@"started"])
+    {
+       [overlayView startArchiveAnimation];
+    } else
+    {
+        [overlayView stopArchiveAnimation];
+    }
 }
 
 @end
