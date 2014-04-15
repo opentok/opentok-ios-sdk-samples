@@ -43,6 +43,9 @@ typedef enum {
 
 - (void)showOverlay:(UITapGestureRecognizer*)gestureRecognizer;
 
+- (void)startArchiveAnimation;
+
+- (void)stopArchiveAnimation;
 @end
 
 @protocol TBExampleOverlayViewDelegate <NSObject>

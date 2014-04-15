@@ -15,7 +15,6 @@
 
 @property(nonatomic, assign) id<TBExampleVideoViewDelegate> delegate;
 @property(nonatomic, retain) TBExampleUnderlayView* underlayView;
-@property(nonatomic, retain) TBExampleOverlayView* overlayView;
 @property(nonatomic, retain) UIView* loadingView;
 @property(nonatomic) CGSize videoDimensions;
 @property(nonatomic, assign) OTStream* stream;
