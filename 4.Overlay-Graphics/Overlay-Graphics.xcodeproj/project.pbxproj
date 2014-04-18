@@ -58,27 +58,6 @@
 			remoteGlobalIDString = A56B2BA518C085AD001E082A;
 			remoteInfo = "Overlay-Graphics";
 		};
-		A5A6080118C08FB700192466 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5A607FA18C08FB700192466 /* QuickSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9090D27161316BC001145EC;
-			remoteInfo = QuickSVG;
-		};
-		A5A6080318C08FB700192466 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5A607FA18C08FB700192466 /* QuickSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9090D38161316BC001145EC;
-			remoteInfo = UnitTests;
-		};
-		A5A6080518C08FB700192466 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5A607FA18C08FB700192466 /* QuickSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9090D6816135E10001145EC;
-			remoteInfo = RenderingTests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -128,7 +107,6 @@
 		A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		A5A607F618C08F3D00192466 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A5A607F818C08F4B00192466 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		A5A607FA18C08FB700192466 /* QuickSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickSVG.xcodeproj; path = quicksvg/QuickSVG.xcodeproj; sourceTree = "<group>"; };
 		A5A6080E18C0921800192466 /* TBExampleOverlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleOverlayButton.h; sourceTree = "<group>"; };
 		A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleOverlayButton.m; sourceTree = "<group>"; };
 		A5A6081018C0921800192466 /* TBExampleOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleOverlayView.h; sourceTree = "<group>"; };
@@ -178,7 +156,6 @@
 		A56B2B9D18C085AD001E082A = {
 			isa = PBXGroup;
 			children = (
-				A5A607FA18C08FB700192466 /* QuickSVG.xcodeproj */,
 				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
 				A56B2BD118C085AE001E082A /* Overlay-GraphicsTests */,
 				A56B2BA818C085AD001E082A /* Frameworks */,
@@ -275,16 +252,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A5A607FB18C08FB700192466 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5A6080218C08FB700192466 /* libQuickSVG.a */,
-				A5A6080418C08FB700192466 /* UnitTests.octest */,
-				A5A6080618C08FB700192466 /* RenderingTests.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A5A6080B18C0920600192466 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,12 +334,6 @@
 			mainGroup = A56B2B9D18C085AD001E082A;
 			productRefGroup = A56B2BA718C085AD001E082A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A5A607FB18C08FB700192466 /* Products */;
-					ProjectRef = A5A607FA18C08FB700192466 /* QuickSVG.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A56B2BA518C085AD001E082A /* Overlay-Graphics */,
@@ -380,30 +341,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A5A6080218C08FB700192466 /* libQuickSVG.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libQuickSVG.a;
-			remoteRef = A5A6080118C08FB700192466 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5A6080418C08FB700192466 /* UnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
-			remoteRef = A5A6080318C08FB700192466 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5A6080618C08FB700192466 /* RenderingTests.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RenderingTests.app;
-			remoteRef = A5A6080518C08FB700192466 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A56B2BA418C085AD001E082A /* Resources */ = {
