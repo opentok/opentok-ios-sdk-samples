@@ -11,9 +11,7 @@ Icons for faster rendering.
 Configuration Notes
 ===================
 
-1.  This project uses open source QuickSVG SDK to process SVG files. In order 
-    to compile the sample,You must run “./clone-quick-svg” build script from 
-    terminal.
+1.  This project uses open source QuickSVG SDK to process SVG files.
 
 2.  Since we are importing a number of classes implemented in Project 2, the 
     header search paths in the project build settings must be extended to look
