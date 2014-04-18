@@ -69,8 +69,8 @@ static NSString *const kToken = @"";
 	[super viewDidLoad];
     
 	[self.view sendSubviewToBack:self.videoContainerView];
-	self.callButton.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
-	self.callButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+	self.endCallButton.titleLabel.lineBreakMode = NSLineBreakByCharWrapping;
+	self.endCallButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     
 	// Default no full screen
 	[self.topOverlayView.layer setValue:[NSNumber numberWithBool:NO]
@@ -89,11 +89,11 @@ static NSString *const kToken = @"";
 	rightBorder.borderColor = [UIColor whiteColor].CGColor;
 	rightBorder.borderWidth = 1;
 	rightBorder.frame =
-    CGRectMake(-1,
-                -1,
-                CGRectGetWidth(self.cameraToggleButton.frame),
-                CGRectGetHeight(self.cameraToggleButton.frame)
-                + 2);
+    CGRectMake(CGRectGetWidth(self.cameraToggleButton.frame) - 2,
+                2,
+                1,
+                CGRectGetHeight(self.cameraToggleButton.frame) - 2
+                );
 	self.cameraToggleButton.clipsToBounds = YES;
 	[self.cameraToggleButton.layer addSublayer:rightBorder];
     
@@ -102,9 +102,10 @@ static NSString *const kToken = @"";
 	leftBorder.borderColor = [UIColor whiteColor].CGColor;
 	leftBorder.borderWidth = 1;
 	leftBorder.frame =
-    CGRectMake(-1, -1,
-               CGRectGetWidth(self.audioPubUnpubButton.frame) + 5,
-               CGRectGetHeight(self.audioPubUnpubButton.frame) + 2);
+    CGRectMake(0,
+               2,
+               1 ,
+               CGRectGetHeight(self.audioPubUnpubButton.frame) - 2);
 	[self.audioPubUnpubButton.layer addSublayer:leftBorder];
     
     	// configure video container view
@@ -137,6 +138,8 @@ static NSString *const kToken = @"";
 	[tgr release];
     
     [self setupSession];
+    
+    [self.endCallButton sendActionsForControlEvents:UIControlEventTouchUpInside];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -187,6 +190,7 @@ static NSString *const kToken = @"";
                              ARCHIVE_BAR_HEIGHT + 10 + 110),
                             144,
                             110)];
+                //_currentSubscriber.view.frame = self.videoContainerView.frame;
             }
             else
             {
@@ -280,6 +284,7 @@ static NSString *const kToken = @"";
                             self.view.frame.size.height - (10 + 110),
                             144,
                             110)];
+                 //_currentSubscriber.view.frame = self.videoContainerView.frame;
             }
             else
             {
@@ -318,13 +323,17 @@ static NSString *const kToken = @"";
         }];
 	}
     
-	// Re-arrange subscribers based on current orientation
-	[self reArrangeSubscribers];
+    if (tgr)
+    {
+        // Re-arrange subscribers based on current orientation
+        [self reArrangeSubscribers];
     
-	// set the video container offset to the current subscriber
-	[videoContainerView setContentOffset:
-     CGPointMake(_currentSubscriber.view.tag *
-                 videoContainerView.frame.size.width, 0) animated:YES];
+        // set the video container offset to the current subscriber
+        [videoContainerView setContentOffset:
+         CGPointMake(_currentSubscriber.view.tag *
+                     videoContainerView.frame.size.width, 0) animated:YES];
+    }
+       
 }
 
 - (void)overlayTimerAction
@@ -428,7 +437,7 @@ static NSString *const kToken = @"";
                    CGRectGetHeight(self.cameraToggleButton.frame) + 2);
         
 		// adjust call button
-		self.callButton.frame =
+		self.endCallButton.frame =
         CGRectMake((self.bottomOverlayView.frame.size.width / 2) - (100 / 2),
                    0,
                    100,
@@ -459,7 +468,7 @@ static NSString *const kToken = @"";
         
 		[videoContainerView setContentSize:
          CGSizeMake(videoContainerView.frame.size.width * (connectionsCount ),
-                    videoContainerView.frame.size.height)];
+                    videoContainerView.frame.size.height - 18)];
 	}
 	else if (orientation == UIInterfaceOrientationLandscapeLeft ||
              orientation == UIInterfaceOrientationLandscapeRight) {
@@ -568,21 +577,26 @@ static NSString *const kToken = @"";
         
 		borderLayer = [[self.cameraToggleButton.layer sublayers]
                        objectAtIndex:1];
-		borderLayer.frame = frame;
+		borderLayer.frame =
+        CGRectMake(0,
+                   1,
+                   CGRectGetWidth(self.cameraToggleButton.frame) ,
+                   1
+                   );
         
 		// call button
-		frame =  self.callButton.frame;
+		frame =  self.endCallButton.frame;
 		frame.origin.x = 0;
 		frame.origin.y = (self.bottomOverlayView.frame.size.height / 2) -
                                                               (100 / 2);
 		frame.size.width = PUBLISHER_BAR_HEIGHT;
 		frame.size.height = 100;
         
-		self.callButton.frame = frame;
+		self.endCallButton.frame = frame;
         
 		[videoContainerView setContentSize:
          CGSizeMake(videoContainerView.frame.size.width * connectionsCount,
-                    videoContainerView.frame.size.height)];
+                    videoContainerView.frame.size.height - 18)];
 	}
     
 	if (isInFullScreen) {
@@ -635,6 +649,8 @@ static NSString *const kToken = @"";
     
 	// subscribe to new subscriber
 	_currentSubscriber.subscribeToVideo = YES;
+    
+    self.audioSubUnsubButton.selected = !_currentSubscriber.subscribeToAudio;
 }
 
 - (void)setupSession
@@ -648,6 +664,9 @@ static NSString *const kToken = @"";
 	_session = [[OTSession alloc] initWithApiKey:kApiKey
 									   sessionId:kSessionId
 										delegate:self];
+    [_session connectWithToken:kToken error:nil];
+    [self setupPublisher];
+
 }
 
 - (void)setupPublisher
@@ -699,9 +718,6 @@ static NSString *const kToken = @"";
 
 - (void)sessionDidConnect:(OTSession *)session
 {
-	[self.callButton setTitle:@"End" forState:UIControlStateNormal];
-	[self.callButton setEnabled:YES];
-    
     // now publish
 	OTError *error;
 	[_session publish:_publisher error:&error];
@@ -729,19 +745,20 @@ static NSString *const kToken = @"";
                     0,
                     containerWidth,
                     containerHeight)];
+        [videoContainerView addSubview:subscriber.view];
 	}
     
 	[videoContainerView setContentSize:
      CGSizeMake(videoContainerView.frame.size.width * (count ),
-                videoContainerView.frame.size.height)];
-	[videoContainerView setContentOffset:CGPointMake(0, 0) animated:YES];
+                videoContainerView.frame.size.height - 18)];
+	//[videoContainerView setContentOffset:
+    //   CGPointMake(_currentSubscriber.view.frame.origin.x, 0) animated:YES];
 }
 
 - (void)sessionDidDisconnect:(OTSession *)session
 {
-	[self.callButton setTitle:@"Call" forState:UIControlStateNormal];
     
-    // remove all subscriber views from video container
+    // remove all subscriber views fro  m video container
 	for (int i = 0; i < [allConnectionsIds count]; i++)
 	{
 		TBExampleSubscriber *subscriber = [allSubscribers valueForKey:
@@ -754,7 +771,6 @@ static NSString *const kToken = @"";
 	[allSubscribers removeAllObjects];
 	[allConnectionsIds removeAllObjects];
 	[allStreams removeAllObjects];
-	[self.callButton setEnabled:YES];
     
 	_currentSubscriber = NULL;
 	[_publisher release];
@@ -851,7 +867,7 @@ static NSString *const kToken = @"";
 	// set scrollview content width based on number of subscribers connected.
 	[videoContainerView setContentSize:
      CGSizeMake(videoContainerView.frame.size.width * (count + 1),
-                videoContainerView.frame.size.height - 20)];
+                videoContainerView.frame.size.height - 18)];
     
 	[allStreams setObject:stream forKey:stream.connection.connectionId];
     
@@ -883,10 +899,7 @@ static NSString *const kToken = @"";
 	[self showAlert:
      [NSString stringWithFormat:@"There was an error connecting to session %@",
       session.sessionId]];
-	[self callAction:nil];
-    [self.callButton setEnabled:YES];
-    [self.callButton setTitle:@"Call" forState:UIControlStateNormal];
-
+	[self endCallAction:nil];
 }
 
 - (void)publisher:(OTPublisher *)publisher didFailWithError:(OTError *)error
@@ -894,7 +907,7 @@ static NSString *const kToken = @"";
 	NSLog(@"publisher didFailWithError %@", error);
 	[self showAlert:[NSString stringWithFormat:
                      @"There was an error publishing."]];
-	[self callAction:nil];
+	[self endCallAction:nil];
 }
 
 - (void)subscriber:(OTSubscriber *)subscriber didFailWithError:(OTError *)error
@@ -903,24 +916,14 @@ static NSString *const kToken = @"";
 }
 
 #pragma mark - Helper Methods
-- (IBAction)callAction:(UIButton *)button
+- (IBAction)endCallAction:(UIButton *)button
 {
-    
-	if (_session && _session.sessionConnectionStatus ==
-        OTSessionConnectionStatusNotConnected) {
-        // session not connected so connect now
-		[_session connectWithToken:kToken error:nil];
-		[self setupPublisher];
-		[button setTitle:@"Connecting ..." forState:UIControlStateNormal];
-		[button setEnabled:NO];
-	}
     
 	if (_session && _session.sessionConnectionStatus ==
         OTSessionConnectionStatusConnected) {
         // disconnect session
 		NSLog(@"disconnecting....");
 		[_session disconnect:nil];
-		[button setTitle:@"Disconnecting ..." forState:UIControlStateNormal];
 		return;
 	}
 }
@@ -965,7 +968,7 @@ static NSString *const kToken = @"";
 	[_audioSubUnsubButton release];
 	[_overlayTimer release];
     
-	[_callButton release];
+	[_endCallButton release];
 	[_cameraSeparator release];
 	[_micSeparator release];
 	[_archiveOverlay release];
