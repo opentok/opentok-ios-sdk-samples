@@ -451,7 +451,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
-					"/Users/charley/src/iOS-SDK-Cookbook/1.Hello-World",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
@@ -469,7 +468,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
-					"/Users/charley/src/iOS-SDK-Cookbook/1.Hello-World",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
