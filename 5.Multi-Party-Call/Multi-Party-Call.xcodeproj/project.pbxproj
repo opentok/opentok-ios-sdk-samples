@@ -15,7 +15,6 @@
 		A554AFAC190A9B3100A6910E /* Bandwidth_meter_strong-23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF95190A9B3100A6910E /* Bandwidth_meter_strong-23@2x.png */; };
 		A554AFAD190A9B3100A6910E /* Bandwidth_meter_weak-23.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF96190A9B3100A6910E /* Bandwidth_meter_weak-23.png */; };
 		A554AFAE190A9B3100A6910E /* Bandwidth_meter_weak-23@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF97190A9B3100A6910E /* Bandwidth_meter_weak-23@2x.png */; };
-		A554AFAF190A9B3100A6910E /* camera_switch_2-48.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF98190A9B3100A6910E /* camera_switch_2-48.png */; };
 		A554AFB0190A9B3100A6910E /* camera_switch-33.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF99190A9B3100A6910E /* camera_switch-33.png */; };
 		A554AFB1190A9B3100A6910E /* camera_switch-33@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF9A190A9B3100A6910E /* camera_switch-33@2x.png */; };
 		A554AFB2190A9B3100A6910E /* mic_muted-24.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF9B190A9B3100A6910E /* mic_muted-24.png */; };
@@ -30,6 +29,8 @@
 		A554AFBB190A9B3100A6910E /* Subscriber-Speaker-Mute-35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AFA4190A9B3100A6910E /* Subscriber-Speaker-Mute-35@2x.png */; };
 		A554AFBC190A9B3100A6910E /* TB Bug-30.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AFA5190A9B3100A6910E /* TB Bug-30.png */; };
 		A554AFBD190A9B3100A6910E /* TB Bug-30@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AFA6190A9B3100A6910E /* TB Bug-30@2x.png */; };
+		A591480B190E2A36007211CB /* camera-switch_black-33.png in Resources */ = {isa = PBXBuildFile; fileRef = A5914809190E2A36007211CB /* camera-switch_black-33.png */; };
+		A591480C190E2A36007211CB /* camera-switch_black-33@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A591480A190E2A36007211CB /* camera-switch_black-33@2x.png */; };
 		A5B610EE18F2845100841E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610ED18F2845100841E6B /* Foundation.framework */; };
 		A5B610F018F2845100841E6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610EF18F2845100841E6B /* CoreGraphics.framework */; };
 		A5B610F218F2845100841E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610F118F2845100841E6B /* UIKit.framework */; };
@@ -81,7 +82,6 @@
 		A554AF95190A9B3100A6910E /* Bandwidth_meter_strong-23@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bandwidth_meter_strong-23@2x.png"; sourceTree = "<group>"; };
 		A554AF96190A9B3100A6910E /* Bandwidth_meter_weak-23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bandwidth_meter_weak-23.png"; sourceTree = "<group>"; };
 		A554AF97190A9B3100A6910E /* Bandwidth_meter_weak-23@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Bandwidth_meter_weak-23@2x.png"; sourceTree = "<group>"; };
-		A554AF98190A9B3100A6910E /* camera_switch_2-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_switch_2-48.png"; sourceTree = "<group>"; };
 		A554AF99190A9B3100A6910E /* camera_switch-33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_switch-33.png"; sourceTree = "<group>"; };
 		A554AF9A190A9B3100A6910E /* camera_switch-33@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_switch-33@2x.png"; sourceTree = "<group>"; };
 		A554AF9B190A9B3100A6910E /* mic_muted-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mic_muted-24.png"; sourceTree = "<group>"; };
@@ -96,6 +96,8 @@
 		A554AFA4190A9B3100A6910E /* Subscriber-Speaker-Mute-35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-Mute-35@2x.png"; sourceTree = "<group>"; };
 		A554AFA5190A9B3100A6910E /* TB Bug-30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB Bug-30.png"; sourceTree = "<group>"; };
 		A554AFA6190A9B3100A6910E /* TB Bug-30@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TB Bug-30@2x.png"; sourceTree = "<group>"; };
+		A5914809190E2A36007211CB /* camera-switch_black-33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch_black-33.png"; sourceTree = "<group>"; };
+		A591480A190E2A36007211CB /* camera-switch_black-33@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch_black-33@2x.png"; sourceTree = "<group>"; };
 		A5B610EA18F2845100841E6B /* Multi-Party-Call.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Multi-Party-Call.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5B610ED18F2845100841E6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5B610EF18F2845100841E6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -240,6 +242,8 @@
 		A5B610F418F2845100841E6B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5914809190E2A36007211CB /* camera-switch_black-33.png */,
+				A591480A190E2A36007211CB /* camera-switch_black-33@2x.png */,
 				A554AF90190A9B3100A6910E /* archiving_on-5.png */,
 				A554AF91190A9B3100A6910E /* archiving_on-5@2x.png */,
 				A554AF92190A9B3100A6910E /* archiving_pulse-15.png */,
@@ -248,7 +252,6 @@
 				A554AF95190A9B3100A6910E /* Bandwidth_meter_strong-23@2x.png */,
 				A554AF96190A9B3100A6910E /* Bandwidth_meter_weak-23.png */,
 				A554AF97190A9B3100A6910E /* Bandwidth_meter_weak-23@2x.png */,
-				A554AF98190A9B3100A6910E /* camera_switch_2-48.png */,
 				A554AF99190A9B3100A6910E /* camera_switch-33.png */,
 				A554AF9A190A9B3100A6910E /* camera_switch-33@2x.png */,
 				A554AF9B190A9B3100A6910E /* mic_muted-24.png */,
@@ -373,13 +376,14 @@
 				A554AFBD190A9B3100A6910E /* TB Bug-30@2x.png in Resources */,
 				A554AFB3190A9B3100A6910E /* mic_muted-24@2x.png in Resources */,
 				A5B6110418F2845100841E6B /* Main_iPad.storyboard in Resources */,
+				A591480C190E2A36007211CB /* camera-switch_black-33@2x.png in Resources */,
 				A554AFBC190A9B3100A6910E /* TB Bug-30.png in Resources */,
 				A554AFB5190A9B3100A6910E /* mic_receiving_data-35@2x.png in Resources */,
 				A554AFAB190A9B3100A6910E /* Bandwidth_meter_strong-23.png in Resources */,
 				A554AFA8190A9B3100A6910E /* archiving_on-5@2x.png in Resources */,
 				A554AFB8190A9B3100A6910E /* Subscriber-Speaker-35.png in Resources */,
+				A591480B190E2A36007211CB /* camera-switch_black-33.png in Resources */,
 				A554AFAA190A9B3100A6910E /* archiving-off-15@2x.png in Resources */,
-				A554AFAF190A9B3100A6910E /* camera_switch_2-48.png in Resources */,
 				A554AFAE190A9B3100A6910E /* Bandwidth_meter_weak-23@2x.png in Resources */,
 				A5B6110918F2845100841E6B /* Images.xcassets in Resources */,
 				A554AFA9190A9B3100A6910E /* archiving_pulse-15.png in Resources */,
