@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5149AA91913969700CB1A9F /* libQuickSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5149AA41913968800CB1A9F /* libQuickSVG.a */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
 		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
 		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
@@ -51,6 +52,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A5149AA31913968800CB1A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9090D27161316BC001145EC;
+			remoteInfo = QuickSVG;
+		};
+		A5149AA51913968800CB1A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9090D38161316BC001145EC;
+			remoteInfo = UnitTests;
+		};
+		A5149AA71913968800CB1A9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9090D6816135E10001145EC;
+			remoteInfo = RenderingTests;
+		};
 		A56B2BCF18C085AE001E082A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A56B2B9E18C085AD001E082A /* Project object */;
@@ -61,6 +83,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickSVG.xcodeproj; path = quicksvg/QuickSVG.xcodeproj; sourceTree = "<group>"; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
 		A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small@2x.png"; sourceTree = "<group>"; };
 		A535047318FD469B00E68BD9 /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
@@ -124,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5149AA91913969700CB1A9F /* libQuickSVG.a in Frameworks */,
 				A5A607F918C08F4B00192466 /* CoreTelephony.framework in Frameworks */,
 				A5A607F718C08F3D00192466 /* SystemConfiguration.framework in Frameworks */,
 				A5A607EF18C08C4F00192466 /* libstdc++.6.0.9.dylib in Frameworks */,
@@ -153,9 +177,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5149A9D1913968800CB1A9F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5149AA41913968800CB1A9F /* libQuickSVG.a */,
+				A5149AA61913968800CB1A9F /* UnitTests.octest */,
+				A5149AA81913968800CB1A9F /* RenderingTests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A56B2B9D18C085AD001E082A = {
 			isa = PBXGroup;
 			children = (
+				A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */,
 				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
 				A56B2BD118C085AE001E082A /* Overlay-GraphicsTests */,
 				A56B2BA818C085AD001E082A /* Frameworks */,
@@ -334,6 +369,12 @@
 			mainGroup = A56B2B9D18C085AD001E082A;
 			productRefGroup = A56B2BA718C085AD001E082A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A5149A9D1913968800CB1A9F /* Products */;
+					ProjectRef = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A56B2BA518C085AD001E082A /* Overlay-Graphics */,
@@ -341,6 +382,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A5149AA41913968800CB1A9F /* libQuickSVG.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libQuickSVG.a;
+			remoteRef = A5149AA31913968800CB1A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5149AA61913968800CB1A9F /* UnitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = UnitTests.octest;
+			remoteRef = A5149AA51913968800CB1A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5149AA81913968800CB1A9F /* RenderingTests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = RenderingTests.app;
+			remoteRef = A5149AA71913968800CB1A9F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A56B2BA418C085AD001E082A /* Resources */ = {
