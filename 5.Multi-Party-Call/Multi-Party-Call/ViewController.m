@@ -769,13 +769,8 @@ OTPublisherDelegate>{
 	// set name of the publisher
 	[_publisher setName:[[UIDevice currentDevice] name]];
     
-	[_publisher.view setFrame:
-	 CGRectMake(8, self.view.frame.size.height -
-                ((PUBLISHER_BAR_HEIGHT +
-                  (self.archiveOverlay.hidden ? 0 : ARCHIVE_BAR_HEIGHT)
-                  + 8) + PUBLISHER_PREVIEW_HEIGHT),
-                PUBLISHER_PREVIEW_WIDTH,
-                PUBLISHER_PREVIEW_HEIGHT)];
+    [self willAnimateRotationToInterfaceOrientation:
+     [[UIApplication sharedApplication] statusBarOrientation] duration:1.0];
     
 	[self.view addSubview:_publisher.view];
     
