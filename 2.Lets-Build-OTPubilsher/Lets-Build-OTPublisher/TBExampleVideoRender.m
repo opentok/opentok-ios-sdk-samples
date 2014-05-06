@@ -184,6 +184,11 @@ enum {
          selector:@selector(leaveBackgroundMode:)
          name:UIApplicationDidBecomeActiveNotification
          object:nil];
+        
+        _currentlyBackgrounded =
+        (UIApplicationStateActive !=
+         [[UIApplication sharedApplication] applicationState]);
+
     }
 	
     return self;
