@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" id="WCp-uc-rl4" userLabel="View (Top Bar)">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+                                <rect key="frame" x="0.0" y="0.0" width="319.99999034882455" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HqG-1i-7AV">
@@ -25,12 +25,12 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" id="qFr-RH-Ltv">
-                                        <rect key="frame" x="266" y="19" width="1" height="48"/>
+                                        <rect key="frame" x="265.99999034882455" y="19" width="1" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jtf-2o-I1R">
-                                        <rect key="frame" x="270" y="22" width="44" height="44"/>
+                                        <rect key="frame" x="269.99999034882455" y="22" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -47,12 +47,12 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="E3F-ZK-jpq">
-                                        <rect key="frame" x="0.0" y="18" width="320" height="1"/>
+                                        <rect key="frame" x="0.0" y="18" width="319.99999034882455" height="1"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nbo-4y-vNM">
-                                        <rect key="frame" x="69" y="33" width="179" height="21"/>
+                                        <rect key="frame" x="69" y="33" width="178.99999303403035" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
@@ -147,6 +147,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrowLeft_disabled-28.png" id="Kqu-H7-hIo">
+                                <rect key="frame" x="20" y="270" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrowRight_disabled-28.png" id="gd3-Rn-Ubi">
+                                <rect key="frame" x="272" y="270" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -160,6 +168,8 @@
                         <outlet property="bottomOverlayView" destination="A7F-fS-W9A" id="9Sk-DM-ZMH"/>
                         <outlet property="cameraToggleButton" destination="kMO-Pi-9LY" id="e0w-Os-jpF"/>
                         <outlet property="endCallButton" destination="fsy-z7-ceo" id="Q0V-co-5DM"/>
+                        <outlet property="leftArrowImgView" destination="Kqu-H7-hIo" id="W9t-Rg-PPu"/>
+                        <outlet property="rightArrowImgView" destination="gd3-Rn-Ubi" id="Y1I-Mb-E0W"/>
                         <outlet property="topOverlayView" destination="WCp-uc-rl4" id="kp6-hK-YVl"/>
                         <outlet property="userNameLabel" destination="Nbo-4y-vNM" id="miZ-Dh-Atn"/>
                         <outlet property="videoContainerView" destination="4Va-Sz-bjT" id="5aX-pd-jwF"/>
@@ -192,6 +202,8 @@
         <image name="archiving-off-15.png" width="15" height="15"/>
         <image name="camera-switch_black-33.png" width="33" height="33"/>
         <image name="camera_switch-33.png" width="33" height="33"/>
+        <image name="icon_arrowLeft_disabled-28.png" width="28" height="28"/>
+        <image name="icon_arrowRight_disabled-28.png" width="28" height="28"/>
         <image name="mic-24.png" width="24" height="24"/>
         <image name="mic_muted-24.png" width="24" height="24"/>
     </resources>
