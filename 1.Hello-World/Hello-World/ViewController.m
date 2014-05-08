@@ -24,11 +24,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"100";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX4xMDB-flR1ZSBOb3YgMTkgMTE6MDk6NTggUFNUIDIwMTN-MC4zNzQxNzIxNX4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9OTVjMmUxYmNkNGI0NDNiM2UyNDA0N2Y0NDk0ZGQ1MWUyZWMzZjUzNzpzZXNzaW9uX2lkPTJfTVg0eE1EQi1mbFIxWlNCT2IzWWdNVGtnTVRFNk1EazZOVGdnVUZOVUlESXdNVE4tTUM0ek56UXhOekl4Tlg0JmNyZWF0ZV90aW1lPTEzOTg5MDcxMzQmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTM5ODkwNzEzNC44MDcxNzMyNDIzNTEwJmV4cGlyZV90aW1lPTE0MDE0OTkxMzQ=";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = NO;
@@ -73,6 +73,7 @@ static bool subscribeToSelf = NO;
 - (void)doConnect
 {
     OTError *error = nil;
+    
     [_session connectWithToken:kToken error:&error];
     if (error)
     {
@@ -263,4 +264,11 @@ didFailWithError:(OTError*)error
     });
 }
 
+- (void)   session:(OTSession*)session
+receivedSignalType:(NSString*)type
+    fromConnection:(OTConnection*)connection
+        withString:(NSString*)string
+{
+    NSLog(@"receivedSignalType %@", string);
+}
 @end

@@ -64,6 +64,10 @@
     _captureSession = nil;
     [_videoOutput release];
     _videoOutput = nil;
+    
+    [_videoInput release];
+    _videoInput = nil;
+
 }
 
 - (int32_t)captureSettings:(OTVideoFormat*)videoFormat {
@@ -365,6 +369,7 @@
             [session removeInput:_videoInput];
             if ([session canAddInput:newVideoInput]) {
                 [session addInput:newVideoInput];
+                [_videoInput release];
                 _videoInput = [newVideoInput retain];
 			} else {
                 success = NO;
@@ -401,8 +406,8 @@ bail:
     
     //-- Add the device to the session.
     NSError *error;
-    _videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice
-                                                        error:&error];
+    _videoInput = [[AVCaptureDeviceInput deviceInputWithDevice:videoDevice
+                                                        error:&error] retain];
     
     if(error)
         assert(0); //TODO: Handle error

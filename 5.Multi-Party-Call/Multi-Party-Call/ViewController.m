@@ -140,6 +140,22 @@ OTPublisherDelegate>{
 	[self.view addGestureRecognizer:tgr];
 	[tgr release];
     
+    UITapGestureRecognizer *leftArrowTapGesture = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(handleArrowTap:)];
+	leftArrowTapGesture.delegate = self;
+	[self.leftArrowImgView addGestureRecognizer:leftArrowTapGesture];
+	[leftArrowTapGesture release];
+
+    UITapGestureRecognizer *rightArrowTapGesture = [[UITapGestureRecognizer alloc]
+                                                   initWithTarget:self
+                                                   action:@selector(handleArrowTap:)];
+	rightArrowTapGesture.delegate = self;
+	[self.rightArrowImgView addGestureRecognizer:rightArrowTapGesture];
+	[rightArrowTapGesture release];
+
+    [self resetArrowsStates];
+    
     self.archiveOverlay.hidden = YES;
     
     [self setupSession];
@@ -528,6 +544,18 @@ OTPublisherDelegate>{
                    CGRectGetWidth(self.audioPubUnpubButton.frame) + 5,
                    CGRectGetHeight(self.audioPubUnpubButton.frame) + 2);
         
+        self.leftArrowImgView.frame =
+        CGRectMake(10,
+                   videoContainerView.frame.size.height/2 - 20,
+                   40,
+                   40);
+        
+        self.rightArrowImgView.frame =
+        CGRectMake(videoContainerView.frame.size.width - 40 - 10,
+                   videoContainerView.frame.size.height/2 - 20,
+                   40,
+                   40);
+
 		[videoContainerView setContentSize:
          CGSizeMake(videoContainerView.frame.size.width * (connectionsCount ),
                     videoContainerView.frame.size.height - 18)];
@@ -582,6 +610,20 @@ OTPublisherDelegate>{
                        self.view.frame.size.width - PUBLISHER_BAR_HEIGHT,
                        self.topOverlayView.frame.size.height);
             
+            self.leftArrowImgView.frame =
+            CGRectMake(10,
+                       videoContainerView.frame.size.height/2 - 20,
+                       40,
+                       40);
+            
+            self.rightArrowImgView.frame =
+            CGRectMake(self.view.frame.size.width - 40 - 10 -
+                       PUBLISHER_BAR_HEIGHT,
+                       videoContainerView.frame.size.height/2 - 20,
+                       40,
+                       40);
+
+            
             
 		}
 		else
@@ -629,6 +671,18 @@ OTPublisherDelegate>{
                        0,
                        self.view.frame.size.width - PUBLISHER_BAR_HEIGHT,
                        self.topOverlayView.frame.size.height);
+            
+            self.leftArrowImgView.frame =
+            CGRectMake(10 + PUBLISHER_BAR_HEIGHT,
+                       videoContainerView.frame.size.height/2 - 20,
+                       40,
+                       40);
+            
+            self.rightArrowImgView.frame =
+            CGRectMake(self.view.frame.size.width - 40 - 10 ,
+                       videoContainerView.frame.size.height/2 - 20,
+                       40,
+                       40);
             
 		}
         
@@ -769,13 +823,8 @@ OTPublisherDelegate>{
 	// set name of the publisher
 	[_publisher setName:[[UIDevice currentDevice] name]];
     
-	[_publisher.view setFrame:
-	 CGRectMake(8, self.view.frame.size.height -
-                ((PUBLISHER_BAR_HEIGHT +
-                  (self.archiveOverlay.hidden ? 0 : ARCHIVE_BAR_HEIGHT)
-                  + 8) + PUBLISHER_PREVIEW_HEIGHT),
-                PUBLISHER_PREVIEW_WIDTH,
-                PUBLISHER_PREVIEW_HEIGHT)];
+    [self willAnimateRotationToInterfaceOrientation:
+     [[UIApplication sharedApplication] statusBarOrientation] duration:1.0];
     
 	[self.view addSubview:_publisher.view];
     
@@ -800,14 +849,89 @@ OTPublisherDelegate>{
 	[recognizer setTranslation:CGPointMake(0, 0) inView:_publisher.view];
 }
 
+- (void)handleArrowTap:(UIPanGestureRecognizer *)recognizer
+{
+    CGPoint touchPoint = [recognizer locationInView:self.leftArrowImgView];
+    if ([self.leftArrowImgView pointInside:touchPoint withEvent:nil])
+    {
+
+        int currentPage = (int)(videoContainerView.contentOffset.x /
+                                videoContainerView.frame.size.width) ;
+        
+        TBExampleSubscriber *nextSubscriber = [allSubscribers objectForKey:
+                              [allConnectionsIds objectAtIndex:currentPage - 1]];
+        
+        [self showAsCurrentSubscriber:nextSubscriber];
+        
+        [videoContainerView setContentOffset:
+         CGPointMake(_currentSubscriber.view.frame.origin.x, 0) animated:YES];
+        
+
+    } else {
+        
+        int currentPage = (int)(videoContainerView.contentOffset.x /
+                                videoContainerView.frame.size.width) ;
+        
+        TBExampleSubscriber *nextSubscriber = [allSubscribers objectForKey:
+                                               [allConnectionsIds objectAtIndex:currentPage + 1]];
+        
+        [self showAsCurrentSubscriber:nextSubscriber];
+        
+        [videoContainerView setContentOffset:
+         CGPointMake(_currentSubscriber.view.frame.origin.x, 0) animated:YES];
+
+    }
+    
+    [self resetArrowsStates];
+}
+
+- (void)resetArrowsStates
+{
+    
+    if (!_currentSubscriber)
+    {
+        self.leftArrowImgView.image =
+        [UIImage imageNamed:@"icon_arrowLeft_disabled-28.png"];
+        self.leftArrowImgView.userInteractionEnabled = NO;
+        
+        self.rightArrowImgView.image =
+        [UIImage imageNamed:@"icon_arrowRight_disabled-28.png"];
+        self.rightArrowImgView.userInteractionEnabled = NO;
+        return;
+    }
+    
+    if (_currentSubscriber.view.tag == 0)
+    {
+        self.leftArrowImgView.image =
+        [UIImage imageNamed:@"icon_arrowLeft_disabled-28.png"];
+        self.leftArrowImgView.userInteractionEnabled = NO;
+    } else
+    {
+        self.leftArrowImgView.image =
+        [UIImage imageNamed:@"icon_arrowLeft_enabled-28.png"];
+        self.leftArrowImgView.userInteractionEnabled = YES;
+    }
+
+    if (_currentSubscriber.view.tag == [allConnectionsIds count] - 1)
+    {
+        self.rightArrowImgView.image =
+        [UIImage imageNamed:@"icon_arrowRight_disabled-28.png"];
+        self.rightArrowImgView.userInteractionEnabled = NO;
+    } else
+    {
+        self.rightArrowImgView.image =
+        [UIImage imageNamed:@"icon_arrowRight_enabled-28.png"];
+        self.rightArrowImgView.userInteractionEnabled = YES;
+    }
+}
 #pragma mark - OpenTok Session
-- (void)        session:(OTSession *)session
+- (void)session:(OTSession *)session
 	connectionDestroyed:(OTConnection *)connection
 {
 	NSLog(@"connectionDestroyed: %@", connection);
 }
 
-- (void)      session:(OTSession *)session
+- (void)session:(OTSession *)session
 	connectionCreated:(OTConnection *)connection
 {
 	NSLog(@"addConnection: %@", connection);
@@ -856,7 +980,7 @@ OTPublisherDelegate>{
 - (void)sessionDidDisconnect:(OTSession *)session
 {
     
-    // remove all subscriber views fro  m video container
+    // remove all subscriber views from video container
 	for (int i = 0; i < [allConnectionsIds count]; i++)
 	{
 		TBExampleSubscriber *subscriber = [allSubscribers valueForKey:
@@ -911,6 +1035,8 @@ OTPublisherDelegate>{
 		[self showAsCurrentSubscriber:[allSubscribers
                                        objectForKey:firstConnection]];
 	}
+    
+    [self resetArrowsStates];
 }
 
 - (void)createSubscriber:(OTStream *)stream
@@ -935,13 +1061,6 @@ OTPublisherDelegate>{
                 containerHeight)];
     
 	subscriber.view.tag = count;
-    
-//	subscriber.view.autoresizingMask = UIViewAutoresizingFlexibleWidth |
-//    UIViewAutoresizingFlexibleHeight |
-//    UIViewAutoresizingFlexibleLeftMargin |
-//    UIViewAutoresizingFlexibleRightMargin |
-//    UIViewAutoresizingFlexibleTopMargin |
-//    UIViewAutoresizingFlexibleBottomMargin;
     
     // add to video container view
 	[videoContainerView insertSubview:subscriber.view
@@ -970,6 +1089,7 @@ OTPublisherDelegate>{
 	[allStreams setObject:stream forKey:stream.connection.connectionId];
     
 	[subscriber release];
+    [self resetArrowsStates];
 }
 
 - (void)publisher:(OTPublisherKit *)publisher
@@ -1072,6 +1192,10 @@ OTPublisherDelegate>{
 	[_archiveOverlay release];
 	[_archiveStatusLbl release];
 	[_archiveStatusImgView release];
+    [_leftArrowImgView release];
+    [_rightArrowImgView release];
+    [_rightArrowImgView release];
+    [_leftArrowImgView release];
 	[super dealloc];
 }
 
