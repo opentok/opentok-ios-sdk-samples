@@ -7,13 +7,13 @@
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.29999999999999999" contentMode="scaleToFill" id="WCp-uc-rl4" userLabel="View (Top Bar)">
-                                <rect key="frame" x="0.0" y="0.0" width="319.99999034882455" height="66"/>
+                                <rect key="frame" x="0.0" y="0.0" width="319.99999926615499" height="66"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HqG-1i-7AV">
@@ -25,12 +25,12 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" id="qFr-RH-Ltv">
-                                        <rect key="frame" x="265.99999034882455" y="19" width="1" height="48"/>
+                                        <rect key="frame" x="265.99999926615499" y="19" width="1" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jtf-2o-I1R">
-                                        <rect key="frame" x="269.99999034882455" y="22" width="44" height="44"/>
+                                        <rect key="frame" x="269.99999926615499" y="22" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -47,12 +47,12 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="E3F-ZK-jpq">
-                                        <rect key="frame" x="0.0" y="18" width="319.99999034882455" height="1"/>
+                                        <rect key="frame" x="0.0" y="18" width="319.99999926615499" height="1"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nbo-4y-vNM">
-                                        <rect key="frame" x="69" y="33" width="178.99999303403035" height="21"/>
+                                        <rect key="frame" x="69" y="33" width="178.99999947032964" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
