@@ -8,6 +8,11 @@
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
 
+typedef enum {
+    OTVideoViewTypeSubscriber,
+    OTVideoViewTypePublisher
+} OTVideoViewType;
+
 @class TBExampleGLViewRender,TBExampleOverlayView;
 @protocol TBExampleVideoViewDelegate;
 
@@ -15,7 +20,7 @@
  * A generic view hierarchy for viewable objects with video in the OpenTok iOS 
  * SDK.
  */
-@interface TBExampleVideoView : OTVideoView <OTVideoRender>
+@interface TBExampleVideoView : UIView <OTVideoRender>
 
 /**
  * This view holds the bottom bar of video panels. Included is a
