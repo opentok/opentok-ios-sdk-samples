@@ -8,7 +8,7 @@
 #import "TBExampleVideoView.h"
 #import "TBExampleOverlayView.h"
 #import "TBExampleUnderlayView.h"
-#import "TBExampleGLViewRender.h"
+#import "TBExampleVideoRender.h"
 #import "TBExampleSVG.h"
 
 @interface TBExampleVideoView() <TBExampleOverlayViewDelegate>
@@ -28,7 +28,7 @@
     CGPoint _lastPoint;
     UIActivityIndicatorView* _activityIndicatorView;
     UILabel* _lblLoading;
-    TBExampleGLViewRender* _videoView;
+    TBExampleVideoRender* _videoView;
 
 }
 
@@ -59,20 +59,36 @@
         
         self.backgroundColor = [UIColor blackColor];
         
-        _videoViewHolder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        _videoViewHolder = [[UIView alloc]
+                            initWithFrame:CGRectMake(0, 0,
+                                                     frame.size.width,
+                                                     frame.size.height)];
         
-        _videoView = [[TBExampleGLViewRender alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        _videoView = [[TBExampleVideoRender alloc]
+                      initWithFrame:CGRectMake(0, 0,
+                                               frame.size.width,
+                                               frame.size.height)];
         _videoView.backgroundColor = [UIColor blackColor];
         
         [_videoViewHolder addSubview:_videoView];
         
-        _loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-        _loadingView.backgroundColor = [UIColor colorWithHue:0 saturation:0 brightness:.13 alpha:1];
+        _loadingView = [[UIView alloc]
+                        initWithFrame:CGRectMake(0, 0,
+                                                 frame.size.width,
+                                                 frame.size.height)];
+        _loadingView.backgroundColor = [UIColor colorWithHue:0
+                                                  saturation:0
+                                                  brightness:.13
+                                                       alpha:1];
                 
-        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _activityIndicatorView =
+        [[UIActivityIndicatorView alloc]
+         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [_activityIndicatorView startAnimating];
         
-        _lblLoading = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
+        _lblLoading = [[UILabel alloc]
+                       initWithFrame:CGRectMake(0, 0,
+                                                self.frame.size.width, 30)];
         _lblLoading.backgroundColor = [UIColor clearColor];
         _lblLoading.textColor = [UIColor whiteColor];
         _lblLoading.textAlignment = NSTextAlignmentCenter;
@@ -85,15 +101,23 @@
         [_loadingView addSubview:_activityIndicatorView];
         [_loadingView addSubview:_lblLoading];
         
-        TBExampleOverlayViewType overlayType = (_type == OTVideoViewTypePublisher) ? TBExampleOverlayViewTypePublisher : TBExampleOverlayViewTypeSubscriber;
+        TBExampleOverlayViewType overlayType =
+        (_type == OTVideoViewTypePublisher) ?
+        TBExampleOverlayViewTypePublisher : TBExampleOverlayViewTypeSubscriber;
         
-        _underlayView = [[TBExampleUnderlayView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        _underlayView = [[TBExampleUnderlayView alloc]
+                         initWithFrame:CGRectMake(0, 0,
+                                                  frame.size.width,
+                                                  frame.size.height)];
         [_underlayView setAudioActive:_streamHasAudio];
         
-        _overlayView = [[TBExampleOverlayView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)
-                                                overlayType:overlayType
-                                                displayName:displayName
-                                                   delegate:self];
+        _overlayView = [[TBExampleOverlayView alloc]
+                        initWithFrame:CGRectMake(0, 0,
+                                                 frame.size.width,
+                                                 frame.size.height)
+                        overlayType:overlayType
+                        displayName:displayName
+                        delegate:self];
         
         [_overlayView setStreamHasAudio:_streamHasAudio];
         [_overlayView setStreamHasVideo:_streamHasVideo];
@@ -108,8 +132,8 @@
 
         
         UITapGestureRecognizer* tap =
-            [[UITapGestureRecognizer alloc] initWithTarget:_overlayView
-                                                    action:@selector(showOverlay:)];
+        [[UITapGestureRecognizer alloc] initWithTarget:_overlayView
+                                                action:@selector(showOverlay:)];
         [tap setNumberOfTapsRequired:1];
         [tap setCancelsTouchesInView:NO];
         [self addGestureRecognizer:tap];
@@ -163,12 +187,16 @@
     if (_type == OTVideoViewTypeSubscriber) {
         if ([self videoAspectRatio] > 0) {
 
-            _videoViewHolder.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+            _videoViewHolder.frame = CGRectMake(0, 0,
+                                                self.frame.size.width,
+                                                self.frame.size.height);
             _videoView.frame = _videoViewHolder.frame;
-            _videoViewHolder.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+            _videoViewHolder.center = CGPointMake(self.frame.size.width/2,
+                                                  self.frame.size.height/2);
             
         } else {
-            NSLog(@"VideoView frame can't be set without known video dimensions...");
+            NSLog(@"VideoView frame can't be set without known video "
+                  "dimensions...");
         }
     } else {
         
@@ -182,19 +210,33 @@
         _videoViewHolder.frame = CGRectMake(0, 0, width, height);
         
         //center it so it clips and is properly letterboxed by the superview
-        _videoViewHolder.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        _videoViewHolder.center = CGPointMake(self.frame.size.width/2,
+                                              self.frame.size.height/2);
         
     }
         
-    [_underlayView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [_loadingView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    [_overlayView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [_underlayView setFrame:CGRectMake(0, 0,
+                                       self.frame.size.width,
+                                       self.frame.size.height)];
+    [_loadingView setFrame:CGRectMake(0, 0,
+                                      self.frame.size.width,
+                                      self.frame.size.height)];
+    [_overlayView setFrame:CGRectMake(0, 0,
+                                      self.frame.size.width,
+                                      self.frame.size.height)];
     
     [_activityIndicatorView setCenter:_loadingView.center];
-    _activityIndicatorView.activityIndicatorViewStyle = (self.frame.size.height >= 120) ? UIActivityIndicatorViewStyleWhiteLarge : UIActivityIndicatorViewStyleWhite;
+    _activityIndicatorView.activityIndicatorViewStyle =
+    (self.frame.size.height >= 120) ?
+    UIActivityIndicatorViewStyleWhiteLarge : UIActivityIndicatorViewStyleWhite;
     
-    [_lblLoading setCenter:CGPointMake(_loadingView.center.x, _loadingView.center.y + _activityIndicatorView.frame.size.height)];
-    [_lblLoading setHidden:((self.frame.size.height < (_lblLoading.frame.size.width + 10)) || (self.frame.size.height < 120))];
+    [_lblLoading
+     setCenter:CGPointMake(_loadingView.center.x,
+                           _loadingView.center.y +
+                           _activityIndicatorView.frame.size.height)];
+    [_lblLoading
+     setHidden:((self.frame.size.height < (_lblLoading.frame.size.width + 10))
+                || (self.frame.size.height < 120))];
 }
 
 - (UIView*)toolbarView {
@@ -209,7 +251,7 @@
 
 - (float)videoAspectRatio {
     if (CGSizeEqualToSize(_videoDimensions, CGSizeZero))
-        return 1.3333; //default to 4:3 aspect ratio - this is mainly used in Flash-land
+        return 1.3333; //default to 4:3 aspect ratio
     
     return _videoDimensions.width / _videoDimensions.height;
 }
@@ -233,24 +275,23 @@
     }
 }
 
-- (void)overlayView:(TBExampleOverlayView*)overlay publisherWasMuted:(BOOL)publisherMuted
+- (void)overlayView:(TBExampleOverlayView*)overlay
+  publisherWasMuted:(BOOL)publisherMuted
 {
-    if ([_delegate respondsToSelector:@selector(videoView:publisherWasMuted:)]) {
+    if ([_delegate respondsToSelector:@selector(videoView:publisherWasMuted:)])
+    {
         [_delegate videoView:self publisherWasMuted:publisherMuted];
     }
 }
 
-- (void)overlayView:(TBExampleOverlayView*)overlay subscriberVolumeWasMuted:(BOOL)subscriberMuted
+- (void)     overlayView:(TBExampleOverlayView*)overlay
+subscriberVolumeWasMuted:(BOOL)subscriberMuted
 {
-    if ([_delegate respondsToSelector:@selector(videoView:subscriberVolumeWasMuted:)]) {
+    if ([_delegate
+         respondsToSelector:@selector(videoView:subscriberVolumeWasMuted:)])
+    {
         [_delegate videoView:self subscriberVolumeWasMuted:subscriberMuted];
     }
-}
-
-#pragma mark - Snapshot -
-
-- (void)getImageWithBlock:(void (^)(UIImage* snapshot))block {
-    [_videoView getSnapshotWithBlock:block];
 }
 
 #pragma mark - OTVideoRender -

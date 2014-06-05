@@ -48,14 +48,6 @@ typedef enum {
            delegate:(id<TBExampleVideoViewDelegate>)delegate
                type:(OTVideoViewType)type
         displayName:(NSString*)displayName;
-/**
- * Take a snapshot of the current video frame displayed
- *
- * @param block - a block that will be invoked upon a successful image capture
- * with a resulting UIImage
- */
-
-- (void)getImageWithBlock:(void (^)(UIImage* snapshot))block;
 
 @end
 
