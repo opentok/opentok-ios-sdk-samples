@@ -46,7 +46,9 @@ static bool subscribeToSelf = YES;
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:kApiKey sessionId:kSessionId delegate:self];
+    _session = [[OTSession alloc] initWithApiKey:kApiKey
+                                       sessionId:kSessionId
+                                        delegate:self];
     [self doConnect];
 }
 
@@ -258,45 +260,33 @@ didFailWithError:(OTError*)error
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Message from video session"
-                                                         message:string
-                                                        delegate:self
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil] autorelease];
+        UIAlertView *alert =
+        [[[UIAlertView alloc] initWithTitle:@"Message from video session"
+                                    message:string
+                                   delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] autorelease];
         [alert show];
     });
 }
 
-- (void)session:(OTSession*)session
-archiveCreatedWithId:(NSString*)archiveId
-           name:(NSString*)name
-         status:(NSString*)status
+- (void)     session:(OTSession*)session
+archiveStartedWithId:(NSString *)archiveId
+                name:(NSString *)name
 {
-    NSLog(@"session archiving status changed %@", status);
-    TBExampleOverlayView *overlayView = [(TBExampleVideoView *)[_publisher view] overlayView];
-    if ([status isEqualToString:@"started"])
-    {
-        [overlayView startArchiveAnimation];
-    } else
-    {
-        [overlayView stopArchiveAnimation];
-    }
-
+    NSLog(@"session archiving started with id:%@ name:%@", archiveId, name);
+    TBExampleOverlayView *overlayView =
+    [(TBExampleVideoView *)[_publisher view] overlayView];
+    [overlayView startArchiveAnimation];
 }
 
-- (void)session:(OTSession*)session
-archiveUpdatedWithId:(NSString*)archiveId
-         status:(NSString*)status
+- (void)     session:(OTSession*)session
+archiveStoppedWithId:(NSString *)archiveId
 {
-    NSLog(@"session archiving status changed %@", status);
-    TBExampleOverlayView *overlayView = [(TBExampleVideoView *)[_publisher view] overlayView];
-    if ([status isEqualToString:@"started"])
-    {
-       [overlayView startArchiveAnimation];
-    } else
-    {
-        [overlayView stopArchiveAnimation];
-    }
+    NSLog(@"session archiving stopped with id:%@", archiveId);
+    TBExampleOverlayView *overlayView =
+    [(TBExampleVideoView *)[_publisher view] overlayView];
+    [overlayView stopArchiveAnimation];
 }
 
 @end
