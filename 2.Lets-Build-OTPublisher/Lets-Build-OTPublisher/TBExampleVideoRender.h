@@ -1,30 +1,31 @@
 //
 //  TBExampleVideoRender.h
 //
-//  Copyright (c) 2013 Tokbox, Inc. All rights reserved.
+//  Copyright (c) 2014 Tokbox, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 #import <OpenTok/OpenTok.h>
 
-/**
- * An example implementation for OTVideoRender. This class will render YUV
- * pixel buffers to the UIView hierarchy. We rely on libyuv to provide YUV to
- * RGB conversion prior to loading the buffer into OpenGL.
- */
+@protocol TBRendererDelegate;
 
-@interface TBExampleVideoRender : UIView <OTVideoRender>
+@interface TBExampleVideoRender : UIView <GLKViewDelegate, OTVideoRender>
 
-/**
- * Renders a video frame to the view.
- * Fufills the contract of OTVideoRender.
- */
-- (void)renderVideoFrame:(OTVideoFrame*)frame;
+@property (nonatomic, assign) BOOL mirroring;
+@property (nonatomic, assign) BOOL renderingEnabled;
+@property (nonatomic, assign) id<TBRendererDelegate> delegate;
 
-/**
- * Sets a block to fetch a (retained!) UIImage of the most recent frame.
+/*
+ * Clears the render buffer to a black frame
  */
-- (void)getSnapshotWithBlock:(void (^)(UIImage* snapshot))block;
+- (void)clearRenderBuffer;
+
+@end
+
+@protocol TBRendererDelegate <NSObject>
+
+- (void)renderer:(TBExampleVideoRender*)renderer
+ didReceiveFrame:(OTVideoFrame*)frame;
 
 @end

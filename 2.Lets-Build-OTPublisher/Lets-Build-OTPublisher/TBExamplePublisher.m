@@ -1,5 +1,5 @@
 //
-//  TBPublisher.m
+//  TBExamplePublisher.m
 //  Lets-Build-OTPublisher
 //
 //  Copyright (c) 2013 TokBox, Inc. All rights reserved.
@@ -10,28 +10,31 @@
 #import "TBExampleVideoRender.h"
 
 @implementation TBExamplePublisher {
-    TBExampleVideoCapture* _myVideoCapture;
-    TBExampleVideoRender* _myVideoRender;
+    TBExampleVideoRender* _videoView;
+    TBExampleVideoCapture* _defaultVideoCapture;
 }
 
-@synthesize view = _myVideoRender;
+@synthesize view = _videoView;
 
-#pragma mark - Object lifecycle
+#pragma mark - Object Lifecycle
 
 - (id)init {
     self = [super init];
     if (self) {
-        _myVideoCapture = [[TBExampleVideoCapture alloc] init];
-        [self setVideoCapture:_myVideoCapture];
+        TBExampleVideoCapture* videoCapture =
+        [[[TBExampleVideoCapture alloc] init] autorelease];
+        [self setVideoCapture:videoCapture];
         
-        _myVideoRender =
-        [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0,0,1,1)];
-        [self setVideoRender:_myVideoRender];
-
+        _videoView =
+        [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+        // Set mirroring only if the front camera is being used.
+        [_videoView setMirroring:
+         (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
+        [self setVideoRender:_videoView];
+        
     }
     return self;
 }
-
 - (id)initWithDelegate:(id<OTPublisherDelegate>)delegate {
     self = [self init];
     if (self) {
@@ -52,43 +55,69 @@
 }
 
 - (void)dealloc {
-    [self setVideoCapture:nil];
-    [self setVideoRender:nil];
-    [_myVideoCapture release];
-    _myVideoCapture = nil;
-    [_myVideoRender release];
-    _myVideoRender = nil;
+    [_videoView release];
+    _videoView = nil;
+    [_defaultVideoCapture removeObserver:self
+                              forKeyPath:@"cameraPosition"
+                                 context:nil];
+    [_defaultVideoCapture release];
+    _defaultVideoCapture = nil;
     [super dealloc];
+}
+
+#pragma mark - Public API
+
+- (void)setCameraPosition:(AVCaptureDevicePosition)cameraPosition {
+    [_defaultVideoCapture setCameraPosition:cameraPosition];
+}
+
+- (AVCaptureDevicePosition)cameraPosition {
+    return [_defaultVideoCapture cameraPosition];
 }
 
 #pragma mark - Overrides for public API
 
-/** 
- * Intercept setter for video capture, so that a client override of our default
- * capture implementation does not leak and make a mess.
- */
 - (void)setVideoCapture:(id<OTVideoCapture>)videoCapture {
     [super setVideoCapture:videoCapture];
-    [_myVideoCapture release];
-    _myVideoCapture = nil;
+    [_defaultVideoCapture removeObserver:self
+                              forKeyPath:@"cameraPosition"
+                                 context:nil];
+    [_defaultVideoCapture release];
+    _defaultVideoCapture = nil;
     
-    // Save the new instance if it's still compatible with the
-    // TBExampleVideoRender contract
+    // Save the new instance if it's still compatible with the public contract
+    // for defaultVideoCapture
     if ([videoCapture isKindOfClass:[TBExampleVideoCapture class]]) {
-        _myVideoCapture = (TBExampleVideoCapture*) videoCapture;
-        [_myVideoCapture retain];
+        _defaultVideoCapture = (TBExampleVideoCapture*) videoCapture;
+        [_defaultVideoCapture retain];
+    }
+    
+    [_defaultVideoCapture addObserver:self
+                           forKeyPath:@"cameraPosition"
+                              options:NSKeyValueObservingOptionNew
+                              context:nil];
+    
+}
+
+#pragma mark - Overrides for UI
+
+- (void)setPublishVideo:(BOOL)publishVideo {
+    [super setPublishVideo:publishVideo];
+    if (!publishVideo) {
+        [_videoView clearRenderBuffer];
     }
 }
 
-# pragma mark - TBExamplePublisher API extensions
+#pragma mark - KVO listeners for Delegate notification
 
-- (void)setCameraPosition:(AVCaptureDevicePosition)cameraPosition
-{
-    _myVideoCapture.cameraPosition = cameraPosition;
-}
-
-- (AVCaptureDevicePosition)cameraPosition {
-    return _myVideoCapture.cameraPosition;
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if ([@"cameraPosition" isEqualToString:keyPath]) {
+        // For example, this is how you could notify a delegate about camera
+        // position changes.
+    }
 }
 
 @end
