@@ -1,8 +1,8 @@
-iOS SDK Cookbook
+OpenTok iOS SDK Samples
 ================
 
 This repository is meant to provide some examples for you to better understand
-the new features presented in version 2.2 of the OpenTok iOS SDK.
+the new features presented in the OpenTok iOS SDK.
 
 What's Inside
 -------------
