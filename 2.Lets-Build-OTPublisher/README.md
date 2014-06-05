@@ -23,16 +23,22 @@ OTVideoCapture interface, which allows us to source arbitrary video data into
 the OTPublisherKit runtime.
 
 ###TBExampleVideoRender
-Both TBExampleSubscriber and TBExamplePublisher will use a generic video 
-renderer, borrowed and modified from Apple's [Rosy Writer][1]
-sample application. A talented OpenGL developer could probably make improvements
-to this implementation, but it will work for the purposes of this demo. Both 
-classes need to provide an implementation of the OTVideoRender interface, each
-for a different reason. TBExamplePublisher provides this render endpoint simply
-to demonstrate an alternative approach from using AVFoundation's
-[AVCaptureVideoPreviewLayer][2]
-class. Both approaches have merit, but we chose this just to show that both the
-OTPublisherKit and OTSubscriberKit rendering endpoints behave in the same way.
+Both TBExampleSubscriber and TBExamplePublisher need an instance supporting the
+`OTVideoRender` protocol in order to display video contents. In short, whatever
+instance id is set to the videoRender property will receive YUV frames (I420) as
+they are captured (publisher), or as they are received (subscriber). Note that,
+although the publisher's `OTVideoCapture` interface can process multiple pixel
+formats, the images passed through the rendering callback will always be in the
+I420 YUV format.
+
+TBExampleVideoRender is a copy of the default video renderer for the OpenTok
+iOS SDK. It is borrowed and modified from a series of classes in Google's
+[WebRTC][1] project.
+
+Although in this example we wire a video renderer to the publisher's rendering
+callback, an alternative approach for developers using video from the camera
+with AVFoundation is to wire [AVCaptureVideoPreviewLayer][2] directly to the 
+capture class and leave the `OTPublisherKit.videoRender` property nil.
 
 To see TBExampleVideoRender in action, put a breakpoint on `renderVideoFrame:`.
 You will see this method fire for every video frame that is presented to the
@@ -66,5 +72,5 @@ class hierarchy will give you some ideas for how to extend the core
 functionality of the OpenTok SDK to meet your application needs.
 
 
-[1]: https://developer.apple.com/library/IOS/samplecode/RosyWriter/Introduction/Intro.html
+[1]: https://code.google.com/p/webrtc/source/browse/trunk/talk/app/webrtc/objc/
 [2]: https://developer.apple.com/library/ios/documentation/AVFoundation/Reference/AVCaptureVideoPreviewLayer_Class/Reference/Reference.html
