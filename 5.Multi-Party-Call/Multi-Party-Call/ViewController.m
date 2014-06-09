@@ -1279,33 +1279,19 @@ OTPublisherDelegate>{
     [UIImage imageNamed:@"archiving_off-Small.png"];
 }
 
-- (void)session:(OTSession*)session
-archiveCreatedWithId:(NSString*)archiveId
-           name:(NSString*)name
-         status:(NSString*)status
+- (void)session:(OTSession *)session
+archiveStartedWithId:(NSString *)archiveId
+           name:(NSString *)name
 {
-    NSLog(@"session archiving status changed %@", status);
-    if ([status isEqualToString:@"started"])
-    {
-        [self startArchiveAnimation];
-    } else
-    {
-        [self stopArchiveAnimation];
-    }
+    NSLog(@"session archiving started");
+    [self startArchiveAnimation];
 }
 
 - (void)session:(OTSession*)session
-archiveUpdatedWithId:(NSString*)archiveId
-         status:(NSString*)status
+archiveStoppedWithId:(NSString *)archiveId
 {
-    NSLog(@"session archiving status changed %@", status);
-    if ([status isEqualToString:@"started"])
-    {
-        [self startArchiveAnimation];
-    } else
-    {
-        [self stopArchiveAnimation];
-    }
+    NSLog(@"session archiving stopped");
+    [self stopArchiveAnimation];
 }
 
 @end
