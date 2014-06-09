@@ -23,6 +23,11 @@
 
 @end
 
+/**
+ * Used to notify the owner of this renderer that frames are being received.
+ * For our example, we'll use this to wire a notification to the subscriber's
+ * delegate that video has arrived.
+ */
 @protocol TBRendererDelegate <NSObject>
 
 - (void)renderer:(TBExampleVideoRender*)renderer

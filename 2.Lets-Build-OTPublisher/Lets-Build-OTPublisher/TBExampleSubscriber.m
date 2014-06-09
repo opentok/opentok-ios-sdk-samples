@@ -86,9 +86,15 @@
 - (void)renderer:(TBExampleVideoRender *)renderer
  didReceiveFrame:(OTVideoFrame *)frame
 {
-    // Here, you could post a notification that the view is ready to display
-    // with interesting content. Prior to the first invocation of this method,
-    // the end-user would only see a black frame, as video has not yet arrived.
+    dispatch_async(dispatch_get_main_queue(), ^() {
+        // post a notification to the controller that video has arrived for this
+        // subscriber. Useful for transitioning a "loading" UI.
+        if ([self.delegate
+             respondsToSelector:@selector(subscriberVideoDataReceived:)])
+        {
+            [self.delegate subscriberVideoDisabled:self];
+        }
+    });
 }
 
 

@@ -249,7 +249,7 @@ didFailWithError:(OTError*)error
 {
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
     
     [self cleanupPublisher];
