@@ -103,6 +103,16 @@ static bool subscribeToSelf = NO;
 }
 
 /**
+ * Cleans up the publisher and its view. At this point, the publisher should not
+ * be attached to the session any more.
+ */
+- (void)cleanupPublisher {
+    [_publisher.view removeFromSuperview];
+    _publisher = nil;
+    // this is a good place to notify the end-user that publishing has stopped.
+}
+
+/**
  * Instantiates a subscriber for the given stream and asynchronously begins the
  * process to begin receiving A/V content for this stream. Unlike doPublish, 
  * this method does not add the subscriber to the view hierarchy. Instead, we 
@@ -122,15 +132,12 @@ static bool subscribeToSelf = NO;
 
 /**
  * Cleans the subscriber from the view hierarchy, if any.
+ * NB: You do *not* have to call unsubscribe in your controller in response to
+ * a streamDestroyed event. Any subscribers (or the publisher) for a stream will
+ * be automatically removed from the session during cleanup of the stream.
  */
-- (void)doUnsubscribe
+- (void)cleanupSubscriber
 {
-    OTError *error = nil;
-    [_session unsubscribe:_subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -175,7 +182,7 @@ streamDestroyed:(OTStream *)stream
     
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
 }
 
@@ -192,7 +199,7 @@ connectionDestroyed:(OTConnection *)connection
     if ([_subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
 }
 
@@ -242,15 +249,19 @@ didFailWithError:(OTError*)error
 {
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
+    
+    [self cleanupPublisher];
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
  didFailWithError:(OTError*) error
 {
     NSLog(@"publisher didFailWithError %@", error);
+    [self cleanupPublisher];
 }
+
 - (void)showAlert:(NSString *)string
 {
     // show alertview on main UI

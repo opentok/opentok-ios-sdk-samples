@@ -1032,16 +1032,9 @@ OTPublisherDelegate>{
 {
 	NSLog(@"streamDestroyed %@", stream.connection.connectionId);
 	
-    // unsubscribe first
+    // get subscriber for this stream
 	TBExampleSubscriber *subscriber = [allSubscribers objectForKey:
                                        stream.connection.connectionId];
-    
-    OTError *error = nil;
-	[_session unsubscribe:subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
     
 	// remove from superview
 	[subscriber.view removeFromSuperview];
@@ -1159,7 +1152,6 @@ OTPublisherDelegate>{
 #pragma mark - Helper Methods
 - (IBAction)endCallAction:(UIButton *)button
 {
-    
 	if (_session && _session.sessionConnectionStatus ==
         OTSessionConnectionStatusConnected) {
         // disconnect session

@@ -146,6 +146,7 @@
 		D44260F5185F81D800E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D442612E185F82AB00E23699 /* OpenTok.framework */,
 				D442614E185F9C3500E23699 /* libstdc++.dylib */,
 				D4426144185F8F2B00E23699 /* libstdc++.6.0.9.dylib */,
 				D4426136185F877100E23699 /* libpthread.dylib */,
@@ -161,7 +162,6 @@
 				D4426138185F877600E23699 /* QuartzCore.framework */,
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260F8185F81D800E23699 /* CoreGraphics.framework */,
-				D442612E185F82AB00E23699 /* OpenTok.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
 				D4426118185F81D800E23699 /* XCTest.framework */,
 			);
