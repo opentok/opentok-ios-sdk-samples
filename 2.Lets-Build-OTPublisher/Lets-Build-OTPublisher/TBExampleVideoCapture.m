@@ -1,15 +1,17 @@
 //
 //  TBExampleVideoCapture.m
+//  otkit-objc-libs
+//
+//  Created by Charley Robinson on 10/11/13.
+//
 //
 
 #import <Availability.h>
 #import <UIKit/UIKit.h>
+#import <CoreVideo/CoreVideo.h>
 #import <OpenTok/OpenTok.h>
 #import "TBExampleVideoCapture.h"
 
-/*
- *  System Versioning Preprocessor Macros
- */
 
 #define SYSTEM_VERSION_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -22,7 +24,6 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-
 @implementation TBExampleVideoCapture {
     id<OTVideoCaptureConsumer> _videoCaptureConsumer;
     OTVideoFrame* _videoFrame;
@@ -34,40 +35,31 @@
     AVCaptureSession *_captureSession;
     AVCaptureDeviceInput *_videoInput;
     AVCaptureVideoDataOutput *_videoOutput;
-
+    
 	BOOL _capturing;
-
+    
 }
 
 @synthesize captureSession = _captureSession;
 @synthesize videoInput = _videoInput, videoOutput = _videoOutput;
 @synthesize videoCaptureConsumer = _videoCaptureConsumer;
 
+#define OT_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE 15
+
 -(id)init {
     self = [super init];
     if (self) {
-        _captureWidth = 640;
-        _captureHeight = 480;
-        _capturePreset = AVCaptureSessionPreset640x480;
-        _capture_queue = dispatch_queue_create("com.tokbox.OTVideoCapture", 0);
+        _capturePreset = AVCaptureSessionPreset352x288;
+        [[self class] dimensionsForCapturePreset:_capturePreset
+                                           width:&_captureWidth
+                                          height:&_captureHeight];
+        _capture_queue = dispatch_queue_create("com.tokbox.OTVideoCapture",
+                                               DISPATCH_QUEUE_SERIAL);
         _videoFrame = [[OTVideoFrame alloc] initWithFormat:
-                      [OTVideoFormat videoFormatNV12WithWidth:_captureWidth
-                                                       height:_captureHeight]];
+                       [OTVideoFormat videoFormatNV12WithWidth:_captureWidth
+                                                        height:_captureHeight]];
     }
     return self;
-}
-
--(void)releaseCapture {
-    [self stopCapture];
-    [_captureSession stopRunning];
-    [_captureSession release];
-    _captureSession = nil;
-    [_videoOutput release];
-    _videoOutput = nil;
-    
-    [_videoInput release];
-    _videoInput = nil;
-
 }
 
 - (int32_t)captureSettings:(OTVideoFormat*)videoFormat {
@@ -85,9 +77,9 @@
         dispatch_release(_capture_queue);
         _capture_queue = nil;
     }
-
+    
     [_videoFrame release];
-
+    
     [super dealloc];
 }
 
@@ -138,7 +130,7 @@
 - (double) maxSupportedFrameRate {
     AVFrameRateRange* firstRange =
     [_videoInput.device.activeFormat.videoSupportedFrameRateRanges
-                               objectAtIndex:0];
+     objectAtIndex:0];
     
     CMTime bestDuration = firstRange.minFrameDuration;
     double bestFrameRate = bestDuration.timescale / bestDuration.value;
@@ -181,25 +173,28 @@
     return nil;
 }
 
-- (void) setActiveFrameRate:(double)frameRate {
+- (void)setActiveFrameRate:(double)frameRate {
 	
     if (!_videoOutput || !_videoInput) {
         return;
     }
     
     AVFrameRateRange* frameRateRange =
-        [self frameRateRangeForFrameRate:frameRate];
+    [self frameRateRangeForFrameRate:frameRate];
     if (nil == frameRateRange) {
         NSLog(@"unsupported frameRate %f", frameRate);
+        return;
     }
+    CMTime desiredMinFrameDuration = CMTimeMake(1, frameRate);
+    CMTime desiredMaxFrameDuration = frameRateRange.maxFrameDuration;
     
     [_captureSession beginConfiguration];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         NSError* error;
         if ([_videoInput.device lockForConfiguration:&error]) {
-            [_videoInput.device setActiveVideoMinFrameDuration:frameRateRange.minFrameDuration];
-            [_videoInput.device setActiveVideoMaxFrameDuration:frameRateRange.maxFrameDuration];
+            [_videoInput.device setActiveVideoMinFrameDuration:desiredMinFrameDuration];
+            [_videoInput.device setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
             [_videoInput.device unlockForConfiguration];
         } else {
             NSLog(@"%@", error);
@@ -207,9 +202,9 @@
     } else {
         AVCaptureConnection *conn = [_videoOutput connectionWithMediaType:AVMediaTypeVideo];
         if (conn.supportsVideoMinFrameDuration)
-            conn.videoMinFrameDuration = frameRateRange.minFrameDuration;
+            conn.videoMinFrameDuration = desiredMinFrameDuration;
         if (conn.supportsVideoMaxFrameDuration)
-            conn.videoMaxFrameDuration = frameRateRange.maxFrameDuration;
+            conn.videoMaxFrameDuration = desiredMaxFrameDuration;
     }
     [_captureSession commitConfiguration];
 }
@@ -270,7 +265,7 @@
 								  nil];
 	
 	NSMutableArray *availableSessionPresets =
-        [NSMutableArray arrayWithCapacity:9];
+    [NSMutableArray arrayWithCapacity:9];
 	for (NSString *sessionPreset in allSessionPresets) {
 		if ([[self captureSession] canSetSessionPreset:sessionPreset])
 			[availableSessionPresets addObject:sessionPreset];
@@ -284,35 +279,34 @@
     _captureWidth = width;
     _captureHeight = height;
     [_videoFrame setFormat:[OTVideoFormat
-                           videoFormatNV12WithWidth:_captureWidth
-                           height:_captureHeight]];
+                            videoFormatNV12WithWidth:_captureWidth
+                            height:_captureHeight]];
     
+}
+
+- (NSString*)captureSessionPreset {
+    return _captureSession.sessionPreset;
 }
 
 
 - (void) setCaptureSessionPreset:(NSString*)preset {
     AVCaptureSession *session = [self captureSession];
     
-    [[self class] dimensionsForCapturePreset:preset
-                                       width:&_captureWidth
-                                      height:&_captureHeight];
     if ([session canSetSessionPreset:preset] &&
         ![preset isEqualToString:session.sessionPreset]) {
         
-        dispatch_sync(_capture_queue, ^{
-            [_captureSession beginConfiguration];
-            _captureSession.sessionPreset = preset;
-            _capturePreset = preset;
-
-            [_videoOutput setVideoSettings:
-             [NSDictionary dictionaryWithObjectsAndKeys:
-              [NSNumber numberWithInt:
-               kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange],
-              kCVPixelBufferPixelFormatTypeKey,
-              nil]];
-
-            [_captureSession commitConfiguration];
-        });
+        [_captureSession beginConfiguration];
+        _captureSession.sessionPreset = preset;
+        _capturePreset = preset;
+        
+        [_videoOutput setVideoSettings:
+         [NSDictionary dictionaryWithObjectsAndKeys:
+          [NSNumber numberWithInt:
+           kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange],
+          kCVPixelBufferPixelFormatTypeKey,
+          nil]];
+        
+        [_captureSession commitConfiguration];
     }
 }
 
@@ -390,6 +384,22 @@ bail:
     return;
 }
 
+-(void)releaseCapture {
+    [self stopCapture];
+    [_videoOutput setSampleBufferDelegate:nil queue:NULL];
+    dispatch_sync(_capture_queue, ^() {
+        [_captureSession stopRunning];
+    });
+    [_captureSession release];
+    _captureSession = nil;
+    [_videoOutput release];
+    _videoOutput = nil;
+    
+    [_videoInput release];
+    _videoInput = nil;
+    
+}
+
 - (void) initCapture {
     //-- Setup Capture Session.
     
@@ -397,6 +407,11 @@ bail:
     [_captureSession beginConfiguration];
     
 	[_captureSession setSessionPreset:_capturePreset];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        //Needs to be set in order to receive audio route/interruption events.
+        _captureSession.usesApplicationAudioSession = NO;
+    }
     
     //-- Create a video device and input from that Device.
     // Add the input to the capture session.
@@ -407,7 +422,7 @@ bail:
     //-- Add the device to the session.
     NSError *error;
     _videoInput = [[AVCaptureDeviceInput deviceInputWithDevice:videoDevice
-                                                        error:&error] retain];
+                                                         error:&error] retain];
     
     if(error)
         assert(0); //TODO: Handle error
@@ -427,8 +442,10 @@ bail:
     
     [_captureSession addOutput:_videoOutput];
 	[_captureSession commitConfiguration];
-
+    
     [_captureSession startRunning];
+    
+    [self setActiveFrameRate:OT_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE];
     
 }
 
@@ -481,13 +498,135 @@ bail:
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
+  didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection
+{
+    
+}
+
+/**
+ * Def: sanitary(n): A contiguous image buffer with no padding. All bytes in the
+ * store are actual pixel data.
+ */
+- (BOOL)imageBufferIsSanitary:(CVImageBufferRef)imageBuffer
+{
+    size_t planeCount = CVPixelBufferGetPlaneCount(imageBuffer);
+    // (Apple bug?) interleaved chroma plane measures in at half of actual size.
+    // No idea how many pixel formats this applys to, but we're specifically
+    // targeting 4:2:0 here, so there are some assuptions that must be made.
+    BOOL biplanar = (2 == planeCount);
+    
+    for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
+        size_t imageWidth =
+        CVPixelBufferGetWidthOfPlane(imageBuffer, i) *
+        CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+        
+        if (biplanar && 1 == i) {
+            imageWidth *= 2;
+        }
+        
+        size_t dataWidth =
+        CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, i) *
+        CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+        
+        if (imageWidth != dataWidth) {
+            return NO;
+        }
+        
+        BOOL hasNextAddress = CVPixelBufferGetPlaneCount(imageBuffer) > i + 1;
+        BOOL nextPlaneContiguous = YES;
+        
+        if (hasNextAddress) {
+            size_t planeLength =
+            dataWidth * CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+            
+            uint8_t* baseAddress =
+            CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i);
+            
+            uint8_t* nextAddress =
+            CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i + 1);
+            
+            nextPlaneContiguous = &(baseAddress[planeLength]) == nextAddress;
+        }
+        
+        if (!nextPlaneContiguous) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+- (size_t)sanitizeImageBuffer:(CVImageBufferRef)imageBuffer
+                         data:(uint8_t**)data
+                       planes:(NSPointerArray*)planes
+{
+    uint32_t pixelFormat = CVPixelBufferGetPixelFormatType(imageBuffer);
+    if (kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange == pixelFormat ||
+        kCVPixelFormatType_420YpCbCr8BiPlanarFullRange == pixelFormat)
+    {
+        return [self sanitizeBiPlanarImageBuffer:imageBuffer
+                                            data:data
+                                          planes:planes];
+    } else {
+        NSLog(@"No sanitization implementation for pixelFormat %d",
+              pixelFormat);
+        *data = NULL;
+        return 0;
+    }
+}
+
+- (size_t)sanitizeBiPlanarImageBuffer:(CVImageBufferRef)imageBuffer
+                                 data:(uint8_t**)data
+                               planes:(NSPointerArray*)planes
+{
+    size_t sanitaryBufferSize = 0;
+    for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
+        size_t planeImageWidth =
+        // TODO: (Apple bug?) biplanar pixel format reports 1/2 the width of
+        // what actually ends up in the pixel buffer for interleaved chroma.
+        // The only thing I could do about it is use image width for both plane
+        // calculations, in spite of this being technically wrong.
+        //CVPixelBufferGetWidthOfPlane(imageBuffer, i);
+        CVPixelBufferGetWidth(imageBuffer);
+        size_t planeImageHeight =
+        CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+        sanitaryBufferSize += (planeImageWidth * planeImageHeight);
+    }
+    uint8_t* newImageBuffer = malloc(sanitaryBufferSize);
+    size_t bytesCopied = 0;
+    for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
+        [planes addPointer:&(newImageBuffer[bytesCopied])];
+        void* planeBaseAddress =
+        CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i);
+        size_t planeDataWidth =
+        CVPixelBufferGetBytesPerRowOfPlane(imageBuffer, i);
+        size_t planeImageWidth =
+        // Same as above. Use full image width for both luma and interleaved
+        // chroma planes.
+        //CVPixelBufferGetWidthOfPlane(imageBuffer, i);
+        CVPixelBufferGetWidth(imageBuffer);
+        size_t planeImageHeight =
+        CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+        for (int rowIndex = 0; rowIndex < planeImageHeight; rowIndex++) {
+            memcpy(&(newImageBuffer[bytesCopied]),
+                   &(planeBaseAddress[planeDataWidth * rowIndex]),
+                   planeImageWidth);
+            bytesCopied += planeImageWidth;
+        }
+    }
+    assert(bytesCopied == sanitaryBufferSize);
+    *data = newImageBuffer;
+    return bytesCopied;
+}
+
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
     
     if (!(_capturing && _videoCaptureConsumer)) {
         return;
     }
-		
+    
     CMTime time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     CVPixelBufferLockBaseAddress(imageBuffer, 0);
@@ -512,14 +651,29 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     minFrameDuration.timescale / minFrameDuration.value;
     // TODO: how do we measure this from AVFoundation?
     _videoFrame.format.estimatedCaptureDelay = 100;
-    [_videoFrame clearPlanes];
-    for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
-        [_videoFrame.planes addPointer:
-         CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i)];
-    }
     _videoFrame.orientation = [self currentDeviceOrientation];
     
+    [_videoFrame clearPlanes];
+    uint8_t* sanitizedImageBuffer = NULL;
+    
+    if (!CVPixelBufferIsPlanar(imageBuffer))
+    {
+        [_videoFrame.planes
+         addPointer:CVPixelBufferGetBaseAddress(imageBuffer)];
+    } else if ([self imageBufferIsSanitary:imageBuffer]) {
+        for (int i = 0; i < CVPixelBufferGetPlaneCount(imageBuffer); i++) {
+            [_videoFrame.planes addPointer:
+             CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i)];
+        }
+    } else {
+        [self sanitizeImageBuffer:imageBuffer
+                             data:&sanitizedImageBuffer
+                           planes:_videoFrame.planes];
+    }
+    
     [_videoCaptureConsumer consumeFrame:_videoFrame];
+    
+    free(sanitizedImageBuffer);
     
     CVPixelBufferUnlockBaseAddress(imageBuffer, 0);
     

@@ -31,8 +31,6 @@
 		A56B2BD818C085AE001E082A /* Overlay_GraphicsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BD718C085AE001E082A /* Overlay_GraphicsTests.m */; };
 		A56B2BEB18C08648001E082A /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE218C08648001E082A /* TBExamplePublisher.m */; };
 		A56B2BEC18C08648001E082A /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE418C08648001E082A /* TBExampleSubscriber.m */; };
-		A56B2BED18C08648001E082A /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE618C08648001E082A /* TBExampleVideoCapture.m */; };
-		A56B2BEE18C08648001E082A /* TBExampleGLViewRender.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE818C08648001E082A /* TBExampleGLViewRender.m */; };
 		A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE918C08648001E082A /* ShaderUtilities.c */; };
 		A5A607E118C08B6B00192466 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E018C08B6B00192466 /* OpenTok.framework */; };
 		A5A607E318C08B8500192466 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E218C08B8500192466 /* CoreMedia.framework */; };
@@ -49,6 +47,10 @@
 		A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081518C0921800192466 /* TBExampleUnderlayView.m */; };
 		A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081718C0921800192466 /* TBExampleVideoView.m */; };
 		A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081918C0921800192466 /* TBExampleSVG.m */; };
+		D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */; };
+		D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */; };
+		D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAC194129B900364672 /* GLKit.framework */; };
+		D4F8FDAF194129C400364672 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAE194129C400364672 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,10 +116,6 @@
 		A56B2BE218C08648001E082A /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
 		A56B2BE318C08648001E082A /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
 		A56B2BE418C08648001E082A /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
-		A56B2BE518C08648001E082A /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoCapture.h; sourceTree = "<group>"; };
-		A56B2BE618C08648001E082A /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoCapture.m; sourceTree = "<group>"; };
-		A56B2BE718C08648001E082A /* TBExampleGLViewRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleGLViewRender.h; sourceTree = "<group>"; };
-		A56B2BE818C08648001E082A /* TBExampleGLViewRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleGLViewRender.m; sourceTree = "<group>"; };
 		A56B2BE918C08648001E082A /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
 		A56B2BEA18C08648001E082A /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
 		A5A607E018C08B6B00192466 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenTok.framework; path = ../../OpenTok.framework; sourceTree = "<group>"; };
@@ -140,6 +138,12 @@
 		A5A6081718C0921800192466 /* TBExampleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoView.m; sourceTree = "<group>"; };
 		A5A6081818C0921800192466 /* TBExampleSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSVG.h; sourceTree = "<group>"; };
 		A5A6081918C0921800192466 /* TBExampleSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSVG.m; sourceTree = "<group>"; };
+		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
+		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
+		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
+		D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
+		D4F8FDAC194129B900364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D4F8FDAE194129C400364672 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,17 +152,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5149AA91913969700CB1A9F /* libQuickSVG.a in Frameworks */,
-				A5A607F918C08F4B00192466 /* CoreTelephony.framework in Frameworks */,
-				A5A607F718C08F3D00192466 /* SystemConfiguration.framework in Frameworks */,
 				A5A607EF18C08C4F00192466 /* libstdc++.6.0.9.dylib in Frameworks */,
 				A5A607ED18C08BB900192466 /* libstdc++.dylib in Frameworks */,
 				A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */,
 				A5A607E918C08BA100192466 /* libsqlite3.dylib in Frameworks */,
+				A5A607E118C08B6B00192466 /* OpenTok.framework in Frameworks */,
 				A5A607E718C08B9B00192466 /* AudioToolbox.framework in Frameworks */,
 				A5A607E518C08B8A00192466 /* CoreVideo.framework in Frameworks */,
 				A5A607E318C08B8500192466 /* CoreMedia.framework in Frameworks */,
-				A5A607E118C08B6B00192466 /* OpenTok.framework in Frameworks */,
+				D4F8FDAF194129C400364672 /* OpenGLES.framework in Frameworks */,
+				A5A607F718C08F3D00192466 /* SystemConfiguration.framework in Frameworks */,
+				A5A607F918C08F4B00192466 /* CoreTelephony.framework in Frameworks */,
 				A56B2BAC18C085AD001E082A /* CoreGraphics.framework in Frameworks */,
+				D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */,
 				A56B2BAE18C085AD001E082A /* UIKit.framework in Frameworks */,
 				A56B2BAA18C085AD001E082A /* Foundation.framework in Frameworks */,
 			);
@@ -191,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */,
+				D4F8FDA11941271300364672 /* Project 2 - Let's Build OTPubilsher */,
 				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
 				A56B2BD118C085AE001E082A /* Overlay-GraphicsTests */,
 				A56B2BA818C085AD001E082A /* Frameworks */,
@@ -210,6 +217,8 @@
 		A56B2BA818C085AD001E082A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4F8FDAE194129C400364672 /* OpenGLES.framework */,
+				D4F8FDAC194129B900364672 /* GLKit.framework */,
 				A5A607F818C08F4B00192466 /* CoreTelephony.framework */,
 				A5A607F618C08F3D00192466 /* SystemConfiguration.framework */,
 				A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */,
@@ -236,8 +245,6 @@
 				A56B2BE218C08648001E082A /* TBExamplePublisher.m */,
 				A56B2BE318C08648001E082A /* TBExampleSubscriber.h */,
 				A56B2BE418C08648001E082A /* TBExampleSubscriber.m */,
-				A56B2BE518C08648001E082A /* TBExampleVideoCapture.h */,
-				A56B2BE618C08648001E082A /* TBExampleVideoCapture.m */,
 				A56B2BE918C08648001E082A /* ShaderUtilities.c */,
 				A56B2BEA18C08648001E082A /* ShaderUtilities.h */,
 				A56B2BB818C085AD001E082A /* AppDelegate.h */,
@@ -300,10 +307,19 @@
 				A5A6081718C0921800192466 /* TBExampleVideoView.m */,
 				A5A6081818C0921800192466 /* TBExampleSVG.h */,
 				A5A6081918C0921800192466 /* TBExampleSVG.m */,
-				A56B2BE718C08648001E082A /* TBExampleGLViewRender.h */,
-				A56B2BE818C08648001E082A /* TBExampleGLViewRender.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		D4F8FDA11941271300364672 /* Project 2 - Let's Build OTPubilsher */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */,
+				D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */,
+				D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */,
+				D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */,
+			);
+			name = "Project 2 - Let's Build OTPubilsher";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,15 +456,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */,
 				A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */,
 				A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */,
-				A56B2BEE18C08648001E082A /* TBExampleGLViewRender.m in Sources */,
 				A56B2BC318C085AD001E082A /* ViewController.m in Sources */,
-				A56B2BED18C08648001E082A /* TBExampleVideoCapture.m in Sources */,
 				A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */,
 				A56B2BEC18C08648001E082A /* TBExampleSubscriber.m in Sources */,
 				A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */,
 				A56B2BBA18C085AD001E082A /* AppDelegate.m in Sources */,
+				D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */,
 				A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */,
 				A56B2BB618C085AD001E082A /* main.m in Sources */,
 				A56B2BEB18C08648001E082A /* TBExamplePublisher.m in Sources */,
@@ -594,6 +610,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
+					/Users/charley/src,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlay-Graphics/Overlay-Graphics-Prefix.pch";
@@ -601,7 +618,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/Overlay-Graphics\"",
-					"\"$(SRCROOT)/quicksvg/QuickSVG",
+					"\"$(SRCROOT)/quicksvg/QuickSVG $(SRCROOT)/../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher",
 				);
 				INFOPLIST_FILE = "Overlay-Graphics/Overlay-Graphics-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
@@ -621,6 +638,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
+					/Users/charley/src,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlay-Graphics/Overlay-Graphics-Prefix.pch";
@@ -628,7 +646,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/Overlay-Graphics\"",
-					"\"$(SRCROOT)/quicksvg/QuickSVG",
+					"\"$(SRCROOT)/quicksvg/QuickSVG $(SRCROOT)/../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher",
 				);
 				INFOPLIST_FILE = "Overlay-Graphics/Overlay-Graphics-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";

@@ -24,11 +24,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"100";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX4xMDB-flR1ZSBOb3YgMTkgMTE6MDk6NTggUFNUIDIwMTN-MC4zNzQxNzIxNX4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9OTVjMmUxYmNkNGI0NDNiM2UyNDA0N2Y0NDk0ZGQ1MWUyZWMzZjUzNzpzZXNzaW9uX2lkPTJfTVg0eE1EQi1mbFIxWlNCT2IzWWdNVGtnTVRFNk1EazZOVGdnVUZOVUlESXdNVE4tTUM0ek56UXhOekl4Tlg0JmNyZWF0ZV90aW1lPTEzOTg5MDcxMzQmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTM5ODkwNzEzNC44MDcxNzMyNDIzNTEwJmV4cGlyZV90aW1lPTE0MDE0OTkxMzQ=";
+static NSString* const kToken = @"";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = NO;
@@ -103,6 +103,16 @@ static bool subscribeToSelf = NO;
 }
 
 /**
+ * Cleans up the publisher and its view. At this point, the publisher should not
+ * be attached to the session any more.
+ */
+- (void)cleanupPublisher {
+    [_publisher.view removeFromSuperview];
+    _publisher = nil;
+    // this is a good place to notify the end-user that publishing has stopped.
+}
+
+/**
  * Instantiates a subscriber for the given stream and asynchronously begins the
  * process to begin receiving A/V content for this stream. Unlike doPublish, 
  * this method does not add the subscriber to the view hierarchy. Instead, we 
@@ -122,15 +132,12 @@ static bool subscribeToSelf = NO;
 
 /**
  * Cleans the subscriber from the view hierarchy, if any.
+ * NB: You do *not* have to call unsubscribe in your controller in response to
+ * a streamDestroyed event. Any subscribers (or the publisher) for a stream will
+ * be automatically removed from the session during cleanup of the stream.
  */
-- (void)doUnsubscribe
+- (void)cleanupSubscriber
 {
-    OTError *error = nil;
-    [_session unsubscribe:_subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -175,7 +182,7 @@ streamDestroyed:(OTStream *)stream
     
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
 }
 
@@ -192,7 +199,7 @@ connectionDestroyed:(OTConnection *)connection
     if ([_subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
 }
 
@@ -242,15 +249,19 @@ didFailWithError:(OTError*)error
 {
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
+    
+    [self cleanupPublisher];
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
  didFailWithError:(OTError*) error
 {
     NSLog(@"publisher didFailWithError %@", error);
+    [self cleanupPublisher];
 }
+
 - (void)showAlert:(NSString *)string
 {
     // show alertview on main UI
@@ -264,11 +275,4 @@ didFailWithError:(OTError*)error
     });
 }
 
-- (void)   session:(OTSession*)session
-receivedSignalType:(NSString*)type
-    fromConnection:(OTConnection*)connection
-        withString:(NSString*)string
-{
-    NSLog(@"receivedSignalType %@", string);
-}
 @end

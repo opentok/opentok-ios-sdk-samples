@@ -42,6 +42,7 @@
 		D4426245185FCF2900E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426243185FCF2900E23699 /* TBExampleVideoCapture.m */; };
 		D4426246185FCF2900E23699 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426244185FCF2900E23699 /* TBExampleVideoRender.m */; };
 		D4426248185FCF6A00E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D4426247185FCF6A00E23699 /* README.md */; };
+		D4F8FD9D194125D100364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FD9C194125D100364672 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,8 +77,8 @@
 		D4426211185FC8D600E23699 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4426213185FC8D600E23699 /* Live_Photo_CaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Live_Photo_CaptureTests.m; sourceTree = "<group>"; };
 		D442621D185FC9F800E23699 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
-		D442621F185FCB6D00E23699 /* TBExamplePublisher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TBExamplePublisher.h; path = "../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher/TBExamplePublisher.h"; sourceTree = "<group>"; };
-		D4426220185FCB6D00E23699 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
+		D442621F185FCB6D00E23699 /* TBExamplePublisher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TBExamplePublisher.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExamplePublisher.h"; sourceTree = "<group>"; };
+		D4426220185FCB6D00E23699 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		D4426221185FCB8F00E23699 /* TBExamplePhotoVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePhotoVideoCapture.h; sourceTree = "<group>"; };
 		D4426222185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePhotoVideoCapture.m; sourceTree = "<group>"; };
 		D4426224185FCDA700E23699 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
@@ -93,11 +94,12 @@
 		D442622E185FCDA700E23699 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D442622F185FCDA700E23699 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D4426230185FCDA700E23699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D442623E185FCEFB00E23699 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExamplePublisher.m; path = "../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher/TBExamplePublisher.m"; sourceTree = "<group>"; };
-		D4426241185FCF2400E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleSubscriber.m; path = "../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher/TBExampleSubscriber.m"; sourceTree = "<group>"; };
-		D4426243185FCF2900E23699 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
-		D4426244185FCF2900E23699 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
+		D442623E185FCEFB00E23699 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExamplePublisher.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExamplePublisher.m"; sourceTree = "<group>"; };
+		D4426241185FCF2400E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleSubscriber.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleSubscriber.m"; sourceTree = "<group>"; };
+		D4426243185FCF2900E23699 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
+		D4426244185FCF2900E23699 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
 		D4426247185FCF6A00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D4F8FD9C194125D100364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				D4426236185FCDA700E23699 /* SystemConfiguration.framework in Frameworks */,
 				D4426237185FCDA700E23699 /* CoreTelephony.framework in Frameworks */,
 				D4426238185FCDA700E23699 /* OpenGLES.framework in Frameworks */,
+				D4F8FD9D194125D100364672 /* GLKit.framework in Frameworks */,
 				D4426239185FCDA700E23699 /* CoreVideo.framework in Frameworks */,
 				D442623A185FCDA700E23699 /* CoreMedia.framework in Frameworks */,
 				D442623B185FCDA700E23699 /* AudioToolbox.framework in Frameworks */,
@@ -162,6 +165,7 @@
 		D44261E4185FC8D600E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4F8FD9C194125D100364672 /* GLKit.framework */,
 				D4426224185FCDA700E23699 /* libstdc++.dylib */,
 				D4426225185FCDA700E23699 /* libstdc++.6.0.9.dylib */,
 				D4426226185FCDA700E23699 /* libpthread.dylib */,
@@ -497,7 +501,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/../2.Lets-Build-OTPubilsher/**",
+					"${SRCROOT}/../2.Lets-Build-OTPublisher/**",
 				);
 				INFOPLIST_FILE = "Live-Photo-Capture/Live-Photo-Capture-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -522,7 +526,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/../2.Lets-Build-OTPubilsher/**",
+					"${SRCROOT}/../2.Lets-Build-OTPublisher/**",
 				);
 				INFOPLIST_FILE = "Live-Photo-Capture/Live-Photo-Capture-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -13,3 +13,12 @@
 @property (readonly) UIView* view;
 
 @end
+
+@protocol TBExampleSubscriberDelegate <OTSubscriberKitDelegate>
+
+/**
+ * Notifies the controller for this subscriber that video is being received.
+ */
+- (void)subscriberVideoDataReceived:(TBExampleSubscriber*)subscriber;
+
+@end

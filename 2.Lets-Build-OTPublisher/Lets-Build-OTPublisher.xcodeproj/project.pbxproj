@@ -42,6 +42,7 @@
 		D44261BB185FA64100E23699 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = D44261B8185FA64100E23699 /* ShaderUtilities.c */; };
 		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; };
 		D44261D8185FAED800E23699 /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D7185FAED800E23699 /* TBExampleSubscriber.m */; };
+		D4F8FD9F194125E300364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FD9E194125E300364672 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoCapture.m; sourceTree = "<group>"; };
 		D44261D6185FAED800E23699 /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
 		D44261D7185FAED800E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
+		D4F8FD9E194125E300364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				D44261AE185FA37600E23699 /* AudioToolbox.framework in Frameworks */,
 				D44261AF185FA37600E23699 /* AVFoundation.framework in Frameworks */,
 				D44261B0185FA37600E23699 /* QuartzCore.framework in Frameworks */,
+				D4F8FD9F194125E300364672 /* GLKit.framework in Frameworks */,
 				D4426160185FA27400E23699 /* CoreGraphics.framework in Frameworks */,
 				D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */,
 				D4426162185FA27400E23699 /* UIKit.framework in Frameworks */,
@@ -163,6 +166,7 @@
 		D442615C185FA27400E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4F8FD9E194125E300364672 /* GLKit.framework */,
 				D4426197185FA37600E23699 /* libstdc++.dylib */,
 				D4426198185FA37600E23699 /* libstdc++.6.0.9.dylib */,
 				D4426199185FA37600E23699 /* libpthread.dylib */,

@@ -7,7 +7,7 @@
 
 #import "TBExamplePublisher.h"
 #import "TBExampleVideoCapture.h"
-#import "TBExampleGLViewRender.h"
+#import "TBExampleVideoRender.h"
 #import "TBExampleVideoView.h"
 #import "TBExampleVideoCapture.h"
 
@@ -27,7 +27,10 @@
         [self setVideoCapture:_myVideoCapture];
         
         _myVideoRender =
-        [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1) delegate:self type:OTVideoViewTypePublisher displayName:nil];
+        [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
+                                         delegate:self
+                                             type:OTVideoViewTypePublisher
+                                      displayName:nil];
         
         [self setVideoRender:_myVideoRender];
 

@@ -6,7 +6,7 @@
 //
 
 #import "TBExampleSubscriber.h"
-#import "TBExampleGLViewRender.h"
+#import "TBExampleVideoRender.h"
 
 @implementation TBExampleSubscriber {
     TBExampleVideoView* _myVideoRender;
@@ -20,7 +20,10 @@
     self = [super initWithStream:stream delegate:delegate];
     if (self) {
         _myVideoRender =
-        [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1) delegate:self type:OTVideoViewTypeSubscriber displayName:nil];
+        [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
+                                         delegate:self
+                                             type:OTVideoViewTypeSubscriber
+                                      displayName:nil];
 
         [self setVideoRender:_myVideoRender];
     }

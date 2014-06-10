@@ -1032,16 +1032,9 @@ OTPublisherDelegate>{
 {
 	NSLog(@"streamDestroyed %@", stream.connection.connectionId);
 	
-    // unsubscribe first
+    // get subscriber for this stream
 	TBExampleSubscriber *subscriber = [allSubscribers objectForKey:
                                        stream.connection.connectionId];
-    
-    OTError *error = nil;
-	[_session unsubscribe:subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
     
 	// remove from superview
 	[subscriber.view removeFromSuperview];
@@ -1159,7 +1152,6 @@ OTPublisherDelegate>{
 #pragma mark - Helper Methods
 - (IBAction)endCallAction:(UIButton *)button
 {
-    
 	if (_session && _session.sessionConnectionStatus ==
         OTSessionConnectionStatusConnected) {
         // disconnect session
@@ -1287,33 +1279,19 @@ OTPublisherDelegate>{
     [UIImage imageNamed:@"archiving_off-Small.png"];
 }
 
-- (void)session:(OTSession*)session
-archiveCreatedWithId:(NSString*)archiveId
-           name:(NSString*)name
-         status:(NSString*)status
+- (void)session:(OTSession *)session
+archiveStartedWithId:(NSString *)archiveId
+           name:(NSString *)name
 {
-    NSLog(@"session archiving status changed %@", status);
-    if ([status isEqualToString:@"started"])
-    {
-        [self startArchiveAnimation];
-    } else
-    {
-        [self stopArchiveAnimation];
-    }
+    NSLog(@"session archiving started");
+    [self startArchiveAnimation];
 }
 
 - (void)session:(OTSession*)session
-archiveUpdatedWithId:(NSString*)archiveId
-         status:(NSString*)status
+archiveStoppedWithId:(NSString *)archiveId
 {
-    NSLog(@"session archiving status changed %@", status);
-    if ([status isEqualToString:@"started"])
-    {
-        [self startArchiveAnimation];
-    } else
-    {
-        [self stopArchiveAnimation];
-    }
+    NSLog(@"session archiving stopped");
+    [self stopArchiveAnimation];
 }
 
 @end

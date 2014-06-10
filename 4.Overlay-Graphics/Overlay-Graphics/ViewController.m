@@ -46,7 +46,9 @@ static bool subscribeToSelf = YES;
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:kApiKey sessionId:kSessionId delegate:self];
+    _session = [[OTSession alloc] initWithApiKey:kApiKey
+                                       sessionId:kSessionId
+                                        delegate:self];
     [self doConnect];
 }
 
@@ -105,6 +107,16 @@ static bool subscribeToSelf = YES;
 }
 
 /**
+ * Cleans up the publisher and its view. At this point, the publisher should not
+ * be attached to the session any more.
+ */
+- (void)cleanupPublisher {
+    [_publisher.view removeFromSuperview];
+    _publisher = nil;
+    // this is a good place to notify the end-user that publishing has stopped.
+}
+
+/**
  * Instantiates a subscriber for the given stream and asynchronously begins the
  * process to begin receiving A/V content for this stream. Unlike doPublish,
  * this method does not add the subscriber to the view hierarchy. Instead, we
@@ -125,16 +137,12 @@ static bool subscribeToSelf = YES;
 
 /**
  * Cleans the subscriber from the view hierarchy, if any.
+ * NB: You do *not* have to call unsubscribe in your controller in response to
+ * a streamDestroyed event. Any subscribers (or the publisher) for a stream will
+ * be automatically removed from the session during cleanup of the stream.
  */
-- (void)doUnsubscribe
+- (void)cleanupSubscriber
 {
-    OTError *error = nil;
-    [_session unsubscribe:_subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
-
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -178,7 +186,7 @@ streamDestroyed:(OTStream *)stream
     
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
 }
 
@@ -195,7 +203,7 @@ connectionDestroyed:(OTConnection *)connection
     if ([_subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
 }
 
@@ -244,59 +252,50 @@ didFailWithError:(OTError*)error
 {
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
-        [self doUnsubscribe];
+        [self cleanupSubscriber];
     }
+    
+    [self cleanupPublisher];
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
  didFailWithError:(OTError*) error
 {
     NSLog(@"publisher didFailWithError %@", error);
+    [self cleanupPublisher];
 }
 
 - (void)showAlert:(NSString *)string
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Message from video session"
-                                                         message:string
-                                                        delegate:self
-                                               cancelButtonTitle:@"OK"
-                                               otherButtonTitles:nil] autorelease];
+        UIAlertView *alert =
+        [[[UIAlertView alloc] initWithTitle:@"Message from video session"
+                                    message:string
+                                   delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] autorelease];
         [alert show];
     });
 }
 
-- (void)session:(OTSession*)session
-archiveCreatedWithId:(NSString*)archiveId
-           name:(NSString*)name
-         status:(NSString*)status
+- (void)     session:(OTSession*)session
+archiveStartedWithId:(NSString *)archiveId
+                name:(NSString *)name
 {
-    NSLog(@"session archiving status changed %@", status);
-    TBExampleOverlayView *overlayView = [(TBExampleVideoView *)[_publisher view] overlayView];
-    if ([status isEqualToString:@"started"])
-    {
-        [overlayView startArchiveAnimation];
-    } else
-    {
-        [overlayView stopArchiveAnimation];
-    }
-
+    NSLog(@"session archiving started with id:%@ name:%@", archiveId, name);
+    TBExampleOverlayView *overlayView =
+    [(TBExampleVideoView *)[_publisher view] overlayView];
+    [overlayView startArchiveAnimation];
 }
 
-- (void)session:(OTSession*)session
-archiveUpdatedWithId:(NSString*)archiveId
-         status:(NSString*)status
+- (void)     session:(OTSession*)session
+archiveStoppedWithId:(NSString *)archiveId
 {
-    NSLog(@"session archiving status changed %@", status);
-    TBExampleOverlayView *overlayView = [(TBExampleVideoView *)[_publisher view] overlayView];
-    if ([status isEqualToString:@"started"])
-    {
-       [overlayView startArchiveAnimation];
-    } else
-    {
-        [overlayView stopArchiveAnimation];
-    }
+    NSLog(@"session archiving stopped with id:%@", archiveId);
+    TBExampleOverlayView *overlayView =
+    [(TBExampleVideoView *)[_publisher view] overlayView];
+    [overlayView stopArchiveAnimation];
 }
 
 @end
