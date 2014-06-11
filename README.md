@@ -1,8 +1,13 @@
 OpenTok iOS SDK Samples
-================
+=======================
 
 This repository is meant to provide some examples for you to better understand
-the new features presented in the OpenTok iOS SDK.
+the new features presented in the OpenTok iOS SDK. The applications herein are
+meant to be used with version 2.2.0 and higher of the OpenTok iOS SDK. Feel free
+to copy and modify the source code herein for your own projects.
+If you are able, please consider sharing with us your modifications, especially
+if they might benefit other developers using the OpenTok SDK. See the
+[License](LICENSE) for more information.
 
 What's Inside
 -------------
@@ -32,8 +37,34 @@ herein.
 	This project barrows publisher and subscribers modules implemented in 
 	project 2.
 	
-5.	**Multi Party Call** - This project demonstrate how to use Opentok SDK for 
+5.	**Multi Party Call** - This project demonstrate how to use OpenTok SDK for 
 	a multi party call. The application publish audio/video from iOS device and
-	can connect to N number of subscribers. However it shows only one subscriber 
-	video at a time due to cpu limitations on iOS devices. 
-	
+	can connect to N number of subscribers. However it shows only one
+    subscriber video at a time due to cpu limitations on iOS devices. 
+
+
+Referencing OpenTok.framework
+-----------------------------
+
+Each project includes a symlink to `OpenTok.framework`, up one directory level
+from the root of this repository. If you are reading this from a distribution
+tarball of the OpenTok iOS SDK, then these links should work fine. If you have
+[cloned][opentok-ios-samples] this repository
+directly, you will have to update the links to point to your copy of
+`OpenTok.framework`.
+
+
+Getting Sample Code Updates
+===========================
+
+This README, and the sample applications herein, are maintained separately from
+releases of the [OpenTok iOS SDK][opentok-ios-sdk]. A snapshot of this 
+repository is included in the distribution of the SDK. To get the latest
+updates to these example applications and accompanying documentation, be sure
+to clone the sample repository itself:
+https://github.com/opentok/opentok-ios-sdk-samples/
+
+
+
+[opentok-ios-samples]: https://github.com/opentok/opentok-ios-sdk-samples/
+[opentok-ios-sdk]: http://tokbox.com/opentok/libraries/client/ios 
