@@ -39,7 +39,7 @@
 
 #pragma mark - OTVideoViewDelegate
 
-- (void)videoView:(OTVideoView*)videoView
+- (void)videoView:(UIView*)videoView
 subscriberVolumeWasMuted:(BOOL)subscriberMuted
 {
     [self setSubscribeToAudio:!subscriberMuted];

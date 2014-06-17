@@ -99,11 +99,11 @@
 
 #pragma mark - OTVideoViewDelegate
 
-- (void)videoViewDidToggleCamera:(OTVideoView*)videoView {
+- (void)videoViewDidToggleCamera:(UIView*)videoView {
     [_myVideoCapture toggleCameraPosition];
 }
 
-- (void)videoView:(OTVideoView*)videoView
+- (void)videoView:(UIView*)videoView
 publisherWasMuted:(BOOL)publisherMuted
 {
     [self setPublishAudio:!publisherMuted];
