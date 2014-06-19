@@ -874,6 +874,9 @@ OTPublisherDelegate>{
 
 - (void)handleArrowTap:(UIPanGestureRecognizer *)recognizer
 {
+    // if there are no subscribers, simply return
+    if ([allSubscribers count] == 0)
+        return;
     CGPoint touchPoint = [recognizer locationInView:self.leftArrowImgView];
     if ([self.leftArrowImgView pointInside:touchPoint withEvent:nil])
     {
