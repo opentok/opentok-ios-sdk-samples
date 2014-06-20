@@ -165,12 +165,12 @@
 		D44261E4185FC8D600E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4F8FD9C194125D100364672 /* GLKit.framework */,
 				D4426224185FCDA700E23699 /* libstdc++.dylib */,
 				D4426225185FCDA700E23699 /* libstdc++.6.0.9.dylib */,
 				D4426226185FCDA700E23699 /* libpthread.dylib */,
 				D4426227185FCDA700E23699 /* libsqlite3.dylib */,
 				D4426228185FCDA700E23699 /* libxml2.dylib */,
+				D4F8FD9C194125D100364672 /* GLKit.framework */,
 				D4426229185FCDA700E23699 /* SystemConfiguration.framework */,
 				D442622A185FCDA700E23699 /* CoreTelephony.framework */,
 				D442622B185FCDA700E23699 /* OpenGLES.framework */,

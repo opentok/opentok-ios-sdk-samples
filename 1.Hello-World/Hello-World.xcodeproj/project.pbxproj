@@ -36,6 +36,7 @@
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 		D442614D185F95CF00E23699 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442612E185F82AB00E23699 /* OpenTok.framework */; };
 		D4426150185F9C8A00E23699 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426144185F8F2B00E23699 /* libstdc++.6.0.9.dylib */; };
+		D492D19119547E4C00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19019547E4C00F4F534 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		D4426148185F8F5000E23699 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D442614E185F9C3500E23699 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		D492D19019547E4C00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				D4426137185F877100E23699 /* libpthread.dylib in Frameworks */,
 				D4426133185F876500E23699 /* libsqlite3.dylib in Frameworks */,
 				D4426131185F875F00E23699 /* libxml2.dylib in Frameworks */,
+				D492D19119547E4C00F4F534 /* GLKit.framework in Frameworks */,
 				D442614A185F8F5700E23699 /* CoreTelephony.framework in Frameworks */,
 				D4426149185F8F5000E23699 /* SystemConfiguration.framework in Frameworks */,
 				D4426143185F8EEB00E23699 /* OpenGLES.framework in Frameworks */,
@@ -152,6 +155,7 @@
 				D4426136185F877100E23699 /* libpthread.dylib */,
 				D4426132185F876500E23699 /* libsqlite3.dylib */,
 				D4426130185F875F00E23699 /* libxml2.dylib */,
+				D492D19019547E4C00F4F534 /* GLKit.framework */,
 				D4426148185F8F5000E23699 /* SystemConfiguration.framework */,
 				D4426146185F8F3F00E23699 /* CoreTelephony.framework */,
 				D4426142185F8EEB00E23699 /* OpenGLES.framework */,

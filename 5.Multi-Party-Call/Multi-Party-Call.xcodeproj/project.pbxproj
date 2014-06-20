@@ -66,9 +66,9 @@
 		A5B6113D18F29A9A00841E6B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113C18F29A9A00841E6B /* CoreMedia.framework */; };
 		A5B6113F18F29AA100841E6B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113E18F29AA100841E6B /* libsqlite3.dylib */; };
 		A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A5B6114018F29B7400841E6B /* ShaderUtilities.c */; };
-		A5B6114618F29C2200841E6B /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6114318F29C2200841E6B /* libstdc++.6.0.9.dylib */; };
-		A5B6114718F29C2200841E6B /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6114418F29C2200841E6B /* libstdc++.dylib */; };
 		A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6114518F29C2200841E6B /* libxml2.dylib */; };
+		D492D19419547ECF00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19319547ECF00F4F534 /* GLKit.framework */; };
+		D492D19619547F0600F4F534 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,9 +151,9 @@
 		A5B6113E18F29AA100841E6B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A5B6114018F29B7400841E6B /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
 		A5B6114118F29B7400841E6B /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
-		A5B6114318F29C2200841E6B /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		A5B6114418F29C2200841E6B /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A5B6114518F29C2200841E6B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D492D19319547ECF00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,16 +161,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D492D19619547F0600F4F534 /* libstdc++.6.0.9.dylib in Frameworks */,
+				A5B6113F18F29AA100841E6B /* libsqlite3.dylib in Frameworks */,
+				A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */,
 				A5B610F018F2845100841E6B /* CoreGraphics.framework in Frameworks */,
 				A5B610F218F2845100841E6B /* UIKit.framework in Frameworks */,
 				A5B6113318F2992800841E6B /* OpenTok.framework in Frameworks */,
 				A5B6113518F29A9000841E6B /* CoreTelephony.framework in Frameworks */,
+				D492D19419547ECF00F4F534 /* GLKit.framework in Frameworks */,
 				A5B6113718F29A9200841E6B /* SystemConfiguration.framework in Frameworks */,
 				A5B6113918F29A9500841E6B /* AudioToolbox.framework in Frameworks */,
-				A5B6113F18F29AA100841E6B /* libsqlite3.dylib in Frameworks */,
-				A5B6114618F29C2200841E6B /* libstdc++.6.0.9.dylib in Frameworks */,
-				A5B6114718F29C2200841E6B /* libstdc++.dylib in Frameworks */,
-				A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */,
 				A5B6113B18F29A9800841E6B /* CoreVideo.framework in Frameworks */,
 				A5B6113D18F29A9A00841E6B /* CoreMedia.framework in Frameworks */,
 				A5B610EE18F2845100841E6B /* Foundation.framework in Frameworks */,
@@ -212,10 +212,10 @@
 		A5B610EC18F2845100841E6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A5B6114318F29C2200841E6B /* libstdc++.6.0.9.dylib */,
-				A5B6114418F29C2200841E6B /* libstdc++.dylib */,
+				D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */,
 				A5B6114518F29C2200841E6B /* libxml2.dylib */,
 				A5B6113E18F29AA100841E6B /* libsqlite3.dylib */,
+				D492D19319547ECF00F4F534 /* GLKit.framework */,
 				A5B6113C18F29A9A00841E6B /* CoreMedia.framework */,
 				A5B6113A18F29A9800841E6B /* CoreVideo.framework */,
 				A5B6113818F29A9500841E6B /* AudioToolbox.framework */,

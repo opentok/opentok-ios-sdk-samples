@@ -217,18 +217,18 @@
 		A56B2BA818C085AD001E082A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D4F8FDAE194129C400364672 /* OpenGLES.framework */,
-				D4F8FDAC194129B900364672 /* GLKit.framework */,
-				A5A607F818C08F4B00192466 /* CoreTelephony.framework */,
-				A5A607F618C08F3D00192466 /* SystemConfiguration.framework */,
+				A5A607E018C08B6B00192466 /* OpenTok.framework */,
 				A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */,
 				A5A607EC18C08BB900192466 /* libstdc++.dylib */,
 				A5A607EA18C08BAB00192466 /* libxml2.dylib */,
 				A5A607E818C08BA100192466 /* libsqlite3.dylib */,
+				D4F8FDAE194129C400364672 /* OpenGLES.framework */,
+				D4F8FDAC194129B900364672 /* GLKit.framework */,
+				A5A607F818C08F4B00192466 /* CoreTelephony.framework */,
+				A5A607F618C08F3D00192466 /* SystemConfiguration.framework */,
 				A5A607E618C08B9B00192466 /* AudioToolbox.framework */,
 				A5A607E418C08B8A00192466 /* CoreVideo.framework */,
 				A5A607E218C08B8500192466 /* CoreMedia.framework */,
-				A5A607E018C08B6B00192466 /* OpenTok.framework */,
 				A56B2BA918C085AD001E082A /* Foundation.framework */,
 				A56B2BAB18C085AD001E082A /* CoreGraphics.framework */,
 				A56B2BAD18C085AD001E082A /* UIKit.framework */,
