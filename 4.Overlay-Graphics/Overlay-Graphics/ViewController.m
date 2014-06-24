@@ -92,8 +92,9 @@ static bool subscribeToSelf = YES;
  */
 - (void)doPublish
 {
-    _publisher = [[TBExamplePublisher alloc] initWithDelegate:self];
-    [_publisher setName:[[UIDevice currentDevice] name]];
+    _publisher = [[TBExamplePublisher alloc]
+                  initWithDelegate:self
+                  name:[[UIDevice currentDevice] name]];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
