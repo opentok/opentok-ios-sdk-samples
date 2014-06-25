@@ -126,9 +126,10 @@ static bool subscribeToSelf = YES;
     // In this example, we'll be using our own video capture module that can
     // also support photo-quality image capture.
     _myPhotoVideoCaptureModule = [[TBExamplePhotoVideoCapture alloc] init];
-    _publisher = [[TBExamplePublisher alloc] initWithDelegate:self];
+    _publisher = [[TBExamplePublisher alloc]
+                  initWithDelegate:self
+                  name:[[UIDevice currentDevice] name]];
     [_publisher setVideoCapture:_myPhotoVideoCaptureModule];
-    [_publisher setName:[[UIDevice currentDevice] name]];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];

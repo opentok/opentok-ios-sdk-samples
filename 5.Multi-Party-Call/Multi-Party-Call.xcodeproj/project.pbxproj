@@ -54,8 +54,6 @@
 		A5B6111218F2845100841E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610F118F2845100841E6B /* UIKit.framework */; };
 		A5B6111A18F2845100841E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B6111818F2845100841E6B /* InfoPlist.strings */; };
 		A5B6111C18F2845100841E6B /* Multi_Party_CallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */; };
-		A5B6112D18F296D400841E6B /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6112618F296D400841E6B /* TBExamplePublisher.m */; };
-		A5B6112E18F296D400841E6B /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6112818F296D400841E6B /* TBExampleSubscriber.m */; };
 		A5B6112F18F296D400841E6B /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6112A18F296D400841E6B /* TBExampleVideoCapture.m */; };
 		A5B6113018F296D400841E6B /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6112C18F296D400841E6B /* TBExampleVideoRender.m */; };
 		A5B6113318F2992800841E6B /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113218F2992800841E6B /* OpenTok.framework */; };
@@ -69,6 +67,8 @@
 		A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6114518F29C2200841E6B /* libxml2.dylib */; };
 		D492D19419547ECF00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19319547ECF00F4F534 /* GLKit.framework */; };
 		D492D19619547F0600F4F534 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */; };
+		D4FCA78B1959D21400F2D9EF /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FCA7881959D21400F2D9EF /* TBExamplePublisher.m */; };
+		D4FCA78C1959D21400F2D9EF /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FCA78A1959D21400F2D9EF /* TBExampleSubscriber.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,10 +134,6 @@
 		A5B6111718F2845100841E6B /* Multi-Party-CallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Multi-Party-CallTests-Info.plist"; sourceTree = "<group>"; };
 		A5B6111918F2845100841E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Multi_Party_CallTests.m; sourceTree = "<group>"; };
-		A5B6112518F296D400841E6B /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
-		A5B6112618F296D400841E6B /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
-		A5B6112718F296D400841E6B /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
-		A5B6112818F296D400841E6B /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
 		A5B6112918F296D400841E6B /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoCapture.h; sourceTree = "<group>"; };
 		A5B6112A18F296D400841E6B /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoCapture.m; sourceTree = "<group>"; };
 		A5B6112B18F296D400841E6B /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoRender.h; sourceTree = "<group>"; };
@@ -154,6 +150,10 @@
 		A5B6114518F29C2200841E6B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D492D19319547ECF00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
+		D4FCA7871959D21400F2D9EF /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExamplePublisher.h; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExamplePublisher.h"; sourceTree = "<group>"; };
+		D4FCA7881959D21400F2D9EF /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExamplePublisher.m; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExamplePublisher.m"; sourceTree = "<group>"; };
+		D4FCA7891959D21400F2D9EF /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleSubscriber.h; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleSubscriber.h"; sourceTree = "<group>"; };
+		D4FCA78A1959D21400F2D9EF /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleSubscriber.m; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleSubscriber.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,10 +239,10 @@
 				A5B6110218F2845100841E6B /* Main_iPad.storyboard */,
 				A5B6110518F2845100841E6B /* ViewController.h */,
 				A5B6110618F2845100841E6B /* ViewController.m */,
-				A5B6112518F296D400841E6B /* TBExamplePublisher.h */,
-				A5B6112618F296D400841E6B /* TBExamplePublisher.m */,
-				A5B6112718F296D400841E6B /* TBExampleSubscriber.h */,
-				A5B6112818F296D400841E6B /* TBExampleSubscriber.m */,
+				D4FCA7871959D21400F2D9EF /* TBExamplePublisher.h */,
+				D4FCA7881959D21400F2D9EF /* TBExamplePublisher.m */,
+				D4FCA7891959D21400F2D9EF /* TBExampleSubscriber.h */,
+				D4FCA78A1959D21400F2D9EF /* TBExampleSubscriber.m */,
 				A5B6112918F296D400841E6B /* TBExampleVideoCapture.h */,
 				A5B6112A18F296D400841E6B /* TBExampleVideoCapture.m */,
 				A5B6112B18F296D400841E6B /* TBExampleVideoRender.h */,
@@ -452,11 +452,11 @@
 				A5B6113018F296D400841E6B /* TBExampleVideoRender.m in Sources */,
 				A5B6110718F2845100841E6B /* ViewController.m in Sources */,
 				A5B6112F18F296D400841E6B /* TBExampleVideoCapture.m in Sources */,
-				A5B6112E18F296D400841E6B /* TBExampleSubscriber.m in Sources */,
 				A5B610FE18F2845100841E6B /* AppDelegate.m in Sources */,
 				A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */,
+				D4FCA78C1959D21400F2D9EF /* TBExampleSubscriber.m in Sources */,
 				A5B610FA18F2845100841E6B /* main.m in Sources */,
-				A5B6112D18F296D400841E6B /* TBExamplePublisher.m in Sources */,
+				D4FCA78B1959D21400F2D9EF /* TBExamplePublisher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
