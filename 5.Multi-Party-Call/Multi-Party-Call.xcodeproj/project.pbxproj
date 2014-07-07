@@ -46,7 +46,6 @@
 		A5B610FA18F2845100841E6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B610F918F2845100841E6B /* main.m */; };
 		A5B610FE18F2845100841E6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B610FD18F2845100841E6B /* AppDelegate.m */; };
 		A5B6110118F2845100841E6B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */; };
-		A5B6110418F2845100841E6B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B6110218F2845100841E6B /* Main_iPad.storyboard */; };
 		A5B6110718F2845100841E6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6110618F2845100841E6B /* ViewController.m */; };
 		A5B6110918F2845100841E6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B6110818F2845100841E6B /* Images.xcassets */; };
 		A5B6111018F2845100841E6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6110F18F2845100841E6B /* XCTest.framework */; };
@@ -54,8 +53,6 @@
 		A5B6111218F2845100841E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610F118F2845100841E6B /* UIKit.framework */; };
 		A5B6111A18F2845100841E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B6111818F2845100841E6B /* InfoPlist.strings */; };
 		A5B6111C18F2845100841E6B /* Multi_Party_CallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */; };
-		A5B6112F18F296D400841E6B /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6112A18F296D400841E6B /* TBExampleVideoCapture.m */; };
-		A5B6113018F296D400841E6B /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6112C18F296D400841E6B /* TBExampleVideoRender.m */; };
 		A5B6113318F2992800841E6B /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113218F2992800841E6B /* OpenTok.framework */; };
 		A5B6113518F29A9000841E6B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113418F29A9000841E6B /* CoreTelephony.framework */; };
 		A5B6113718F29A9200841E6B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113618F29A9200841E6B /* SystemConfiguration.framework */; };
@@ -67,8 +64,6 @@
 		A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6114518F29C2200841E6B /* libxml2.dylib */; };
 		D492D19419547ECF00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19319547ECF00F4F534 /* GLKit.framework */; };
 		D492D19619547F0600F4F534 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */; };
-		D4FCA78B1959D21400F2D9EF /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FCA7881959D21400F2D9EF /* TBExamplePublisher.m */; };
-		D4FCA78C1959D21400F2D9EF /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FCA78A1959D21400F2D9EF /* TBExampleSubscriber.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,7 +120,6 @@
 		A5B610FC18F2845100841E6B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A5B610FD18F2845100841E6B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A5B6110018F2845100841E6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		A5B6110318F2845100841E6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		A5B6110518F2845100841E6B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A5B6110618F2845100841E6B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A5B6110818F2845100841E6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -134,10 +128,6 @@
 		A5B6111718F2845100841E6B /* Multi-Party-CallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Multi-Party-CallTests-Info.plist"; sourceTree = "<group>"; };
 		A5B6111918F2845100841E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Multi_Party_CallTests.m; sourceTree = "<group>"; };
-		A5B6112918F296D400841E6B /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoCapture.h; sourceTree = "<group>"; };
-		A5B6112A18F296D400841E6B /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoCapture.m; sourceTree = "<group>"; };
-		A5B6112B18F296D400841E6B /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoRender.h; sourceTree = "<group>"; };
-		A5B6112C18F296D400841E6B /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoRender.m; sourceTree = "<group>"; };
 		A5B6113218F2992800841E6B /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5B6113418F29A9000841E6B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A5B6113618F29A9200841E6B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -150,10 +140,6 @@
 		A5B6114518F29C2200841E6B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D492D19319547ECF00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		D4FCA7871959D21400F2D9EF /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExamplePublisher.h; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExamplePublisher.h"; sourceTree = "<group>"; };
-		D4FCA7881959D21400F2D9EF /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExamplePublisher.m; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExamplePublisher.m"; sourceTree = "<group>"; };
-		D4FCA7891959D21400F2D9EF /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleSubscriber.h; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleSubscriber.h"; sourceTree = "<group>"; };
-		D4FCA78A1959D21400F2D9EF /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleSubscriber.m; path = "../../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleSubscriber.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,17 +222,8 @@
 				A5B610FC18F2845100841E6B /* AppDelegate.h */,
 				A5B610FD18F2845100841E6B /* AppDelegate.m */,
 				A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */,
-				A5B6110218F2845100841E6B /* Main_iPad.storyboard */,
 				A5B6110518F2845100841E6B /* ViewController.h */,
 				A5B6110618F2845100841E6B /* ViewController.m */,
-				D4FCA7871959D21400F2D9EF /* TBExamplePublisher.h */,
-				D4FCA7881959D21400F2D9EF /* TBExamplePublisher.m */,
-				D4FCA7891959D21400F2D9EF /* TBExampleSubscriber.h */,
-				D4FCA78A1959D21400F2D9EF /* TBExampleSubscriber.m */,
-				A5B6112918F296D400841E6B /* TBExampleVideoCapture.h */,
-				A5B6112A18F296D400841E6B /* TBExampleVideoCapture.m */,
-				A5B6112B18F296D400841E6B /* TBExampleVideoRender.h */,
-				A5B6112C18F296D400841E6B /* TBExampleVideoRender.m */,
 				A5B6114018F29B7400841E6B /* ShaderUtilities.c */,
 				A5B6114118F29B7400841E6B /* ShaderUtilities.h */,
 				A5B6110818F2845100841E6B /* Images.xcassets */,
@@ -364,7 +341,7 @@
 				ORGANIZATIONNAME = Tokbox;
 				TargetAttributes = {
 					A5B610E918F2845100841E6B = {
-						DevelopmentTeam = MGD69Q275W;
+						DevelopmentTeam = WNJ2NMESL3;
 					};
 					A5B6110D18F2845100841E6B = {
 						TestTargetID = A5B610E918F2845100841E6B;
@@ -400,7 +377,6 @@
 				A5A9DBC51919FF2C0023BC6A /* icon_arrowLeft_disabled-28@2x.png in Resources */,
 				A554AFBD190A9B3100A6910E /* TB Bug-30@2x.png in Resources */,
 				A554AFB3190A9B3100A6910E /* mic_muted-24@2x.png in Resources */,
-				A5B6110418F2845100841E6B /* Main_iPad.storyboard in Resources */,
 				A5A9DBC61919FF2C0023BC6A /* icon_arrowRight_disabled-28.png in Resources */,
 				A591480C190E2A36007211CB /* camera-switch_black-33@2x.png in Resources */,
 				A554AFBC190A9B3100A6910E /* TB Bug-30.png in Resources */,
@@ -449,14 +425,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5B6113018F296D400841E6B /* TBExampleVideoRender.m in Sources */,
 				A5B6110718F2845100841E6B /* ViewController.m in Sources */,
-				A5B6112F18F296D400841E6B /* TBExampleVideoCapture.m in Sources */,
 				A5B610FE18F2845100841E6B /* AppDelegate.m in Sources */,
 				A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */,
-				D4FCA78C1959D21400F2D9EF /* TBExampleSubscriber.m in Sources */,
 				A5B610FA18F2845100841E6B /* main.m in Sources */,
-				D4FCA78B1959D21400F2D9EF /* TBExamplePublisher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,14 +465,6 @@
 				A5B6110018F2845100841E6B /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		A5B6110218F2845100841E6B /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5B6110318F2845100841E6B /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		A5B6111818F2845100841E6B /* InfoPlist.strings */ = {
@@ -612,6 +576,7 @@
 				INFOPLIST_FILE = "Multi-Party-Call/Multi-Party-Call-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -641,6 +606,7 @@
 				INFOPLIST_FILE = "Multi-Party-Call/Multi-Party-Call-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

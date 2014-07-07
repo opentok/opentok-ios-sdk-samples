@@ -14,8 +14,6 @@
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
-#import "TBExamplePublisher.h"
-#import "TBExampleSubscriber.h"
 
 static NSString *const kApiKey = @"";
 // Replace with your generated session ID
@@ -55,8 +53,8 @@ OTPublisherDelegate>{
 	NSMutableArray *allConnectionsIds;
     
 	OTSession *_session;
-	TBExamplePublisher *_publisher;
-	TBExampleSubscriber *_currentSubscriber;
+	OTPublisher *_publisher;
+	OTSubscriber *_currentSubscriber;
 	CGPoint _startPosition;
     
 	BOOL initialized;
@@ -784,7 +782,7 @@ OTPublisherDelegate>{
     [self resetArrowsStates];
 }
 
-- (void)showAsCurrentSubscriber:(TBExampleSubscriber *)subscriber
+- (void)showAsCurrentSubscriber:(OTSubscriber *)subscriber
 {
     // scroll view tapping bug
     if(subscriber == _currentSubscriber)
@@ -822,7 +820,7 @@ OTPublisherDelegate>{
 - (void)setupPublisher
 {
 	// create one time publisher and style publisher
-	_publisher = [[TBExamplePublisher alloc]
+	_publisher = [[OTPublisher alloc]
                   initWithDelegate:self
                   name:[[UIDevice currentDevice] name]];
     
@@ -883,7 +881,7 @@ OTPublisherDelegate>{
         int currentPage = (int)(videoContainerView.contentOffset.x /
                                 videoContainerView.frame.size.width) ;
         
-        TBExampleSubscriber *nextSubscriber = [allSubscribers objectForKey:
+        OTSubscriber *nextSubscriber = [allSubscribers objectForKey:
                               [allConnectionsIds objectAtIndex:currentPage - 1]];
         
         [self showAsCurrentSubscriber:nextSubscriber];
@@ -897,7 +895,7 @@ OTPublisherDelegate>{
         int currentPage = (int)(videoContainerView.contentOffset.x /
                                 videoContainerView.frame.size.width) ;
         
-        TBExampleSubscriber *nextSubscriber = [allSubscribers objectForKey:
+        OTSubscriber *nextSubscriber = [allSubscribers objectForKey:
                                                [allConnectionsIds objectAtIndex:currentPage + 1]];
         
         [self showAsCurrentSubscriber:nextSubscriber];
@@ -983,7 +981,7 @@ OTPublisherDelegate>{
     // arrange all subscribers horizontally one by one.
 	for (int i = 0; i < [allConnectionsIds count]; i++)
 	{
-		TBExampleSubscriber *subscriber = [allSubscribers
+		OTSubscriber *subscriber = [allSubscribers
                                            valueForKey:[allConnectionsIds
                                                         objectAtIndex:i]];
         subscriber.view.tag = i;
@@ -1008,7 +1006,7 @@ OTPublisherDelegate>{
     // remove all subscriber views from video container
 	for (int i = 0; i < [allConnectionsIds count]; i++)
 	{
-		TBExampleSubscriber *subscriber = [allSubscribers valueForKey:
+		OTSubscriber *subscriber = [allSubscribers valueForKey:
                                            [allConnectionsIds objectAtIndex:i]];
 		[subscriber.view removeFromSuperview];
 	}
@@ -1027,6 +1025,7 @@ OTPublisherDelegate>{
     {
         [self stopArchiveAnimation];
     }
+    [self resetArrowsStates];
 }
 
 - (void)    session:(OTSession *)session
@@ -1035,7 +1034,7 @@ OTPublisherDelegate>{
 	NSLog(@"streamDestroyed %@", stream.connection.connectionId);
 	
     // get subscriber for this stream
-	TBExampleSubscriber *subscriber = [allSubscribers objectForKey:
+	OTSubscriber *subscriber = [allSubscribers objectForKey:
                                        stream.connection.connectionId];
     
 	// remove from superview
@@ -1061,7 +1060,7 @@ OTPublisherDelegate>{
 {
 	
     // create subscriber
-	TBExampleSubscriber *subscriber = [[TBExampleSubscriber alloc]
+	OTSubscriber *subscriber = [[OTSubscriber alloc]
                                        initWithStream:stream delegate:self];
     
 	[allSubscribers setObject:subscriber forKey:stream.connection.connectionId];
@@ -1262,8 +1261,8 @@ OTPublisherDelegate>{
 
     // set animation images
     self.archiveStatusLbl.text = @"Archiving call";
-    UIImage *imageOne = [UIImage imageNamed:@"archiving_on-10.png"];
-    UIImage *imageTwo = [UIImage imageNamed:@"archiving_pulse-Small.png"];
+    UIImage *imageOne = [UIImage imageNamed:@"archiving_on-5.png"];
+    UIImage *imageTwo = [UIImage imageNamed:@"archiving_pulse-15.png"];
     NSArray *imagesArray =
     [NSArray arrayWithObjects:imageOne, imageTwo, nil];
     self.archiveStatusImgView.animationImages = imagesArray;
@@ -1279,6 +1278,21 @@ OTPublisherDelegate>{
     self.archiveStatusLbl.text = @"Archiving off";
     self.archiveStatusImgView.image =
     [UIImage imageNamed:@"archiving_off-Small.png"];
+    self.archiveOverlay.hidden = YES;
+    BOOL isInFullScreen = [[[self topOverlayView].layer
+                            valueForKey:APP_IN_FULL_SCREEN] boolValue];
+    if (!isInFullScreen)
+    {
+        [_publisher.view setFrame:
+         CGRectMake(8,
+                    self.view.frame.size.height -
+                    (PUBLISHER_BAR_HEIGHT +
+                     (self.archiveOverlay.hidden ? 0 :
+                      ARCHIVE_BAR_HEIGHT)
+                     + 8 + PUBLISHER_PREVIEW_HEIGHT),
+                    PUBLISHER_PREVIEW_WIDTH,
+                    PUBLISHER_PREVIEW_HEIGHT)];
+    }
 }
 
 - (void)session:(OTSession *)session
