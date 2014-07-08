@@ -18,6 +18,13 @@
 
 #pragma mark - Object Lifecycle
 
+/* LOOK AT THESE WEIRD INITS:
+ * The init methods are inverted from the typical pattern for choosing a
+ * "designated initializer". We do this because name *must* be set, if ever,
+ * prior to allowing OTPublisherKit's init method to return. In short, name is
+ * immutable and must be handled during initialization, not in a setter.
+ */
+
 - (id)init {
     self = [self initWithDelegate:nil name:nil];
     if (self) {
