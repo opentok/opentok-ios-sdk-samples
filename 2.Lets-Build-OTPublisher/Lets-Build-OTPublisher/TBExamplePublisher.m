@@ -19,24 +19,7 @@
 #pragma mark - Object Lifecycle
 
 - (id)init {
-    self = [self initWithDelegate:nil name:nil];
-    if (self) {
-        // nothing to do!
-    }
-    return self;
-}
-- (id)initWithDelegate:(id<OTPublisherDelegate>)delegate {
-    self = [self initWithDelegate:delegate name:nil];
-    if (self) {
-        // nothing to do!
-    }
-    return self;
-}
-
-- (id)initWithDelegate:(id<OTPublisherDelegate>)delegate
-                  name:(NSString*)name
-{
-    self = [super initWithDelegate:delegate name:name];
+    self = [super init];
     if (self) {
         TBExampleVideoCapture* videoCapture =
         [[[TBExampleVideoCapture alloc] init] autorelease];
@@ -48,6 +31,25 @@
         [_videoView setMirroring:
          (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
         [self setVideoRender:_videoView];
+
+    }
+    return self;
+}
+- (id)initWithDelegate:(id<OTPublisherDelegate>)delegate {
+    self = [self init];
+    if (self) {
+        [self setDelegate:delegate];
+    }
+    return self;
+}
+
+- (id)initWithDelegate:(id<OTPublisherDelegate>)delegate
+                  name:(NSString*)name
+{
+    self = [self init];
+    if (self) {
+        [self setName:name];
+        [self setDelegate:delegate];
     }
     return self;
 }
