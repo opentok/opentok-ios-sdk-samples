@@ -161,6 +161,20 @@ OTPublisherDelegate>{
     [self setupSession];
     
     [self.endCallButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    
+    self.archiveStatusImgView2.hidden = YES;
+    [self adjustArchiveStatusImgView];
+}
+
+-(void)adjustArchiveStatusImgView
+{
+    CGPoint pointInViewCoords = [self.archiveOverlay
+                                  convertPoint:self.archiveStatusImgView.frame.origin
+                                  toView:self.view];
+    
+    CGRect frame = self.archiveStatusImgView2.frame;
+    frame.origin = pointInViewCoords;
+    self.archiveStatusImgView2.frame = frame;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -178,6 +192,9 @@ OTPublisherDelegate>{
     
 	if (isInFullScreen) {
 		
+        if (!self.archiveStatusImgView2.isAnimating)
+            self.archiveOverlay.hidden = YES;
+        
         [self.topOverlayView.layer setValue:[NSNumber numberWithBool:NO]
                                      forKey:APP_IN_FULL_SCREEN];
 		
@@ -437,6 +454,15 @@ OTPublisherDelegate>{
 	return UIInterfaceOrientationMaskAll;
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
+{
+    BOOL isInFullScreen =   [[[self topOverlayView].layer
+                              valueForKey:APP_IN_FULL_SCREEN] boolValue];
+    // we already adjusted in willrotate for full screen
+    if (isInFullScreen)
+        return;
+    [self adjustArchiveStatusImgView];
+}
 - (void)willAnimateRotationToInterfaceOrientation:
 (UIInterfaceOrientation)toInterfaceOrientation
                                          duration:(NSTimeInterval)duration
@@ -747,6 +773,7 @@ OTPublisherDelegate>{
         // call viewTapped to hide the views out of the screen.
 		[[self topOverlayView].layer setValue:[NSNumber numberWithBool:NO]
                                        forKey:APP_IN_FULL_SCREEN];
+         [self adjustArchiveStatusImgView];
 		[self viewTapped:nil];
 		[[self topOverlayView].layer setValue:[NSNumber numberWithBool:YES]
                                        forKey:APP_IN_FULL_SCREEN];
@@ -1021,7 +1048,7 @@ OTPublisherDelegate>{
 	[_publisher release];
 	_publisher = nil;
     
-    if (self.archiveStatusImgView.isAnimating)
+    if (self.archiveStatusImgView2.isAnimating)
     {
         [self stopArchiveAnimation];
     }
@@ -1212,6 +1239,7 @@ OTPublisherDelegate>{
     [_rightArrowImgView release];
     [_rightArrowImgView release];
     [_leftArrowImgView release];
+    [_archiveStatusImgView2 release];
 	[super dealloc];
 }
 
@@ -1258,27 +1286,32 @@ OTPublisherDelegate>{
         [self viewTapped:[self.view.gestureRecognizers objectAtIndex:0]];
     }
     
-
+    self.archiveStatusImgView.hidden = YES;
+    self.archiveStatusImgView2.hidden = NO;
+    
     // set animation images
     self.archiveStatusLbl.text = @"Archiving call";
     UIImage *imageOne = [UIImage imageNamed:@"archiving_on-5.png"];
     UIImage *imageTwo = [UIImage imageNamed:@"archiving_pulse-15.png"];
     NSArray *imagesArray =
     [NSArray arrayWithObjects:imageOne, imageTwo, nil];
-    self.archiveStatusImgView.animationImages = imagesArray;
-    self.archiveStatusImgView.animationDuration = 1.0f;
-    self.archiveStatusImgView.animationRepeatCount = 0;
-    [self.archiveStatusImgView startAnimating];
+    self.archiveStatusImgView2.animationImages = imagesArray;
+    self.archiveStatusImgView2.animationDuration = 1.0f;
+    self.archiveStatusImgView2.animationRepeatCount = 0;
+    [self.archiveStatusImgView2 startAnimating];
     
 }
 
 - (void)stopArchiveAnimation
 {
-    [self.archiveStatusImgView stopAnimating];
+    [self.archiveStatusImgView2 stopAnimating];
     self.archiveStatusLbl.text = @"Archiving off";
-    self.archiveStatusImgView.image =
+    self.archiveStatusImgView2.image =
     [UIImage imageNamed:@"archiving_off-Small.png"];
-    self.archiveOverlay.hidden = YES;
+
+    self.archiveStatusImgView.hidden = NO;
+    self.archiveStatusImgView2.hidden = YES;
+
     BOOL isInFullScreen = [[[self topOverlayView].layer
                             valueForKey:APP_IN_FULL_SCREEN] boolValue];
     if (!isInFullScreen)

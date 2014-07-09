@@ -29,6 +29,7 @@
 @property (retain, nonatomic) IBOutlet UIImageView *archiveStatusImgView;
 @property (retain, nonatomic) IBOutlet UIImageView *rightArrowImgView;
 @property (retain, nonatomic) IBOutlet UIImageView *leftArrowImgView;
+@property (retain, nonatomic) IBOutlet UIImageView *archiveStatusImgView2;
 
 
 - (IBAction)toggleAudioSubscribe:(id)sender;
