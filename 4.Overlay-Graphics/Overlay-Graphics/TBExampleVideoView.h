@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
+#import "TBExampleVideoRender.h"
 
 typedef enum {
     OTVideoViewTypeSubscriber,
@@ -34,7 +35,7 @@ typedef enum {
  * For subscribers, this view renders frames of the stream.
  * For publishers, this view renders frames as they are encoded to a stream.
  */
-@property(readonly, retain) UIView* videoView;
+@property(readonly, retain) TBExampleVideoRender* videoView;
 
 @property(nonatomic, copy) NSString* displayName;
 
