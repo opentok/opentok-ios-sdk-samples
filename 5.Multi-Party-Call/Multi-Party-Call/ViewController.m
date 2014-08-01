@@ -51,6 +51,7 @@ OTPublisherDelegate>{
 	NSMutableDictionary *allStreams;
 	NSMutableDictionary *allSubscribers;
 	NSMutableArray *allConnectionsIds;
+    NSMutableArray *backgroundConnectedStreams;
     
 	OTSession *_session;
 	OTPublisher *_publisher;
@@ -125,7 +126,7 @@ OTPublisherDelegate>{
 	allStreams = [[NSMutableDictionary alloc] init];
 	allSubscribers = [[NSMutableDictionary alloc] init];
 	allConnectionsIds = [[NSMutableArray alloc] init];
-    
+    backgroundConnectedStreams = [[NSMutableArray alloc] init];
     
 	// set up look of the page
 	[self.navigationController setNavigationBarHidden:YES];
@@ -161,6 +162,21 @@ OTPublisherDelegate>{
     [self setupSession];
     
     [self.endCallButton sendActionsForControlEvents:UIControlEventTouchUpInside];
+    
+    // application background/foreground monitoring for publish/subscribe video
+    // toggling
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(enteringBackgroundMode:)
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(leavingBackgroundMode:)
+     name:UIApplicationDidBecomeActiveNotification
+     object:nil];
+
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
@@ -1059,41 +1075,59 @@ OTPublisherDelegate>{
 - (void)createSubscriber:(OTStream *)stream
 {
 	
-    // create subscriber
-	OTSubscriber *subscriber = [[OTSubscriber alloc]
+    if ([[UIApplication sharedApplication] applicationState] ==
+        UIApplicationStateBackground ||
+        [[UIApplication sharedApplication] applicationState] ==
+        UIApplicationStateInactive)
+    {
+        [backgroundConnectedStreams addObject:stream];
+    } else
+    {
+        // create subscriber
+        OTSubscriber *subscriber = [[OTSubscriber alloc]
                                        initWithStream:stream delegate:self];
     
-	[allSubscribers setObject:subscriber forKey:stream.connection.connectionId];
-	[allConnectionsIds addObject:stream.connection.connectionId];
+        // subscribe now
+        OTError *error = nil;
+        [_session subscribe:subscriber error:&error];
+        if (error)
+        {
+            [self showAlert:[error localizedDescription]];
+        }
+
+    }
+}
+
+- (void)subscriberDidConnectToStream:(OTSubscriberKit *)subscriber
+{
+	NSLog(@"subscriberDidConnectToStream %@", subscriber.stream.name);
+    
+    // create subscriber
+    OTSubscriber *sub = (OTSubscriber *)subscriber;
+	[allSubscribers setObject:subscriber forKey:sub.stream.connection.connectionId];
+	[allConnectionsIds addObject:sub.stream.connection.connectionId];
     
     // set subscriber position and size
 	CGFloat containerWidth = CGRectGetWidth(videoContainerView.bounds);
 	CGFloat containerHeight = CGRectGetHeight(videoContainerView.bounds);
 	int count = [allConnectionsIds count] - 1;
-	[subscriber.view setFrame:
+	[sub.view setFrame:
      CGRectMake(count *
                 CGRectGetWidth(videoContainerView.bounds),
                 0,
                 containerWidth,
                 containerHeight)];
     
-	subscriber.view.tag = count;
+	sub.view.tag = count;
     
     // add to video container view
-	[videoContainerView insertSubview:subscriber.view
+	[videoContainerView insertSubview:sub.view
                          belowSubview:_publisher.view];
     
-    // subscribe now
-    OTError *error = nil;
-	[_session subscribe:subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
     
 	// default subscribe video to the first subscriber only
 	if (!_currentSubscriber) {
-		[self showAsCurrentSubscriber:subscriber];
+		[self showAsCurrentSubscriber:(OTSubscriber *)subscriber];
 	} else {
 		subscriber.subscribeToVideo = NO;
 	}
@@ -1101,12 +1135,13 @@ OTPublisherDelegate>{
 	// set scrollview content width based on number of subscribers connected.
 	[videoContainerView setContentSize:
      CGSizeMake(videoContainerView.frame.size.width * (count + 1),
-                videoContainerView.frame.size.height)];
+                videoContainerView.frame.size.height - 18)];
     
-	[allStreams setObject:stream forKey:stream.connection.connectionId];
+	[allStreams setObject:sub.stream forKey:sub.stream.connection.connectionId];
     
-	[subscriber release];
     [self resetArrowsStates];
+    
+    [subscriber release];
 }
 
 - (void)publisher:(OTPublisherKit *)publisher
@@ -1114,11 +1149,6 @@ OTPublisherDelegate>{
 {
     // create self subscriber
 	[self createSubscriber:stream];
-}
-
-- (void)subscriberDidConnectToStream:(OTSubscriberKit *)subscriber
-{
-	NSLog(@"subscriberDidConnectToStream %@", subscriber.stream.name);
 }
 
 - (void)  session:(OTSession *)mySession
@@ -1196,6 +1226,16 @@ OTPublisherDelegate>{
 
 - (void)dealloc
 {
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationWillResignActiveNotification
+     object:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     removeObserver:self
+     name:UIApplicationDidBecomeActiveNotification
+     object:nil];
+
 	[_cameraToggleButton release];
 	[_audioPubUnpubButton release];
 	[_userNameLabel release];
@@ -1293,6 +1333,35 @@ OTPublisherDelegate>{
                     PUBLISHER_PREVIEW_WIDTH,
                     PUBLISHER_PREVIEW_HEIGHT)];
     }
+}
+
+- (void)enteringBackgroundMode:(NSNotification*)notification
+{
+    _publisher.publishVideo = NO;
+    _currentSubscriber.subscribeToVideo = NO;
+}
+
+- (void)leavingBackgroundMode:(NSNotification*)notification
+{
+    _publisher.publishVideo = YES;
+    _currentSubscriber.subscribeToVideo = YES;
+    
+    //now subscribe to any background connected streams
+    for (OTStream *stream in backgroundConnectedStreams)
+    {
+        // create subscriber
+        OTSubscriber *subscriber = [[OTSubscriber alloc]
+                                    initWithStream:stream delegate:self];
+        // subscribe now
+        OTError *error = nil;
+        [_session subscribe:subscriber error:&error];
+        if (error)
+        {
+            [self showAlert:[error localizedDescription]];
+        }
+        [subscriber release];
+    }
+    [backgroundConnectedStreams removeAllObjects];
 }
 
 - (void)session:(OTSession *)session
