@@ -20,7 +20,6 @@
 
 @interface TBExampleSVGIcons : NSObject
 
-+ (NSString*)tokboxLogo;
 + (NSString*)swapCamera;
 + (NSString*)microphone;
 + (NSString*)audioOnlyInactive;
