@@ -46,16 +46,6 @@
 
 @implementation TBExampleSVGIcons
 
-
-+ (NSString*)tokboxLogo {
-    return @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-    "<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->"
-    "<svg version=\"1.2\" baseProfile=\"tiny\" id=\"_x31_0_device_access_switch_camera\"	 xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\""
-    "http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" width=\"96px\" height=\"96px\"	 viewBox=\"0 0 96 96\" xml:space=\"preserve\">"
-    "<path fill=\"#FFFFFF\" d=\"M47.921,7.5H6.5v40.605c0,22.258,18.521,40.301,41.663,40.301c23.147,0,41.785-18.194,41.785-40.453	C89.947,25.695,71.067,7.5,47.921,7.5z M48.284,54.547c-3.791,0-6.861-2.952-6.861-6.598c0-3.645,3.071-6.598,6.861-6.598	c3.789,0,6.86,2.953,6.86,6.598C55.144,51.595,52.072,54.547,48.284,54.547z\"/>"
-    "</svg>";
-}
-
 + (NSString*)swapCamera {
     return @"<?xml version=\"1.0\" encoding=\"utf-8\"?>"
     "<!-- Generator: Adobe Illustrator 16.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->"

@@ -23,8 +23,6 @@
     int _numButtons;
     int _totalButtonsWidth;
     int _buttonWidth;
-    
-    UIButton* _tokboxLogo;
 
     CGRect crLogoHide;
     CGRect crLogoShow;
@@ -37,9 +35,6 @@
     TBExampleOverlayButton* _volumeButton;
     UIImageView *_archiveImgView;
     UILabel* _nameLabel;
-    
-    UIImage* _imgTokboxLogo;
-    
 
     BOOL _subscriberMuted;
     BOOL _publisherMuted;
@@ -69,9 +64,6 @@
 
 - (void)layoutOverlay
 {
-    //the logo
-    _tokboxLogo.frame = CGRectMake(6, 6, 44, 44);
-    
     float insetOffsetRatio = 0.2;
     float buttonAspectRatio =
         (float)_buttonWidth / (float)OVERLAY_CONTROL_BAR_HEIGHT;
@@ -180,51 +172,6 @@
         
         self.backgroundColor = [UIColor clearColor];
         
-        //the logo
-        _tokboxLogo = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tokboxLogo.imageView.frame = CGRectMake(12, 12, 20, 20);
-        [_tokboxLogo setImageEdgeInsets:UIEdgeInsetsMake(4, 4, 4, 4)];
-
-        _imgTokboxLogo =
-        [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons tokboxLogo]]
-         retain];
-        
-        [_tokboxLogo setImage:_imgTokboxLogo forState:UIControlStateNormal];
-        [_tokboxLogo setImage:_imgTokboxLogo forState:UIControlStateSelected];
-        [_tokboxLogo setImage:_imgTokboxLogo forState:UIControlStateHighlighted];
-        
-        
-        UILongPressGestureRecognizer* longPress =
-        [[[UILongPressGestureRecognizer alloc]
-          initWithTarget:self
-          action:@selector(bugLongPress:)] autorelease];
-        
-        float pressDuration = (OVERLAY_TOOLTIP_HIDE_TIME_MS/1000);
-        longPress.minimumPressDuration = pressDuration;
-        longPress.cancelsTouchesInView = NO;
-        
-        [_tokboxLogo addGestureRecognizer:longPress];
-        
-        [_tokboxLogo addTarget:self 
-                       action:@selector(bugTouchDown:) 
-             forControlEvents:UIControlEventTouchDown];
-        
-        [_tokboxLogo addTarget:self 
-                       action:@selector(bugTouchUpInside:) 
-             forControlEvents:UIControlEventTouchUpInside];
-
-        [_tokboxLogo addTarget:self 
-                       action:@selector(bugTouchCancel:) 
-             forControlEvents:UIControlEventTouchCancel];
-        
-        _tokboxLogo.alpha = 0.5f;
-        
-        //tokbox logo
-        crLogoHide = CGRectZero;
-        crLogoShow = CGRectMake(0, 0, 1, 1);
-        frameLogoHide = CGRectMake(43, 18, 0, 0);
-        frameLogoShow = CGRectMake(43, 18, 49, 20);
-        
         //control bar at bottom
         _controlBar = [[UIView alloc] initWithFrame:CGRectZero];
         [_controlBar setBackgroundColor:[UIColor
@@ -283,7 +230,6 @@
         [self setNumberOfButtons];
         
         //add everything to the overlay view (we set the frames later)
-        [self addSubview:_tokboxLogo];
         [self addSubview:_controlBar];
 
         
@@ -296,9 +242,6 @@
 }
 
 - (void)dealloc {
-    [_tokboxLogo removeFromSuperview];
-    [_tokboxLogo release];
-    
     [_controlBar removeFromSuperview];
     [_controlBar release];
 
@@ -319,7 +262,6 @@
 
     [_hideOverlayTimer release];
     [_hideLogoTimer release];
-    [_imgTokboxLogo release];
     [_controlBar release];
     [super dealloc];
 }
@@ -384,9 +326,7 @@
 - (void)hideOverlay:(NSTimer*)timer
 {
     //only allow the overlay to be hidden if we're not currently touching things
-    
-    if (!_tokboxLogo.highlighted &&
-        !_muteButton.highlighted &&
+    if (!_muteButton.highlighted &&
         !_switchCameraButton.highlighted &&
         !_volumeButton.highlighted) {
         
@@ -434,38 +374,6 @@
     }
     
     [self layoutOverlay];
-}
-
-- (void)hideLogo:(NSTimer*)timer
-{
-    //only allow the logo to be hidden if we're not currently touching the logo
-    if (_tokboxLogo.highlighted) {
-        [self showOverlay:nil];
-    }
-}
-
-- (void)bugTouchDown:(UIButton*)button
-{
-    button.alpha = 1.0f; 
-}
-
-- (void)bugLongPress:(UILongPressGestureRecognizer*)gestureRecognizer
-{
-    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-        _tokboxLogo.alpha = 1.0f;
-    }
-}
-
-- (void)bugTouchUpInside:(UIButton*)button
-{
-    button.alpha = 0.5f;
-}
-
-- (void)bugTouchCancel:(UIButton*)button
-{
-    if (!button.highlighted) {
-        button.alpha = 0.5f;
-    }
 }
 
 - (void)overlayButtonWasSelected:(TBExampleOverlayButton *)button
