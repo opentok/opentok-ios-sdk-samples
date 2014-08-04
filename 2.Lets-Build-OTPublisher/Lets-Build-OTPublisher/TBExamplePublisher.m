@@ -10,7 +10,7 @@
 #import "TBExampleVideoRender.h"
 
 @implementation TBExamplePublisher {
-    TBExampleVideoRender* _videoView;
+    TBExampleVideoView* _videoView;
     TBExampleVideoCapture* _defaultVideoCapture;
 }
 
@@ -50,9 +50,13 @@
         [self setVideoCapture:videoCapture];
         
         _videoView =
-        [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+        [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
+                                         delegate:self
+                                             type:OTVideoViewTypePublisher
+                                      displayName:nil];
+
         // Set mirroring only if the front camera is being used.
-        [_videoView setMirroring:
+        [_videoView.videoView setMirroring:
          (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
         [self setVideoRender:_videoView];
     }
@@ -109,8 +113,20 @@
 - (void)setPublishVideo:(BOOL)publishVideo {
     [super setPublishVideo:publishVideo];
     if (!publishVideo) {
-        [_videoView clearRenderBuffer];
+        [_videoView.videoView clearRenderBuffer];
     }
+}
+
+#pragma mark - OTVideoViewDelegate
+
+- (void)videoViewDidToggleCamera:(UIView*)videoView {
+    [_defaultVideoCapture toggleCameraPosition];
+}
+
+- (void)videoView:(UIView*)videoView
+publisherWasMuted:(BOOL)publisherMuted
+{
+    [self setPublishAudio:!publisherMuted];
 }
 
 #pragma mark - KVO listeners for Delegate notification

@@ -13,7 +13,7 @@
 @end
 
 @implementation TBExampleSubscriber {
-    TBExampleVideoRender* _myVideoRender;
+    TBExampleVideoView* _myVideoRender;
 }
 
 @synthesize view = _myVideoRender;
@@ -24,8 +24,11 @@
     self = [super initWithStream:stream delegate:delegate];
     if (self) {
         _myVideoRender =
-        [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0,0,1,1)];
-        _myVideoRender.delegate = self;
+        [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
+                                         delegate:self
+                                             type:OTVideoViewTypeSubscriber
+                                      displayName:nil];
+
         [self setVideoRender:_myVideoRender];
         
         // Observe important stream attributes to properly react to changes
@@ -59,10 +62,10 @@
             // If the video track has gone away, we can clear the screen.
             BOOL value = [[change valueForKey:@"new"] boolValue];
             if (value) {
-                [_myVideoRender setRenderingEnabled:YES];
+                [_myVideoRender.videoView setRenderingEnabled:YES];
             } else {
-                [_myVideoRender setRenderingEnabled:NO];
-                [_myVideoRender clearRenderBuffer];
+                [_myVideoRender.videoView setRenderingEnabled:NO];
+                [_myVideoRender.videoView clearRenderBuffer];
             }
         } else if ([@"hasAudio" isEqualToString:keyPath]) {
             // nop?
@@ -74,12 +77,19 @@
 
 - (void)setSubscribeToVideo:(BOOL)subscribeToVideo {
     [super setSubscribeToVideo:subscribeToVideo];
-    [_myVideoRender setRenderingEnabled:subscribeToVideo];
+    [_myVideoRender.videoView setRenderingEnabled:subscribeToVideo];
     if (!subscribeToVideo) {
-        [_myVideoRender clearRenderBuffer];
+        [_myVideoRender.videoView clearRenderBuffer];
     }
 }
 
+#pragma mark - OTVideoViewDelegate
+
+- (void)videoView:(UIView*)videoView
+subscriberVolumeWasMuted:(BOOL)subscriberMuted
+{
+    [self setSubscribeToAudio:!subscriberMuted];
+}
 
 #pragma mark - TBRendererDelegate
 
@@ -92,10 +102,9 @@
         if ([self.delegate
              respondsToSelector:@selector(subscriberVideoDataReceived:)])
         {
-            [self.delegate subscriberVideoDisabled:self];
+            [self.delegate subscriberVideoDataReceived:self];
         }
     });
 }
-
 
 @end

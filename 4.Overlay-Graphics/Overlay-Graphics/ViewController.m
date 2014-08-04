@@ -133,7 +133,6 @@ static bool subscribeToSelf = YES;
     {
         [self showAlert:[error localizedDescription]];
     }
-
 }
 
 /**
@@ -297,6 +296,18 @@ archiveStoppedWithId:(NSString *)archiveId
     TBExampleOverlayView *overlayView =
     [(TBExampleVideoView *)[_publisher view] overlayView];
     [overlayView stopArchiveAnimation];
+}
+
+- (void)subscriberVideoDisabled:(OTSubscriberKit*)subscriber
+                         reason:(OTSubscriberVideoEventReason)reason
+{
+    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:NO];
+}
+
+- (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
+                        reason:(OTSubscriberVideoEventReason)reason
+{
+    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:YES];
 }
 
 @end
