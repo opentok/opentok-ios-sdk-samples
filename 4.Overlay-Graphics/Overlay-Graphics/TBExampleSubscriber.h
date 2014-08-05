@@ -7,10 +7,11 @@
 //
 
 #import <OpenTok/OpenTok.h>
+#import "TBExampleVideoView.h"
 
-@interface TBExampleSubscriber : OTSubscriberKit
+@interface TBExampleSubscriber : OTSubscriberKit <TBExampleVideoViewDelegate>
 
-@property (readonly) UIView* view;
+@property (readonly) TBExampleVideoView* view;
 
 @end
 
