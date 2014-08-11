@@ -6,10 +6,11 @@
 //
 
 #import <OpenTok/OpenTok.h>
+#import "TBExampleVideoView.h"
 
-@interface TBExamplePublisher : OTPublisherKit
+@interface TBExamplePublisher : OTPublisherKit <TBExampleVideoViewDelegate>
 
-@property(readonly) UIView* view;
+@property(readonly) TBExampleVideoView* view;
 
 @property(nonatomic, assign) AVCaptureDevicePosition cameraPosition;
 
