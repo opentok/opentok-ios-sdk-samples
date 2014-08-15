@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A51739F2198A4E3A005102BE /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51739F1198A4E3A005102BE /* VideoToolbox.framework */; };
-		A51739F4198A5314005102BE /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51739F3198A5314005102BE /* OpenTok.framework */; };
+		A57C4CAC199DD64300210EC3 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57C4CAB199DD64300210EC3 /* OpenTok.framework */; };
 		A5F48452198A3C0E00E6C689 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48451198A3C0E00E6C689 /* Foundation.framework */; };
 		A5F48454198A3C0E00E6C689 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48453198A3C0E00E6C689 /* CoreGraphics.framework */; };
 		A5F48456198A3C0E00E6C689 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48455198A3C0E00E6C689 /* UIKit.framework */; };
@@ -76,7 +76,7 @@
 
 /* Begin PBXFileReference section */
 		A51739F1198A4E3A005102BE /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		A51739F3198A5314005102BE /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
+		A57C4CAB199DD64300210EC3 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5F4844E198A3C0E00E6C689 /* Audio-Levels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio-Levels.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5F48451198A3C0E00E6C689 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A5F48453198A3C0E00E6C689 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -101,7 +101,6 @@
 		A5F4848D198A402800E6C689 /* TBVoiceViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVoiceViewCell.h; sourceTree = "<group>"; };
 		A5F4848E198A402800E6C689 /* TBVoiceViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVoiceViewCell.m; sourceTree = "<group>"; };
 		A5F4848F198A402800E6C689 /* TBVoiceViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TBVoiceViewCell.xib; sourceTree = "<group>"; };
-		A5F48494198A432300E6C689 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenTok.framework; path = "../../OpenTokRTC-Voice-only-iOS/OpenTok.framework"; sourceTree = "<group>"; };
 		A5F48496198A438C00E6C689 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A5F48498198A43C400E6C689 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A5F4849A198A43C900E6C689 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -147,8 +146,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A51739F2198A4E3A005102BE /* VideoToolbox.framework in Frameworks */,
-				A51739F4198A5314005102BE /* OpenTok.framework in Frameworks */,
 				A5F484B1198A458800E6C689 /* libstdc++.6.0.9.dylib in Frameworks */,
+				A57C4CAC199DD64300210EC3 /* OpenTok.framework in Frameworks */,
 				A5F484AF198A446C00E6C689 /* CoreAudio.framework in Frameworks */,
 				A5F484AD198A446600E6C689 /* AudioToolbox.framework in Frameworks */,
 				A5F484AB198A445000E6C689 /* QuartzCore.framework in Frameworks */,
@@ -202,7 +201,7 @@
 		A5F48450198A3C0E00E6C689 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A51739F3198A5314005102BE /* OpenTok.framework */,
+				A57C4CAB199DD64300210EC3 /* OpenTok.framework */,
 				A51739F1198A4E3A005102BE /* VideoToolbox.framework */,
 				A5F484B0198A458800E6C689 /* libstdc++.6.0.9.dylib */,
 				A5F484AE198A446C00E6C689 /* CoreAudio.framework */,
@@ -218,7 +217,6 @@
 				A5F4849A198A43C900E6C689 /* MobileCoreServices.framework */,
 				A5F48498198A43C400E6C689 /* CoreTelephony.framework */,
 				A5F48496198A438C00E6C689 /* libsqlite3.dylib */,
-				A5F48494198A432300E6C689 /* OpenTok.framework */,
 				A5F48451198A3C0E00E6C689 /* Foundation.framework */,
 				A5F48453198A3C0E00E6C689 /* CoreGraphics.framework */,
 				A5F48455198A3C0E00E6C689 /* UIKit.framework */,
@@ -553,10 +551,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"/Users/sridhar/src/OpenTokRTC-Voice-only-iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Audio-Levels/Audio-Levels-Prefix.pch";
 				INFOPLIST_FILE = "Audio-Levels/Audio-Levels-Info.plist";
@@ -575,10 +570,7 @@
 				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(PROJECT_DIR)",
-					"/Users/sridhar/src/OpenTokRTC-Voice-only-iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Audio-Levels/Audio-Levels-Prefix.pch";
 				INFOPLIST_FILE = "Audio-Levels/Audio-Levels-Info.plist";
