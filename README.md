@@ -39,9 +39,13 @@ herein.
 	
 5.	**Multi Party Call** - This project demonstrate how to use OpenTok SDK for 
 	a multi party call. The application publish audio/video from iOS device and
-	can connect to N number of subscribers. However it shows only one
+	can connect to multiple subscribers. However it shows only one
     subscriber video at a time due to cpu limitations on iOS devices. 
 
+6.	**Audio Levels** - This project demonstrate how to use OpenTok SDK for audio
+    only multi party calls. Boht publisher and subscribers are audio based only.
+    This applications also shows, how to use audio levels api along with audio 
+    meter UI for publisher and subscribers for visualization purpose.
 
 Referencing OpenTok.framework
 -----------------------------
