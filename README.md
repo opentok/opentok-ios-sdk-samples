@@ -44,7 +44,7 @@ herein.
 
 6.	**Audio Levels** - This project demonstrate how to use OpenTok SDK for audio
     only multi party calls. Boht publisher and subscribers are audio based only.
-    This applications also shows, how to use audio levels api along with audio 
+    This application also shows, how to use audio levels api along with audio 
     meter UI for publisher and subscribers for visualization purpose.
 
 Referencing OpenTok.framework
