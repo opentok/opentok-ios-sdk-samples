@@ -43,8 +43,8 @@ herein.
     subscriber video at a time due to cpu limitations on iOS devices. 
 
 6.	**Audio Levels** - This project demonstrate how to use OpenTok SDK for audio
-    only multi party calls. Boht publisher and subscribers are audio based only.
-    This application also shows, how to use audio levels api along with audio 
+    only multi party calls. Both publisher and subscribers are audio based only.
+    This application also shows, how to use audio levels api along with audio
     meter UI for publisher and subscribers for visualization purpose.
 
 Referencing OpenTok.framework
