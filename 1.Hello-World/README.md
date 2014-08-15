@@ -45,8 +45,6 @@ Undefined symbols for architecture armv7:
     target is 7.0. Using an earlier deployment target might work for you, if the
     direct library reference is not suitable for your application.
     
-3.  The OpenTok library is currently compiling for only the armv7 architecture.
-    Remove the other architectures from your build settings. This does not
-    affect the availability to any iOS devices, however you will not be able to
-    run your application on Simulator.
+3.  The OpenTok library is currently not supporting arm64 architecture. It runs 
+    on simulator but as camera wont available, it will do nothing.
 
