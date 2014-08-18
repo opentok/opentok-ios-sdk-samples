@@ -1,8 +1,8 @@
 Project 2: Let's Build OTPublisher
 ==================================
 
-This project attempts to explain the new video handling features in version 2.2
-of the OpenTok iOS SDK. By the end of a code review, you should have a basic
+This project attempts to explain the custom video driver features in the
+OpenTok iOS SDK. By the end of a code review, you should have a basic
 understanding of the internals of the video capture and render API, as well as
 how to start building your own extensions to the core publisher and subscriber
 classes.
@@ -11,10 +11,10 @@ classes.
 TBExamplePublisher and TBExampleSubscriber
 ------------------------------------------
 
-For our example, we create the alterna-universe classes TBExamplePublisher and 
-TBExampleSubscriber. Like the OT-prefixed similar classes, these are subclasses of the
-core OTPublisherKit and OTSubscriberKit, and will provide implementations for
-the video capture and render interfaces, where needed.
+For our example, we create the TBExamplePublisher and TBExampleSubscriber
+classes. Like the OT-prefixed similar classes, these are subclasses of the
+core OTPublisherKit and OTSubscriberKit, and they will provide implementations
+for the video capture and render interfaces, where needed.
 
 TBExamplePublisher will bind the device's camera to the core publisher class, 
 OTPublisherKit. The enabling mechanisms behind the scenes are a driver to
@@ -35,14 +35,14 @@ TBExampleVideoRender is a copy of the default video renderer for the OpenTok
 iOS SDK. It is borrowed and modified from a series of classes in Google's
 [WebRTC][1] project.
 
-Although in this example we wire a video renderer to the publisher's rendering
-callback, an alternative approach for developers using video from the camera
+In this example we wire a video renderer to the publisher's rendering
+callback. An alternative approach for developers using video from the camera
 with AVFoundation is to wire [AVCaptureVideoPreviewLayer][2] directly to the 
 capture class and leave the `OTPublisherKit.videoRender` property nil.
 
 To see TBExampleVideoRender in action, put a breakpoint on `renderVideoFrame:`.
 You will see this method fire for every video frame that is presented to the
-rendering endpoint by the OpenTok SDK.
+rendering endpoint by the OpenTok iOS SDK.
 
 ###TBExampleVideoCapture
 This class interfaces with AVFoundation to provide video capture support from
@@ -55,7 +55,7 @@ To see TBExampleVideoCapture in action, put a breakpoint on
 AVFoundation for every frame that is output from the camera capture session.
 After some processing, the video capture invokes its own 
 `OTVideoCaptureConsumer` with the captured frame. Note the consumer is set by
-the OpenTok SDK during instantiation of the publisher.
+the OpenTok iOS SDK during instantiation of the publisher.
 
 
 Putting it all together
@@ -64,12 +64,12 @@ Putting it all together
 The [ViewController](Lets-Build-OTPublisher/ViewController.m) for this 
 application is a near-identical clone of the previous, with text substitutions
 for our newly-minted example publisher and subscriber classes. Notice how a 
-majority of the calls we are making into the OpenTok SDK classes is declared on
-the core classes, OTPublisherKit and OTSubscriberKit. Extending those core 
+majority of the calls we are making into the OpenTok iOS SDK classes is declared
+on the core classes, OTPublisherKit and OTSubscriberKit. Extending those core 
 classes as we have done in this example is as simple as defining a few simple
 interfaces, and plugging everything in at runtime. We hope that this new
 class hierarchy will give you some ideas for how to extend the core 
-functionality of the OpenTok SDK to meet your application needs.
+functionality of the OpenTok iOS SDK to meet your application needs.
 
 
 [1]: https://code.google.com/p/webrtc/source/browse/trunk/talk/app/webrtc/objc/

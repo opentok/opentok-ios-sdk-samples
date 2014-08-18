@@ -1,21 +1,22 @@
-Project 5: Multi Party Call
+Project 5: Multi-Party Call
 ==================================
 
-This project shows how to use Opentok SDK to develop multi party call.(one 
+This project shows how to use OpenTok iOS SDK to develop a multi-party call (one
 publisher, N subscribers with only one subscriber video enabled at a time).
-By the end of a code review, you should learn how to add a multi party calls 
-with Opentok SDK. This example also shows how to use archiving feature.
+By the end of a code review, you will learn how to add a multi-party call
+with the OpenTok iOS SDK. This example also shows how to use archiving feature.
 
 
 Application Notes
 =================
 
-1. This sample shows a publisher bar(bottom), subscriber bar (top) and  an 
-   archiving overlay
+1. This sample shows a publisher bar (bottom), subscriber bar (top) and  an
+   archiving overlay.
 
-2. Publisher bar has buttons for publisher's toggle camera and mute/unmute 
-   publisher's audio
+2. The publisher bar has buttons for publisher's toggle camera and mute/unmute
+   publisher's audio.
    
-3. Subscriber bar has a button which allows subscriber to enable/disable audio
+3. The subscriber bar has a button which allows subscriber to enable/disable
+   audio.
 
-4. Swipe right/left to navigate to the next/previous subscriber in the session
+4. Swipe right/left to navigate to the next/previous subscriber in the session.
