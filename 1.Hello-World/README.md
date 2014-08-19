@@ -45,8 +45,7 @@ Undefined symbols for architecture armv7:
     target is 7.0. Using an earlier deployment target might work for you, if the
     direct library reference is not suitable for your application.
     
-3.  The OpenTok library is currently not supporting arm64 architecture. You can
-    test in the iOS Simulator or on a supported iOS device. However, the XCode
-    iOS Simulator does not provide access to the camera. When testing in the iOS
+3.  You can test in the iOS Simulator or on a supported iOS device. However, the XCode
+    iOS Simulator does not provide access to the camera. When running in the iOS
     Simulator, an OTPublisher object uses a demo video instead of the camera.
 
