@@ -613,7 +613,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
-					/Users/charley/src,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlay-Graphics/Overlay-Graphics-Prefix.pch";
@@ -644,7 +643,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
-					/Users/charley/src,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Overlay-Graphics/Overlay-Graphics-Prefix.pch";
