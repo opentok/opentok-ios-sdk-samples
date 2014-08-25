@@ -8,20 +8,18 @@ understand how to use the AVFoundation API to temporarily halt your video
 capture module, adjust capture settings to use photo-quality resolution,
 capture a picture, then resume video capture.
 
-
 Configuration Notes
-===================
+-------------------
 
-1.  Since we are importing a number of classes implemented in Project 2, the 
-    header search paths in the project build settings must be extended to look
-    in the project 2 directory. Additionally, we must recompile the 
-    implementation files in order to continue using our TBExamplePublisher,
-    created in project 2. You will notice an extra group in this project's 
-    navigator space with references to the files we need.
-    
+Since we are importing a number of classes implemented in project 2, the
+header search paths in the project build settings must be extended to look
+in the project 2 directory. Additionally, we must recompile the
+implementation files in order to continue using our TBExamplePublisher,
+created in project 2. You will notice an extra group in this project's
+navigator space with references to the files we need.
 
 Application Notes
-=================
+-----------------
 
 1.  The only new implementation in this project is the 
     TBExamplePhotoVideoCapture class. By subclassing the video capture module
@@ -48,6 +46,4 @@ Application Notes
     devices, based on processing capability and the fidelity of the image 
     sensor. Feel free to experiment and let us know how it goes for you!
 
-
-    
 [1]: ../2.Lets-Build-OTPublisher
