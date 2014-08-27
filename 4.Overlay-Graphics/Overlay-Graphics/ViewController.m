@@ -299,15 +299,8 @@ archiveStoppedWithId:(NSString *)archiveId
 }
 
 - (void)subscriberVideoDisabled:(OTSubscriberKit*)subscriber
-                         reason:(OTSubscriberVideoEventReason)reason
 {
     [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:NO];
-}
-
-- (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
-                        reason:(OTSubscriberVideoEventReason)reason
-{
-    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:YES];
 }
 
 @end

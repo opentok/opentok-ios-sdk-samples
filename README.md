@@ -3,7 +3,7 @@ OpenTok iOS SDK Samples
 
 This repository is meant to provide some examples for you to better understand
 the new features presented in the OpenTok iOS SDK. The applications herein are
-meant to be used with version 2.3 and higher of the OpenTok iOS SDK. Feel free
+meant to be used with version 2.2 and higher of the OpenTok iOS SDK. Feel free
 to copy and modify the source code herein for your own projects.
 If you are able, please consider sharing with us your modifications, especially
 if they might benefit other developers using the OpenTok iOS SDK. See the
@@ -40,12 +40,6 @@ capture implementations provided herein.
     SDK for a multi party call. The application publishes audio/video from an
     iOS device and can connect to multiple subscribers. However it shows only
     one subscriber video at a time due to CPU limitations on iOS devices.
-
-6.	**Audio Levels** - This project demonstrates how to use OpenTok iOS SDK for
-    audio-only multi party calls. Both publisher and subscribers are audio-based
-    only. This application also shows how to use the audio level API along with
-    an audio meter UI for visualization of publisher and subscriber audio
-    levels.
 
 Referencing OpenTok.framework
 -----------------------------
