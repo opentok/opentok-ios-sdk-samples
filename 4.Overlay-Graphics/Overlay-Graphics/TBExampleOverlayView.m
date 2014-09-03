@@ -251,8 +251,6 @@
             
             _videoMayDisableImgView.hidden = YES;
             _videoDisabledImgView.hidden = YES;
-
-
         }
         
         [self setNumberOfButtons];
