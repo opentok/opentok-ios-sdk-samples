@@ -207,5 +207,21 @@
     "";
 }
 
++ (NSString*)highCongestion {
+    return [NSString stringWithContentsOfFile:[[NSBundle mainBundle]
+                                               pathForResource:@"highCongestion"
+                                                        ofType:@"svg"]
+                                     encoding:NSUTF8StringEncoding
+                                        error:nil];
+
+}
+
++ (NSString*)midCongestion {
+    return [NSString stringWithContentsOfFile:[[NSBundle mainBundle]
+                                               pathForResource:@"midCongestion"
+                                               ofType:@"svg"]
+                                     encoding:NSUTF8StringEncoding
+                                        error:nil];
+}
 
 @end
