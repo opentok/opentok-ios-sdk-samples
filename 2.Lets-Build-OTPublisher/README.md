@@ -24,9 +24,9 @@ the OTPublisherKit runtime.
 
 ###TBExampleVideoRender
 Both TBExampleSubscriber and TBExamplePublisher need an instance supporting the
-`OTVideoRender` protocol in order to display video contents. In short, whatever
-instance id is set to the videoRender property will receive YUV frames (I420) as
-they are captured (publisher), or as they are received (subscriber). Note that,
+`OTVideoRender` protocol to display video contents. In short, the instance
+ID that is set to the `videoRender` property will receive YUV frames (I420) as
+they are captured (publisher) or as they are received (subscriber). Note that,
 although the publisher's `OTVideoCapture` interface can process multiple pixel
 formats, the images passed through the rendering callback will always be in the
 I420 YUV format.
@@ -41,7 +41,7 @@ with AVFoundation is to wire [AVCaptureVideoPreviewLayer][2] directly to the
 capture class and leave the `OTPublisherKit.videoRender` property nil.
 
 To see TBExampleVideoRender in action, put a breakpoint on `renderVideoFrame:`.
-You will see this method fire for every video frame that is presented to the
+You will see this method called for every video frame that is presented to the
 rendering endpoint by the OpenTok iOS SDK.
 
 ###TBExampleVideoCapture
@@ -59,12 +59,12 @@ the OpenTok iOS SDK during instantiation of the publisher.
 
 
 Putting it all together
-=======================
+-----------------------
 
 The [ViewController](Lets-Build-OTPublisher/ViewController.m) for this 
 application is a near-identical clone of the previous, with text substitutions
 for our newly-minted example publisher and subscriber classes. Notice how a 
-majority of the calls we are making into the OpenTok iOS SDK classes is declared
+majority of the calls we are making into the OpenTok iOS SDK classes are declared
 on the core classes, OTPublisherKit and OTSubscriberKit. Extending those core 
 classes as we have done in this example is as simple as defining a few simple
 interfaces, and plugging everything in at runtime. We hope that this new
