@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A5149AA91913969700CB1A9F /* libQuickSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5149AA41913968800CB1A9F /* libQuickSVG.a */; };
+		A51C860619B6F22B0067184D /* highCongestion.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51C860419B6F22B0067184D /* highCongestion.svg */; };
+		A51C860719B6F22B0067184D /* midCongestion.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51C860519B6F22B0067184D /* midCongestion.svg */; };
+		A524889019AF3D1E008349A8 /* highCongestion_32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = A524888E19AF3D1E008349A8 /* highCongestion_32x32.png */; };
+		A524889119AF3D1E008349A8 /* midCongestion_32x32_mdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = A524888F19AF3D1E008349A8 /* midCongestion_32x32_mdpi.png */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
 		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
 		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
@@ -86,6 +90,10 @@
 
 /* Begin PBXFileReference section */
 		A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickSVG.xcodeproj; path = quicksvg/QuickSVG.xcodeproj; sourceTree = "<group>"; };
+		A51C860419B6F22B0067184D /* highCongestion.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = highCongestion.svg; sourceTree = "<group>"; };
+		A51C860519B6F22B0067184D /* midCongestion.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = midCongestion.svg; sourceTree = "<group>"; };
+		A524888E19AF3D1E008349A8 /* highCongestion_32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = highCongestion_32x32.png; path = "../../../../Downloads/iOS 4/highCongestion_32x32.png"; sourceTree = "<group>"; };
+		A524888F19AF3D1E008349A8 /* midCongestion_32x32_mdpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = midCongestion_32x32_mdpi.png; path = "../../../../Downloads/iOS 4/midCongestion_32x32_mdpi.png"; sourceTree = "<group>"; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
 		A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small@2x.png"; sourceTree = "<group>"; };
 		A535047318FD469B00E68BD9 /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
@@ -240,6 +248,10 @@
 		A56B2BAF18C085AD001E082A /* Overlay-Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				A51C860419B6F22B0067184D /* highCongestion.svg */,
+				A51C860519B6F22B0067184D /* midCongestion.svg */,
+				A524888E19AF3D1E008349A8 /* highCongestion_32x32.png */,
+				A524888F19AF3D1E008349A8 /* midCongestion_32x32_mdpi.png */,
 				A5A6080B18C0920600192466 /* Views */,
 				A599E63F1990F9D1001A8B3A /* TBExamplePublisher.h */,
 				A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */,
@@ -432,9 +444,13 @@
 				A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */,
 				A535047C18FD469B00E68BD9 /* archiving_pulse-Small@2x.png in Resources */,
 				A56B2BC518C085AD001E082A /* Images.xcassets in Resources */,
+				A51C860619B6F22B0067184D /* highCongestion.svg in Resources */,
+				A524889119AF3D1E008349A8 /* midCongestion_32x32_mdpi.png in Resources */,
+				A51C860719B6F22B0067184D /* midCongestion.svg in Resources */,
 				A56B2BBD18C085AD001E082A /* Main_iPhone.storyboard in Resources */,
 				A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */,
 				A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */,
+				A524889019AF3D1E008349A8 /* highCongestion_32x32.png in Resources */,
 				A56B2BB418C085AD001E082A /* InfoPlist.strings in Resources */,
 				A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */,
 				A535047B18FD469B00E68BD9 /* archiving_pulse-Small.png in Resources */,

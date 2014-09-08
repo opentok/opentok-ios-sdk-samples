@@ -299,8 +299,35 @@ archiveStoppedWithId:(NSString *)archiveId
 }
 
 - (void)subscriberVideoDisabled:(OTSubscriberKit*)subscriber
+                         reason:(OTSubscriberVideoEventReason)reason
 {
     [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:NO];
+
+    if (reason == OTSubscriberVideoEventQualityChanged)
+        [[(TBExampleVideoView*)subscriber.videoRender overlayView]
+         showVideoDisabled];
+}
+
+- (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
+                        reason:(OTSubscriberVideoEventReason)reason
+{
+    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:YES];
+    
+    if (reason == OTSubscriberVideoEventQualityChanged)
+        [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
+}
+
+- (void)subscriberVideoDisableWarning:(OTSubscriberKit*)subscriber
+{
+    NSLog(@"subscriberVideoDisableWarning");
+    [[(TBExampleVideoView*)subscriber.videoRender overlayView]
+     showVideoMayDisableWarning];
+}
+
+- (void)subscriberVideoDisableWarningLifted:(OTSubscriberKit*)subscriber
+{
+    NSLog(@"subscriberVideoDisableWarningLifted");
+    [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
 }
 
 @end
