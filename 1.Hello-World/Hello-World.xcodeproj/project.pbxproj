@@ -464,7 +464,7 @@
 				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
 				INFOPLIST_FILE = "Hello-World/Hello-World-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -486,7 +486,7 @@
 				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
 				INFOPLIST_FILE = "Hello-World/Hello-World-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = armv7;
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
