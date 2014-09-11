@@ -8,11 +8,12 @@
 
 #import <OpenTok/OpenTok.h>
 #import "TBExampleVideoView.h"
+#import "TBAudioLevelMeter.h"
 
 @interface TBExampleSubscriber : OTSubscriberKit <TBExampleVideoViewDelegate>
 
 @property (readonly) TBExampleVideoView* view;
-
+@property (retain, nonatomic) TBAudioLevelMeter *audioLevelMeter;
 @end
 
 @protocol TBExampleSubscriberDelegate <OTSubscriberKitDelegate>

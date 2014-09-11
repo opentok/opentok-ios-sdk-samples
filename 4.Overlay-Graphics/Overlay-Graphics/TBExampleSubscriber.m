@@ -31,6 +31,17 @@
 
         [self setVideoRender:_myVideoRender];
         
+        _audioLevelMeter = [[TBAudioLevelMeter alloc]
+                            initWithFrame:CGRectZero];
+        _audioLevelMeter.opaque = false;
+        _audioLevelMeter.userInteractionEnabled = NO;
+        CGRect frame = CGRectMake([[UIScreen mainScreen] bounds].size.width - 66,
+                                  10 ,
+                                  56,
+                                  56);
+        _audioLevelMeter.frame = frame;
+        [self.view addSubview:_audioLevelMeter];
+        
         // Observe important stream attributes to properly react to changes
         [self.stream addObserver:self
                       forKeyPath:@"hasVideo"
@@ -48,6 +59,7 @@
     [self.stream removeObserver:self forKeyPath:@"hasVideo" context:nil];
     [self.stream removeObserver:self forKeyPath:@"hasAudio" context:nil];
     [_myVideoRender release];
+    [_audioLevelMeter release];
     [super dealloc];
 }
 

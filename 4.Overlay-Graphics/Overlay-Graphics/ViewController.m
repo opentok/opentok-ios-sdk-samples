@@ -105,6 +105,7 @@ static bool subscribeToSelf = YES;
 
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     [self.view addSubview:_publisher.view];
+    _publisher.audioLevelDelegate = self;
 }
 
 /**
@@ -306,6 +307,8 @@ archiveStoppedWithId:(NSString *)archiveId
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView]
          showVideoDisabled];
+    
+    _subscriber.audioLevelDelegate = self;
 }
 
 - (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
@@ -315,6 +318,8 @@ archiveStoppedWithId:(NSString *)archiveId
     
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
+    
+    _subscriber.audioLevelDelegate = nil;
 }
 
 - (void)subscriberVideoDisableWarning:(OTSubscriberKit*)subscriber
@@ -328,6 +333,31 @@ archiveStoppedWithId:(NSString *)archiveId
 {
     NSLog(@"subscriberVideoDisableWarningLifted");
     [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
+}
+
+- (void)publisher:(OTPublisherKit *)publisher
+audioLevelUpdated:(float)audioLevel
+{
+    float db = 20 * log10(audioLevel);
+    float floor = -40;
+    float level = 0;
+    if (db > floor) {
+        level = db + abs(floor);
+        level /= abs(floor);
+    }
+    _publisher.audioLevelMeter.level = level;
+}
+
+- (void)subscriber:(OTSubscriberKit *)subscriber
+ audioLevelUpdated:(float)audioLevel{
+    float db = 20 * log10(audioLevel);
+    float floor = -40;
+    float level = 0;
+    if (db > floor) {
+        level = db + abs(floor);
+        level /= abs(floor);
+    }
+    _subscriber.audioLevelMeter.level = level;
 }
 
 @end

@@ -49,6 +49,7 @@
 		A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081518C0921800192466 /* TBExampleUnderlayView.m */; };
 		A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081718C0921800192466 /* TBExampleVideoView.m */; };
 		A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081918C0921800192466 /* TBExampleSVG.m */; };
+		A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */; };
 		D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */; };
 		D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */; };
 		D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAC194129B900364672 /* GLKit.framework */; };
@@ -142,6 +143,8 @@
 		A5A6081718C0921800192466 /* TBExampleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoView.m; sourceTree = "<group>"; };
 		A5A6081818C0921800192466 /* TBExampleSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSVG.h; sourceTree = "<group>"; };
 		A5A6081918C0921800192466 /* TBExampleSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSVG.m; sourceTree = "<group>"; };
+		A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBAudioLevelMeter.h; sourceTree = "<group>"; };
+		A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBAudioLevelMeter.m; sourceTree = "<group>"; };
 		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
 		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */,
 				A599E6411990F9D1001A8B3A /* TBExampleSubscriber.h */,
 				A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */,
+				A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */,
+				A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */,
 				A56B2BE918C08648001E082A /* ShaderUtilities.c */,
 				A56B2BEA18C08648001E082A /* ShaderUtilities.h */,
 				A56B2BB818C085AD001E082A /* AppDelegate.h */,
@@ -465,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */,
+				A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */,
 				A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */,
 				A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */,
 				A56B2BC318C085AD001E082A /* ViewController.m in Sources */,
