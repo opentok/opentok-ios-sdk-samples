@@ -59,6 +59,7 @@ OTPublisherDelegate>{
 	CGPoint _startPosition;
     
 	BOOL initialized;
+    int _currentSubscriberIndex;
 }
 
 @end
@@ -912,43 +913,40 @@ OTPublisherDelegate>{
         [recognizer setTranslation:CGPointMake(0, 0) inView:_publisher.view];
 }
 
+- (void)cycleSubscriberViewForward:(BOOL)forward {
+    int mod = 1;
+    
+    if (!forward) {
+        mod = -1;
+    }
+    
+    _currentSubscriberIndex =
+    (_currentSubscriberIndex + mod) % allConnectionsIds.count;
+    
+    OTSubscriber *nextSubscriber =
+    [allSubscribers objectForKey:
+     [allConnectionsIds objectAtIndex:_currentSubscriberIndex]];
+    
+    [self showAsCurrentSubscriber:nextSubscriber];
+    
+    [videoContainerView setContentOffset:
+     CGPointMake(_currentSubscriber.view.frame.origin.x, 0) animated:YES];
+    
+    [self resetArrowsStates];
+    
+}
+
 - (void)handleArrowTap:(UIPanGestureRecognizer *)recognizer
-{
-    // if there are no subscribers, simply return
+{ // if there are no subscribers, simply return
     if ([allSubscribers count] == 0)
         return;
     CGPoint touchPoint = [recognizer locationInView:self.leftArrowImgView];
     if ([self.leftArrowImgView pointInside:touchPoint withEvent:nil])
     {
-
-        int currentPage = (int)(videoContainerView.contentOffset.x /
-                                videoContainerView.frame.size.width) ;
-        
-        OTSubscriber *nextSubscriber = [allSubscribers objectForKey:
-                              [allConnectionsIds objectAtIndex:currentPage - 1]];
-        
-        [self showAsCurrentSubscriber:nextSubscriber];
-        
-        [videoContainerView setContentOffset:
-         CGPointMake(_currentSubscriber.view.frame.origin.x, 0) animated:YES];
-        
-
+        [self cycleSubscriberViewForward:NO];
     } else {
-        
-        int currentPage = (int)(videoContainerView.contentOffset.x /
-                                videoContainerView.frame.size.width) ;
-        
-        OTSubscriber *nextSubscriber = [allSubscribers objectForKey:
-                                               [allConnectionsIds objectAtIndex:currentPage + 1]];
-        
-        [self showAsCurrentSubscriber:nextSubscriber];
-        
-        [videoContainerView setContentOffset:
-         CGPointMake(_currentSubscriber.view.frame.origin.x, 0) animated:YES];
-
+        [self cycleSubscriberViewForward:YES];
     }
-    
-    [self resetArrowsStates];
 }
 
 - (void)resetArrowsStates
