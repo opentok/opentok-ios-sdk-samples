@@ -26,17 +26,20 @@
     return self;
 }
 
+-(void)layoutSubviews
+{
+    // align audio level meter to top right corner
+    CGRect frame = self.frame;
+    frame.origin.x = self.superview.frame.size.width - frame.size.width/2;
+    frame.origin.y = -frame.size.height/2;
+    self.frame = frame;
+}
+
 - (void)setLevel:(float)level
 {
     _level = level;
     [self setNeedsDisplay];
 }
-
-//-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    NSLog(@"Point inside called");
-//    return YES;
-//}
 
 - (UIView *)hitTest1:(CGPoint)point withEvent:(UIEvent *)event
 {
@@ -54,16 +57,30 @@
 #define   DEGREES_TO_RADIANS(degrees)  ((3.14159265359 * degrees)/ 180)
 - (void)drawRect:(CGRect)rect
 {
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
-    UIColor *greenColor = [UIColor colorWithRed:152.0f/255.0f
-                                          green:206.0f/255.0f
-                                           blue:0/255.0f
-                                          alpha:0.5f];
-    CGContextSetFillColorWithColor(context, [greenColor CGColor]);
+    
+    //black background
+    UIColor *blackColor = [UIColor blackColor];
+    CGContextSetFillColorWithColor(context, [blackColor CGColor]);
     
     float maxRadius = ((float)self.frame.size.width / 2.0f - 0.5);
-    float radius = maxRadius * _level;
+    float radius = maxRadius ;
+    
+    CGContextBeginPath(context);
+    CGContextAddArc(context, self.frame.size.width/2, self.frame.size.height/2,
+                    radius, DEGREES_TO_RADIANS(0), DEGREES_TO_RADIANS(360), NO);
+    CGContextClosePath(context);
+    CGContextFillPath(context);
+    
+    // Green circle 
+    UIColor *greenColor = [UIColor colorWithRed:121.0f/255.0f
+                                          green:166.0f/255.0f
+                                           blue:51/255.0f
+                                          alpha:1.f];
+    CGContextSetFillColorWithColor(context, [greenColor CGColor]);
+    
+    maxRadius = ((float)self.frame.size.width / 2.0f - 0.5);
+    radius = maxRadius * _level;
     
     CGContextBeginPath(context);
     CGContextAddArc(context, self.frame.size.width/2, self.frame.size.height/2,

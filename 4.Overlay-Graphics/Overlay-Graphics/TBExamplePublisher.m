@@ -59,17 +59,6 @@
         [_videoView.videoView setMirroring:
          (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
         [self setVideoRender:_videoView];
-        
-        _audioLevelMeter = [[TBAudioLevelMeter alloc]
-                            initWithFrame:CGRectZero];
-        _audioLevelMeter.opaque = false;
-        _audioLevelMeter.userInteractionEnabled = NO;
-        CGRect frame = CGRectMake([[UIScreen mainScreen] bounds].size.width - 66,
-                                  10 ,
-                                  56,
-                                  56);
-        _audioLevelMeter.frame = frame;
-        [self.view addSubview:_audioLevelMeter];
     }
     return self;
 }
@@ -82,7 +71,6 @@
                                  context:nil];
     [_defaultVideoCapture release];
     _defaultVideoCapture = nil;
-    [_audioLevelMeter release];
     [super dealloc];
 }
 

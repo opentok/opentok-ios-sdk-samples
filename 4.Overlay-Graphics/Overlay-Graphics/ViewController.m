@@ -105,7 +105,6 @@ static bool subscribeToSelf = YES;
 
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     [self.view addSubview:_publisher.view];
-    _publisher.audioLevelDelegate = self;
 }
 
 /**
@@ -134,6 +133,7 @@ static bool subscribeToSelf = YES;
     {
         [self showAlert:[error localizedDescription]];
     }
+    _subscriber.audioLevelDelegate = self;
 }
 
 /**
@@ -302,8 +302,8 @@ archiveStoppedWithId:(NSString *)archiveId
 - (void)subscriberVideoDisabled:(OTSubscriberKit*)subscriber
                          reason:(OTSubscriberVideoEventReason)reason
 {
-    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:NO];
-
+    [(TBExampleVideoView*)subscriber.videoRender audioOnlyView].hidden = NO;
+    
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView]
          showVideoDisabled];
@@ -314,7 +314,7 @@ archiveStoppedWithId:(NSString *)archiveId
 - (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
                         reason:(OTSubscriberVideoEventReason)reason
 {
-    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:YES];
+    [(TBExampleVideoView*)subscriber.videoRender audioOnlyView].hidden = YES;
     
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
@@ -335,19 +335,6 @@ archiveStoppedWithId:(NSString *)archiveId
     [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
 }
 
-- (void)publisher:(OTPublisherKit *)publisher
-audioLevelUpdated:(float)audioLevel
-{
-    float db = 20 * log10(audioLevel);
-    float floor = -40;
-    float level = 0;
-    if (db > floor) {
-        level = db + abs(floor);
-        level /= abs(floor);
-    }
-    _publisher.audioLevelMeter.level = level;
-}
-
 - (void)subscriber:(OTSubscriberKit *)subscriber
  audioLevelUpdated:(float)audioLevel{
     float db = 20 * log10(audioLevel);
@@ -357,7 +344,7 @@ audioLevelUpdated:(float)audioLevel
         level = db + abs(floor);
         level /= abs(floor);
     }
-    _subscriber.audioLevelMeter.level = level;
+    _subscriber.view.audioLevelMeter.level = level;
 }
 
 @end
