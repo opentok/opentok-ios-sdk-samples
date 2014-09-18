@@ -11,7 +11,5 @@
 @interface TBExamplePublisher : OTPublisherKit <TBExampleVideoViewDelegate>
 
 @property(readonly) TBExampleVideoView* view;
-
 @property(nonatomic, assign) AVCaptureDevicePosition cameraPosition;
-
 @end

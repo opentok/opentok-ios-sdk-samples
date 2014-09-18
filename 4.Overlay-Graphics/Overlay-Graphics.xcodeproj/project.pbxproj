@@ -16,6 +16,9 @@
 		A535047A18FD469B00E68BD9 /* archiving_on-10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047418FD469B00E68BD9 /* archiving_on-10@2x.png */; };
 		A535047B18FD469B00E68BD9 /* archiving_pulse-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047518FD469B00E68BD9 /* archiving_pulse-Small.png */; };
 		A535047C18FD469B00E68BD9 /* archiving_pulse-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047618FD469B00E68BD9 /* archiving_pulse-Small@2x.png */; };
+		A5595EBE19C9512A0040B99C /* Headset.png in Resources */ = {isa = PBXBuildFile; fileRef = A5595EBC19C9512A0040B99C /* Headset.png */; };
+		A5595EBF19C9512A0040B99C /* Headset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5595EBD19C9512A0040B99C /* Headset@2x.png */; };
+		A5595ED319CAD5810040B99C /* silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = A5595ED219CAD5810040B99C /* silhouette.png */; };
 		A56B2BAA18C085AD001E082A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BA918C085AD001E082A /* Foundation.framework */; };
 		A56B2BAC18C085AD001E082A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BAB18C085AD001E082A /* CoreGraphics.framework */; };
 		A56B2BAE18C085AD001E082A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BAD18C085AD001E082A /* UIKit.framework */; };
@@ -49,6 +52,7 @@
 		A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081518C0921800192466 /* TBExampleUnderlayView.m */; };
 		A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081718C0921800192466 /* TBExampleVideoView.m */; };
 		A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081918C0921800192466 /* TBExampleSVG.m */; };
+		A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */; };
 		D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */; };
 		D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */; };
 		D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAC194129B900364672 /* GLKit.framework */; };
@@ -96,6 +100,9 @@
 		A535047418FD469B00E68BD9 /* archiving_on-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10@2x.png"; sourceTree = "<group>"; };
 		A535047518FD469B00E68BD9 /* archiving_pulse-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-Small.png"; sourceTree = "<group>"; };
 		A535047618FD469B00E68BD9 /* archiving_pulse-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-Small@2x.png"; sourceTree = "<group>"; };
+		A5595EBC19C9512A0040B99C /* Headset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Headset.png; sourceTree = "<group>"; };
+		A5595EBD19C9512A0040B99C /* Headset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Headset@2x.png"; sourceTree = "<group>"; };
+		A5595ED219CAD5810040B99C /* silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silhouette.png; sourceTree = "<group>"; };
 		A56B2BA618C085AD001E082A /* Overlay-Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Overlay-Graphics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A56B2BA918C085AD001E082A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A56B2BAB18C085AD001E082A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +149,8 @@
 		A5A6081718C0921800192466 /* TBExampleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoView.m; sourceTree = "<group>"; };
 		A5A6081818C0921800192466 /* TBExampleSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSVG.h; sourceTree = "<group>"; };
 		A5A6081918C0921800192466 /* TBExampleSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSVG.m; sourceTree = "<group>"; };
+		A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBAudioLevelMeter.h; sourceTree = "<group>"; };
+		A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBAudioLevelMeter.m; sourceTree = "<group>"; };
 		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
 		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
@@ -249,6 +258,8 @@
 				A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */,
 				A599E6411990F9D1001A8B3A /* TBExampleSubscriber.h */,
 				A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */,
+				A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */,
+				A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */,
 				A56B2BE918C08648001E082A /* ShaderUtilities.c */,
 				A56B2BEA18C08648001E082A /* ShaderUtilities.h */,
 				A56B2BB818C085AD001E082A /* AppDelegate.h */,
@@ -266,6 +277,9 @@
 		A56B2BB018C085AD001E082A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5595ED219CAD5810040B99C /* silhouette.png */,
+				A5595EBC19C9512A0040B99C /* Headset.png */,
+				A5595EBD19C9512A0040B99C /* Headset@2x.png */,
 				A51C860419B6F22B0067184D /* highCongestion.svg */,
 				A51C860519B6F22B0067184D /* midCongestion.svg */,
 				A535047118FD469B00E68BD9 /* archiving_off-Small.png */,
@@ -441,11 +455,14 @@
 				A51C860619B6F22B0067184D /* highCongestion.svg in Resources */,
 				A51C860719B6F22B0067184D /* midCongestion.svg in Resources */,
 				A56B2BBD18C085AD001E082A /* Main_iPhone.storyboard in Resources */,
+				A5595EBE19C9512A0040B99C /* Headset.png in Resources */,
 				A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */,
 				A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */,
+				A5595ED319CAD5810040B99C /* silhouette.png in Resources */,
 				A56B2BB418C085AD001E082A /* InfoPlist.strings in Resources */,
 				A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */,
 				A535047B18FD469B00E68BD9 /* archiving_pulse-Small.png in Resources */,
+				A5595EBF19C9512A0040B99C /* Headset@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */,
+				A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */,
 				A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */,
 				A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */,
 				A56B2BC318C085AD001E082A /* ViewController.m in Sources */,
@@ -631,6 +649,7 @@
 					"\"$(SRCROOT)/quicksvg/QuickSVG $(SRCROOT)/../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher",
 				);
 				INFOPLIST_FILE = "Overlay-Graphics/Overlay-Graphics-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s";
@@ -661,6 +680,7 @@
 					"\"$(SRCROOT)/quicksvg/QuickSVG $(SRCROOT)/../2.Lets-Build-OTPubilsher/Lets-Build-OTPublisher",
 				);
 				INFOPLIST_FILE = "Overlay-Graphics/Overlay-Graphics-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s";

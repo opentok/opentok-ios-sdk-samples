@@ -5,6 +5,9 @@
 //  Copyright (c) 2014 TokBox, Inc. All rights reserved.
 //
 
+#define HEADSET_VEW_TAG 300
+#define SILHOUETTE_VEW_TAG 400
+
 #import "TBExampleVideoView.h"
 #import "TBExampleOverlayView.h"
 #import "TBExampleUnderlayView.h"
@@ -143,6 +146,41 @@
         
         [self setStreamHasAudio:_streamHasAudio];
         [self setStreamHasVideo:_streamHasVideo];
+        
+        if (type == OTVideoViewTypeSubscriber)
+        {
+            _audioOnlyView = [[UIView alloc] initWithFrame:frame];
+            _audioOnlyView.hidden = YES;
+            
+            UIImageView *headset = [[UIImageView alloc]
+                                    initWithImage:[UIImage
+                                                   imageNamed:@"Headset.png"]];
+            headset.tag = HEADSET_VEW_TAG;
+            
+            UIImageView *silhouette = [[UIImageView alloc]
+                                       initWithImage:[UIImage
+                                                imageNamed:@"silhouette.png"]];
+            silhouette.tag = SILHOUETTE_VEW_TAG;
+            
+            [_audioOnlyView addSubview:headset];
+            [_audioOnlyView addSubview:silhouette];
+            
+            _audioLevelMeter = [[TBAudioLevelMeter alloc]
+                                 initWithFrame:CGRectZero];
+            _audioLevelMeter.opaque = false;
+            _audioLevelMeter.userInteractionEnabled = NO;
+            CGRect frame = CGRectMake([[UIScreen mainScreen] bounds].size.width -
+                                      66,
+                                      10 ,
+                                      140,
+                                      140);
+            _audioLevelMeter.frame = frame;
+            [self insertSubview:_audioOnlyView belowSubview:_overlayView];
+            [_audioOnlyView addSubview:_audioLevelMeter];
+            [_audioOnlyView bringSubviewToFront:headset];
+            [headset release];
+            [silhouette release];
+        }
 
     }
     return self;
@@ -198,6 +236,40 @@
             NSLog(@"VideoView frame can't be set without known video "
                   "dimensions...");
         }
+
+        _audioOnlyView.frame = CGRectMake(0,
+                                          0,
+                                          self.frame.size.width,
+                                          self.frame.size.height);
+        UIImageView *headsetImgView = (UIImageView *)[self.audioOnlyView
+                                       viewWithTag:HEADSET_VEW_TAG];
+        CGRect audioMeterFrame = self.audioLevelMeter.frame;
+        CGRect frame = headsetImgView.frame;
+        frame.size.width = 40;
+        frame.size.height = 40;
+        frame.origin.x = audioMeterFrame.origin.x  +
+        audioMeterFrame.size.width/4 - frame.size.width/2;
+        frame.origin.y =
+        audioMeterFrame.size.height/4 - frame.size.height/2;
+        headsetImgView.frame = frame;
+        
+        UIImageView *silhouetteImgView = (UIImageView *)[self.audioOnlyView
+                                            viewWithTag:SILHOUETTE_VEW_TAG];
+        frame = silhouetteImgView.frame;
+        frame.size.width = 200;
+        frame.size.height = 200;
+        frame.origin.x = self.frame.size.width/2 -
+        frame.size.width/2;
+        frame.origin.y =
+        self.frame.size.height/2 - frame.size.height/2;
+        silhouetteImgView.frame = frame;
+
+        UIColor *backgroundColor = [UIColor colorWithRed:40.0f/255.0f
+                                              green:40.0f/255.0f
+                                               blue:40/255.0f
+                                              alpha:1.f];
+        _audioOnlyView.backgroundColor = backgroundColor;
+        
     } else {
         
         float currentAspect = 1.2222;
@@ -264,6 +336,13 @@
 
 - (void)setStream:(OTStream *)stream {
     _stream = stream;
+}
+
+-(void)dealloc
+{
+    [super dealloc];
+    [_audioOnlyView release];
+    [_audioLevelMeter release];
 }
 
 #pragma mark - OTOverlayViewDelegate -

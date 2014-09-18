@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
 #import "TBExampleVideoRender.h"
+#import "TBAudioLevelMeter.h"
 
 typedef enum {
     OTVideoViewTypeSubscriber,
@@ -44,6 +45,10 @@ typedef enum {
 @property(nonatomic) BOOL streamHasAudio;
 
 @property(nonatomic, retain) TBExampleOverlayView* overlayView;
+
+@property (retain, nonatomic) TBAudioLevelMeter *audioLevelMeter;
+
+@property (retain, nonatomic) UIView *audioOnlyView;
 
 - (id)initWithFrame:(CGRect)frame
            delegate:(id<TBExampleVideoViewDelegate>)delegate

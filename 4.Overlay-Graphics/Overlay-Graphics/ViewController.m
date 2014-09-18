@@ -133,6 +133,7 @@ static bool subscribeToSelf = YES;
     {
         [self showAlert:[error localizedDescription]];
     }
+    _subscriber.audioLevelDelegate = self;
 }
 
 /**
@@ -301,20 +302,24 @@ archiveStoppedWithId:(NSString *)archiveId
 - (void)subscriberVideoDisabled:(OTSubscriberKit*)subscriber
                          reason:(OTSubscriberVideoEventReason)reason
 {
-    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:NO];
-
+    [(TBExampleVideoView*)subscriber.videoRender audioOnlyView].hidden = NO;
+    
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView]
          showVideoDisabled];
+    
+    _subscriber.audioLevelDelegate = self;
 }
 
 - (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
                         reason:(OTSubscriberVideoEventReason)reason
 {
-    [(TBExampleVideoView*)subscriber.videoRender setStreamHasVideo:YES];
+    [(TBExampleVideoView*)subscriber.videoRender audioOnlyView].hidden = YES;
     
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
+    
+    _subscriber.audioLevelDelegate = nil;
 }
 
 - (void)subscriberVideoDisableWarning:(OTSubscriberKit*)subscriber
@@ -328,6 +333,18 @@ archiveStoppedWithId:(NSString *)archiveId
 {
     NSLog(@"subscriberVideoDisableWarningLifted");
     [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
+}
+
+- (void)subscriber:(OTSubscriberKit *)subscriber
+ audioLevelUpdated:(float)audioLevel{
+    float db = 20 * log10(audioLevel);
+    float floor = -40;
+    float level = 0;
+    if (db > floor) {
+        level = db + abs(floor);
+        level /= abs(floor);
+    }
+    _subscriber.view.audioLevelMeter.level = level;
 }
 
 @end
