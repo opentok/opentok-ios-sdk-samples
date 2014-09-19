@@ -36,6 +36,9 @@
     UIImageView *_archiveImgView;
     UILabel* _nameLabel;
 
+    UIImageView *_videoMayDisableImgView;
+    UIImageView *_videoDisabledImgView;
+    
     BOOL _subscriberMuted;
     BOOL _publisherMuted;
     
@@ -126,7 +129,13 @@
                        OVERLAY_BUTTON_WIDTH_SM,
                        OVERLAY_CONTROL_BAR_HEIGHT);
             [_volumeButton setImageEdgeInsets:controlButtonEdgeInsets];
-
+            
+            _videoMayDisableImgView.frame =
+            CGRectMake(self.frame.size.width - 50,
+                       self.frame.size.height - OVERLAY_CONTROL_BAR_HEIGHT - 50,
+                       32,
+                       32);
+            _videoDisabledImgView.frame = _videoMayDisableImgView.frame;
             break;
     }
     
@@ -225,6 +234,23 @@
         } else if (_type == TBExampleOverlayViewTypeSubscriber) {
             [_controlBar addSubview:_volumeButton];
             _volumeButton.enabled = YES;
+            
+            _videoMayDisableImgView = [[UIImageView alloc] init];
+            _videoDisabledImgView = [[UIImageView alloc] init];
+            [self addSubview:_videoMayDisableImgView];
+            [self addSubview:_videoDisabledImgView];
+
+            _videoMayDisableImgView.image =
+            [TBExampleSVGHelper
+             imageFromSVGString:[TBExampleSVGIcons midCongestion]
+                            size:CGSizeMake(32, 32)];
+            _videoDisabledImgView.image =
+            [TBExampleSVGHelper
+             imageFromSVGString:[TBExampleSVGIcons highCongestion]
+             size:CGSizeMake(32, 32)];
+            
+            _videoMayDisableImgView.hidden = YES;
+            _videoDisabledImgView.hidden = YES;
         }
         
         [self setNumberOfButtons];
@@ -451,6 +477,27 @@
 {
     [_archiveImgView stopAnimating];
     _archiveImgView.animationImages = nil;
+}
+
+- (void)showVideoMayDisableWarning
+{
+    _videoMayDisableImgView.hidden = NO;
+    _videoDisabledImgView.hidden = YES;
+    self.alpha = 1.0f;
+}
+
+- (void)showVideoDisabled
+{
+    _videoMayDisableImgView.hidden = YES;
+    _videoDisabledImgView.hidden = NO;
+    self.alpha = 1.0f;
+}
+
+- (void)resetView
+{
+    _videoMayDisableImgView.hidden = YES;
+    _videoDisabledImgView.hidden = YES;
+    self.alpha = 0.0f;
 }
 
 @end

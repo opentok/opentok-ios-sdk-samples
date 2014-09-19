@@ -12,7 +12,6 @@
 @interface TBExampleSubscriber : OTSubscriberKit <TBExampleVideoViewDelegate>
 
 @property (readonly) TBExampleVideoView* view;
-
 @end
 
 @protocol TBExampleSubscriberDelegate <OTSubscriberKitDelegate>

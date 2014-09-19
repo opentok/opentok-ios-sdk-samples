@@ -46,6 +46,12 @@ typedef enum {
 - (void)startArchiveAnimation;
 
 - (void)stopArchiveAnimation;
+
+- (void)showVideoMayDisableWarning;
+
+- (void)showVideoDisabled;
+
+- (void)resetView;
 @end
 
 @protocol TBExampleOverlayViewDelegate <NSObject>

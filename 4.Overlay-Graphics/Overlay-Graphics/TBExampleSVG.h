@@ -28,5 +28,7 @@
 + (NSString*)mutePublisher;
 + (NSString*)unmuteSubscriber;
 + (NSString*)unmutePublisher;
++ (NSString*)highCongestion;
++ (NSString*)midCongestion;
 
 @end
