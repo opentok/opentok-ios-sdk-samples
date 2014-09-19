@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
 
-@interface ViewController : UIViewController <OTPublisherKitAudioLevelDelegate>
+@interface ViewController : UIViewController <OTSubscriberKitAudioLevelDelegate>
 {
     
 }
