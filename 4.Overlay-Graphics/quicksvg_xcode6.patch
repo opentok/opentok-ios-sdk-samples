@@ -1,0 +1,107 @@
+diff --git a/QuickSVG.xcodeproj/project.pbxproj b/QuickSVG.xcodeproj/project.pbxproj
+index d355eb3..9ac74f9 100644
+--- a/QuickSVG.xcodeproj/project.pbxproj
++++ b/QuickSVG.xcodeproj/project.pbxproj
+@@ -22,6 +22,7 @@
+ /* End PBXAggregateTarget section */
+ 
+ /* Begin PBXBuildFile section */
++		A529BC1319D26EDC00BC31C5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A2714116D558CB0095A680 /* CoreText.framework */; };
+ 		C90061C21615C5DE000BD559 /* QuickSVGElement.h in Headers */ = {isa = PBXBuildFile; fileRef = C90061C01615C5DE000BD559 /* QuickSVGElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+ 		C90061C31615C5DE000BD559 /* QuickSVGElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C90061C11615C5DE000BD559 /* QuickSVGElement.m */; };
+ 		C90061C41615C5DE000BD559 /* QuickSVGElement.m in Sources */ = {isa = PBXBuildFile; fileRef = C90061C11615C5DE000BD559 /* QuickSVGElement.m */; };
+@@ -179,6 +180,7 @@
+ 			isa = PBXFrameworksBuildPhase;
+ 			buildActionMask = 2147483647;
+ 			files = (
++				A529BC1319D26EDC00BC31C5 /* CoreText.framework in Frameworks */,
+ 				C9090D3A161316BC001145EC /* SenTestingKit.framework in Frameworks */,
+ 				C9090D3D161316BC001145EC /* Foundation.framework in Frameworks */,
+ 				C9090D40161316BC001145EC /* libQuickSVG.a in Frameworks */,
+@@ -375,7 +377,7 @@
+ 			name = UnitTests;
+ 			productName = QuickSVGTests;
+ 			productReference = C9090D38161316BC001145EC /* UnitTests.octest */;
+-			productType = "com.apple.product-type.bundle";
++			productType = "com.apple.product-type.bundle.ocunit-test";
+ 		};
+ 		C9090D6716135E10001145EC /* RenderingTests */ = {
+ 			isa = PBXNativeTarget;
+@@ -632,7 +634,10 @@
+ 		C9090D4D161316BC001145EC /* Debug */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
++				ARCHS = (
++					armv7,
++					armv7s,
++				);
+ 				COPY_PHASE_STRIP = NO;
+ 				DEAD_CODE_STRIPPING = NO;
+ 				DSTROOT = /tmp/QuickSVG.dst;
+@@ -643,13 +648,17 @@
+ 				PUBLIC_HEADERS_FOLDER_PATH = Headers;
+ 				SKIP_INSTALL = YES;
+ 				STRIP_STYLE = "non-global";
++				VALID_ARCHS = "armv7 armv7s";
+ 			};
+ 			name = Debug;
+ 		};
+ 		C9090D4E161316BC001145EC /* Release */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
++				ARCHS = (
++					armv7,
++					armv7s,
++				);
+ 				COPY_PHASE_STRIP = NO;
+ 				DEAD_CODE_STRIPPING = NO;
+ 				DSTROOT = /tmp/QuickSVG.dst;
+@@ -660,12 +669,18 @@
+ 				PUBLIC_HEADERS_FOLDER_PATH = Headers;
+ 				SKIP_INSTALL = YES;
+ 				STRIP_STYLE = "non-global";
++				VALID_ARCHS = "armv7 armv7s";
+ 			};
+ 			name = Release;
+ 		};
+ 		C9090D50161316BC001145EC /* Debug */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				ARCHS = (
++					armv7,
++					armv7s,
++				);
++				CODE_SIGN_IDENTITY = "iPhone Developer";
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+ 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+@@ -674,6 +689,7 @@
+ 				GCC_PREFIX_HEADER = "QuickSVG/QuickSVG-Prefix.pch";
+ 				INFOPLIST_FILE = "QuickSVGTests/QuickSVGTests-Info.plist";
+ 				PRODUCT_NAME = "$(TARGET_NAME)";
++				VALID_ARCHS = "armv7 armv7s";
+ 				WRAPPER_EXTENSION = octest;
+ 			};
+ 			name = Debug;
+@@ -681,6 +697,11 @@
+ 		C9090D51161316BC001145EC /* Release */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				ARCHS = (
++					armv7,
++					armv7s,
++				);
++				CODE_SIGN_IDENTITY = "iPhone Developer";
+ 				FRAMEWORK_SEARCH_PATHS = (
+ 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+ 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+@@ -689,6 +710,7 @@
+ 				GCC_PREFIX_HEADER = "QuickSVG/QuickSVG-Prefix.pch";
+ 				INFOPLIST_FILE = "QuickSVGTests/QuickSVGTests-Info.plist";
+ 				PRODUCT_NAME = "$(TARGET_NAME)";
++				VALID_ARCHS = "armv7 armv7s";
+ 				WRAPPER_EXTENSION = octest;
+ 			};
+ 			name = Release;
