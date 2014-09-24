@@ -186,7 +186,7 @@
         return;
     }
     CMTime desiredMinFrameDuration = CMTimeMake(1, frameRate);
-    CMTime desiredMaxFrameDuration = frameRateRange.maxFrameDuration;
+    CMTime desiredMaxFrameDuration = CMTimeMake(1, frameRate);
     
     [_captureSession beginConfiguration];
     
