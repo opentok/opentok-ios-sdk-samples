@@ -6,8 +6,8 @@ if [ ! -d $SVG_DIR ]; then
 (
     git clone https://github.com/opentable/QuickSVG $SVG_DIR
     cd $SVG_DIR; git checkout $SVG_BRANCH; git pull
-    if [  -f ../xcode6.patch ]; then
-    	git apply ../xcode6.patch
+    if [  -f ../quicksvg_xcode6.patch ]; then
+    	git apply ../quicksvg_xcode6.patch
     fi 
 )
 else
