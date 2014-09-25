@@ -9,28 +9,33 @@
 #import <AVFoundation/AVFoundation.h>
 #include <mach/mach.h>
 #include <mach/mach_time.h>
-//#import "OpenTokPrivate.h"
 
 /*
  *  System Versioning Preprocessor Macros
  */
 
-#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
-#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
-#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+#define SYSTEM_VERSION_EQUAL_TO(v) \
+([[[UIDevice currentDevice] systemVersion] compare:v \
+options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v) \
+([[[UIDevice currentDevice] systemVersion] compare:v \
+options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) \
+([[[UIDevice currentDevice] systemVersion] compare:v \
+options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v) \
+([[[UIDevice currentDevice] systemVersion] compare:v \
+options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) \
+([[[UIDevice currentDevice] systemVersion] compare:v \
+options:NSNumericSearch] != NSOrderedDescending)
 
 
 #define kMixerInputBusCount 2
 #define kOutputBus 0
 #define kInputBus 1
 
-NSString *kAudioSessionManagerDevice_Headset    = @"AudioSessionManagerDevice_Headset";
-NSString *kAudioSessionManagerDevice_Bluetooth  = @"AudioSessionManagerDevice_Bluetooth";
-NSString *kAudioSessionManagerDevice_Speaker    = @"AudioSessionManagerDevice_Speaker";
-
-
+// Simulator *must* run at 44.1 kHz in order to function properly.
 #if (TARGET_IPHONE_SIMULATOR)
 #define kSampleRate 44100
 #else
@@ -287,8 +292,6 @@ static void print_error(const char* error, OSStatus code) {
     //AVAudioSessionCategoryOptionDefaultToSpeaker;
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
-
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [mySession setMode:AVAudioSessionModeVideoChat error:nil];
@@ -301,7 +304,7 @@ static void print_error(const char* error, OSStatus code) {
     [self setupListenerBlocks];
     [mySession setActive:YES withOptions:options error:nil];
     
-    size_t bytesPerSample = sizeof (AudioSampleType);	// Sint16
+    size_t bytesPerSample = sizeof(AudioSampleType);	// Sint16
     stream_format.mFormatID    = kAudioFormatLinearPCM;
     stream_format.mFormatFlags =
     kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
@@ -569,61 +572,71 @@ static void print_error(const char* error, OSStatus code) {
     NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
     
     _interuptObserver =
-    [center addObserverForName:AVAudioSessionInterruptionNotification object:self
+    [center addObserverForName:AVAudioSessionInterruptionNotification
+                        object:self
                          queue:mainQueue
-                    usingBlock:^(NSNotification *note) {
-                        NSDictionary *interuptionDict = note.userInfo;
-                        NSInteger interuptionType = [[interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey] integerValue];
-                        MyAudioDevice *_self = (MyAudioDevice*)note.object;
-                        switch (interuptionType) {
-                            case AVAudioSessionInterruptionTypeBegan:
-                                [_self stopRenderingAndCapturing];
-                                break;
-                                
-                            case AVAudioSessionInterruptionTypeEnded:
-                                [self configureAudioSessionWithDesiredAudioRoute:kAudioSessionManagerDevice_Bluetooth];
-                                [_self startRenderingAndCapturing];
-                                break;
-                                
-                            default:
-                                NSLog(@"Audio Session Interruption Notification case default.");
-                                break;
-                        }
-                    }];
+                    usingBlock:^(NSNotification *note)
+     {
+         NSDictionary *interuptionDict = note.userInfo;
+         NSInteger interuptionType =
+         [[interuptionDict
+           valueForKey:AVAudioSessionInterruptionTypeKey]
+          integerValue];
+         MyAudioDevice *_self = (MyAudioDevice*)note.object;
+         switch (interuptionType) {
+             case AVAudioSessionInterruptionTypeBegan:
+                 [_self stopRenderingAndCapturing];
+                 break;
+                 
+             case AVAudioSessionInterruptionTypeEnded:
+                 [self configureAudioSessionWithDesiredAudioRoute:
+                  AUDIO_DEVICE_BLUETOOTH];
+                 [_self startRenderingAndCapturing];
+                 break;
+                 
+             default:
+                 NSLog(@"Audio Session Interruption Notification"
+                       " case default.");
+                 break;
+         }
+     }];
     
     _routeObserver =
     [center addObserverForName:AVAudioSessionRouteChangeNotification object:self
                          queue:mainQueue
-                    usingBlock:^(NSNotification *note) {
-                        NSDictionary *interuptionDict = note.userInfo;
-                        NSInteger routeChangeReason = [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
-                        
-                        switch (routeChangeReason) {
-                            case AVAudioSessionRouteChangeReasonUnknown:
-                                break;
-                                
-                            case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
-                                break;
-                                
-                            case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
-                                break;
-                                
-                            case AVAudioSessionRouteChangeReasonCategoryChange:
-                                break;
-                                
-                            case AVAudioSessionRouteChangeReasonOverride:
-                                break;
-                                
-                            case AVAudioSessionRouteChangeReasonWakeFromSleep:
-                                break;
-                                
-                            case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory:
-                                break;
-                                
-                            default:
-                                break;
-                        }
-                    }];
+                    usingBlock:^(NSNotification *note)
+     {
+         NSDictionary *interuptionDict = note.userInfo;
+         NSInteger routeChangeReason =
+         [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
+          integerValue];
+         
+         switch (routeChangeReason) {
+             case AVAudioSessionRouteChangeReasonUnknown:
+                 break;
+                 
+             case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
+                 break;
+                 
+             case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
+                 break;
+                 
+             case AVAudioSessionRouteChangeReasonCategoryChange:
+                 break;
+                 
+             case AVAudioSessionRouteChangeReasonOverride:
+                 break;
+                 
+             case AVAudioSessionRouteChangeReasonWakeFromSleep:
+                 break;
+                 
+             case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory:
+                 break;
+                 
+             default:
+                 break;
+         }
+     }];
     
 }
 
@@ -665,7 +678,7 @@ static void CheckError(OSStatus error, const char *operation) {
     if (error == noErr) return;
     
     char errorString[20] = {};
-    //check fourcc
+    //check fourcc code
     *(UInt32*)(errorString + 1) = CFSwapInt32HostToBig(error);
     if (isprint(errorString[1]) && isprint(errorString[2]) &&
         isprint(errorString[3]) && isprint(errorString[4]))
@@ -704,7 +717,10 @@ static void update_recording_delay(MyAudioDevice* device) {
 		UInt32 size = sizeof(f64);
 		OSStatus result = AudioUnitGetProperty(device->voice_unit,
                                                kAudioUnitProperty_Latency,
-                                               kAudioUnitScope_Global, 0, &f64, &size);
+                                               kAudioUnitScope_Global,
+                                               0,
+                                               &f64,
+                                               &size);
 		if (0 != result) { return  ; }
 		device->_recordingDelayHWAndOS += (int)(f64 * 1000000);
 		
@@ -766,8 +782,8 @@ static OSStatus recording_cb(void *ref_con,
 	
     if (dev->recording) {
         
+        // Some sample code to generate a sine wave instead of use the mic
 //        static double startingFrameCount = 0;
-
 //        double j = startingFrameCount;
 //        double cycleLength = kSampleRate. / 880.0;
 //        int frame = 0;
@@ -871,11 +887,15 @@ static OSStatus playout_cb(void *ref_con,
 	// close down our current session...
 	[audioSession setActive:NO error:nil];
     
-    // start a new audio session. Without activation, the default route will always be (inputs: null, outputs: Speaker)
+    // start a new audio session. Without activation, the default route will
+    // always be (inputs: null, outputs: Speaker)
     [audioSession setActive:YES error:nil];
     
 	// Open a session and see what our default is...
-	if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:&err]) {
+	if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+                       withOptions:AVAudioSessionCategoryOptionAllowBluetooth
+                             error:&err])
+    {
 		NSLog(@"unable to set audioSession category: %@", err);
 		return NO;
 	}
@@ -913,8 +933,15 @@ static OSStatus playout_cb(void *ref_con,
 	// close down our current session...
 	[audioSession setActive:NO error:nil];
 	
+    NSUInteger audioOptions = 0;
+    if ([AUDIO_DEVICE_BLUETOOTH isEqualToString:desiredAudioRoute]) {
+        audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth;
+    }
     
-	if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:((desiredAudioRoute == kAudioSessionManagerDevice_Bluetooth) ? AVAudioSessionCategoryOptionAllowBluetooth : 0) error:&err]) {
+	if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+                       withOptions:audioOptions
+                             error:&err])
+    {
 		NSLog(@"unable to set audioSession category: %@", err);
 		return NO;
 	}
@@ -925,9 +952,11 @@ static OSStatus playout_cb(void *ref_con,
 		return NO;
 	}
     
-	if (desiredAudioRoute == kAudioSessionManagerDevice_Speaker) {
-        // replace AudiosessionSetProperty (deprecated from iOS7) with AVAudioSession overrideOutputAudioPort
-		[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
+	if ([AUDIO_DEVICE_SPEAKER isEqualToString:desiredAudioRoute]) {
+        // replace AudiosessionSetProperty (deprecated from iOS7) with
+        // AVAudioSession overrideOutputAudioPort
+		[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+                                        error:&err];
 	}
 	
 	return YES;

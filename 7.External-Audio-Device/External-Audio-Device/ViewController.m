@@ -49,6 +49,7 @@ static bool subscribeToSelf = NO;
     _session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                         delegate:self];
+    
     [self doConnect];
 }
 
@@ -230,8 +231,10 @@ didFailWithError:(OTError*)error
     //detecting just for debug purpose
     [_myAudioDevice detectCurrentRoute];
     
-    //change audio route to bluetooth,if present, else headset otherwise device speakers
-    [_myAudioDevice configureAudioSessionWithDesiredAudioRoute:kAudioSessionManagerDevice_Bluetooth];
+    // change audio route to bluetooth,if present, else headset otherwise device
+    // speakers
+    [_myAudioDevice
+     configureAudioSessionWithDesiredAudioRoute:AUDIO_DEVICE_BLUETOOTH];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
