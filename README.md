@@ -44,7 +44,12 @@ capture implementations provided herein.
     for audio-only multi party calls. Both publisher and subscribers are
     audio-based only. This application also shows how to use the audio level API
     along with an audio meter UI for visualization of publisher and subscriber
-     audio levels.
+    audio levels.
+
+7.	**External Audio Device** - This project demonstrate how to use an external
+    audio source with the OpenTok SDK. This project utilizs CoreAudio and the 
+    AUGraph API to create an audio session sutable for voice and video 
+    communications.
 
 Referencing OpenTok.framework
 -----------------------------
