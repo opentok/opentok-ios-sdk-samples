@@ -91,10 +91,8 @@
     
     dispatch_source_set_event_handler(_timer, ^{
         @autoreleasepool {
-            if (_self->_capturing) {
-                __block UIImage* screen = [_self screenshot];
-                [_self consumeFrame:[screen CGImage]];
-            }
+            __block UIImage* screen = [_self screenshot];
+            [_self consumeFrame:[screen CGImage]];
         }
     });
     
@@ -105,10 +103,13 @@
 
 - (int32_t)stopCapture
 {
+    self->_capturing = NO;
+    
     __unsafe_unretained TBScreenCapture* _self = self;
     dispatch_sync(_queue, ^{
-        _self->_capturing = NO;
-        dispatch_source_cancel(_self->_timer);
+        if (_self->_timer) {
+            dispatch_source_cancel(_self->_timer);
+        }
         _self->_timer = nil;
     });
 
