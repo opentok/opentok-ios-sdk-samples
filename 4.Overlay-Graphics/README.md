@@ -11,14 +11,14 @@ SVG icons for faster rendering.
 Configuration Notes
 ===================
 
-1.  This project uses open source QuickSVG SDK to process SVG files. In order 
-	to compile the sample, you must first run the"./clone-quick-svg" build
-	script from the terminal.
+*   This project uses open source QuickSVG SDK to process SVG files. In order
+    to compile the sample, you must first run the"./clone-quick-svg" build
+    script from the terminal.
 
-2.  Since we are importing a number of classes implemented in project 2, the
+*   Since we are importing a number of classes implemented in project 2, the
     header search paths in the project build settings must be extended to look
     in the project 2 directory. Additionally, we must recompile the 
-    implementation files in order to continue using our TBExamplePublisher,
+    implementation files in order to continue using the TBExamplePublisher,
     created in project 2. You will notice an extra group in this project's 
     navigator space with references to the files we need.
     
@@ -26,16 +26,48 @@ Configuration Notes
 Application Notes
 =================
 
-1. This sample shows a toolbar containing a mute microphone button and a toggle
-   camera button for the Publisher and a volume mute button for the Subscriber.
+*  This sample shows a toolbar in the publisher that contains a mute microphone
+   button. When the user clicks the button, the app calls
+   `[OTPublisherKit setPublishAudio:]`, passing in `YES` and `NO` to publish
+   and mute audio in the publisher.
 
-2. Microphone mute/unmute works by publishing audio and unpublishing audio on
-   the publisher respectively. Toggle camera switches between using the back and
-   front cameras.
+*  When the user clicks the toggle camera button on the publisher toolbar, the
+   publisher switches between using the back and front cameras. Since this
+   sample uses a custom video capturer (by extending the OTPublisherKit class),
+   the code sets the `videoCapture.cameraPosition` property of the
+   OTExamplePublisher instance to set the camera used by the publisher. In an
+   app that uses the OTPublisher class to define the publisher, you can set the
+   `cameraPosition` property of the OTPublisher instance.
 
-3. The volume mute button on the subscriber view turns the subscriber's audio
-   on and off.
+*  The volume mute button on the subscriber view turns the subscriber's audio
+   on and off. When the user clicks the button, the app calls
+   `[OTSubscriberKit setSubscribeToAudio:]`, passing in `YES` and `NO` to
+   subscribe to mute audio in the subscriber.
 
-4. All SVG Icons are included in the class file TBExampleSVG.m as NSStrings.
+*  The application displays icons when a subscriber's video is disabled or
+   is about to be disabled due to poor stream quality. This is available in
+   sessions that have the media mode set to ["routed"][2]. This feature of
+   the OpenTok Media Router has a subscriber drop the video stream when the
+   video stream quality degrades. The icons are displayed in response to the
+   `[OTSubscriberKitDelegate subscriberVideoDisabled:reason:]` and
+   `[OTSubscriberKitDelegate subscriberVideoDisableWarning:]` messages. The
+   icons are removed in response to the
+   `[OTSubscriberKitDelegate subscriberVideoEnabled:reason:]` and
+   `[OTSubscriberKitDelegate subscriberVideoDisableWarningLifted:]` messages.
+
+*  The application displays an icon when an application is being archived. This
+   is available in sessions that have the media mode set to ["routed"][2]. For
+   more information, see the [Archiving Overview][3]. The icons are displayed
+   and removed in response to the
+   `[OTSesssionDelegate session:archiveStartedWithId:name:]` and
+   `[OTSesssionDelegate session:archiveStoppedWithId:]` messages.
+   Use one of the [OpenTok server SDKs][4] or the [OpenTok REST API][5] to start
+   archiving the session.
+
+*  All SVG Icons are included in the class file TBExampleSVG.m as NSStrings.
 
 [1]: ../2.Lets-Build-OTPublisher
+[2]: https://tokbox.com/opentok/tutorials/create-session/#media-mode
+[3]: https://tokbox.com/opentok/tutorials/archiving/
+[4]: https://tokbox.com/opentok/libraries/server/
+[5]: https://tokbox.com/opentok/api/
