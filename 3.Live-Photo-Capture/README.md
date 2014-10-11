@@ -21,27 +21,27 @@ navigator space with references to the files we need.
 Application Notes
 -----------------
 
-1.  The only new implementation in this project is the 
+*   The only new implementation in this project is the
     TBExamplePhotoVideoCapture class. By subclassing the video capture module
     implemented in project 2, we save some time setting up standard video 
     capture and focus only on manipulating AVFoundation to give us a picture
     in the middle of a (video) capture session.
     
-2.  In testing, we noticed that the image sensor takes a moment to adjust white
+*   In testing, we noticed that the image sensor takes a moment to adjust white
     balance and exposure after switching to the capture session preset for photo
     quality (see `pauseVideoCaptureForPhoto` in TBExamplePhotoVideoCapture).
     The example implementation stalls the photo capture with a busy loop, but 
     a more sophisticated approach might be considered to ensure the best 
     experience for the end user.
     
-3.  This implementation briefly pauses the video feed during image capture. Note
+*   This implementation briefly pauses the video feed during image capture. Note
     that a prolonged delay to the video capture consumer might result in other
     subscribers timing out the stream. If you wait for too long to send 
     consecutive video frames, you might lose the publisher altogether! Consider
     sending a freeze frame or even a blank image buffer to the video capture 
     endpoint if you need to pause video for a long (>2 second) period.
 
-4.  An alternative approach to this problem might be to continuously pipe photo-
+*   An alternative approach to this problem might be to continuously pipe photo-
     quality video into the video capture consumer. This might not work on some
     devices, based on processing capability and the fidelity of the image 
     sensor. Feel free to experiment and let us know how it goes for you!
