@@ -47,8 +47,8 @@ capture implementations provided herein.
     audio levels.
 
 7.	**External Audio Device** - This project demonstrate how to use an external
-    audio source with the OpenTok SDK. This project utilizs CoreAudio and the 
-    AUGraph API to create an audio session sutable for voice and video 
+    audio source with the OpenTok SDK. This project utilizes CoreAudio and the
+    AUGraph API to create an audio session suitable for voice and video
     communications.
 
 Referencing OpenTok.framework

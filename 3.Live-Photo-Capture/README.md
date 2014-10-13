@@ -46,4 +46,8 @@ Application Notes
     devices, based on processing capability and the fidelity of the image 
     sensor. Feel free to experiment and let us know how it goes for you!
 
+*   Note that this sample application is not supported in the XCode iOS
+    Simulator because the custom video capturer needs to acquire video from an
+    iOS device camera.
+
 [1]: ../2.Lets-Build-OTPublisher
