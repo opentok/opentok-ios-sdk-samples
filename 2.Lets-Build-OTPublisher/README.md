@@ -13,8 +13,8 @@ TBExamplePublisher and TBExampleSubscriber
 
 For our example, we create the TBExamplePublisher and TBExampleSubscriber
 classes. Like the OTPublisher and OTSubscriber classes, these are subclasses of
-the core OTPublisherKit and OTSubscriberKit, and they provide implementations
-for the video capture and render interfaces, where needed.
+the core OTPublisherKit and OTSubscriberKit classes, and they provide
+implementations for the video capture and render interfaces, where needed.
 
 TBExamplePublisher binds the device's camera to the core publisher class,
 OTPublisherKit. The enabling mechanisms behind the scenes are a driver to
