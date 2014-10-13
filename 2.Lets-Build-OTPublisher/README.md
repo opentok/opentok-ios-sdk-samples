@@ -7,6 +7,10 @@ internals of the video capture and render API, as well as how to start
 building your own extensions to the core OTPublisherKit and OTSubscriberKit
 classes.
 
+Note that this sample application is not supported in the XCode iOS Simulator
+because the custom video capturer needs to acquire video from an iOS device
+camera.
+
 
 TBExamplePublisher and TBExampleSubscriber
 ------------------------------------------

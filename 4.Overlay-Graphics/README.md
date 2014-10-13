@@ -12,8 +12,12 @@ Configuration Notes
 ===================
 
 *   This project uses open source QuickSVG SDK to process SVG files. In order
-    to compile the sample, you must first run the"./clone-quick-svg" build
+    to compile the sample, you must first run the "./clone-quick-svg" build
     script from the terminal.
+
+    _Important:_ If XCode reports unsupported architecture issues when compiling
+    this application, delete the quicksvg directory and run the
+    "./clone-quick-svg" build script again.
 
 *   Since we are importing a number of classes implemented in project 2, the
     header search paths in the project build settings must be extended to look
@@ -65,6 +69,10 @@ Application Notes
    archiving the session.
 
 *  All SVG Icons are included in the class file TBExampleSVG.m as NSStrings.
+
+*   Note that this sample application is not supported in the XCode iOS
+    Simulator because the custom video capturer needs to acquire video from an
+    iOS device camera.
 
 [1]: ../2.Lets-Build-OTPublisher
 [2]: https://tokbox.com/opentok/tutorials/create-session/#media-mode
