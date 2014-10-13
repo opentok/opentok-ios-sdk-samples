@@ -534,8 +534,8 @@ static void print_error(const char* error, OSStatus code) {
                                   &stream_format,
                                   sizeof (stream_format));
     if (noErr != result) {
-        print_error("AudioUnitSetProperty (set mixer unit output stream format)",
-                    result);
+        print_error
+        ("AudioUnitSetProperty (set mixer unit output stream format)", result);
         return NO;
     }
     
@@ -884,7 +884,9 @@ static OSStatus playout_cb(void *ref_con,
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 	NSError *err;
     
-    //ios 8.0 complains about Deactivating an audio session that has running I/O. All I/O should be stopped or paused prior to deactivating the audio session. Looks like we can get away by not using the setActive call
+    //ios 8.0 complains about Deactivating an audio session that has running
+    // I/O. All I/O should be stopped or paused prior to deactivating the audio
+    // session. Looks like we can get away by not using the setActive call
 	if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
         // close down our current session...
         [audioSession setActive:NO error:nil];
@@ -934,7 +936,9 @@ static OSStatus playout_cb(void *ref_con,
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 	NSError *err;
 	
-    //ios 8.0 complains about Deactivating an audio session that has running I/O. All I/O should be stopped or paused prior to deactivating the audio session. Looks like we can get away by not using the setActive call
+    //ios 8.0 complains about Deactivating an audio session that has running
+    // I/O. All I/O should be stopped or paused prior to deactivating the audio
+    // session. Looks like we can get away by not using the setActive call
     if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
         // close down our current session...
         [audioSession setActive:NO error:nil];
