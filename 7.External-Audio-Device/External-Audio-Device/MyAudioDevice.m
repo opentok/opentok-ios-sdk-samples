@@ -84,6 +84,7 @@ static void print_error(const char* error, OSStatus code);
     BOOL recording;
     BOOL recording_initialized;
     BOOL interrupted_playback;
+    BOOL auGraphStarted;
     
 @public
     id _audioBus;
@@ -648,29 +649,33 @@ static void print_error(const char* error, OSStatus code) {
 
 - (BOOL) startRenderingAndCapturing
 {
-    if (recording || playing) {
+    if (auGraphStarted) {
         return YES;
     }
-    
+    auGraphStarted = YES;
     OSStatus result = AUGraphStart(au_graph);
     if (noErr != result) {
         print_error("AUGraphStart", result);
-        return NO;
+        auGraphStarted = NO;
     }
-    return YES;
+    return auGraphStarted;
 }
 
 - (BOOL) stopRenderingAndCapturing
 {
-    if (!recording || !playing) {
+    if (!auGraphStarted) {
         return YES;
     }
     
+    auGraphStarted = NO;
+    
     OSStatus result = AUGraphStop(au_graph);
+    
     if (noErr != result) {
         print_error("AUGraphStop", result);
         return NO;
     }
+    
     return YES;
 }
 
