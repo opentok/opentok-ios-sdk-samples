@@ -38,9 +38,16 @@
 
 - (id)initWithDelegate:(id<OTPublisherDelegate>)delegate name:(NSString*)name
 {
-    self = [super initWithDelegate:delegate name:name];
+    // We aren't using audio, so don't bother setting up the audio track
+    self = [super initWithDelegate:delegate
+                              name:name
+                        audioTrack:NO
+                        videoTrack:YES];
     if (self) {
         [self setVideoRender:nil];
+        
+        // notify the receiver that this video source is from the screen.
+        [self setVideoType:OTPublisherKitVideoTypeScreen];
     }
     return self;
 }
