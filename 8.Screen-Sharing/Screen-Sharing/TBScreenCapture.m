@@ -107,7 +107,8 @@
     __unsafe_unretained TBScreenCapture* _self = self;
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _queue);
     
-    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), 100ull * NSEC_PER_MSEC, 100ull * NSEC_PER_MSEC);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0),
+                              100ull * NSEC_PER_MSEC, 100ull * NSEC_PER_MSEC);
     
     dispatch_source_set_event_handler(_timer, ^{
         @autoreleasepool {
@@ -152,13 +153,15 @@
     void *pxdata = CVPixelBufferGetBaseAddress(_pixelBuffer);
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pxdata,
-                                                 frameSize.width,
-                                                 frameSize.height,
-                                                 8,
-                                                 CVPixelBufferGetBytesPerRow(_pixelBuffer),
-                                                 rgbColorSpace,
-                                                 kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little);
+    CGContextRef context =
+    CGBitmapContextCreate(pxdata,
+                          frameSize.width,
+                          frameSize.height,
+                          8,
+                          CVPixelBufferGetBytesPerRow(_pixelBuffer),
+                          rgbColorSpace,
+                          kCGImageAlphaPremultipliedFirst |
+                          kCGBitmapByteOrder32Little);
     
     
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);
@@ -180,17 +183,22 @@
 {
     CGSize imageSize = CGSizeZero;
     
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    UIInterfaceOrientation orientation =
+    [UIApplication sharedApplication].statusBarOrientation;
     if (UIInterfaceOrientationIsPortrait(orientation)) {
         imageSize = [UIScreen mainScreen].bounds.size;
     } else {
-        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width);
+        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height,
+                               [UIScreen mainScreen].bounds.size.width);
     }
     
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     
-    if ([self.view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-        [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
+    if ([self.view respondsToSelector:
+         @selector(drawViewHierarchyInRect:afterScreenUpdates:)])
+    {
+        [self.view
+         drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
     }
     else {
         [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
