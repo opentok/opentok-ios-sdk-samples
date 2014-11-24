@@ -16,8 +16,6 @@
     dispatch_source_t _timer;
 }
 
-@property uint32_t captureWidth;
-@property uint32_t captureHeight;
 @property CVPixelBufferRef pixelBuffer;
 @property BOOL capturing;
 @property (nonatomic, strong) OTVideoFrame *videoFrame;
@@ -35,36 +33,14 @@
 {
     self = [super init];
     if (self) {
-
-        _captureWidth = 480;
-        _captureHeight = 640;
         _minFrameDuration = CMTimeMake(1, 7);
         _queue = dispatch_queue_create("CAPTURE QUEUE", NULL);
         
         OTVideoFormat *format = [[OTVideoFormat alloc] init];
         [format setPixelFormat:OTPixelFormatARGB];
-        [format setImageWidth:_captureWidth];
-        [format setImageHeight:_captureHeight];
-        [[format bytesPerRow] addObject:@(_captureWidth * 4)];
         
         _videoFrame = [[OTVideoFrame alloc] initWithFormat:format];
         
-        CGSize frameSize = CGSizeMake(_captureWidth, _captureHeight);
-        NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @NO,
-                                 kCVPixelBufferCGImageCompatibilityKey,
-                                 @NO,
-                                 kCVPixelBufferCGBitmapContextCompatibilityKey,
-                                 nil];
-        
-        CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,
-                                              frameSize.width,
-                                              frameSize.height,
-                                              kCVPixelFormatType_32ARGB,
-                                              (__bridge CFDictionaryRef)(options),
-                                              &_pixelBuffer);
-        
-        NSParameterAssert(status == kCVReturnSuccess && _pixelBuffer != NULL);
     }
     return self;
 }
@@ -73,6 +49,50 @@
 {
     [self stopCapture];
     CVPixelBufferRelease(_pixelBuffer);
+}
+
+#pragma mark - Private Methods
+
+/**
+ * Make sure receiving video frame container is setup for this image.
+ */
+- (void)checkImageSize:(CGImageRef)image {
+    CGFloat width = CGImageGetWidth(image);
+    CGFloat height = CGImageGetHeight(image);
+    
+    if (_videoFrame.format.imageHeight == height &&
+        _videoFrame.format.imageWidth == width)
+    {
+        // don't rock the boat. if nothing has changed, don't update anything.
+        return;
+    }
+    
+    [_videoFrame.format.bytesPerRow removeAllObjects];
+    [_videoFrame.format.bytesPerRow addObject:@(width * 4)];
+    [_videoFrame.format setImageHeight:height];
+    [_videoFrame.format setImageWidth:width];
+    
+    CGSize frameSize = CGSizeMake(width, height);
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                             @NO,
+                             kCVPixelBufferCGImageCompatibilityKey,
+                             @NO,
+                             kCVPixelBufferCGBitmapContextCompatibilityKey,
+                             nil];
+    
+    if (NULL != _pixelBuffer) {
+        CVPixelBufferRelease(_pixelBuffer);
+    }
+    
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,
+                                          frameSize.width,
+                                          frameSize.height,
+                                          kCVPixelFormatType_32ARGB,
+                                          (__bridge CFDictionaryRef)(options),
+                                          &_pixelBuffer);
+    
+    NSParameterAssert(status == kCVReturnSuccess && _pixelBuffer != NULL);
+
 }
 
 #pragma mark - Capture lifecycle
@@ -125,8 +145,9 @@
 
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image
 {
-    
-    CGSize frameSize = CGSizeMake(_captureWidth, _captureHeight);
+    CGFloat width = CGImageGetWidth(image);
+    CGFloat height = CGImageGetHeight(image);
+    CGSize frameSize = CGSizeMake(width, height);
     CVPixelBufferLockBaseAddress(_pixelBuffer, 0);
     void *pxdata = CVPixelBufferGetBaseAddress(_pixelBuffer);
     
@@ -140,7 +161,7 @@
                                                  kCGImageAlphaPremultipliedFirst | kCGBitmapByteOrder32Little);
     
     
-    CGContextDrawImage(context, CGRectMake(0, 0, _captureWidth, _captureHeight), image);
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), image);
     CGColorSpaceRelease(rgbColorSpace);
     CGContextRelease(context);
     
@@ -152,8 +173,6 @@
 - (int32_t)captureSettings:(OTVideoFormat*)videoFormat
 {
     videoFormat.pixelFormat = OTPixelFormatARGB;
-    videoFormat.imageHeight = _captureHeight;
-    videoFormat.imageWidth = _captureWidth;
     return 0;
 }
 
@@ -183,6 +202,8 @@
 }
 
 - (void) consumeFrame:(CGImageRef)frame {
+    
+    [self checkImageSize:frame];
 
     static mach_timebase_info_data_t time_info;
     uint64_t time_stamp = 0;
@@ -203,14 +224,10 @@
     CVImageBufferRef ref = [self pixelBufferFromCGImage:frame];
     
     CVPixelBufferLockBaseAddress(ref, 0);
-    
-    size_t height = CVPixelBufferGetHeight(ref);
-    size_t width = CVPixelBufferGetWidth(ref);
-    
+
     _videoFrame.timestamp = time;
-    _videoFrame.format.imageWidth = (uint32_t)width;
-    _videoFrame.format.imageHeight = (uint32_t)height;
-    _videoFrame.format.estimatedFramesPerSecond = _minFrameDuration.timescale / _minFrameDuration.value;
+    _videoFrame.format.estimatedFramesPerSecond =
+    _minFrameDuration.timescale / _minFrameDuration.value;
     _videoFrame.format.estimatedCaptureDelay = 100;
     _videoFrame.orientation = OTVideoOrientationUp;
     

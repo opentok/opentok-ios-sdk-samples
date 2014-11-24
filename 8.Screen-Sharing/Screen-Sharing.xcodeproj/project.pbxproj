@@ -41,6 +41,7 @@
 		0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */; };
 		0CC1C08019B7C23F00BD819F /* TBScreenPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07C19B7C23F00BD819F /* TBScreenPublisher.m */; };
 		0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC1C08219B7C6D600BD819F /* Accelerate.framework */; };
+		D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AF64351A23B5E20026C892 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		0CC1C07B19B7C23F00BD819F /* TBScreenPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBScreenPublisher.h; sourceTree = "<group>"; };
 		0CC1C07C19B7C23F00BD819F /* TBScreenPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBScreenPublisher.m; sourceTree = "<group>"; };
 		0CC1C08219B7C6D600BD819F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D4AF64351A23B5E20026C892 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */,
 				0C99B76C19AE909300A60ABA /* CoreGraphics.framework in Frameworks */,
 				0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */,
 				0C99B7B519AE913A00A60ABA /* libxml2.dylib in Frameworks */,
@@ -159,6 +162,7 @@
 		0C99B76819AE909300A60ABA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4AF64351A23B5E20026C892 /* VideoToolbox.framework */,
 				0C99B7A319AE913A00A60ABA /* libstdc++.dylib */,
 				0C99B7A419AE913A00A60ABA /* libstdc++.6.0.9.dylib */,
 				0C99B7A519AE913A00A60ABA /* libpthread.dylib */,

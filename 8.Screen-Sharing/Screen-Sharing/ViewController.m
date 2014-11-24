@@ -13,14 +13,18 @@
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"100";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"1_MX4xMDB-MTI3LjAuMC4xfjE0MTY4NTI2NDAyNjN-dFlOb2JIaHdMVHpZUEhTOGVSeHN4NHcyfn4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9YTIxNGQ5YzJjZTI1YjU0MWYxOWQ0MGY4ODNkYjNlMDFmODFiNTgwYzpzZXNzaW9uX2lkPTFfTVg0eE1EQi1NVEkzTGpBdU1DNHhmakUwTVRZNE5USTJOREF5TmpOLWRGbE9iMkpJYUhkTVZIcFpVRWhUT0dWU2VITjROSGN5Zm40JmNyZWF0ZV90aW1lPTE0MTY4NTI1MjMmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQxNjg1MjUyMy42MDgxMjQ3MDA0MjIyJmV4cGlyZV90aW1lPTE0MTk0NDQ1MjM=";
 
 @interface ViewController () <OTSessionDelegate, OTPublisherDelegate>
 
+@end
+
+@interface OTSession()
+- (void)setApiRootURL:(NSURL*)aURL;
 @end
 
 @implementation ViewController
@@ -60,6 +64,7 @@ dispatch_source_t timer;
     _session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                         delegate:self];
+    [_session setApiRootURL:[NSURL URLWithString:@"https://api-rel.opentok.com"]];
     [self doConnect];
 }
 
