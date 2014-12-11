@@ -37,6 +37,7 @@
 		0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */; };
 		0CBBA447196B55F9005F55D4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA446196B55F9005F55D4 /* libxml2.dylib */; };
 		23C817701978929E00A35EAB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C8176F1978929E00A35EAB /* OpenTok.framework */; };
+		A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		0CBBA444196B55F0005F55D4 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		0CBBA446196B55F9005F55D4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		23C8176F1978929E00A35EAB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
+		A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */,
 				0CBBA447196B55F9005F55D4 /* libxml2.dylib in Frameworks */,
 				0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */,
 				0CBBA441196B55E0005F55D4 /* libpthread.dylib in Frameworks */,
@@ -149,6 +152,7 @@
 		0CBBA3EE196B5192005F55D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */,
 				0CBBA446196B55F9005F55D4 /* libxml2.dylib */,
 				23C8176F1978929E00A35EAB /* OpenTok.framework */,
 				0CBBA444196B55F0005F55D4 /* libxml2.2.dylib */,
