@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */; };
 		D442615E185FA27400E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615D185FA27400E23699 /* Foundation.framework */; };
 		D4426160185FA27400E23699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615F185FA27400E23699 /* CoreGraphics.framework */; };
 		D4426162185FA27400E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426161185FA27400E23699 /* UIKit.framework */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets-Build-OTPublisher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442615D185FA27400E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D442615F185FA27400E23699 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */,
 				D44261A4185FA37600E23699 /* libstdc++.dylib in Frameworks */,
 				D44261A5185FA37600E23699 /* libstdc++.6.0.9.dylib in Frameworks */,
 				D44261A6185FA37600E23699 /* libpthread.dylib in Frameworks */,
@@ -166,6 +169,7 @@
 		D442615C185FA27400E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */,
 				D4426197185FA37600E23699 /* libstdc++.dylib */,
 				D4426198185FA37600E23699 /* libstdc++.6.0.9.dylib */,
 				D4426199185FA37600E23699 /* libpthread.dylib */,

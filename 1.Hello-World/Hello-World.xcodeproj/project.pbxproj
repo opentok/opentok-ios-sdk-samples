@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5D01FB31A3A133C005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */; };
 		D44260F7185F81D800E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F6185F81D800E23699 /* Foundation.framework */; };
 		D44260F9185F81D800E23699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F8185F81D800E23699 /* CoreGraphics.framework */; };
 		D44260FB185F81D800E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260FA185F81D800E23699 /* UIKit.framework */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D44260F3185F81D800E23699 /* Hello-World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello-World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260F8185F81D800E23699 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D01FB31A3A133C005D84F9 /* VideoToolbox.framework in Frameworks */,
 				D442614D185F95CF00E23699 /* OpenTok.framework in Frameworks */,
 				D4426150185F9C8A00E23699 /* libstdc++.6.0.9.dylib in Frameworks */,
 				D4426137185F877100E23699 /* libpthread.dylib in Frameworks */,
@@ -149,6 +152,7 @@
 		D44260F5185F81D800E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */,
 				D442612E185F82AB00E23699 /* OpenTok.framework */,
 				D442614E185F9C3500E23699 /* libstdc++.dylib */,
 				D4426144185F8F2B00E23699 /* libstdc++.6.0.9.dylib */,
@@ -494,7 +498,10 @@
 		D442612C185F81D800E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hello-World.app/Hello-World";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -510,6 +517,7 @@
 				INFOPLIST_FILE = "Hello-WorldTests/Hello-WorldTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -517,7 +525,10 @@
 		D442612D185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = (
+					armv7,
+					armv7s,
+				);
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hello-World.app/Hello-World";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -529,6 +540,7 @@
 				INFOPLIST_FILE = "Hello-WorldTests/Hello-WorldTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
