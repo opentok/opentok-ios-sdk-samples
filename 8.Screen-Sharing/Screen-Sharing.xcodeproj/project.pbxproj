@@ -39,7 +39,6 @@
 		0C99B7BD19AE913A00A60ABA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7AF19AE913A00A60ABA /* AVFoundation.framework */; };
 		0C99B7BE19AE913A00A60ABA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7B019AE913A00A60ABA /* QuartzCore.framework */; };
 		0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */; };
-		0CC1C08019B7C23F00BD819F /* TBScreenPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07C19B7C23F00BD819F /* TBScreenPublisher.m */; };
 		0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC1C08219B7C6D600BD819F /* Accelerate.framework */; };
 		D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AF64351A23B5E20026C892 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
@@ -93,8 +92,6 @@
 		0C99B7B019AE913A00A60ABA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0CC1C07919B7C23F00BD819F /* TBScreenCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBScreenCapture.h; sourceTree = "<group>"; };
 		0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBScreenCapture.m; sourceTree = "<group>"; };
-		0CC1C07B19B7C23F00BD819F /* TBScreenPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBScreenPublisher.h; sourceTree = "<group>"; };
-		0CC1C07C19B7C23F00BD819F /* TBScreenPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBScreenPublisher.m; sourceTree = "<group>"; };
 		0CC1C08219B7C6D600BD819F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D4AF64351A23B5E20026C892 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -192,8 +189,6 @@
 			children = (
 				0CC1C07919B7C23F00BD819F /* TBScreenCapture.h */,
 				0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */,
-				0CC1C07B19B7C23F00BD819F /* TBScreenPublisher.h */,
-				0CC1C07C19B7C23F00BD819F /* TBScreenPublisher.m */,
 				0C99B77819AE909300A60ABA /* AppDelegate.h */,
 				0C99B77919AE909300A60ABA /* AppDelegate.m */,
 				0C99B77B19AE909300A60ABA /* Main_iPhone.storyboard */,
@@ -339,7 +334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C99B78319AE909300A60ABA /* ViewController.m in Sources */,
-				0CC1C08019B7C23F00BD819F /* TBScreenPublisher.m in Sources */,
 				0C99B77A19AE909300A60ABA /* AppDelegate.m in Sources */,
 				0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */,
 				0C99B77619AE909300A60ABA /* main.m in Sources */,
@@ -478,6 +472,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -487,6 +482,7 @@
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -498,6 +494,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -506,6 +503,7 @@
 				GCC_PREFIX_HEADER = "Screen-Sharing/Screen-Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

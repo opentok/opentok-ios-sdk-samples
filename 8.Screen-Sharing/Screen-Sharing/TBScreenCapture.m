@@ -9,32 +9,31 @@
 #include <mach/mach_time.h>
 #import "TBScreenCapture.h"
 
-@interface TBScreenCapture ()
-{
+@implementation TBScreenCapture {
     CMTime _minFrameDuration;
     dispatch_queue_t _queue;
     dispatch_source_t _timer;
+    
+    CVPixelBufferRef _pixelBuffer;
+    BOOL _capturing;
+    OTVideoFrame* _videoFrame;
+    UIView* _view;
+    
 }
 
-@property CVPixelBufferRef pixelBuffer;
-@property BOOL capturing;
-@property (nonatomic, strong) OTVideoFrame *videoFrame;
-@property (nonatomic, strong) UIImage *image;
-
-- (UIImage *)screenshot;
-
-@end
-
-@implementation TBScreenCapture
+@synthesize videoCaptureConsumer;
 
 #pragma mark - Class Lifecycle.
 
-- (instancetype)init
+- (instancetype)initWithView:(UIView *)view
 {
     self = [super init];
     if (self) {
-        _minFrameDuration = CMTimeMake(1, 7);
-        _queue = dispatch_queue_create("CAPTURE QUEUE", NULL);
+        _view = view;
+        // Recommend sending 5 frames per second: Allows for higher image
+        // quality per frame
+        _minFrameDuration = CMTimeMake(1, 5);
+        _queue = dispatch_queue_create("SCREEN_CAPTURE", NULL);
         
         OTVideoFormat *format = [[OTVideoFormat alloc] init];
         [format setPixelFormat:OTPixelFormatARGB];
@@ -97,13 +96,11 @@
 
 #pragma mark - Capture lifecycle
 
-- (void)initCapture { }
-
-- (void)releaseCapture { }
-
-- (int32_t)startCapture
-{
-    _capturing = YES;
+/**
+ * Allocate capture resources; in this case we're just setting up a timer and 
+ * block to execute periodically to send video frames.
+ */
+- (void)initCapture {
     __unsafe_unretained TBScreenCapture* _self = self;
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _queue);
     
@@ -116,22 +113,31 @@
             [_self consumeFrame:[screen CGImage]];
         }
     });
-    
-    dispatch_resume(_timer);
+}
+
+- (void)releaseCapture {
+    _timer = nil;
+}
+
+- (int32_t)startCapture
+{
+    _capturing = YES;
+
+    if (_timer) {
+        dispatch_resume(_timer);
+    }
     
     return 0;
 }
 
 - (int32_t)stopCapture
 {
-    self->_capturing = NO;
+    _capturing = NO;
     
-    __unsafe_unretained TBScreenCapture* _self = self;
     dispatch_sync(_queue, ^{
-        if (_self->_timer) {
-            dispatch_source_cancel(_self->_timer);
+        if (_timer) {
+            dispatch_source_cancel(_timer);
         }
-        _self->_timer = nil;
     });
 
     return 0;
@@ -144,7 +150,7 @@
 
 #pragma mark - Screen capture implementation
 
-- (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image
+- (CVPixelBufferRef)pixelBufferFromCGImage:(CGImageRef)image
 {
     CGFloat width = CGImageGetWidth(image);
     CGFloat height = CGImageGetHeight(image);
@@ -216,7 +222,7 @@
     static mach_timebase_info_data_t time_info;
     uint64_t time_stamp = 0;
     
-    if (!(_capturing && _videoCaptureConsumer)) {
+    if (!(_capturing && self.videoCaptureConsumer)) {
         return;
     }
     
@@ -241,7 +247,7 @@
     
     [_videoFrame clearPlanes];
     [_videoFrame.planes addPointer:CVPixelBufferGetBaseAddress(ref)];
-    [_videoCaptureConsumer consumeFrame:_videoFrame];
+    [self.videoCaptureConsumer consumeFrame:_videoFrame];
     
     CVPixelBufferUnlockBaseAddress(ref, 0);
 }

@@ -6,7 +6,6 @@
 //
 
 #import "ViewController.h"
-#import "TBScreenPublisher.h"
 #import "TBScreenCapture.h"
 #import <OpenTok/OpenTok.h>
 
@@ -23,33 +22,30 @@ static NSString* const kToken = @"";
 
 @end
 
-@interface OTSession()
-- (void)setApiRootURL:(NSURL*)aURL;
-@end
 
-@implementation ViewController
-{
+@implementation ViewController {
     OTSession* _session;
-    TBScreenPublisher* _publisher;
+    OTPublisherKit* _publisher;
+    dispatch_queue_t  _queue;
+    dispatch_source_t _timer;
 }
 
 @synthesize timeDisplay;
 
 #pragma mark - View lifecycle
 
-dispatch_queue_t  queue;
-dispatch_source_t timer;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    queue = dispatch_queue_create("ticker-timer", 0);
-    timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0),
+    // Setup a timer to periodically update the UI. This gives us something
+    // dynamic that we can see on the receiver's end to verify everything works.
+    _queue = dispatch_queue_create("ticker-timer", 0);
+    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _queue);
+    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0),
                               10ull * NSEC_PER_MSEC, 1ull * NSEC_PER_SEC);
     
-    dispatch_source_set_event_handler(timer, ^{
+    dispatch_source_set_event_handler(_timer, ^{
         double timestamp = [[NSDate date] timeIntervalSince1970];
         int64_t timeInMilisInt64 = (int64_t)(timestamp*1000);
         
@@ -60,7 +56,7 @@ dispatch_source_t timer;
         });
     });
     
-    dispatch_resume(timer);
+    dispatch_resume(_timer);
     
     _session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
@@ -98,11 +94,27 @@ dispatch_source_t timer;
 
 - (void)doPublish
 {
+    // Setup the publisher with customizations for screencasting. You might
+    // consider setting this up as an OTPublisherKit subclass, but it's here
+    // for brevity and consolidation.
+    
+    // We're not using Audio for this publisher, so don't bother setting up the
+    // audio track.
     _publisher =
-    [[TBScreenPublisher alloc] initWithDelegate:self
-                                           name:[UIDevice currentDevice].name];
-    TBScreenCapture* videoCapture = [[TBScreenCapture alloc] init];
-    videoCapture.view = self.view;
+    [[OTPublisherKit alloc] initWithDelegate:self
+                                        name:[UIDevice currentDevice].name
+                                  audioTrack:NO
+                                  videoTrack:YES];
+    
+    // Additionally, the publisher video type can be updated to signal to
+    // receivers that the video is from a screencast. This value also disables
+    // some downsample scaling that is used to adapt to changing network
+    // conditions. We will send at a lower framerate to compensate for this.
+    [_publisher setVideoType:OTPublisherKitVideoTypeScreen];
+
+    // Finally, wire up the video source.
+    TBScreenCapture* videoCapture =
+    [[TBScreenCapture alloc] initWithView:self.view];
     [_publisher setVideoCapture:videoCapture];
     
     OTError *error = nil;
@@ -113,7 +125,6 @@ dispatch_source_t timer;
 }
 
 - (void)cleanupPublisher {
-    [_publisher.view removeFromSuperview];
     _publisher = nil;
 }
 
