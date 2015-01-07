@@ -201,7 +201,6 @@
                     initWithFrame:CGRectZero
                 overlayButtonType:TBExampleOverlayButtonTypeSwitchCameraButton
                          delegate:self];
-        _switchCameraButton.contentMode = UIViewContentModeScaleAspectFit;
 
         //archive image view
         _archiveImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
