@@ -10,7 +10,6 @@
 
 #import "TBExampleOverlayView.h"
 #import "TBExampleOverlayButton.h"
-#import "TBExampleSVG.h"
 
 @implementation TBExampleOverlayView
 {
@@ -202,6 +201,7 @@
                     initWithFrame:CGRectZero
                 overlayButtonType:TBExampleOverlayButtonTypeSwitchCameraButton
                          delegate:self];
+        _switchCameraButton.contentMode = UIViewContentModeScaleAspectFit;
 
         //archive image view
         _archiveImgView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -241,14 +241,10 @@
             [self addSubview:_videoDisabledImgView];
 
             _videoMayDisableImgView.image =
-            [TBExampleSVGHelper
-             imageFromSVGString:[TBExampleSVGIcons midCongestion]
-                            size:CGSizeMake(32, 32)];
+            [UIImage imageNamed:@"midCongestion.png"];
             _videoDisabledImgView.image =
-            [TBExampleSVGHelper
-             imageFromSVGString:[TBExampleSVGIcons highCongestion]
-             size:CGSizeMake(32, 32)];
-            
+            [UIImage imageNamed:@"highCongestion.png"];
+
             _videoMayDisableImgView.hidden = YES;
             _videoDisabledImgView.hidden = YES;
         }

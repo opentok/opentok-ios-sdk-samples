@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A5149AA91913969700CB1A9F /* libQuickSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5149AA41913968800CB1A9F /* libQuickSVG.a */; };
 		A51C860619B6F22B0067184D /* highCongestion.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51C860419B6F22B0067184D /* highCongestion.svg */; };
 		A51C860719B6F22B0067184D /* midCongestion.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51C860519B6F22B0067184D /* midCongestion.svg */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
@@ -51,9 +50,17 @@
 		A5A6081C18C0921800192466 /* TBExampleOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081118C0921800192466 /* TBExampleOverlayView.m */; };
 		A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081518C0921800192466 /* TBExampleUnderlayView.m */; };
 		A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081718C0921800192466 /* TBExampleVideoView.m */; };
-		A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081918C0921800192466 /* TBExampleSVG.m */; };
 		A5D01FAD1A3A1311005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */; };
 		A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */; };
+		A5FA8EE61A5DE18A002DC195 /* audioOnlyActive.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */; };
+		A5FA8EE71A5DE18A002DC195 /* audioOnlyInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */; };
+		A5FA8EE81A5DE18A002DC195 /* highCongestion.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */; };
+		A5FA8EE91A5DE18A002DC195 /* midCongestion.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE01A5DE18A002DC195 /* midCongestion.png */; };
+		A5FA8EEA1A5DE18A002DC195 /* mutePublisher.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE11A5DE18A002DC195 /* mutePublisher.png */; };
+		A5FA8EEB1A5DE18A002DC195 /* muteSubscriber.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE21A5DE18A002DC195 /* muteSubscriber.png */; };
+		A5FA8EEC1A5DE18A002DC195 /* swapCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE31A5DE18A002DC195 /* swapCamera.png */; };
+		A5FA8EED1A5DE18A002DC195 /* unmutePublisher.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */; };
+		A5FA8EEE1A5DE18A002DC195 /* unmuteSubscriber.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */; };
 		D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */; };
 		D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */; };
 		D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAC194129B900364672 /* GLKit.framework */; };
@@ -61,27 +68,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A5149AA31913968800CB1A9F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9090D27161316BC001145EC;
-			remoteInfo = QuickSVG;
-		};
-		A5149AA51913968800CB1A9F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9090D38161316BC001145EC;
-			remoteInfo = UnitTests;
-		};
-		A5149AA71913968800CB1A9F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C9090D6816135E10001145EC;
-			remoteInfo = RenderingTests;
-		};
 		A56B2BCF18C085AE001E082A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A56B2B9E18C085AD001E082A /* Project object */;
@@ -92,7 +78,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = QuickSVG.xcodeproj; path = quicksvg/QuickSVG.xcodeproj; sourceTree = "<group>"; };
 		A51C860419B6F22B0067184D /* highCongestion.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = highCongestion.svg; sourceTree = "<group>"; };
 		A51C860519B6F22B0067184D /* midCongestion.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = midCongestion.svg; sourceTree = "<group>"; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
@@ -148,11 +133,18 @@
 		A5A6081518C0921800192466 /* TBExampleUnderlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleUnderlayView.m; sourceTree = "<group>"; };
 		A5A6081618C0921800192466 /* TBExampleVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoView.h; sourceTree = "<group>"; };
 		A5A6081718C0921800192466 /* TBExampleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoView.m; sourceTree = "<group>"; };
-		A5A6081818C0921800192466 /* TBExampleSVG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSVG.h; sourceTree = "<group>"; };
-		A5A6081918C0921800192466 /* TBExampleSVG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSVG.m; sourceTree = "<group>"; };
 		A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBAudioLevelMeter.h; sourceTree = "<group>"; };
 		A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBAudioLevelMeter.m; sourceTree = "<group>"; };
+		A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioOnlyActive.png; sourceTree = "<group>"; };
+		A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioOnlyInactive.png; sourceTree = "<group>"; };
+		A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highCongestion.png; sourceTree = "<group>"; };
+		A5FA8EE01A5DE18A002DC195 /* midCongestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = midCongestion.png; sourceTree = "<group>"; };
+		A5FA8EE11A5DE18A002DC195 /* mutePublisher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutePublisher.png; sourceTree = "<group>"; };
+		A5FA8EE21A5DE18A002DC195 /* muteSubscriber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muteSubscriber.png; sourceTree = "<group>"; };
+		A5FA8EE31A5DE18A002DC195 /* swapCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapCamera.png; sourceTree = "<group>"; };
+		A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmutePublisher.png; sourceTree = "<group>"; };
+		A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmuteSubscriber.png; sourceTree = "<group>"; };
 		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
 		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
@@ -167,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D01FAD1A3A1311005D84F9 /* VideoToolbox.framework in Frameworks */,
-				A5149AA91913969700CB1A9F /* libQuickSVG.a in Frameworks */,
 				A5A607EF18C08C4F00192466 /* libstdc++.6.0.9.dylib in Frameworks */,
 				A5A607ED18C08BB900192466 /* libstdc++.dylib in Frameworks */,
 				A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */,
@@ -199,20 +190,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A5149A9D1913968800CB1A9F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5149AA41913968800CB1A9F /* libQuickSVG.a */,
-				A5149AA61913968800CB1A9F /* UnitTests.octest */,
-				A5149AA81913968800CB1A9F /* RenderingTests.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A56B2B9D18C085AD001E082A = {
 			isa = PBXGroup;
 			children = (
-				A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */,
 				D4F8FDA11941271300364672 /* Project 2 - Let's Build OTPubilsher */,
 				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
 				A56B2BD118C085AE001E082A /* Overlay-GraphicsTests */,
@@ -281,6 +261,15 @@
 		A56B2BB018C085AD001E082A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */,
+				A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */,
+				A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */,
+				A5FA8EE01A5DE18A002DC195 /* midCongestion.png */,
+				A5FA8EE11A5DE18A002DC195 /* mutePublisher.png */,
+				A5FA8EE21A5DE18A002DC195 /* muteSubscriber.png */,
+				A5FA8EE31A5DE18A002DC195 /* swapCamera.png */,
+				A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */,
+				A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */,
 				A5595ED219CAD5810040B99C /* silhouette.png */,
 				A5595EBC19C9512A0040B99C /* Headset.png */,
 				A5595EBD19C9512A0040B99C /* Headset@2x.png */,
@@ -329,8 +318,6 @@
 				A5A6081518C0921800192466 /* TBExampleUnderlayView.m */,
 				A5A6081618C0921800192466 /* TBExampleVideoView.h */,
 				A5A6081718C0921800192466 /* TBExampleVideoView.m */,
-				A5A6081818C0921800192466 /* TBExampleSVG.h */,
-				A5A6081918C0921800192466 /* TBExampleSVG.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -409,12 +396,6 @@
 			mainGroup = A56B2B9D18C085AD001E082A;
 			productRefGroup = A56B2BA718C085AD001E082A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = A5149A9D1913968800CB1A9F /* Products */;
-					ProjectRef = A5149A9C1913968800CB1A9F /* QuickSVG.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				A56B2BA518C085AD001E082A /* Overlay-Graphics */,
@@ -422,30 +403,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		A5149AA41913968800CB1A9F /* libQuickSVG.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libQuickSVG.a;
-			remoteRef = A5149AA31913968800CB1A9F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5149AA61913968800CB1A9F /* UnitTests.octest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = UnitTests.octest;
-			remoteRef = A5149AA51913968800CB1A9F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5149AA81913968800CB1A9F /* RenderingTests.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = RenderingTests.app;
-			remoteRef = A5149AA71913968800CB1A9F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A56B2BA418C085AD001E082A /* Resources */ = {
@@ -456,17 +413,26 @@
 				A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */,
 				A535047C18FD469B00E68BD9 /* archiving_pulse-Small@2x.png in Resources */,
 				A56B2BC518C085AD001E082A /* Images.xcassets in Resources */,
+				A5FA8EED1A5DE18A002DC195 /* unmutePublisher.png in Resources */,
+				A5FA8EE91A5DE18A002DC195 /* midCongestion.png in Resources */,
 				A51C860619B6F22B0067184D /* highCongestion.svg in Resources */,
 				A51C860719B6F22B0067184D /* midCongestion.svg in Resources */,
+				A5FA8EE61A5DE18A002DC195 /* audioOnlyActive.png in Resources */,
 				A56B2BBD18C085AD001E082A /* Main_iPhone.storyboard in Resources */,
 				A5595EBE19C9512A0040B99C /* Headset.png in Resources */,
 				A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */,
 				A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */,
 				A5595ED319CAD5810040B99C /* silhouette.png in Resources */,
+				A5FA8EEA1A5DE18A002DC195 /* mutePublisher.png in Resources */,
 				A56B2BB418C085AD001E082A /* InfoPlist.strings in Resources */,
 				A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */,
+				A5FA8EEE1A5DE18A002DC195 /* unmuteSubscriber.png in Resources */,
+				A5FA8EE81A5DE18A002DC195 /* highCongestion.png in Resources */,
 				A535047B18FD469B00E68BD9 /* archiving_pulse-Small.png in Resources */,
+				A5FA8EE71A5DE18A002DC195 /* audioOnlyInactive.png in Resources */,
 				A5595EBF19C9512A0040B99C /* Headset@2x.png in Resources */,
+				A5FA8EEB1A5DE18A002DC195 /* muteSubscriber.png in Resources */,
+				A5FA8EEC1A5DE18A002DC195 /* swapCamera.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +453,6 @@
 			files = (
 				D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */,
 				A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */,
-				A5A6082018C0921800192466 /* TBExampleSVG.m in Sources */,
 				A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */,
 				A56B2BC318C085AD001E082A /* ViewController.m in Sources */,
 				A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */,

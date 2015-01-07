@@ -12,7 +12,6 @@
 #import "TBExampleOverlayView.h"
 #import "TBExampleUnderlayView.h"
 #import "TBExampleVideoRender.h"
-#import "TBExampleSVG.h"
 
 @interface TBExampleVideoView() <TBExampleOverlayViewDelegate>
 
