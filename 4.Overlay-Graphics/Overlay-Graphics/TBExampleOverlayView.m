@@ -10,7 +10,6 @@
 
 #import "TBExampleOverlayView.h"
 #import "TBExampleOverlayButton.h"
-#import "TBExampleSVG.h"
 
 @implementation TBExampleOverlayView
 {
@@ -241,14 +240,10 @@
             [self addSubview:_videoDisabledImgView];
 
             _videoMayDisableImgView.image =
-            [TBExampleSVGHelper
-             imageFromSVGString:[TBExampleSVGIcons midCongestion]
-                            size:CGSizeMake(32, 32)];
+            [UIImage imageNamed:@"midCongestion.png"];
             _videoDisabledImgView.image =
-            [TBExampleSVGHelper
-             imageFromSVGString:[TBExampleSVGIcons highCongestion]
-             size:CGSizeMake(32, 32)];
-            
+            [UIImage imageNamed:@"highCongestion.png"];
+
             _videoMayDisableImgView.hidden = YES;
             _videoDisabledImgView.hidden = YES;
         }

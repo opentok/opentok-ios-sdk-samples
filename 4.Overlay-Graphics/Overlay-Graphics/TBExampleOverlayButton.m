@@ -7,7 +7,6 @@
 
 #import "TBExampleOverlayButton.h"
 #import "TBExampleOverlayView.h"
-#import "TBExampleSVG.h"
 
 #define OT_OVERLAY_DEFAULT_BUTTON_SIZE 48
 
@@ -163,31 +162,28 @@
         _delegate = delegate;
         
         [[self imageView] setBackgroundColor:[UIColor clearColor]];
-        CGSize buttonSize = CGSizeMake(OT_OVERLAY_DEFAULT_BUTTON_SIZE,
-                                      OT_OVERLAY_DEFAULT_BUTTON_SIZE);
+        
         switch (buttonType) {
             case TBExampleOverlayButtonTypeMuteButton:
                 _imgButtonStateUp =
-                [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons unmuteSubscriber]
-                                            size:buttonSize] retain];
+                [[UIImage imageNamed:@"unmuteSubscriber.png"] retain];
                 _imgButtonStateSelected =
-                [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons muteSubscriber]
-                                            size:buttonSize] retain];
+                [[UIImage imageNamed:@"muteSubscriber.png"] retain];
+                
                 break;
                 
             case TBExampleOverlayButtonTypeSwitchCameraButton:
                 _imgButtonStateUp =
-                [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons swapCamera]
-                                            size:buttonSize] retain];
+                [[UIImage imageNamed:@"swapCamera.png"] retain];
+                
                 break;
                 
             case TBExampleOverlayButtonTypeVolumeButton:
                 _imgButtonStateUp =
-                [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons unmutePublisher]
-                                            size:buttonSize] retain];
+                [[UIImage imageNamed:@"unmutePublisher.png"] retain];
                 _imgButtonStateSelected =
-                [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons mutePublisher]
-                                            size:buttonSize] retain];
+                [[UIImage imageNamed:@"mutePublisher.png"] retain];
+
                 break;
                 
             default:
