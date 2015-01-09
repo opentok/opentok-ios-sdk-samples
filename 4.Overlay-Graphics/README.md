@@ -1,23 +1,13 @@
 Project 4: Overlay Graphics
-==================================
+===========================
 
 This project shows how to overlay graphics and UI controls onto publisher and 
 subscriber views. It basically extends [project 2][1], "Let's build
 OTPublisher.' By the end of a code review, you should learn how to add
-graphics on top of publisher and subscriber video views. The sample uses
-SVG icons for faster rendering.
-
+graphics on top of publisher and subscriber video views.
 
 Configuration Notes
 ===================
-
-*   This project uses open source QuickSVG SDK to process SVG files. In order
-    to compile the sample, you must first run the "./clone-quick-svg" build
-    script from the terminal.
-
-    _Important:_ If XCode reports unsupported architecture issues when compiling
-    this application, delete the quicksvg directory and run the
-    "./clone-quick-svg" build script again.
 
 *   Since we are importing a number of classes implemented in project 2, the
     header search paths in the project build settings must be extended to look
@@ -67,8 +57,6 @@ Application Notes
    `[OTSesssionDelegate session:archiveStoppedWithId:]` messages.
    Use one of the [OpenTok server SDKs][4] or the [OpenTok REST API][5] to start
    archiving the session.
-
-*  All SVG Icons are included in the class file TBExampleSVG.m as NSStrings.
 
 *   Note that this sample application is not supported in the XCode iOS
     Simulator because the custom video capturer needs to acquire video from an
