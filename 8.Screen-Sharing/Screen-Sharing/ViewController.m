@@ -111,6 +111,9 @@ static NSString* const kToken = @"";
     // some downsample scaling that is used to adapt to changing network
     // conditions. We will send at a lower framerate to compensate for this.
     [_publisher setVideoType:OTPublisherKitVideoTypeScreen];
+    
+    // This disables the audio fallback feature when using routed sessions.
+    _publisher.audioFallbackEnabled = NO;
 
     // Finally, wire up the video source.
     TBScreenCapture* videoCapture =
