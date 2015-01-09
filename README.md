@@ -30,8 +30,16 @@ capture implementations provided herein.
 	capture APIs can be used to simultaneously stream video and capture 
 	high-resolution photos from the same camera.
 
-4.	**Overlay Graphics** - This project shows how to overlay graphics on 
-	publisher and subscriber views and uses SVG graphic format for icons.
+4.	**Overlay Graphics** - This project shows how to overlay graphics for the following:
+
+    * A button for muting the publisher microphone
+
+    * A button for muting the subscriber audio
+
+    * Stream quality notification icons for the subscriber video
+
+    * Archive recording icons
+
 	This project barrows publisher and subscribers modules implemented in 
 	project 2.
 	
