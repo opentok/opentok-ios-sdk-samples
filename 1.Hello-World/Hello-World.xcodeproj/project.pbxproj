@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C16853C1A71949A00A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16853B1A71949A00A507E3 /* libc++.dylib */; };
+		0C16853E1A71949F00A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16853D1A71949F00A507E3 /* libicucore.dylib */; };
 		A5D01FB31A3A133C005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */; };
 		D44260F7185F81D800E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F6185F81D800E23699 /* Foundation.framework */; };
 		D44260F9185F81D800E23699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F8185F81D800E23699 /* CoreGraphics.framework */; };
@@ -36,7 +38,6 @@
 		D442614A185F8F5700E23699 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426146185F8F3F00E23699 /* CoreTelephony.framework */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 		D442614D185F95CF00E23699 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442612E185F82AB00E23699 /* OpenTok.framework */; };
-		D4426150185F9C8A00E23699 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426144185F8F2B00E23699 /* libstdc++.6.0.9.dylib */; };
 		D492D19119547E4C00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19019547E4C00F4F534 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C16853B1A71949A00A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		0C16853D1A71949F00A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D44260F3185F81D800E23699 /* Hello-World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello-World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,9 +98,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C16853E1A71949F00A507E3 /* libicucore.dylib in Frameworks */,
+				0C16853C1A71949A00A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FB31A3A133C005D84F9 /* VideoToolbox.framework in Frameworks */,
 				D442614D185F95CF00E23699 /* OpenTok.framework in Frameworks */,
-				D4426150185F9C8A00E23699 /* libstdc++.6.0.9.dylib in Frameworks */,
 				D4426137185F877100E23699 /* libpthread.dylib in Frameworks */,
 				D4426133185F876500E23699 /* libsqlite3.dylib in Frameworks */,
 				D4426131185F875F00E23699 /* libxml2.dylib in Frameworks */,
@@ -152,6 +156,8 @@
 		D44260F5185F81D800E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C16853D1A71949F00A507E3 /* libicucore.dylib */,
+				0C16853B1A71949A00A507E3 /* libc++.dylib */,
 				A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */,
 				D442612E185F82AB00E23699 /* OpenTok.framework */,
 				D442614E185F9C3500E23699 /* libstdc++.dylib */,

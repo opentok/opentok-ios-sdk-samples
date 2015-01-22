@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A51C860619B6F22B0067184D /* highCongestion.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51C860419B6F22B0067184D /* highCongestion.svg */; };
-		A51C860719B6F22B0067184D /* midCongestion.svg in Resources */ = {isa = PBXBuildFile; fileRef = A51C860519B6F22B0067184D /* midCongestion.svg */; };
+		0C1685301A71927700A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16852F1A71927700A507E3 /* libc++.dylib */; };
+		0C1685321A71927C00A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685311A71927C00A507E3 /* libicucore.dylib */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
 		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
 		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
@@ -42,8 +42,6 @@
 		A5A607E718C08B9B00192466 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E618C08B9B00192466 /* AudioToolbox.framework */; };
 		A5A607E918C08BA100192466 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E818C08BA100192466 /* libsqlite3.dylib */; };
 		A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607EA18C08BAB00192466 /* libxml2.dylib */; };
-		A5A607ED18C08BB900192466 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607EC18C08BB900192466 /* libstdc++.dylib */; };
-		A5A607EF18C08C4F00192466 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */; };
 		A5A607F718C08F3D00192466 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607F618C08F3D00192466 /* SystemConfiguration.framework */; };
 		A5A607F918C08F4B00192466 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607F818C08F4B00192466 /* CoreTelephony.framework */; };
 		A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */; };
@@ -78,8 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A51C860419B6F22B0067184D /* highCongestion.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = highCongestion.svg; sourceTree = "<group>"; };
-		A51C860519B6F22B0067184D /* midCongestion.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = midCongestion.svg; sourceTree = "<group>"; };
+		0C16852F1A71927700A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		0C1685311A71927C00A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
 		A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small@2x.png"; sourceTree = "<group>"; };
 		A535047318FD469B00E68BD9 /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
@@ -158,9 +156,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1685321A71927C00A507E3 /* libicucore.dylib in Frameworks */,
+				0C1685301A71927700A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FAD1A3A1311005D84F9 /* VideoToolbox.framework in Frameworks */,
-				A5A607EF18C08C4F00192466 /* libstdc++.6.0.9.dylib in Frameworks */,
-				A5A607ED18C08BB900192466 /* libstdc++.dylib in Frameworks */,
 				A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */,
 				A5A607E918C08BA100192466 /* libsqlite3.dylib in Frameworks */,
 				A5A607E118C08B6B00192466 /* OpenTok.framework in Frameworks */,
@@ -213,6 +211,8 @@
 		A56B2BA818C085AD001E082A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C1685311A71927C00A507E3 /* libicucore.dylib */,
+				0C16852F1A71927700A507E3 /* libc++.dylib */,
 				A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */,
 				A5A607E018C08B6B00192466 /* OpenTok.framework */,
 				A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */,
@@ -273,8 +273,6 @@
 				A5595ED219CAD5810040B99C /* silhouette.png */,
 				A5595EBC19C9512A0040B99C /* Headset.png */,
 				A5595EBD19C9512A0040B99C /* Headset@2x.png */,
-				A51C860419B6F22B0067184D /* highCongestion.svg */,
-				A51C860519B6F22B0067184D /* midCongestion.svg */,
 				A535047118FD469B00E68BD9 /* archiving_off-Small.png */,
 				A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */,
 				A535047318FD469B00E68BD9 /* archiving_on-10.png */,
@@ -415,8 +413,6 @@
 				A56B2BC518C085AD001E082A /* Images.xcassets in Resources */,
 				A5FA8EED1A5DE18A002DC195 /* unmutePublisher.png in Resources */,
 				A5FA8EE91A5DE18A002DC195 /* midCongestion.png in Resources */,
-				A51C860619B6F22B0067184D /* highCongestion.svg in Resources */,
-				A51C860719B6F22B0067184D /* midCongestion.svg in Resources */,
 				A5FA8EE61A5DE18A002DC195 /* audioOnlyActive.png in Resources */,
 				A56B2BBD18C085AD001E082A /* Main_iPhone.storyboard in Resources */,
 				A5595EBE19C9512A0040B99C /* Headset.png in Resources */,
