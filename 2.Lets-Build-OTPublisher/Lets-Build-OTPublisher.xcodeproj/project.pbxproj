@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1685381A71932900A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685371A71932900A507E3 /* libc++.dylib */; };
+		0C16853A1A71933200A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685391A71933200A507E3 /* libicucore.dylib */; };
 		A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */; };
 		D442615E185FA27400E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615D185FA27400E23699 /* Foundation.framework */; };
 		D4426160185FA27400E23699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615F185FA27400E23699 /* CoreGraphics.framework */; };
@@ -24,8 +26,6 @@
 		D442618A185FA27400E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426188185FA27400E23699 /* InfoPlist.strings */; };
 		D442618C185FA27400E23699 /* Lets_Build_OTPublisherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D442618B185FA27400E23699 /* Lets_Build_OTPublisherTests.m */; };
 		D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426195185FA35F00E23699 /* OpenTok.framework */; };
-		D44261A4185FA37600E23699 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426197185FA37600E23699 /* libstdc++.dylib */; };
-		D44261A5185FA37600E23699 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426198185FA37600E23699 /* libstdc++.6.0.9.dylib */; };
 		D44261A6185FA37600E23699 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426199185FA37600E23699 /* libpthread.dylib */; };
 		D44261A7185FA37600E23699 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619A185FA37600E23699 /* libsqlite3.dylib */; };
 		D44261A8185FA37600E23699 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619B185FA37600E23699 /* libxml2.dylib */; };
@@ -57,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		0C1685391A71933200A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets-Build-OTPublisher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442615D185FA27400E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,9 +113,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C16853A1A71933200A507E3 /* libicucore.dylib in Frameworks */,
+				0C1685381A71932900A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */,
-				D44261A4185FA37600E23699 /* libstdc++.dylib in Frameworks */,
-				D44261A5185FA37600E23699 /* libstdc++.6.0.9.dylib in Frameworks */,
 				D44261A6185FA37600E23699 /* libpthread.dylib in Frameworks */,
 				D44261A7185FA37600E23699 /* libsqlite3.dylib in Frameworks */,
 				D44261A8185FA37600E23699 /* libxml2.dylib in Frameworks */,
@@ -169,6 +171,8 @@
 		D442615C185FA27400E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C1685391A71933200A507E3 /* libicucore.dylib */,
+				0C1685371A71932900A507E3 /* libc++.dylib */,
 				A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */,
 				D4426197185FA37600E23699 /* libstdc++.dylib */,
 				D4426198185FA37600E23699 /* libstdc++.6.0.9.dylib */,

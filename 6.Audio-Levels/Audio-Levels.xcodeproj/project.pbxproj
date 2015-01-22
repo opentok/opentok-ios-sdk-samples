@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1685281A71923100A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685271A71923100A507E3 /* libc++.dylib */; };
+		0C16852A1A71923600A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685291A71923600A507E3 /* libicucore.dylib */; };
 		A51739F2198A4E3A005102BE /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51739F1198A4E3A005102BE /* VideoToolbox.framework */; };
 		A57C4CAC199DD64300210EC3 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57C4CAB199DD64300210EC3 /* OpenTok.framework */; };
 		A5F48452198A3C0E00E6C689 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48451198A3C0E00E6C689 /* Foundation.framework */; };
@@ -38,7 +40,6 @@
 		A5F484AB198A445000E6C689 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484AA198A445000E6C689 /* QuartzCore.framework */; };
 		A5F484AD198A446600E6C689 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484AC198A446600E6C689 /* AudioToolbox.framework */; };
 		A5F484AF198A446C00E6C689 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484AE198A446C00E6C689 /* CoreAudio.framework */; };
-		A5F484B1198A458800E6C689 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484B0198A458800E6C689 /* libstdc++.6.0.9.dylib */; };
 		A5F484BB198A466300E6C689 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F484B2198A466300E6C689 /* Default-568h@2x.png */; };
 		A5F484BC198A466300E6C689 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F484B3198A466300E6C689 /* Default.png */; };
 		A5F484BD198A466300E6C689 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F484B4198A466300E6C689 /* Default@2x.png */; };
@@ -75,6 +76,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1685271A71923100A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		0C1685291A71923600A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A51739F1198A4E3A005102BE /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A57C4CAB199DD64300210EC3 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5F4844E198A3C0E00E6C689 /* Audio-Levels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio-Levels.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,8 +148,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C16852A1A71923600A507E3 /* libicucore.dylib in Frameworks */,
+				0C1685281A71923100A507E3 /* libc++.dylib in Frameworks */,
 				A51739F2198A4E3A005102BE /* VideoToolbox.framework in Frameworks */,
-				A5F484B1198A458800E6C689 /* libstdc++.6.0.9.dylib in Frameworks */,
 				A57C4CAC199DD64300210EC3 /* OpenTok.framework in Frameworks */,
 				A5F484AF198A446C00E6C689 /* CoreAudio.framework in Frameworks */,
 				A5F484AD198A446600E6C689 /* AudioToolbox.framework in Frameworks */,
@@ -201,6 +205,8 @@
 		A5F48450198A3C0E00E6C689 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C1685291A71923600A507E3 /* libicucore.dylib */,
+				0C1685271A71923100A507E3 /* libc++.dylib */,
 				A57C4CAB199DD64300210EC3 /* OpenTok.framework */,
 				A51739F1198A4E3A005102BE /* VideoToolbox.framework */,
 				A5F484B0198A458800E6C689 /* libstdc++.6.0.9.dylib */,
