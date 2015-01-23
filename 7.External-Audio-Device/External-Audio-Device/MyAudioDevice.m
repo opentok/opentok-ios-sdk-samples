@@ -84,6 +84,7 @@ static void print_error(const char* error, OSStatus code);
     BOOL interrupted_playback;
     BOOL auGraphStarted;
     BOOL audioGraphInitialized;
+    NSString* avAudioSessionCatigory;
 @public
     id _audioBus;
     
@@ -277,35 +278,36 @@ static void print_error(const char* error, OSStatus code) {
     }
 }
 
+- (void) setupAudioSession
+{
+    AVAudioSession *mySession = [AVAudioSession sharedInstance];
+    
+    avAudioSessionCatigory = mySession.category;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [mySession setMode:AVAudioSessionModeVideoChat error:nil];
+    }
+    else {
+        [mySession setMode:AVAudioSessionModeVoiceChat error:nil];
+    }
+    
+    [mySession setPreferredSampleRate: kSampleRate error: nil];
+    [mySession setPreferredInputNumberOfChannels:1 error:nil];
+    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    
+    [self setupListenerBlocks];
+    [mySession setActive:YES error:nil];
+}
+
 - (BOOL) setupAudio
 {
-    
-    NSUInteger options = 0;
     OSStatus result = noErr;
     
     if (YES == audioGraphInitialized) { return YES; }
     
     mach_timebase_info(&info);
     
-    //AVAudioSessionCategoryOptionMixWithOthers;
-    //AVAudioSessionCategoryOptionAllowBluetooth |
-    //AVAudioSessionCategoryOptionDefaultToSpeaker;
-    
-    AVAudioSession *mySession = [AVAudioSession sharedInstance];
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [mySession setMode:AVAudioSessionModeVoiceChat error:nil];
-    }
-    else {
-        [mySession setMode:AVAudioSessionModeVoiceChat error:nil];
-    }
-
-    [mySession setPreferredSampleRate: kSampleRate error: nil];
-    [mySession setPreferredInputNumberOfChannels:1 error:nil];
-    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    
-    [self setupListenerBlocks];
-    [mySession setActive:YES withOptions:options error:nil];
+    [self setupAudioSession];
     
     size_t bytesPerSample = sizeof(SInt16);
     stream_format.mFormatID    = kAudioFormatLinearPCM;
@@ -556,6 +558,8 @@ static void print_error(const char* error, OSStatus code) {
     CAShow (au_graph);
 #endif
     
+    AVAudioSession *mySession = [AVAudioSession sharedInstance];
+    
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
                withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
     
@@ -654,6 +658,7 @@ static void print_error(const char* error, OSStatus code) {
         return YES;
     }
     auGraphStarted = YES;
+    [self setupAudioSession];
     OSStatus result = AUGraphStart(au_graph);
     if (noErr != result) {
         print_error("AUGraphStart", result);
@@ -671,6 +676,10 @@ static void print_error(const char* error, OSStatus code) {
     auGraphStarted = NO;
     
     OSStatus result = AUGraphStop(au_graph);
+    
+    AVAudioSession *mySession = [AVAudioSession sharedInstance];
+    
+    [mySession setCategory:avAudioSessionCatigory error:nil];
     
     if (noErr != result) {
         print_error("AUGraphStop", result);
