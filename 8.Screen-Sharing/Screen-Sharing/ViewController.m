@@ -69,15 +69,8 @@ static NSString* const kToken = @"";
     return YES;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UIInterfaceOrientationPortrait == interfaceOrientation) {
-        return YES;
-    }
-    else {
-        return NO;
-    }
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
 }
 
 #pragma mark - OpenTok methods
