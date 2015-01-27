@@ -6,7 +6,6 @@
 //
 
 #import "TBExampleUnderlayView.h"
-#import "TBExampleSVG.h"
 
 #define SILHOUETTE_OFFSET 0.0
 #define SILHOUETTE_SIZE 0.75
@@ -29,11 +28,11 @@
         self.backgroundColor = [UIColor colorWithHue:0 saturation:0 brightness:.13 alpha:1];
         self.clipsToBounds = YES;
         
-        _audioOnlyActive = [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons audioOnlyActive]] retain];
+        _audioOnlyActive = [[UIImage imageNamed:@"audioOnlyActive.png"] retain];
         _audioOnlyActiveView = [[UIImageView alloc] initWithImage:_audioOnlyActive];
         _audioOnlyActiveView.backgroundColor = [UIColor clearColor];
         
-        _audioOnlyInactive = [[TBExampleSVGHelper imageFromSVGString:[TBExampleSVGIcons audioOnlyInactive]] retain];
+        _audioOnlyInactive = [[UIImage imageNamed:@"audioOnlyInactive.png"] retain];
         _audioOnlyInactiveView = [[UIImageView alloc] initWithImage:_audioOnlyInactive];
         _audioOnlyInactiveView.backgroundColor = [UIColor clearColor];
         _audioOnlyInactiveView.hidden = YES;
