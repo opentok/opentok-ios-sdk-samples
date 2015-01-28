@@ -189,7 +189,14 @@
 {
     CGSize imageSize = CGSizeZero;
     
-    imageSize = [UIScreen mainScreen].bounds.size;
+    UIInterfaceOrientation orientation =
+    [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationIsPortrait(orientation)) {
+        imageSize = [UIScreen mainScreen].bounds.size;
+    } else {
+        imageSize = CGSizeMake([UIScreen mainScreen].bounds.size.height,
+                               [UIScreen mainScreen].bounds.size.width);
+    }
     
     UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
     

@@ -18,21 +18,18 @@ static NSString* const kSessionId = @"";
 // Replace with your generated token
 static NSString* const kToken = @"";
 
-@interface ViewController () <OTSessionDelegate, OTPublisherDelegate, OTSubscriberDelegate>
+@interface ViewController () <OTSessionDelegate, OTPublisherDelegate>
 
 @end
 
-static double widgetHeight = 240 / 2;
-static double widgetWidth = 320 / 2;
-static bool subscribeToSelf = NO;
 
 @implementation ViewController {
     OTSession* _session;
     OTPublisherKit* _publisher;
-    OTSubscriber* _subscriber;
     dispatch_queue_t  _queue;
     dispatch_source_t _timer;
 }
+
 @synthesize timeDisplay;
 
 #pragma mark - View lifecycle
@@ -72,8 +69,15 @@ static bool subscribeToSelf = NO;
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAll;
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+(UIInterfaceOrientation)interfaceOrientation
+{
+    if (UIInterfaceOrientationPortrait == interfaceOrientation) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
 }
 
 #pragma mark - OpenTok methods
@@ -99,7 +103,7 @@ static bool subscribeToSelf = NO;
     _publisher =
     [[OTPublisherKit alloc] initWithDelegate:self
                                         name:[UIDevice currentDevice].name
-                                  audioTrack:YES
+                                  audioTrack:NO
                                   videoTrack:YES];
     
     // Additionally, the publisher video type can be updated to signal to
@@ -127,36 +131,6 @@ static bool subscribeToSelf = NO;
     _publisher = nil;
 }
 
-/**
- * Instantiates a subscriber for the given stream and asynchronously begins the
- * process to begin receiving A/V content for this stream. Unlike doPublish,
- * this method does not add the subscriber to the view hierarchy. Instead, we
- * add the subscriber only after it has connected and begins receiving data.
- */
-- (void)doSubscribe:(OTStream*)stream
-{
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
-    
-    OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
-    if (error)
-    {
-        [self showAlert:[error localizedDescription]];
-    }
-}
-
-/**
- * Cleans the subscriber from the view hierarchy, if any.
- * NB: You do *not* have to call unsubscribe in your controller in response to
- * a streamDestroyed event. Any subscribers (or the publisher) for a stream will
- * be automatically removed from the session during cleanup of the stream.
- */
-- (void)cleanupSubscriber
-{
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
-}
-
 # pragma mark - OTSession delegate callbacks
 
 - (void)sessionDidConnect:(OTSession*)session
@@ -177,21 +151,11 @@ static bool subscribeToSelf = NO;
 - (void)session:(OTSession*)mySession streamCreated:(OTStream *)stream
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
-    // Step 3a: (if NO == subscribeToSelf): Begin subscribing to a stream we
-    // have seen on the OpenTok session.
-    if (nil == _subscriber && !subscribeToSelf)
-    {
-        [self doSubscribe:stream];
-    }
 }
 
 - (void)session:(OTSession*)session streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
-    {
-        [self cleanupSubscriber];
-    }
 }
 
 - (void) session:(OTSession *)session
@@ -204,41 +168,11 @@ connectionCreated:(OTConnection *)connection
 connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"session connectionDestroyed (%@)", connection.connectionId);
-    if ([_subscriber.stream.connection.connectionId
-         isEqualToString:connection.connectionId])
-    {
-        [self cleanupSubscriber];
-    }
 }
 
 - (void) session:(OTSession*)session didFailWithError:(OTError*)error
 {
     NSLog(@"didFailWithError: (%@)", error);
-}
-
-# pragma mark - OTSubscriber delegate callbacks
-
-- (void)subscriberDidConnectToStream:(OTSubscriberKit*)subscriber
-{
-    NSLog(@"subscriberDidConnectToStream (%@)",
-          subscriber.stream.connection.connectionId);
-    assert(_subscriber == subscriber);
-    [_subscriber.view setFrame:CGRectMake(0, 0, widgetWidth,
-                                          widgetHeight)];
-    [self.view addSubview:_subscriber.view];
-}
-
-- (void)subscriber:(OTSubscriberKit*)subscriber
-  didFailWithError:(OTError*)error
-{
-    NSLog(@"subscriber %@ didFailWithError %@",
-          subscriber.stream.streamId,
-          error);
-}
-
-- (void)subscriberVideoDataReceived:(OTSubscriber*)subscriber
-{
-    //NSLog(@"subscriberVideoDataReceived");
 }
 
 # pragma mark - OTPublisher delegate callbacks
@@ -252,19 +186,6 @@ connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"publisher didFailWithError %@", error);
     [self cleanupPublisher];
-}
-
-- (void)publisher:(OTPublisherKit *)publisher
-    streamCreated:(OTStream *)stream
-{
-    // Step 3b: (if YES == subscribeToSelf): Our own publisher is now visible to
-    // all participants in the OpenTok session. We will attempt to subscribe to
-    // our own stream. Expect to see a slight delay in the subscriber video and
-    // an echo of the audio coming from the device microphone.
-    if (nil == _subscriber && subscribeToSelf)
-    {
-        [self doSubscribe:stream];
-    }
 }
 
 - (void)showAlert:(NSString *)string
