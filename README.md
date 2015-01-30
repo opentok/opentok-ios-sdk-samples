@@ -11,7 +11,7 @@ using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
 What's Inside
 -------------
 
-Each of the six projects build on the lessons of the previous. After reviewing
+Each of the projects build on the lessons of the previous. After reviewing
 each, you will have an understanding of the OpenTok iOS SDK API. Additionally,
 you will be able to get started with writing your own extensions to the default
 capture implementations provided herein.
@@ -59,6 +59,10 @@ capture implementations provided herein.
     AUGraph API to create an audio session suitable for voice and video
     communications.
 
+7.	**Screen-Sharing** - This project demonstrates how to use a custom video
+    capturer to publish a stream that uses a UI view (instead of a camera) as
+    the video source.
+
 Referencing OpenTok.framework
 -----------------------------
 
@@ -67,7 +71,8 @@ from the root of this repository. If you are reading this from a distribution
 tarball of the OpenTok iOS SDK, then these links should work fine. If you have
 [cloned][opentok-ios-samples] this repository
 directly, you will have to update the links to point to your copy of
-`OpenTok.framework`.
+`OpenTok.framework`, available at
+https://tokbox.com/opentok/libraries/client/ios/.
 
 Getting Sample Code Updates
 ---------------------------
