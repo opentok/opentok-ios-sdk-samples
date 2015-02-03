@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C1685281A71923100A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685271A71923100A507E3 /* libc++.dylib */; };
-		0C16852A1A71923600A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685291A71923600A507E3 /* libicucore.dylib */; };
 		A51739F2198A4E3A005102BE /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51739F1198A4E3A005102BE /* VideoToolbox.framework */; };
 		A57C4CAC199DD64300210EC3 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57C4CAB199DD64300210EC3 /* OpenTok.framework */; };
 		A5F48452198A3C0E00E6C689 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48451198A3C0E00E6C689 /* Foundation.framework */; };
@@ -148,7 +147,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C16852A1A71923600A507E3 /* libicucore.dylib in Frameworks */,
 				0C1685281A71923100A507E3 /* libc++.dylib in Frameworks */,
 				A51739F2198A4E3A005102BE /* VideoToolbox.framework in Frameworks */,
 				A57C4CAC199DD64300210EC3 /* OpenTok.framework in Frameworks */,

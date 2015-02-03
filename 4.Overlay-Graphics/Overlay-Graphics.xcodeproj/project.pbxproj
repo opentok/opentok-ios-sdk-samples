@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C1685301A71927700A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16852F1A71927700A507E3 /* libc++.dylib */; };
-		0C1685321A71927C00A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685311A71927C00A507E3 /* libicucore.dylib */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
 		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
 		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
@@ -156,7 +155,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C1685321A71927C00A507E3 /* libicucore.dylib in Frameworks */,
 				0C1685301A71927700A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FAD1A3A1311005D84F9 /* VideoToolbox.framework in Frameworks */,
 				A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */,
