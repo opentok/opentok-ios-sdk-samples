@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1685241A71920900A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685231A71920900A507E3 /* libc++.dylib */; };
+		0C1685261A71920E00A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685251A71920E00A507E3 /* libicucore.dylib */; };
 		0C613A9419DB44F4004B479B /* logo_opentok_registered.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C613A9319DB44F4004B479B /* logo_opentok_registered.png */; };
 		0C99B76A19AE909300A60ABA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B76919AE909300A60ABA /* Foundation.framework */; };
 		0C99B76C19AE909300A60ABA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B76B19AE909300A60ABA /* CoreGraphics.framework */; };
@@ -24,8 +26,6 @@
 		0C99B79619AE909300A60ABA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C99B79419AE909300A60ABA /* InfoPlist.strings */; };
 		0C99B79819AE909300A60ABA /* Screen_SharingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C99B79719AE909300A60ABA /* Screen_SharingTests.m */; };
 		0C99B7A219AE911A00A60ABA /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A119AE911A00A60ABA /* OpenTok.framework */; };
-		0C99B7B119AE913A00A60ABA /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A319AE913A00A60ABA /* libstdc++.dylib */; };
-		0C99B7B219AE913A00A60ABA /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A419AE913A00A60ABA /* libstdc++.6.0.9.dylib */; };
 		0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A519AE913A00A60ABA /* libpthread.dylib */; };
 		0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A619AE913A00A60ABA /* libsqlite3.dylib */; };
 		0C99B7B519AE913A00A60ABA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A719AE913A00A60ABA /* libxml2.dylib */; };
@@ -54,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C1685231A71920900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		0C1685251A71920E00A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0C613A9319DB44F4004B479B /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		0C99B76619AE909300A60ABA /* Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C99B76919AE909300A60ABA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -101,6 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1685261A71920E00A507E3 /* libicucore.dylib in Frameworks */,
+				0C1685241A71920900A507E3 /* libc++.dylib in Frameworks */,
 				D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */,
 				0C99B76C19AE909300A60ABA /* CoreGraphics.framework in Frameworks */,
 				0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */,
@@ -109,7 +113,6 @@
 				0C99B7B919AE913A00A60ABA /* OpenGLES.framework in Frameworks */,
 				0C99B7A219AE911A00A60ABA /* OpenTok.framework in Frameworks */,
 				0C99B7B819AE913A00A60ABA /* CoreTelephony.framework in Frameworks */,
-				0C99B7B119AE913A00A60ABA /* libstdc++.dylib in Frameworks */,
 				0C99B7BA19AE913A00A60ABA /* CoreVideo.framework in Frameworks */,
 				0C99B7BE19AE913A00A60ABA /* QuartzCore.framework in Frameworks */,
 				0C99B76E19AE909300A60ABA /* UIKit.framework in Frameworks */,
@@ -120,7 +123,6 @@
 				0C99B76A19AE909300A60ABA /* Foundation.framework in Frameworks */,
 				0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */,
 				0C99B7B619AE913A00A60ABA /* GLKit.framework in Frameworks */,
-				0C99B7B219AE913A00A60ABA /* libstdc++.6.0.9.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +161,8 @@
 		0C99B76819AE909300A60ABA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C1685251A71920E00A507E3 /* libicucore.dylib */,
+				0C1685231A71920900A507E3 /* libc++.dylib */,
 				D4AF64351A23B5E20026C892 /* VideoToolbox.framework */,
 				0C99B7A319AE913A00A60ABA /* libstdc++.dylib */,
 				0C99B7A419AE913A00A60ABA /* libstdc++.6.0.9.dylib */,
