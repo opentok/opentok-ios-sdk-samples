@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C16852C1A71925100A507E3 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16852B1A71925100A507E3 /* libicucore.dylib */; };
 		0C16852E1A71925600A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16852D1A71925600A507E3 /* libc++.dylib */; };
 		A554AFA7190A9B3100A6910E /* archiving_on-5.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF90190A9B3100A6910E /* archiving_on-5.png */; };
 		A554AFA8190A9B3100A6910E /* archiving_on-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF91190A9B3100A6910E /* archiving_on-5@2x.png */; };
@@ -153,7 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C16852E1A71925600A507E3 /* libc++.dylib in Frameworks */,
-				0C16852C1A71925100A507E3 /* libicucore.dylib in Frameworks */,
 				A5D01FB61A3A136E005D84F9 /* VideoToolbox.framework in Frameworks */,
 				A5B6113F18F29AA100841E6B /* libsqlite3.dylib in Frameworks */,
 				A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */,
