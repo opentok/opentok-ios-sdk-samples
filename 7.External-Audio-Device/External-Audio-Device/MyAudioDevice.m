@@ -126,9 +126,6 @@ static void print_error(const char* error, OSStatus code);
 
 - (void)dealloc
 {
-    if (buffer_list) {
-        free(buffer_list);
-    }
     [self teardownAudio];
     _audioFormat = nil;
 }
