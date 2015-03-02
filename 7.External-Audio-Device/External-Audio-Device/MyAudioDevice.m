@@ -292,7 +292,6 @@ static void print_error(const char* error, OSStatus code) {
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     
-    [self setupListenerBlocks];
     [mySession setActive:YES error:nil];
 }
 
@@ -566,6 +565,8 @@ static void print_error(const char* error, OSStatus code) {
         print_error("AUGraphInitialize", result);
         return NO;
     }
+    
+    [self setupListenerBlocks];
     
     audioGraphInitialized = YES;
     
