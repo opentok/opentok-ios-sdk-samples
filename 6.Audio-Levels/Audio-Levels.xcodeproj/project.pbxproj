@@ -32,7 +32,6 @@
 		A5F4849B198A43C900E6C689 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4849A198A43C900E6C689 /* MobileCoreServices.framework */; };
 		A5F4849D198A43D100E6C689 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4849C198A43D100E6C689 /* CoreVideo.framework */; };
 		A5F4849F198A43D600E6C689 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4849E198A43D600E6C689 /* CoreMedia.framework */; };
-		A5F484A1198A43F900E6C689 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A0198A43F900E6C689 /* libxml2.2.dylib */; };
 		A5F484A5198A440F00E6C689 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A4198A440F00E6C689 /* SystemConfiguration.framework */; };
 		A5F484A7198A442400E6C689 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A6198A442400E6C689 /* GLKit.framework */; };
 		A5F484A9198A443A00E6C689 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A8198A443A00E6C689 /* AVFoundation.framework */; };
@@ -156,7 +155,6 @@
 				A5F484A9198A443A00E6C689 /* AVFoundation.framework in Frameworks */,
 				A5F484A7198A442400E6C689 /* GLKit.framework in Frameworks */,
 				A5F484A5198A440F00E6C689 /* SystemConfiguration.framework in Frameworks */,
-				A5F484A1198A43F900E6C689 /* libxml2.2.dylib in Frameworks */,
 				A5F4849F198A43D600E6C689 /* CoreMedia.framework in Frameworks */,
 				A5F4849D198A43D100E6C689 /* CoreVideo.framework in Frameworks */,
 				A5F4849B198A43C900E6C689 /* MobileCoreServices.framework in Frameworks */,
@@ -549,7 +547,6 @@
 		A5F48484198A3C0E00E6C689 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -557,7 +554,6 @@
 				GCC_PREFIX_HEADER = "Audio-Levels/Audio-Levels-Prefix.pch";
 				INFOPLIST_FILE = "Audio-Levels/Audio-Levels-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -565,7 +561,6 @@
 		A5F48485198A3C0E00E6C689 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -573,7 +568,6 @@
 				GCC_PREFIX_HEADER = "Audio-Levels/Audio-Levels-Prefix.pch";
 				INFOPLIST_FILE = "Audio-Levels/Audio-Levels-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

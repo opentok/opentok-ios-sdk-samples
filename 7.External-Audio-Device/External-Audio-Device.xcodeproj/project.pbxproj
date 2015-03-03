@@ -35,7 +35,6 @@
 		0CBBA43D196B5482005F55D4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA434196B5482005F55D4 /* SystemConfiguration.framework */; };
 		0CBBA441196B55E0005F55D4 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA440196B55E0005F55D4 /* libpthread.dylib */; };
 		0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */; };
-		0CBBA447196B55F9005F55D4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA446196B55F9005F55D4 /* libxml2.dylib */; };
 		23C817701978929E00A35EAB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C8176F1978929E00A35EAB /* OpenTok.framework */; };
 		A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
@@ -100,7 +99,6 @@
 			files = (
 				0C1685201A71913F00A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */,
-				0CBBA447196B55F9005F55D4 /* libxml2.dylib in Frameworks */,
 				0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */,
 				0CBBA441196B55E0005F55D4 /* libpthread.dylib in Frameworks */,
 				0CBBA435196B5482005F55D4 /* AudioToolbox.framework in Frameworks */,
@@ -460,7 +458,6 @@
 		0CBBA422196B5192005F55D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -478,7 +475,6 @@
 				);
 				INFOPLIST_FILE = "External-Audio-Device/External-Audio-Device-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -486,7 +482,6 @@
 		0CBBA423196B5192005F55D4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -504,7 +499,6 @@
 				);
 				INFOPLIST_FILE = "External-Audio-Device/External-Audio-Device-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
