@@ -27,7 +27,6 @@
 		D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426195185FA35F00E23699 /* OpenTok.framework */; };
 		D44261A6185FA37600E23699 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426199185FA37600E23699 /* libpthread.dylib */; };
 		D44261A7185FA37600E23699 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619A185FA37600E23699 /* libsqlite3.dylib */; };
-		D44261A8185FA37600E23699 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619B185FA37600E23699 /* libxml2.dylib */; };
 		D44261A9185FA37600E23699 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619C185FA37600E23699 /* SystemConfiguration.framework */; };
 		D44261AA185FA37600E23699 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619D185FA37600E23699 /* CoreTelephony.framework */; };
 		D44261AB185FA37600E23699 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619E185FA37600E23699 /* OpenGLES.framework */; };
@@ -116,7 +115,6 @@
 				A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */,
 				D44261A6185FA37600E23699 /* libpthread.dylib in Frameworks */,
 				D44261A7185FA37600E23699 /* libsqlite3.dylib in Frameworks */,
-				D44261A8185FA37600E23699 /* libxml2.dylib in Frameworks */,
 				D44261A9185FA37600E23699 /* SystemConfiguration.framework in Frameworks */,
 				D44261AA185FA37600E23699 /* CoreTelephony.framework in Frameworks */,
 				D44261AB185FA37600E23699 /* OpenGLES.framework in Frameworks */,
@@ -417,7 +415,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -457,7 +454,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -490,7 +486,6 @@
 		D4426190185FA27400E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -504,7 +499,6 @@
 				);
 				INFOPLIST_FILE = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -512,7 +506,6 @@
 		D4426191185FA27400E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -526,7 +519,6 @@
 				);
 				INFOPLIST_FILE = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

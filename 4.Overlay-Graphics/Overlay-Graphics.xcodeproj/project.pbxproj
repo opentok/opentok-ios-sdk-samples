@@ -40,7 +40,6 @@
 		A5A607E518C08B8A00192466 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E418C08B8A00192466 /* CoreVideo.framework */; };
 		A5A607E718C08B9B00192466 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E618C08B9B00192466 /* AudioToolbox.framework */; };
 		A5A607E918C08BA100192466 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607E818C08BA100192466 /* libsqlite3.dylib */; };
-		A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607EA18C08BAB00192466 /* libxml2.dylib */; };
 		A5A607F718C08F3D00192466 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607F618C08F3D00192466 /* SystemConfiguration.framework */; };
 		A5A607F918C08F4B00192466 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5A607F818C08F4B00192466 /* CoreTelephony.framework */; };
 		A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */; };
@@ -157,7 +156,6 @@
 			files = (
 				0C1685301A71927700A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FAD1A3A1311005D84F9 /* VideoToolbox.framework in Frameworks */,
-				A5A607EB18C08BAB00192466 /* libxml2.dylib in Frameworks */,
 				A5A607E918C08BA100192466 /* libsqlite3.dylib in Frameworks */,
 				A5A607E118C08B6B00192466 /* OpenTok.framework in Frameworks */,
 				A5A607E718C08B9B00192466 /* AudioToolbox.framework in Frameworks */,
@@ -519,7 +517,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -559,7 +556,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -592,7 +588,6 @@
 		A56B2BDC18C085AE001E082A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -612,7 +607,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -620,7 +614,6 @@
 		A56B2BDD18C085AE001E082A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -640,7 +633,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
