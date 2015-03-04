@@ -74,7 +74,7 @@ static bool subscribeToSelf = YES;
  */
 - (void)doConnect
 {
-    OTError *error;
+    OTError *error = nil;
     [_session connectWithToken:kToken error:&error];
     if (error)
     {
@@ -93,7 +93,7 @@ static bool subscribeToSelf = YES;
                   initWithDelegate:self
                   name:[[UIDevice currentDevice] name]];
     
-    OTError *error;
+    OTError *error = nil;
     [_session publish:_publisher error:&error];
     if (error)
     {
@@ -124,7 +124,7 @@ static bool subscribeToSelf = YES;
 {
     _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
                                                      delegate:self];
-    OTError *error;
+    OTError *error = nil;
     [_session subscribe:_subscriber error:&error];
     if (error)
     {

@@ -18,7 +18,6 @@
 		A5F48462198A3C0E00E6C689 /* TBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F48461198A3C0E00E6C689 /* TBAppDelegate.m */; };
 		A5F48465198A3C0E00E6C689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5F48463198A3C0E00E6C689 /* Main.storyboard */; };
 		A5F4846D198A3C0E00E6C689 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5F4846C198A3C0E00E6C689 /* Images.xcassets */; };
-		A5F48474198A3C0E00E6C689 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48473198A3C0E00E6C689 /* XCTest.framework */; };
 		A5F48475198A3C0E00E6C689 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48451198A3C0E00E6C689 /* Foundation.framework */; };
 		A5F48476198A3C0E00E6C689 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F48455198A3C0E00E6C689 /* UIKit.framework */; };
 		A5F4847E198A3C0E00E6C689 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5F4847C198A3C0E00E6C689 /* InfoPlist.strings */; };
@@ -32,7 +31,6 @@
 		A5F4849B198A43C900E6C689 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4849A198A43C900E6C689 /* MobileCoreServices.framework */; };
 		A5F4849D198A43D100E6C689 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4849C198A43D100E6C689 /* CoreVideo.framework */; };
 		A5F4849F198A43D600E6C689 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F4849E198A43D600E6C689 /* CoreMedia.framework */; };
-		A5F484A1198A43F900E6C689 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A0198A43F900E6C689 /* libxml2.2.dylib */; };
 		A5F484A5198A440F00E6C689 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A4198A440F00E6C689 /* SystemConfiguration.framework */; };
 		A5F484A7198A442400E6C689 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A6198A442400E6C689 /* GLKit.framework */; };
 		A5F484A9198A443A00E6C689 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F484A8198A443A00E6C689 /* AVFoundation.framework */; };
@@ -76,7 +74,6 @@
 
 /* Begin PBXFileReference section */
 		0C1685271A71923100A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		0C1685291A71923600A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A51739F1198A4E3A005102BE /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A57C4CAB199DD64300210EC3 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5F4844E198A3C0E00E6C689 /* Audio-Levels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Audio-Levels.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -92,7 +89,6 @@
 		A5F48464198A3C0E00E6C689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A5F4846C198A3C0E00E6C689 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5F48472198A3C0E00E6C689 /* Audio-LevelsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Audio-LevelsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5F48473198A3C0E00E6C689 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A5F4847B198A3C0E00E6C689 /* Audio-LevelsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Audio-LevelsTests-Info.plist"; sourceTree = "<group>"; };
 		A5F4847D198A3C0E00E6C689 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5F4847F198A3C0E00E6C689 /* Audio_LevelsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Audio_LevelsTests.m; sourceTree = "<group>"; };
@@ -108,15 +104,12 @@
 		A5F4849A198A43C900E6C689 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A5F4849C198A43D100E6C689 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		A5F4849E198A43D600E6C689 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		A5F484A0198A43F900E6C689 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		A5F484A2198A440300E6C689 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		A5F484A4198A440F00E6C689 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A5F484A6198A442400E6C689 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A5F484A8198A443A00E6C689 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A5F484AA198A445000E6C689 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A5F484AC198A446600E6C689 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A5F484AE198A446C00E6C689 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
-		A5F484B0198A458800E6C689 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		A5F484B2198A466300E6C689 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		A5F484B3198A466300E6C689 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A5F484B4198A466300E6C689 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -156,7 +149,6 @@
 				A5F484A9198A443A00E6C689 /* AVFoundation.framework in Frameworks */,
 				A5F484A7198A442400E6C689 /* GLKit.framework in Frameworks */,
 				A5F484A5198A440F00E6C689 /* SystemConfiguration.framework in Frameworks */,
-				A5F484A1198A43F900E6C689 /* libxml2.2.dylib in Frameworks */,
 				A5F4849F198A43D600E6C689 /* CoreMedia.framework in Frameworks */,
 				A5F4849D198A43D100E6C689 /* CoreVideo.framework in Frameworks */,
 				A5F4849B198A43C900E6C689 /* MobileCoreServices.framework in Frameworks */,
@@ -172,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F48474198A3C0E00E6C689 /* XCTest.framework in Frameworks */,
 				A5F48476198A3C0E00E6C689 /* UIKit.framework in Frameworks */,
 				A5F48475198A3C0E00E6C689 /* Foundation.framework in Frameworks */,
 			);
@@ -203,19 +194,15 @@
 		A5F48450198A3C0E00E6C689 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C1685291A71923600A507E3 /* libicucore.dylib */,
 				0C1685271A71923100A507E3 /* libc++.dylib */,
 				A57C4CAB199DD64300210EC3 /* OpenTok.framework */,
 				A51739F1198A4E3A005102BE /* VideoToolbox.framework */,
-				A5F484B0198A458800E6C689 /* libstdc++.6.0.9.dylib */,
 				A5F484AE198A446C00E6C689 /* CoreAudio.framework */,
 				A5F484AC198A446600E6C689 /* AudioToolbox.framework */,
 				A5F484AA198A445000E6C689 /* QuartzCore.framework */,
 				A5F484A8198A443A00E6C689 /* AVFoundation.framework */,
 				A5F484A6198A442400E6C689 /* GLKit.framework */,
 				A5F484A4198A440F00E6C689 /* SystemConfiguration.framework */,
-				A5F484A2198A440300E6C689 /* libstdc++.dylib */,
-				A5F484A0198A43F900E6C689 /* libxml2.2.dylib */,
 				A5F4849E198A43D600E6C689 /* CoreMedia.framework */,
 				A5F4849C198A43D100E6C689 /* CoreVideo.framework */,
 				A5F4849A198A43C900E6C689 /* MobileCoreServices.framework */,
@@ -224,7 +211,6 @@
 				A5F48451198A3C0E00E6C689 /* Foundation.framework */,
 				A5F48453198A3C0E00E6C689 /* CoreGraphics.framework */,
 				A5F48455198A3C0E00E6C689 /* UIKit.framework */,
-				A5F48473198A3C0E00E6C689 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -345,7 +331,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = TB;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Tokbox;
 				TargetAttributes = {
 					A5F48471198A3C0E00E6C689 = {
@@ -549,7 +535,6 @@
 		A5F48484198A3C0E00E6C689 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -557,7 +542,6 @@
 				GCC_PREFIX_HEADER = "Audio-Levels/Audio-Levels-Prefix.pch";
 				INFOPLIST_FILE = "Audio-Levels/Audio-Levels-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -565,7 +549,6 @@
 		A5F48485198A3C0E00E6C689 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
@@ -573,7 +556,6 @@
 				GCC_PREFIX_HEADER = "Audio-Levels/Audio-Levels-Prefix.pch";
 				INFOPLIST_FILE = "Audio-Levels/Audio-Levels-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

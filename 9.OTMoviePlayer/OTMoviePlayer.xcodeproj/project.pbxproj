@@ -7,16 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051A66951AA79E6600B54C97 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051A66941AA79E6600B54C97 /* VideoToolbox.framework */; };
+		051A66961AA79E7D00B54C97 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8E18074A4600A202BD /* SystemConfiguration.framework */; };
+		051A66981AA79EA000B54C97 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 051A66971AA79EA000B54C97 /* CoreTelephony.framework */; };
 		0C16854A1A7314E000A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685491A7314E000A507E3 /* libc++.dylib */; };
 		0C1685601A7315EE00A507E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16854E1A7315EE00A507E3 /* AppDelegate.m */; };
 		0C1685621A7315EE00A507E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1685501A7315EE00A507E3 /* main.m */; };
-		0C1685651A7315EE00A507E3 /* OTMoviePlayer-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C1685551A7315EE00A507E3 /* OTMoviePlayer-Info.plist */; };
 		0C1685661A7315EE00A507E3 /* OTMoviePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1685581A7315EE00A507E3 /* OTMoviePlayer.m */; };
 		0C1685671A7315EE00A507E3 /* TPCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C1685591A7315EE00A507E3 /* TPCircularBuffer.c */; };
 		0C1685681A7315EE00A507E3 /* TPCircularBuffer+AudioBufferList.c in Sources */ = {isa = PBXBuildFile; fileRef = 0C16855B1A7315EE00A507E3 /* TPCircularBuffer+AudioBufferList.c */; };
 		0C1685691A7315EE00A507E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C16855E1A7315EE00A507E3 /* ViewController.m */; };
 		0C16856E1A73162500A507E3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C16856C1A73162500A507E3 /* InfoPlist.strings */; };
-		0C1685711A731B0E00A507E3 /* OTMoviePlayerTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0C1685701A731B0E00A507E3 /* OTMoviePlayerTests-Info.plist */; };
 		0C1B52221A7AB30600AFAAA2 /* OTAudioMovieReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C1B52211A7AB30600AFAAA2 /* OTAudioMovieReader.m */; };
 		0C1B522C1A81960200AFAAA2 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0C1B522B1A81960200AFAAA2 /* README.md */; };
 		0C223737195C96C9005F1A84 /* OpenTok.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0C223736195C96C9005F1A84 /* OpenTok.mp4 */; };
@@ -29,7 +30,6 @@
 		D40034FA180F331300ABE4DA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8918074A4600A202BD /* QuartzCore.framework */; };
 		D420D4C0180F32CA00CFE02E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8D18074A4600A202BD /* CoreMedia.framework */; };
 		D4493C23192BE9350088A13E /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4493C22192BE9350088A13E /* GLKit.framework */; };
-		D46BAC9318074A4600A202BD /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8718074A4600A202BD /* libpthread.dylib */; };
 		D46BAC9418074A4600A202BD /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8818074A4600A202BD /* AVFoundation.framework */; };
 		D46BAC9C18074A4600A202BD /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC9018074A4600A202BD /* OpenGLES.framework */; };
 		D47AD762180F2F0100B93B42 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8A18074A4600A202BD /* CoreVideo.framework */; };
@@ -39,7 +39,6 @@
 		D4E15A2818062212004C19B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E15A0418062212004C19B7 /* Foundation.framework */; };
 		D4E15A2918062212004C19B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E15A0818062212004C19B7 /* UIKit.framework */; };
 		D4E29D6718355E76009C651B /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AED6A7180729E700D5E266 /* libsqlite3.0.dylib */; };
-		D4E29D7118355E82009C651B /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AED6AB180729F400D5E266 /* libxml2.2.dylib */; };
 		D4F511C6180F2ED500CEF91E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8C18074A4600A202BD /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051A66941AA79E6600B54C97 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		051A66971AA79EA000B54C97 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		0C1685491A7314E000A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		0C16854B1A7314E500A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0C16854D1A7315EE00A507E3 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = OTMoviePlayer/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		0C16854E1A7315EE00A507E3 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = OTMoviePlayer/AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		0C1685501A7315EE00A507E3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = OTMoviePlayer/main.m; sourceTree = SOURCE_ROOT; };
@@ -83,7 +83,6 @@
 		0CC02A371A8A91C100768DFE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OTMoviePlayer/Base.lproj/Main_iPhone.storyboard; sourceTree = SOURCE_ROOT; };
 		0CC02A3A1A8BD50F00768DFE /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		D4493C22192BE9350088A13E /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		D46BAC8718074A4600A202BD /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		D46BAC8818074A4600A202BD /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D46BAC8918074A4600A202BD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D46BAC8A18074A4600A202BD /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
@@ -94,7 +93,6 @@
 		D46BAC8F18074A4600A202BD /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D46BAC9018074A4600A202BD /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D4AED6A7180729E700D5E266 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		D4AED6AB180729F400D5E266 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		D4DA91AE1807489B0099D72D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D4E15A0118062212004C19B7 /* OTMoviePlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OTMoviePlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4E15A0418062212004C19B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,13 +106,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				051A66981AA79EA000B54C97 /* CoreTelephony.framework in Frameworks */,
+				051A66961AA79E7D00B54C97 /* SystemConfiguration.framework in Frameworks */,
+				051A66951AA79E6600B54C97 /* VideoToolbox.framework in Frameworks */,
 				0C16854A1A7314E000A507E3 /* libc++.dylib in Frameworks */,
 				D4493C23192BE9350088A13E /* GLKit.framework in Frameworks */,
-				D4E29D7118355E82009C651B /* libxml2.2.dylib in Frameworks */,
 				D4E29D6718355E76009C651B /* libsqlite3.0.dylib in Frameworks */,
 				D40034FA180F331300ABE4DA /* QuartzCore.framework in Frameworks */,
 				0C6DA270199D5A6E009EC91A /* AssetsLibrary.framework in Frameworks */,
-				D46BAC9318074A4600A202BD /* libpthread.dylib in Frameworks */,
 				D4F511C6180F2ED500CEF91E /* AudioToolbox.framework in Frameworks */,
 				D46BAC9418074A4600A202BD /* AVFoundation.framework in Frameworks */,
 				D4C2BE69180F2F290018B984 /* CoreGraphics.framework in Frameworks */,
@@ -163,11 +162,10 @@
 		D4E15A0318062212004C19B7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				051A66971AA79EA000B54C97 /* CoreTelephony.framework */,
+				051A66941AA79E6600B54C97 /* VideoToolbox.framework */,
 				0CC02A3A1A8BD50F00768DFE /* OpenTok.framework */,
-				0C16854B1A7314E500A507E3 /* libicucore.dylib */,
 				0C1685491A7314E000A507E3 /* libc++.dylib */,
-				D46BAC8718074A4600A202BD /* libpthread.dylib */,
-				D4AED6AB180729F400D5E266 /* libxml2.2.dylib */,
 				D4AED6A7180729E700D5E266 /* libsqlite3.0.dylib */,
 				0C6DA26F199D5A6E009EC91A /* AssetsLibrary.framework */,
 				0CB7E0A4195E1B1900EFEF53 /* MobileCoreServices.framework */,
@@ -288,9 +286,6 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
-					D4E15A0018062212004C19B7 = {
-						DevelopmentTeam = V79LKNQR95;
-					};
 					D4E15A2418062212004C19B7 = {
 						TestTargetID = D4E15A0018062212004C19B7;
 					};
@@ -323,8 +318,6 @@
 				0CC02A381A8A91C100768DFE /* Main_iPad.storyboard in Resources */,
 				0CC02A391A8A91C100768DFE /* Main_iPhone.storyboard in Resources */,
 				0C223737195C96C9005F1A84 /* OpenTok.mp4 in Resources */,
-				0C1685711A731B0E00A507E3 /* OTMoviePlayerTests-Info.plist in Resources */,
-				0C1685651A7315EE00A507E3 /* OTMoviePlayer-Info.plist in Resources */,
 				0C16856E1A73162500A507E3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,9 +428,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/../otkit-objc",
-					"${SRCROOT}/../platforms/ios_armv7/include/otkit",
-					"${SRCROOT}/../otkit-objc-libs/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -475,9 +465,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/../otkit-objc",
-					"${SRCROOT}/../platforms/ios_armv7/include/otkit",
-					"${SRCROOT}/../otkit-objc-libs/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				SDKROOT = iphoneos;
@@ -494,28 +481,16 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../otkit-objc-libs/build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OTMoviePlayer/OTMoviePlayer-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/../otkit-objc",
-					"${SRCROOT}/../platforms/ios_armv7/include/otkit",
-					"${SRCROOT}/../otkit-objc-libs/**",
 				);
 				INFOPLIST_FILE = "OTMoviePlayer/OTMoviePlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OTMoviePlayer;
-				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 ";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -528,28 +503,16 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SRCROOT)/../otkit-objc-libs/build/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OTMoviePlayer/OTMoviePlayer-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/../otkit-objc",
-					"${SRCROOT}/../platforms/ios_armv7/include/otkit",
-					"${SRCROOT}/../otkit-objc-libs/**",
 				);
 				INFOPLIST_FILE = "OTMoviePlayer/OTMoviePlayer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OTMoviePlayer;
-				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 ";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -14,9 +14,9 @@
 @interface ViewController () <OTSessionDelegate, OTPublisherDelegate, OTSubscriberKitDelegate>
 @end
 
-static NSString* myApiKey = @"";
-static NSString* mySessionId = @"";
-static NSString* myToken = @"";
+static NSString* kApiKey = @"";
+static NSString* kSessionId = @"";
+static NSString* kToken = @"";
 
 static bool doPublish = YES;
 static bool doSubscribe = NO;
@@ -37,10 +37,10 @@ static OTMoviePlayer* moviePlayer = nil;
     
     [OTAudioDeviceManager setAudioDevice:moviePlayer.audioDevice];
     
-    mySession = [[OTSession alloc] initWithApiKey:myApiKey
-                                        sessionId:mySessionId
+    mySession = [[OTSession alloc] initWithApiKey:kApiKey
+                                        sessionId:kSessionId
                                          delegate:self];
-    [mySession connectWithToken:myToken error:nil];
+    [mySession connectWithToken:kToken error:nil];
 }
 
 - (void)viewDidLoad
