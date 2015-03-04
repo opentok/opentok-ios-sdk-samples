@@ -62,7 +62,6 @@
 		A5B6113D18F29A9A00841E6B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113C18F29A9A00841E6B /* CoreMedia.framework */; };
 		A5B6113F18F29AA100841E6B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113E18F29AA100841E6B /* libsqlite3.dylib */; };
 		A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A5B6114018F29B7400841E6B /* ShaderUtilities.c */; };
-		A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6114518F29C2200841E6B /* libxml2.dylib */; };
 		A5D01FB61A3A136E005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB51A3A136E005D84F9 /* VideoToolbox.framework */; };
 		D492D19419547ECF00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19319547ECF00F4F534 /* GLKit.framework */; };
 /* End PBXBuildFile section */
@@ -154,7 +153,6 @@
 				0C16852E1A71925600A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FB61A3A136E005D84F9 /* VideoToolbox.framework in Frameworks */,
 				A5B6113F18F29AA100841E6B /* libsqlite3.dylib in Frameworks */,
-				A5B6114818F29C2200841E6B /* libxml2.dylib in Frameworks */,
 				A5B610F018F2845100841E6B /* CoreGraphics.framework in Frameworks */,
 				A5B610F218F2845100841E6B /* UIKit.framework in Frameworks */,
 				A5B6113318F2992800841E6B /* OpenTok.framework in Frameworks */,
@@ -490,7 +488,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -530,7 +527,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -563,7 +559,6 @@
 		A5B6112018F2845100841E6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -582,7 +577,6 @@
 				INFOPLIST_FILE = "Multi-Party-Call/Multi-Party-Call-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -590,7 +584,6 @@
 		A5B6112118F2845100841E6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -609,7 +602,6 @@
 				INFOPLIST_FILE = "Multi-Party-Call/Multi-Party-Call-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -39,7 +39,6 @@
 		D4E15A2818062212004C19B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E15A0418062212004C19B7 /* Foundation.framework */; };
 		D4E15A2918062212004C19B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E15A0818062212004C19B7 /* UIKit.framework */; };
 		D4E29D6718355E76009C651B /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AED6A7180729E700D5E266 /* libsqlite3.0.dylib */; };
-		D4E29D7118355E82009C651B /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AED6AB180729F400D5E266 /* libxml2.2.dylib */; };
 		D4F511C6180F2ED500CEF91E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46BAC8C18074A4600A202BD /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -110,7 +109,6 @@
 			files = (
 				0C16854A1A7314E000A507E3 /* libc++.dylib in Frameworks */,
 				D4493C23192BE9350088A13E /* GLKit.framework in Frameworks */,
-				D4E29D7118355E82009C651B /* libxml2.2.dylib in Frameworks */,
 				D4E29D6718355E76009C651B /* libsqlite3.0.dylib in Frameworks */,
 				D40034FA180F331300ABE4DA /* QuartzCore.framework in Frameworks */,
 				0C6DA270199D5A6E009EC91A /* AssetsLibrary.framework in Frameworks */,
@@ -515,7 +513,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OTMoviePlayer;
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 ";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -549,7 +546,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = OTMoviePlayer;
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 ";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

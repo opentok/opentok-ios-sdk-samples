@@ -24,7 +24,6 @@
 		D442611B185F81D800E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260FA185F81D800E23699 /* UIKit.framework */; };
 		D4426123185F81D800E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426121185F81D800E23699 /* InfoPlist.strings */; };
 		D4426125185F81D800E23699 /* Hello_WorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426124185F81D800E23699 /* Hello_WorldTests.m */; };
-		D4426131185F875F00E23699 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426130185F875F00E23699 /* libxml2.dylib */; };
 		D4426133185F876500E23699 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426132185F876500E23699 /* libsqlite3.dylib */; };
 		D4426137185F877100E23699 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426136185F877100E23699 /* libpthread.dylib */; };
 		D4426139185F877600E23699 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426138185F877600E23699 /* QuartzCore.framework */; };
@@ -102,7 +101,6 @@
 				D442614D185F95CF00E23699 /* OpenTok.framework in Frameworks */,
 				D4426137185F877100E23699 /* libpthread.dylib in Frameworks */,
 				D4426133185F876500E23699 /* libsqlite3.dylib in Frameworks */,
-				D4426131185F875F00E23699 /* libxml2.dylib in Frameworks */,
 				D492D19119547E4C00F4F534 /* GLKit.framework in Frameworks */,
 				D442614A185F8F5700E23699 /* CoreTelephony.framework in Frameworks */,
 				D4426149185F8F5000E23699 /* SystemConfiguration.framework in Frameworks */,
@@ -387,7 +385,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = armv7;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -418,7 +415,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -426,7 +422,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = armv7;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -451,14 +446,12 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
 		D4426129185F81D800E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -470,7 +463,6 @@
 				INFOPLIST_FILE = "Hello-World/Hello-World-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -478,7 +470,6 @@
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -489,7 +480,6 @@
 				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
 				INFOPLIST_FILE = "Hello-World/Hello-World-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

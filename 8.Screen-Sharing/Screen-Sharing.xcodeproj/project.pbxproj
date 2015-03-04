@@ -27,7 +27,6 @@
 		0C99B7A219AE911A00A60ABA /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A119AE911A00A60ABA /* OpenTok.framework */; };
 		0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A519AE913A00A60ABA /* libpthread.dylib */; };
 		0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A619AE913A00A60ABA /* libsqlite3.dylib */; };
-		0C99B7B519AE913A00A60ABA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A719AE913A00A60ABA /* libxml2.dylib */; };
 		0C99B7B619AE913A00A60ABA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A819AE913A00A60ABA /* GLKit.framework */; };
 		0C99B7B719AE913A00A60ABA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A919AE913A00A60ABA /* SystemConfiguration.framework */; };
 		0C99B7B819AE913A00A60ABA /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7AA19AE913A00A60ABA /* CoreTelephony.framework */; };
@@ -106,7 +105,6 @@
 				D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */,
 				0C99B76C19AE909300A60ABA /* CoreGraphics.framework in Frameworks */,
 				0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */,
-				0C99B7B519AE913A00A60ABA /* libxml2.dylib in Frameworks */,
 				0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */,
 				0C99B7B919AE913A00A60ABA /* OpenGLES.framework in Frameworks */,
 				0C99B7A219AE911A00A60ABA /* OpenTok.framework in Frameworks */,
@@ -485,7 +483,6 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -506,7 +503,6 @@
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

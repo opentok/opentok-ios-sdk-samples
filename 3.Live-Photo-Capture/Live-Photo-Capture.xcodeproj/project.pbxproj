@@ -28,7 +28,6 @@
 		D4426223185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426222185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m */; };
 		D4426233185FCDA700E23699 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426226185FCDA700E23699 /* libpthread.dylib */; };
 		D4426234185FCDA700E23699 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426227185FCDA700E23699 /* libsqlite3.dylib */; };
-		D4426235185FCDA700E23699 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426228185FCDA700E23699 /* libxml2.dylib */; };
 		D4426236185FCDA700E23699 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426229185FCDA700E23699 /* SystemConfiguration.framework */; };
 		D4426237185FCDA700E23699 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442622A185FCDA700E23699 /* CoreTelephony.framework */; };
 		D4426238185FCDA700E23699 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442622B185FCDA700E23699 /* OpenGLES.framework */; };
@@ -114,7 +113,6 @@
 				A5D01FAA1A3A1270005D84F9 /* VideoToolbox.framework in Frameworks */,
 				D4426233185FCDA700E23699 /* libpthread.dylib in Frameworks */,
 				D4426234185FCDA700E23699 /* libsqlite3.dylib in Frameworks */,
-				D4426235185FCDA700E23699 /* libxml2.dylib in Frameworks */,
 				D4426236185FCDA700E23699 /* SystemConfiguration.framework in Frameworks */,
 				D4426237185FCDA700E23699 /* CoreTelephony.framework in Frameworks */,
 				D4426238185FCDA700E23699 /* OpenGLES.framework in Frameworks */,
@@ -421,7 +419,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -461,7 +458,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -494,7 +490,6 @@
 		D4426218185FC8D600E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -511,7 +506,6 @@
 				);
 				INFOPLIST_FILE = "Live-Photo-Capture/Live-Photo-Capture-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -519,7 +513,6 @@
 		D4426219185FC8D600E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
@@ -536,7 +529,6 @@
 				);
 				INFOPLIST_FILE = "Live-Photo-Capture/Live-Photo-Capture-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALID_ARCHS = "armv7 arm64";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
