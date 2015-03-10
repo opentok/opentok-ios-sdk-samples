@@ -19,13 +19,11 @@
 		0C99B78019AE909300A60ABA /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C99B77E19AE909300A60ABA /* Main_iPad.storyboard */; };
 		0C99B78319AE909300A60ABA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C99B78219AE909300A60ABA /* ViewController.m */; };
 		0C99B78519AE909300A60ABA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C99B78419AE909300A60ABA /* Images.xcassets */; };
-		0C99B78C19AE909300A60ABA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B78B19AE909300A60ABA /* XCTest.framework */; };
 		0C99B78D19AE909300A60ABA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B76919AE909300A60ABA /* Foundation.framework */; };
 		0C99B78E19AE909300A60ABA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B76D19AE909300A60ABA /* UIKit.framework */; };
 		0C99B79619AE909300A60ABA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C99B79419AE909300A60ABA /* InfoPlist.strings */; };
 		0C99B79819AE909300A60ABA /* Screen_SharingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C99B79719AE909300A60ABA /* Screen_SharingTests.m */; };
 		0C99B7A219AE911A00A60ABA /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A119AE911A00A60ABA /* OpenTok.framework */; };
-		0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A519AE913A00A60ABA /* libpthread.dylib */; };
 		0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A619AE913A00A60ABA /* libsqlite3.dylib */; };
 		0C99B7B619AE913A00A60ABA /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A819AE913A00A60ABA /* GLKit.framework */; };
 		0C99B7B719AE913A00A60ABA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7A919AE913A00A60ABA /* SystemConfiguration.framework */; };
@@ -53,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		0C1685231A71920900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		0C1685251A71920E00A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0C613A9319DB44F4004B479B /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		0C99B76619AE909300A60ABA /* Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C99B76919AE909300A60ABA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,16 +68,11 @@
 		0C99B78219AE909300A60ABA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0C99B78419AE909300A60ABA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C99B78A19AE909300A60ABA /* Screen-SharingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Screen-SharingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C99B78B19AE909300A60ABA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0C99B79319AE909300A60ABA /* Screen-SharingTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Screen-SharingTests-Info.plist"; sourceTree = "<group>"; };
 		0C99B79519AE909300A60ABA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C99B79719AE909300A60ABA /* Screen_SharingTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Screen_SharingTests.m; sourceTree = "<group>"; };
 		0C99B7A119AE911A00A60ABA /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
-		0C99B7A319AE913A00A60ABA /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		0C99B7A419AE913A00A60ABA /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		0C99B7A519AE913A00A60ABA /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		0C99B7A619AE913A00A60ABA /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		0C99B7A719AE913A00A60ABA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		0C99B7A819AE913A00A60ABA /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		0C99B7A919AE913A00A60ABA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0C99B7AA19AE913A00A60ABA /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -104,7 +96,6 @@
 				0C1685241A71920900A507E3 /* libc++.dylib in Frameworks */,
 				D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */,
 				0C99B76C19AE909300A60ABA /* CoreGraphics.framework in Frameworks */,
-				0C99B7B319AE913A00A60ABA /* libpthread.dylib in Frameworks */,
 				0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */,
 				0C99B7B919AE913A00A60ABA /* OpenGLES.framework in Frameworks */,
 				0C99B7A219AE911A00A60ABA /* OpenTok.framework in Frameworks */,
@@ -126,7 +117,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C99B78C19AE909300A60ABA /* XCTest.framework in Frameworks */,
 				0C99B78E19AE909300A60ABA /* UIKit.framework in Frameworks */,
 				0C99B78D19AE909300A60ABA /* Foundation.framework in Frameworks */,
 			);
@@ -157,14 +147,9 @@
 		0C99B76819AE909300A60ABA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C1685251A71920E00A507E3 /* libicucore.dylib */,
 				0C1685231A71920900A507E3 /* libc++.dylib */,
 				D4AF64351A23B5E20026C892 /* VideoToolbox.framework */,
-				0C99B7A319AE913A00A60ABA /* libstdc++.dylib */,
-				0C99B7A419AE913A00A60ABA /* libstdc++.6.0.9.dylib */,
-				0C99B7A519AE913A00A60ABA /* libpthread.dylib */,
 				0C99B7A619AE913A00A60ABA /* libsqlite3.dylib */,
-				0C99B7A719AE913A00A60ABA /* libxml2.dylib */,
 				0CC1C08219B7C6D600BD819F /* Accelerate.framework */,
 				0C99B7A819AE913A00A60ABA /* GLKit.framework */,
 				0C99B7A919AE913A00A60ABA /* SystemConfiguration.framework */,
@@ -179,7 +164,6 @@
 				0C99B76919AE909300A60ABA /* Foundation.framework */,
 				0C99B76B19AE909300A60ABA /* CoreGraphics.framework */,
 				0C99B76D19AE909300A60ABA /* UIKit.framework */,
-				0C99B78B19AE909300A60ABA /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -278,9 +262,6 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "TokBox Inc.";
 				TargetAttributes = {
-					0C99B76519AE909300A60ABA = {
-						DevelopmentTeam = MGD69Q275W;
-					};
 					0C99B78919AE909300A60ABA = {
 						TestTargetID = 0C99B76519AE909300A60ABA;
 					};
@@ -471,8 +452,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -480,9 +459,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Screen-Sharing/Screen-Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
-				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -492,8 +469,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -502,7 +477,6 @@
 				GCC_PREFIX_HEADER = "Screen-Sharing/Screen-Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

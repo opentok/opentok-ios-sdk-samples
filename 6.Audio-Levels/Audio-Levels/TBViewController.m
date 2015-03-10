@@ -159,7 +159,7 @@ OTPublisherDelegate>{
 - (void)sessionDidConnect:(OTSession *)session
 {
     // now publish
-	OTError *error;
+    OTError *error = nil;
 	[_session publish:_publisher error:&error];
     if (error)
     {

@@ -19,14 +19,12 @@
 		D44261FC185FC8D600E23699 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44261FA185FC8D600E23699 /* Main_iPad.storyboard */; };
 		D44261FF185FC8D600E23699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261FE185FC8D600E23699 /* ViewController.m */; };
 		D4426201185FC8D600E23699 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4426200185FC8D600E23699 /* Images.xcassets */; };
-		D4426208185FC8D600E23699 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426207185FC8D600E23699 /* XCTest.framework */; };
 		D4426209185FC8D600E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44261E5185FC8D600E23699 /* Foundation.framework */; };
 		D442620A185FC8D600E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44261E9185FC8D600E23699 /* UIKit.framework */; };
 		D4426212185FC8D600E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426210185FC8D600E23699 /* InfoPlist.strings */; };
 		D4426214185FC8D600E23699 /* Live_Photo_CaptureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426213185FC8D600E23699 /* Live_Photo_CaptureTests.m */; };
 		D442621E185FC9F800E23699 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442621D185FC9F800E23699 /* OpenTok.framework */; };
 		D4426223185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426222185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m */; };
-		D4426233185FCDA700E23699 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426226185FCDA700E23699 /* libpthread.dylib */; };
 		D4426234185FCDA700E23699 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426227185FCDA700E23699 /* libsqlite3.dylib */; };
 		D4426236185FCDA700E23699 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426229185FCDA700E23699 /* SystemConfiguration.framework */; };
 		D4426237185FCDA700E23699 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442622A185FCDA700E23699 /* CoreTelephony.framework */; };
@@ -56,7 +54,6 @@
 
 /* Begin PBXFileReference section */
 		0C1685331A71930400A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		0C1685351A71930900A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A5D01FA91A3A1270005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D44261E2185FC8D600E23699 /* Live-Photo-Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Live-Photo-Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44261E5185FC8D600E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,7 +71,6 @@
 		D44261FE185FC8D600E23699 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D4426200185FC8D600E23699 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D4426206185FC8D600E23699 /* Live-Photo-CaptureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Live-Photo-CaptureTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4426207185FC8D600E23699 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D442620F185FC8D600E23699 /* Live-Photo-CaptureTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Live-Photo-CaptureTests-Info.plist"; sourceTree = "<group>"; };
 		D4426211185FC8D600E23699 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4426213185FC8D600E23699 /* Live_Photo_CaptureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Live_Photo_CaptureTests.m; sourceTree = "<group>"; };
@@ -83,11 +79,7 @@
 		D4426220185FCB6D00E23699 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		D4426221185FCB8F00E23699 /* TBExamplePhotoVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePhotoVideoCapture.h; sourceTree = "<group>"; };
 		D4426222185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePhotoVideoCapture.m; sourceTree = "<group>"; };
-		D4426224185FCDA700E23699 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		D4426225185FCDA700E23699 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		D4426226185FCDA700E23699 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		D4426227185FCDA700E23699 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		D4426228185FCDA700E23699 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D4426229185FCDA700E23699 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D442622A185FCDA700E23699 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		D442622B185FCDA700E23699 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -111,7 +103,6 @@
 			files = (
 				0C1685341A71930400A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FAA1A3A1270005D84F9 /* VideoToolbox.framework in Frameworks */,
-				D4426233185FCDA700E23699 /* libpthread.dylib in Frameworks */,
 				D4426234185FCDA700E23699 /* libsqlite3.dylib in Frameworks */,
 				D4426236185FCDA700E23699 /* SystemConfiguration.framework in Frameworks */,
 				D4426237185FCDA700E23699 /* CoreTelephony.framework in Frameworks */,
@@ -133,7 +124,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4426208185FC8D600E23699 /* XCTest.framework in Frameworks */,
 				D442620A185FC8D600E23699 /* UIKit.framework in Frameworks */,
 				D4426209185FC8D600E23699 /* Foundation.framework in Frameworks */,
 			);
@@ -166,14 +156,9 @@
 		D44261E4185FC8D600E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C1685351A71930900A507E3 /* libicucore.dylib */,
 				0C1685331A71930400A507E3 /* libc++.dylib */,
 				A5D01FA91A3A1270005D84F9 /* VideoToolbox.framework */,
-				D4426224185FCDA700E23699 /* libstdc++.dylib */,
-				D4426225185FCDA700E23699 /* libstdc++.6.0.9.dylib */,
-				D4426226185FCDA700E23699 /* libpthread.dylib */,
 				D4426227185FCDA700E23699 /* libsqlite3.dylib */,
-				D4426228185FCDA700E23699 /* libxml2.dylib */,
 				D4F8FD9C194125D100364672 /* GLKit.framework */,
 				D4426229185FCDA700E23699 /* SystemConfiguration.framework */,
 				D442622A185FCDA700E23699 /* CoreTelephony.framework */,
@@ -187,7 +172,6 @@
 				D44261E5185FC8D600E23699 /* Foundation.framework */,
 				D44261E7185FC8D600E23699 /* CoreGraphics.framework */,
 				D44261E9185FC8D600E23699 /* UIKit.framework */,
-				D4426207185FC8D600E23699 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -295,7 +279,7 @@
 		D44261DA185FC8D600E23699 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
 					D4426205185FC8D600E23699 = {
@@ -536,7 +520,6 @@
 		D442621B185FC8D600E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Live-Photo-Capture.app/Live-Photo-Capture";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -559,7 +542,6 @@
 		D442621C185FC8D600E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Live-Photo-Capture.app/Live-Photo-Capture";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

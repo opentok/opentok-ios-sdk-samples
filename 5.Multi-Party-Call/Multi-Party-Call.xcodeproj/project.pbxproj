@@ -49,7 +49,6 @@
 		A5B6110118F2845100841E6B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */; };
 		A5B6110718F2845100841E6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6110618F2845100841E6B /* ViewController.m */; };
 		A5B6110918F2845100841E6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B6110818F2845100841E6B /* Images.xcassets */; };
-		A5B6111018F2845100841E6B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6110F18F2845100841E6B /* XCTest.framework */; };
 		A5B6111118F2845100841E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610ED18F2845100841E6B /* Foundation.framework */; };
 		A5B6111218F2845100841E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610F118F2845100841E6B /* UIKit.framework */; };
 		A5B6111A18F2845100841E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B6111818F2845100841E6B /* InfoPlist.strings */; };
@@ -77,7 +76,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0C16852B1A71925100A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0C16852D1A71925600A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		A554AF90190A9B3100A6910E /* archiving_on-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-5.png"; sourceTree = "<group>"; };
 		A554AF91190A9B3100A6910E /* archiving_on-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-5@2x.png"; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 		A5B6110618F2845100841E6B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A5B6110818F2845100841E6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A5B6110E18F2845100841E6B /* Multi-Party-CallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Multi-Party-CallTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5B6110F18F2845100841E6B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A5B6111718F2845100841E6B /* Multi-Party-CallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Multi-Party-CallTests-Info.plist"; sourceTree = "<group>"; };
 		A5B6111918F2845100841E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Multi_Party_CallTests.m; sourceTree = "<group>"; };
@@ -139,10 +136,8 @@
 		A5B6113E18F29AA100841E6B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A5B6114018F29B7400841E6B /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
 		A5B6114118F29B7400841E6B /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
-		A5B6114518F29C2200841E6B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		A5D01FB51A3A136E005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D492D19319547ECF00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,7 +165,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5B6111018F2845100841E6B /* XCTest.framework in Frameworks */,
 				A5B6111218F2845100841E6B /* UIKit.framework in Frameworks */,
 				A5B6111118F2845100841E6B /* Foundation.framework in Frameworks */,
 			);
@@ -202,10 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				0C16852D1A71925600A507E3 /* libc++.dylib */,
-				0C16852B1A71925100A507E3 /* libicucore.dylib */,
 				A5D01FB51A3A136E005D84F9 /* VideoToolbox.framework */,
-				D492D19519547F0600F4F534 /* libstdc++.6.0.9.dylib */,
-				A5B6114518F29C2200841E6B /* libxml2.dylib */,
 				A5B6113E18F29AA100841E6B /* libsqlite3.dylib */,
 				D492D19319547ECF00F4F534 /* GLKit.framework */,
 				A5B6113C18F29A9A00841E6B /* CoreMedia.framework */,
@@ -217,7 +208,6 @@
 				A5B610ED18F2845100841E6B /* Foundation.framework */,
 				A5B610EF18F2845100841E6B /* CoreGraphics.framework */,
 				A5B610F118F2845100841E6B /* UIKit.framework */,
-				A5B6110F18F2845100841E6B /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -343,12 +333,9 @@
 		A5B610E218F2845100841E6B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Tokbox;
 				TargetAttributes = {
-					A5B610E918F2845100841E6B = {
-						DevelopmentTeam = WNJ2NMESL3;
-					};
 					A5B6110D18F2845100841E6B = {
 						TestTargetID = A5B610E918F2845100841E6B;
 					};
@@ -609,7 +596,6 @@
 		A5B6112318F2845100841E6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Multi-Party-Call.app/Multi-Party-Call";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -632,7 +618,6 @@
 		A5B6112418F2845100841E6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Multi-Party-Call.app/Multi-Party-Call";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

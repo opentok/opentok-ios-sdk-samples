@@ -27,7 +27,6 @@
 		A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BBE18C085AD001E082A /* Main_iPad.storyboard */; };
 		A56B2BC318C085AD001E082A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BC218C085AD001E082A /* ViewController.m */; };
 		A56B2BC518C085AD001E082A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BC418C085AD001E082A /* Images.xcassets */; };
-		A56B2BCC18C085AD001E082A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BCB18C085AD001E082A /* XCTest.framework */; };
 		A56B2BCD18C085AD001E082A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BA918C085AD001E082A /* Foundation.framework */; };
 		A56B2BCE18C085AE001E082A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BAD18C085AD001E082A /* UIKit.framework */; };
 		A56B2BD618C085AE001E082A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BD418C085AE001E082A /* InfoPlist.strings */; };
@@ -75,7 +74,6 @@
 
 /* Begin PBXFileReference section */
 		0C16852F1A71927700A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		0C1685311A71927C00A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
 		A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small@2x.png"; sourceTree = "<group>"; };
 		A535047318FD469B00E68BD9 /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 		A56B2BC218C085AD001E082A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A56B2BC418C085AD001E082A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A56B2BCA18C085AD001E082A /* Overlay-GraphicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overlay-GraphicsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A56B2BCB18C085AD001E082A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A56B2BD318C085AE001E082A /* Overlay-GraphicsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Overlay-GraphicsTests-Info.plist"; sourceTree = "<group>"; };
 		A56B2BD518C085AE001E082A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A56B2BD718C085AE001E082A /* Overlay_GraphicsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Overlay_GraphicsTests.m; sourceTree = "<group>"; };
@@ -116,9 +113,6 @@
 		A5A607E418C08B8A00192466 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		A5A607E618C08B9B00192466 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A5A607E818C08BA100192466 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		A5A607EA18C08BAB00192466 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		A5A607EC18C08BB900192466 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
-		A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
 		A5A607F618C08F3D00192466 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A5A607F818C08F4B00192466 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A5A6080E18C0921800192466 /* TBExampleOverlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleOverlayButton.h; sourceTree = "<group>"; };
@@ -175,7 +169,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A56B2BCC18C085AD001E082A /* XCTest.framework in Frameworks */,
 				A56B2BCE18C085AE001E082A /* UIKit.framework in Frameworks */,
 				A56B2BCD18C085AD001E082A /* Foundation.framework in Frameworks */,
 			);
@@ -207,13 +200,9 @@
 		A56B2BA818C085AD001E082A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C1685311A71927C00A507E3 /* libicucore.dylib */,
 				0C16852F1A71927700A507E3 /* libc++.dylib */,
 				A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */,
 				A5A607E018C08B6B00192466 /* OpenTok.framework */,
-				A5A607EE18C08C4F00192466 /* libstdc++.6.0.9.dylib */,
-				A5A607EC18C08BB900192466 /* libstdc++.dylib */,
-				A5A607EA18C08BAB00192466 /* libxml2.dylib */,
 				A5A607E818C08BA100192466 /* libsqlite3.dylib */,
 				D4F8FDAE194129C400364672 /* OpenGLES.framework */,
 				D4F8FDAC194129B900364672 /* GLKit.framework */,
@@ -225,7 +214,6 @@
 				A56B2BA918C085AD001E082A /* Foundation.framework */,
 				A56B2BAB18C085AD001E082A /* CoreGraphics.framework */,
 				A56B2BAD18C085AD001E082A /* UIKit.framework */,
-				A56B2BCB18C085AD001E082A /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -371,7 +359,7 @@
 		A56B2B9E18C085AD001E082A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Tokbox;
 				TargetAttributes = {
 					A56B2BC918C085AD001E082A = {
@@ -605,7 +593,6 @@
 				);
 				INFOPLIST_FILE = "Overlay-Graphics/Overlay-Graphics-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -631,7 +618,6 @@
 				);
 				INFOPLIST_FILE = "Overlay-Graphics/Overlay-Graphics-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -640,7 +626,6 @@
 		A56B2BDF18C085AE001E082A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Overlay-Graphics.app/Overlay-Graphics";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -663,7 +648,6 @@
 		A56B2BE018C085AE001E082A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Overlay-Graphics.app/Overlay-Graphics";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",

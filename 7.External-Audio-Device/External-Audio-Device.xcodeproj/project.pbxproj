@@ -18,7 +18,6 @@
 		0CBBA406196B5192005F55D4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA404196B5192005F55D4 /* Main_iPad.storyboard */; };
 		0CBBA409196B5192005F55D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA408196B5192005F55D4 /* ViewController.m */; };
 		0CBBA40B196B5192005F55D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA40A196B5192005F55D4 /* Images.xcassets */; };
-		0CBBA412196B5192005F55D4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA411196B5192005F55D4 /* XCTest.framework */; };
 		0CBBA413196B5192005F55D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA3EF196B5192005F55D4 /* Foundation.framework */; };
 		0CBBA414196B5192005F55D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA3F3196B5192005F55D4 /* UIKit.framework */; };
 		0CBBA41C196B5192005F55D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA41A196B5192005F55D4 /* InfoPlist.strings */; };
@@ -33,7 +32,6 @@
 		0CBBA43B196B5482005F55D4 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA432196B5482005F55D4 /* GLKit.framework */; };
 		0CBBA43C196B5482005F55D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA433196B5482005F55D4 /* QuartzCore.framework */; };
 		0CBBA43D196B5482005F55D4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA434196B5482005F55D4 /* SystemConfiguration.framework */; };
-		0CBBA441196B55E0005F55D4 /* libpthread.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA440196B55E0005F55D4 /* libpthread.dylib */; };
 		0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */; };
 		23C817701978929E00A35EAB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C8176F1978929E00A35EAB /* OpenTok.framework */; };
 		A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */; };
@@ -51,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		0C16851F1A71913F00A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		0C1685211A71914700A507E3 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		0CBBA3EC196B5192005F55D4 /* External-Audio-Device.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "External-Audio-Device.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CBBA3EF196B5192005F55D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0CBBA3F1196B5192005F55D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,7 +65,6 @@
 		0CBBA408196B5192005F55D4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0CBBA40A196B5192005F55D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0CBBA410196B5192005F55D4 /* External-Audio-DeviceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "External-Audio-DeviceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CBBA411196B5192005F55D4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		0CBBA419196B5192005F55D4 /* External-Audio-DeviceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "External-Audio-DeviceTests-Info.plist"; sourceTree = "<group>"; };
 		0CBBA41B196B5192005F55D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CBBA41D196B5192005F55D4 /* External_Audio_DeviceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = External_Audio_DeviceTests.m; sourceTree = "<group>"; };
@@ -83,11 +79,7 @@
 		0CBBA432196B5482005F55D4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		0CBBA433196B5482005F55D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0CBBA434196B5482005F55D4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		0CBBA43E196B5558005F55D4 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "usr/lib/libstdc++.6.0.9.dylib"; sourceTree = SDKROOT; };
-		0CBBA440196B55E0005F55D4 /* libpthread.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpthread.dylib; path = usr/lib/libpthread.dylib; sourceTree = SDKROOT; };
 		0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		0CBBA444196B55F0005F55D4 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
-		0CBBA446196B55F9005F55D4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		23C8176F1978929E00A35EAB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -100,7 +92,6 @@
 				0C1685201A71913F00A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */,
 				0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */,
-				0CBBA441196B55E0005F55D4 /* libpthread.dylib in Frameworks */,
 				0CBBA435196B5482005F55D4 /* AudioToolbox.framework in Frameworks */,
 				0CBBA436196B5482005F55D4 /* AVFoundation.framework in Frameworks */,
 				0CBBA437196B5482005F55D4 /* CoreAudio.framework in Frameworks */,
@@ -121,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CBBA412196B5192005F55D4 /* XCTest.framework in Frameworks */,
 				0CBBA414196B5192005F55D4 /* UIKit.framework in Frameworks */,
 				0CBBA413196B5192005F55D4 /* Foundation.framework in Frameworks */,
 			);
@@ -152,15 +142,10 @@
 		0CBBA3EE196B5192005F55D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0C1685211A71914700A507E3 /* libicucore.dylib */,
 				0C16851F1A71913F00A507E3 /* libc++.dylib */,
 				A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */,
-				0CBBA446196B55F9005F55D4 /* libxml2.dylib */,
 				23C8176F1978929E00A35EAB /* OpenTok.framework */,
-				0CBBA444196B55F0005F55D4 /* libxml2.2.dylib */,
 				0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */,
-				0CBBA440196B55E0005F55D4 /* libpthread.dylib */,
-				0CBBA43E196B5558005F55D4 /* libstdc++.6.0.9.dylib */,
 				0CBBA42C196B5482005F55D4 /* AudioToolbox.framework */,
 				0CBBA42D196B5482005F55D4 /* AVFoundation.framework */,
 				0CBBA42E196B5482005F55D4 /* CoreAudio.framework */,
@@ -173,7 +158,6 @@
 				0CBBA3EF196B5192005F55D4 /* Foundation.framework */,
 				0CBBA3F1196B5192005F55D4 /* CoreGraphics.framework */,
 				0CBBA3F3196B5192005F55D4 /* UIKit.framework */,
-				0CBBA411196B5192005F55D4 /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -268,7 +252,7 @@
 		0CBBA3E4196B5192005F55D4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "TokBox Inc.";
 				TargetAttributes = {
 					0CBBA40F196B5192005F55D4 = {
