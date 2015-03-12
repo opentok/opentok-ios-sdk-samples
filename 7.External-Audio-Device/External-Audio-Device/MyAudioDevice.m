@@ -96,8 +96,10 @@ static void print_error(const char* error, OSStatus code);
     AudioUnit voice_unit;
     uint32_t _recordingDelay;
     uint32_t _playoutDelay;
+    Float64 _playout_AudioUnitProperty_Latency;
     uint32_t _playoutDelayMeasurementCounter;
     uint32_t _recordingDelayHWAndOS;
+    Float64 _recording_AudioUnitProperty_Latency;
     uint32_t _recordingDelayMeasurementCounter;
 }
 
@@ -436,6 +438,37 @@ static void print_error(const char* error, OSStatus code) {
         return NO;
     }
     
+    // AU latency - playout
+    Float64 f64 = 0;
+    UInt32 size = sizeof(f64);
+    OSStatus latency_result = AudioUnitGetProperty(voice_unit,
+                                                   kAudioUnitProperty_Latency,
+                                                   kAudioUnitScope_Global,
+                                                   0, &f64, &size);
+    if (0 == latency_result)
+    {
+        _playout_AudioUnitProperty_Latency = f64;
+    }
+    else
+    {
+        _playout_AudioUnitProperty_Latency = 0;
+    }
+    
+    // AU latency - recording
+    f64 = 0;
+    size = sizeof(f64);
+    latency_result = AudioUnitGetProperty(voice_unit,
+                                          kAudioUnitProperty_Latency,
+                                          kAudioUnitScope_Global, 0, &f64, &size);
+    if (0 == latency_result)
+    {
+        _recording_AudioUnitProperty_Latency = f64;
+    }
+    else
+    {
+        _recording_AudioUnitProperty_Latency = 0;
+    }
+    
     UInt16 bus_num = kMixerStreamInStart;
     for (; bus_num < kMixerBusCount; ++bus_num) {
         
@@ -726,16 +759,7 @@ static void update_recording_delay(MyAudioDevice* device) {
 		device->_recordingDelayHWAndOS += (int)(interval * 1000000);
 		
 		// AU latency
-		Float64 f64 = 0;
-		UInt32 size = sizeof(f64);
-		OSStatus result = AudioUnitGetProperty(device->voice_unit,
-                                               kAudioUnitProperty_Latency,
-                                               kAudioUnitScope_Global,
-                                               0,
-                                               &f64,
-                                               &size);
-		if (0 != result) { return  ; }
-		device->_recordingDelayHWAndOS += (int)(f64 * 1000000);
+        device->_recordingDelayHWAndOS += (int)(device->_recording_AudioUnitProperty_Latency * 1000000);
 		
 		// To ms
 		device->_recordingDelayHWAndOS =
@@ -839,14 +863,7 @@ static void update_playout_delay(MyAudioDevice* device) {
 		device->_playoutDelay += (int)(interval * 1000000);
 		
 		// AU latency
-		Float64 f64 = 0;
-		UInt32 size = sizeof(f64);
-		OSStatus result = AudioUnitGetProperty(device->voice_unit,
-                                               kAudioUnitProperty_Latency,
-                                               kAudioUnitScope_Global,
-                                               0, &f64, &size);
-		if (0 != result) { return ; }
-		device->_playoutDelay += (int)(f64 * 1000000);
+        device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * 1000000);
 		
 		// To ms
 		device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
