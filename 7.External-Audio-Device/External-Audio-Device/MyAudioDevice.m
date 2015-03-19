@@ -121,12 +121,12 @@ static void print_error(const char* error, OSStatus code);
     _audioFormat.sampleRate = kSampleRate;
     _audioFormat.numChannels = 1;
     
-    return [self setupAudio];
+    return YES; //[self setupAudio];
 }
 
 - (void)dealloc
 {
-    [self teardownAudio];
+    [self stopRenderingAndCapturing];
     _audioFormat = nil;
 }
 
@@ -155,7 +155,7 @@ static void print_error(const char* error, OSStatus code);
         return YES;
     }
     playout_initialized = true;
-	return YES;
+    return YES;
 }
 
 - (BOOL)renderingIsInitialized
@@ -178,7 +178,7 @@ static void print_error(const char* error, OSStatus code);
         return YES;
     }
     recording_initialized = true;
-	return YES;
+    return YES;
 }
 
 - (BOOL)captureIsInitialized
@@ -197,7 +197,7 @@ static void print_error(const char* error, OSStatus code);
     }
     
     playing = [self startRenderingAndCapturing];
-	return playing;
+    return playing;
 }
 
 - (BOOL)stopRendering
@@ -224,7 +224,7 @@ static void print_error(const char* error, OSStatus code);
     }
     
     recording = [self startRenderingAndCapturing];
-	return recording;
+    return recording;
 }
 
 - (BOOL)stopCapture
@@ -266,13 +266,18 @@ static void print_error(const char* error, OSStatus code) {
 - (void) teardownAudio
 {
     [self removeObservers];
-    [self stopRenderingAndCapturing];
+    
     if (au_graph) {
         DisposeAUGraph(au_graph);
+        au_graph = NULL;
     }
     if (buffer_list) {
         free(buffer_list);
+        buffer_list = NULL;
+        buffer_list_size = 0;
     }
+    
+    audioGraphInitialized = NO;
 }
 
 - (void) setupAudioSession
@@ -379,13 +384,13 @@ static void print_error(const char* error, OSStatus code) {
     }
     
     UInt32 flag = 1;
-	result = AudioUnitSetProperty(voice_unit,
+    result = AudioUnitSetProperty(voice_unit,
                                   kAudioOutputUnitProperty_EnableIO,
                                   kAudioUnitScope_Output,
                                   kOutputBus,
                                   &flag,
                                   sizeof (flag));
-	if (noErr != result) {
+    if (noErr != result) {
         print_error("AudioUnitSetProperty Enable Output", result);
         return NO;
     }
@@ -461,7 +466,7 @@ static void print_error(const char* error, OSStatus code) {
     }
     
     AudioUnitParameterValue is_off = 0;
-	result = AudioUnitSetParameter(mixer_unit,
+    result = AudioUnitSetParameter(mixer_unit,
                                    kMultiChannelMixerParam_Enable,
                                    kAudioUnitScope_Input,
                                    kMicBus,
@@ -474,12 +479,12 @@ static void print_error(const char* error, OSStatus code) {
     }
     
     AURenderCallbackStruct output_cb;
-	output_cb.inputProc = recording_cb;
+    output_cb.inputProc = recording_cb;
     output_cb.inputProcRefCon = (__bridge void *)(self);
-	result = AUGraphSetNodeInputCallback (au_graph,
-										  mixer_node,
-										  kMicBus,
-										  &output_cb);
+    result = AUGraphSetNodeInputCallback (au_graph,
+                                          mixer_node,
+                                          kMicBus,
+                                          &output_cb);
     if (noErr != result) {
         print_error("AudioUnitSetProperty callback setup",
                     result);
@@ -488,19 +493,19 @@ static void print_error(const char* error, OSStatus code) {
     
     UInt16 busNumber = kMixerStreamInStart;
     for (; busNumber < kMixerBusCount; ++busNumber) {
-		
+        
         result = AudioUnitSetProperty(mixer_unit,
                                       kAudioUnitProperty_StreamFormat,
                                       kAudioUnitScope_Input,
                                       busNumber,
                                       &stream_format,
                                       sizeof (stream_format));
-		if (noErr != result) {
+        if (noErr != result) {
             print_error("AudioUnitSetParameter (enable the mixer unit)",
                         result);
             return NO;
         }
-	}
+    }
     
     result = AudioUnitSetProperty(mixer_unit,
                                   kAudioUnitProperty_StreamFormat,
@@ -550,9 +555,9 @@ static void print_error(const char* error, OSStatus code) {
         return NO;
     }
     
-#ifdef DEBUG
+    //#ifdef DEBUG
     CAShow (au_graph);
-#endif
+    //#endif
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     
@@ -656,7 +661,7 @@ static void print_error(const char* error, OSStatus code) {
         return YES;
     }
     auGraphStarted = YES;
-    [self setupAudioSession];
+    BOOL ret = [self setupAudio];
     OSStatus result = AUGraphStart(au_graph);
     if (noErr != result) {
         print_error("AUGraphStart", result);
@@ -678,6 +683,7 @@ static void print_error(const char* error, OSStatus code) {
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     
     [mySession setCategory:avAudioSessionCatigory error:nil];
+    [self teardownAudio];
     
     if (noErr != result) {
         print_error("AUGraphStop", result);
@@ -706,46 +712,46 @@ static void CheckError(OSStatus error, const char *operation) {
 }
 
 static void update_recording_delay(MyAudioDevice* device) {
-	device->_recordingDelayMeasurementCounter++;
-	
-	if (device->_recordingDelayMeasurementCounter >= 100) {
-		// Update HW and OS delay every second, unlikely to change
-		
-		device->_recordingDelayHWAndOS = 0;
-		
-		// HW input latency
+    device->_recordingDelayMeasurementCounter++;
+    
+    if (device->_recordingDelayMeasurementCounter >= 100) {
+        // Update HW and OS delay every second, unlikely to change
+        
+        device->_recordingDelayHWAndOS = 0;
+        
+        // HW input latency
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
         // HW output latency
         NSTimeInterval interval = [mySession outputLatency];
         
-		device->_recordingDelayHWAndOS += (int)(interval * 1000000);
-		
-		// HW buffer duration
+        device->_recordingDelayHWAndOS += (int)(interval * 1000000);
+        
+        // HW buffer duration
         interval = [mySession IOBufferDuration];
-		device->_recordingDelayHWAndOS += (int)(interval * 1000000);
-		
-		// AU latency
-		Float64 f64 = 0;
-		UInt32 size = sizeof(f64);
-		OSStatus result = AudioUnitGetProperty(device->voice_unit,
+        device->_recordingDelayHWAndOS += (int)(interval * 1000000);
+        
+        // AU latency
+        Float64 f64 = 0;
+        UInt32 size = sizeof(f64);
+        OSStatus result = AudioUnitGetProperty(device->voice_unit,
                                                kAudioUnitProperty_Latency,
                                                kAudioUnitScope_Global,
                                                0,
                                                &f64,
                                                &size);
-		if (0 != result) { return  ; }
-		device->_recordingDelayHWAndOS += (int)(f64 * 1000000);
-		
-		// To ms
-		device->_recordingDelayHWAndOS =
+        if (0 != result) { return  ; }
+        device->_recordingDelayHWAndOS += (int)(f64 * 1000000);
+        
+        // To ms
+        device->_recordingDelayHWAndOS =
         (device->_recordingDelayHWAndOS - 500) / 1000;
-		
-		// Reset counter
-		device->_recordingDelayMeasurementCounter = 0;
-	}
-	
-	device->_recordingDelay = device->_recordingDelayHWAndOS;
+        
+        // Reset counter
+        device->_recordingDelayMeasurementCounter = 0;
+    }
+    
+    device->_recordingDelay = device->_recordingDelayHWAndOS;
 }
 
 static OSStatus recording_cb(void *ref_con,
@@ -756,62 +762,62 @@ static OSStatus recording_cb(void *ref_con,
                              AudioBufferList *data)
 {
     MyAudioDevice *dev = (__bridge MyAudioDevice*) ref_con;
-	
-	if (!dev->buffer_list || num_frames > dev->buffer_list_size)
-	{
+    
+    if (!dev->buffer_list || num_frames > dev->buffer_list_size)
+    {
         if (dev->buffer_list) {
             free(dev->buffer_list->mBuffers[0].mData);
             free(dev->buffer_list);
         }
-
-		dev->buffer_list =
+        
+        dev->buffer_list =
         (AudioBufferList*)malloc(sizeof(AudioBufferList) + sizeof(AudioBuffer));
         dev->buffer_list->mNumberBuffers = 1;
-		dev->buffer_list->mBuffers[0].mNumberChannels = 1;
-		
-		dev->buffer_list->mBuffers[0].mDataByteSize = num_frames*sizeof(UInt16);
-		dev->buffer_list->mBuffers[0].mData = malloc(num_frames*sizeof(UInt16));
+        dev->buffer_list->mBuffers[0].mNumberChannels = 1;
+        
+        dev->buffer_list->mBuffers[0].mDataByteSize = num_frames*sizeof(UInt16);
+        dev->buffer_list->mBuffers[0].mData = malloc(num_frames*sizeof(UInt16));
         
         dev->buffer_list_size = num_frames;
-	}
-	
+    }
+    
     OSStatus status;
-	
-	uint64_t time = time_stamp->mHostTime;
-	/* Convert to nanoseconds */
-	time *= info.numer;
-	time /= info.denom;
-	
-	status = AudioUnitRender(dev->voice_unit,
+    
+    uint64_t time = time_stamp->mHostTime;
+    /* Convert to nanoseconds */
+    time *= info.numer;
+    time /= info.denom;
+    
+    status = AudioUnitRender(dev->voice_unit,
                              action_flags,
                              time_stamp,
                              1,
                              num_frames,
                              dev->buffer_list);
     
-	if (status != noErr) {
-		CheckError(status, "AudioUnitRender Failed");
-	}
-	
+    if (status != noErr) {
+        CheckError(status, "AudioUnitRender Failed");
+    }
+    
     if (dev->recording) {
         
         // Some sample code to generate a sine wave instead of use the mic
-//        static double startingFrameCount = 0;
-//        double j = startingFrameCount;
-//        double cycleLength = kSampleRate. / 880.0;
-//        int frame = 0;
-//        for (frame = 0; frame < num_frames; ++frame)
-//        {
-//            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
-//            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
-//            (data)[frame] = (sample * 32767.0f);
-//            j += 1.0;
-//            if (j > cycleLength)
-//                j -= cycleLength;
-//        }
-//        startingFrameCount = j;
+        //        static double startingFrameCount = 0;
+        //        double j = startingFrameCount;
+        //        double cycleLength = kSampleRate. / 880.0;
+        //        int frame = 0;
+        //        for (frame = 0; frame < num_frames; ++frame)
+        //        {
+        //            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
+        //            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
+        //            (data)[frame] = (sample * 32767.0f);
+        //            j += 1.0;
+        //            if (j > cycleLength)
+        //                j -= cycleLength;
+        //        }
+        //        startingFrameCount = j;
         [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
-                    numberOfSamples:num_frames];
+                         numberOfSamples:num_frames];
     }
     
     update_recording_delay(dev);
@@ -820,40 +826,40 @@ static OSStatus recording_cb(void *ref_con,
 }
 
 static void update_playout_delay(MyAudioDevice* device) {
-	device->_playoutDelayMeasurementCounter++;
-	
-	if (device->_playoutDelayMeasurementCounter >= 100) {
-		// Update HW and OS delay every second, unlikely to change
-		
-		device->_playoutDelay = 0;
-		
+    device->_playoutDelayMeasurementCounter++;
+    
+    if (device->_playoutDelayMeasurementCounter >= 100) {
+        // Update HW and OS delay every second, unlikely to change
+        
+        device->_playoutDelay = 0;
+        
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
         // HW output latency
         NSTimeInterval interval = [mySession outputLatency];
-		
-		device->_playoutDelay += (int)(interval * 1000000);
-		
-		// HW buffer duration
-		interval = [mySession IOBufferDuration];
-		device->_playoutDelay += (int)(interval * 1000000);
-		
-		// AU latency
-		Float64 f64 = 0;
-		UInt32 size = sizeof(f64);
-		OSStatus result = AudioUnitGetProperty(device->voice_unit,
+        
+        device->_playoutDelay += (int)(interval * 1000000);
+        
+        // HW buffer duration
+        interval = [mySession IOBufferDuration];
+        device->_playoutDelay += (int)(interval * 1000000);
+        
+        // AU latency
+        Float64 f64 = 0;
+        UInt32 size = sizeof(f64);
+        OSStatus result = AudioUnitGetProperty(device->voice_unit,
                                                kAudioUnitProperty_Latency,
                                                kAudioUnitScope_Global,
                                                0, &f64, &size);
-		if (0 != result) { return ; }
-		device->_playoutDelay += (int)(f64 * 1000000);
-		
-		// To ms
-		device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
-		
-		// Reset counter
-		device->_playoutDelayMeasurementCounter = 0;
-	}
+        if (0 != result) { return ; }
+        device->_playoutDelay += (int)(f64 * 1000000);
+        
+        // To ms
+        device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
+        
+        // Reset counter
+        device->_playoutDelayMeasurementCounter = 0;
+    }
 }
 
 static OSStatus playout_cb(void *ref_con,
@@ -869,7 +875,7 @@ static OSStatus playout_cb(void *ref_con,
     
     uint32_t count =
     [dev->_audioBus readRenderData:buffer_list->mBuffers[0].mData
-                 numberOfSamples:num_frames];
+                   numberOfSamples:num_frames];
     
     if (count != num_frames) {
         //TODO: Not really an error, but conerning. Network issues?
@@ -891,16 +897,16 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)detectCurrentRoute
 {
-	// called on startup to initialize the devices that are available...
-	NSLog(@"detect current route");
-	
-	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-	NSError *err;
+    // called on startup to initialize the devices that are available...
+    NSLog(@"detect current route");
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    NSError *err;
     
     //ios 8.0 complains about Deactivating an audio session that has running
     // I/O. All I/O should be stopped or paused prior to deactivating the audio
     // session. Looks like we can get away by not using the setActive call
-	if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
+    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
         // close down our current session...
         [audioSession setActive:NO error:nil];
         
@@ -908,18 +914,18 @@ static OSStatus playout_cb(void *ref_con,
         // always be (inputs: null, outputs: Speaker)
         [audioSession setActive:YES error:nil];
     }
-
     
-	// Open a session and see what our default is...
-	if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+    
+    // Open a session and see what our default is...
+    if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
                        withOptions:AVAudioSessionCategoryOptionAllowBluetooth
                              error:&err])
     {
-		NSLog(@"unable to set audioSession category: %@", err);
-		return NO;
-	}
-	
-	// Check for current route
+        NSLog(@"unable to set audioSession category: %@", err);
+        return NO;
+    }
+    
+    // Check for current route
     AVAudioSessionRouteDescription *currentRoute = [audioSession currentRoute];
     for (AVAudioSessionPortDescription *output in currentRoute.outputs) {
         if ([[output portType] isEqualToString:AVAudioSessionPortHeadphones]) {
@@ -929,26 +935,26 @@ static OSStatus playout_cb(void *ref_con,
         }
     }
     
-	if (_headsetDeviceAvailable) {
-		NSLog(@"Current route is Headset");
+    if (_headsetDeviceAvailable) {
+        NSLog(@"Current route is Headset");
     }
-	
-	if (_bluetoothDeviceAvailable) {
-		NSLog(@"Current route is Bluetooth");
+    
+    if (_bluetoothDeviceAvailable) {
+        NSLog(@"Current route is Bluetooth");
     }
     
     if(!_bluetoothDeviceAvailable && !_headsetDeviceAvailable) {
         NSLog(@"Current route is device speaker");
     }
-	
-	return YES;
+    
+    return YES;
 }
 
 - (BOOL)configureAudioSessionWithDesiredAudioRoute:(NSString *)desiredAudioRoute
 {
-	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-	NSError *err;
-	
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    NSError *err;
+    
     //ios 8.0 complains about Deactivating an audio session that has running
     // I/O. All I/O should be stopped or paused prior to deactivating the audio
     // session. Looks like we can get away by not using the setActive call
@@ -956,20 +962,20 @@ static OSStatus playout_cb(void *ref_con,
         // close down our current session...
         [audioSession setActive:NO error:nil];
     }
-	
+    
     NSUInteger audioOptions = 0;
     if ([AUDIO_DEVICE_BLUETOOTH isEqualToString:desiredAudioRoute]) {
         audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth;
     }
     
-	if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
+    if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
                        withOptions:audioOptions
                              error:&err])
     {
-		NSLog(@"unable to set audioSession category: %@", err);
-		return NO;
-	}
-	
+        NSLog(@"unable to set audioSession category: %@", err);
+        return NO;
+    }
+    
     if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
         // Set our session to active...
         if (![audioSession setActive:YES error:&err]) {
@@ -977,13 +983,13 @@ static OSStatus playout_cb(void *ref_con,
             return NO;
         }
     }
-	if ([AUDIO_DEVICE_SPEAKER isEqualToString:desiredAudioRoute]) {
+    if ([AUDIO_DEVICE_SPEAKER isEqualToString:desiredAudioRoute]) {
         // replace AudiosessionSetProperty (deprecated from iOS7) with
         // AVAudioSession overrideOutputAudioPort
-		[audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
                                         error:&err];
-	}
-	
-	return YES;
+    }
+    
+    return YES;
 }
 @end
