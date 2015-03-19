@@ -273,6 +273,12 @@ static void print_error(const char* error, OSStatus code) {
         DisposeAUGraph(au_graph);
         au_graph = NULL;
     }
+    
+    if (buffer_list && buffer_list->mBuffers[0].mData) {
+        free(buffer_list->mBuffers[0].mData);
+        buffer_list->mBuffers[0].mData = NULL;
+    }
+    
     if (buffer_list) {
         free(buffer_list);
         buffer_list = NULL;
