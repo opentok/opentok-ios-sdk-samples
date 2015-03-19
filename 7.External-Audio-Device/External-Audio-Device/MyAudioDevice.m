@@ -123,12 +123,12 @@ static void print_error(const char* error, OSStatus code);
     _audioFormat.sampleRate = kSampleRate;
     _audioFormat.numChannels = 1;
     
-    return [self setupAudio];
+    return YES;
 }
 
 - (void)dealloc
 {
-    [self teardownAudio];
+    [self stopRenderingAndCapturing];
     _audioFormat = nil;
 }
 
@@ -271,10 +271,20 @@ static void print_error(const char* error, OSStatus code) {
     [self stopRenderingAndCapturing];
     if (au_graph) {
         DisposeAUGraph(au_graph);
+        au_graph = NULL;
     }
+    
+    if (buffer_list && buffer_list->mBuffers[0].mData) {
+        free(buffer_list->mBuffers[0].mData);
+        buffer_list->mBuffers[0].mData = NULL;
+    }
+    
     if (buffer_list) {
         free(buffer_list);
+        buffer_list = NULL;
+        buffer_list_size = 0;
     }
+    audioGraphInitialized = NO;
 }
 
 - (void) setupAudioSession
@@ -689,7 +699,12 @@ static void print_error(const char* error, OSStatus code) {
         return YES;
     }
     auGraphStarted = YES;
-    [self setupAudioSession];
+    if (NO == [self setupAudio]) {
+        print_error("Failed to create AUGraph", 0);
+        auGraphStarted = NO;
+        return auGraphStarted;
+    }
+    
     OSStatus result = AUGraphStart(au_graph);
     if (noErr != result) {
         print_error("AUGraphStart", result);
@@ -711,6 +726,8 @@ static void print_error(const char* error, OSStatus code) {
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     
     [mySession setCategory:avAudioSessionCatigory error:nil];
+    
+    [self teardownAudio];
     
     if (noErr != result) {
         print_error("AUGraphStop", result);
