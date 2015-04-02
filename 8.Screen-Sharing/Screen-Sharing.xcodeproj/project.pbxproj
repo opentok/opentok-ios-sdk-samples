@@ -36,6 +36,7 @@
 		0C99B7BE19AE913A00A60ABA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7B019AE913A00A60ABA /* QuartzCore.framework */; };
 		0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */; };
 		0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC1C08219B7C6D600BD819F /* Accelerate.framework */; };
+		28DDDB628DA40355DC810653 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABAC0704DF5C8CD82166D79 /* libPods.a */; };
 		D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AF64351A23B5E20026C892 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +86,10 @@
 		0CC1C07919B7C23F00BD819F /* TBScreenCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBScreenCapture.h; sourceTree = "<group>"; };
 		0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBScreenCapture.m; sourceTree = "<group>"; };
 		0CC1C08219B7C6D600BD819F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		1DB8C19FE827DF773911AE47 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D4AF64351A23B5E20026C892 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		DA2C941DD2794AED8097AB81 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FABAC0704DF5C8CD82166D79 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 				0C99B76A19AE909300A60ABA /* Foundation.framework in Frameworks */,
 				0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */,
 				0C99B7B619AE913A00A60ABA /* GLKit.framework in Frameworks */,
+				28DDDB628DA40355DC810653 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +137,7 @@
 				0C99B79119AE909300A60ABA /* Screen-SharingTests */,
 				0C99B76819AE909300A60ABA /* Frameworks */,
 				0C99B76719AE909300A60ABA /* Products */,
+				F9B2E00267E8C4BD7F08BAC9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +170,7 @@
 				0C99B76919AE909300A60ABA /* Foundation.framework */,
 				0C99B76B19AE909300A60ABA /* CoreGraphics.framework */,
 				0C99B76D19AE909300A60ABA /* UIKit.framework */,
+				FABAC0704DF5C8CD82166D79 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,6 +222,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		F9B2E00267E8C4BD7F08BAC9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1DB8C19FE827DF773911AE47 /* Pods.debug.xcconfig */,
+				DA2C941DD2794AED8097AB81 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -222,9 +238,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C99B79B19AE909300A60ABA /* Build configuration list for PBXNativeTarget "Screen-Sharing" */;
 			buildPhases = (
+				8D1A680295BD84105FCB195A /* Check Pods Manifest.lock */,
 				0C99B76219AE909300A60ABA /* Sources */,
 				0C99B76319AE909300A60ABA /* Frameworks */,
 				0C99B76419AE909300A60ABA /* Resources */,
+				6576CC2F88AFC325491AF9EE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -308,6 +326,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6576CC2F88AFC325491AF9EE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D1A680295BD84105FCB195A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C99B76219AE909300A60ABA /* Sources */ = {
@@ -449,6 +500,7 @@
 		};
 		0C99B79C19AE909300A60ABA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1DB8C19FE827DF773911AE47 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -466,6 +518,7 @@
 		};
 		0C99B79D19AE909300A60ABA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA2C941DD2794AED8097AB81 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

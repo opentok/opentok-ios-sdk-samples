@@ -1,0 +1,11 @@
+platform :ios, '6.0'
+
+target 'Audio-Levels' do
+
+end
+
+target 'Audio-LevelsTests' do
+
+end
+
+pod 'OpenTok'
