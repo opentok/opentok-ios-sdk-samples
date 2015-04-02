@@ -1,0 +1,13 @@
+platform :ios, '6.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Hello-World' do
+
+end
+
+target 'Hello-WorldTests' do
+
+end
+
+pod 'OpenTok'
