@@ -39,6 +39,7 @@
 		D44261BB185FA64100E23699 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = D44261B8185FA64100E23699 /* ShaderUtilities.c */; };
 		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; };
 		D44261D8185FAED800E23699 /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D7185FAED800E23699 /* TBExampleSubscriber.m */; };
+		D4873B2AFBABB0B876A84A96 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE0B7E4999C8669CFE3DDD4 /* libPods.a */; };
 		D4F8FD9F194125E300364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FD9E194125E300364672 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +55,9 @@
 
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		2DE0B7E4999C8669CFE3DDD4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets-Build-OTPublisher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442615D185FA27400E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D442615F185FA27400E23699 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +99,7 @@
 		D44261D6185FAED800E23699 /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
 		D44261D7185FAED800E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
 		D4F8FD9E194125E300364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 				D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */,
 				D4426162185FA27400E23699 /* UIKit.framework in Frameworks */,
 				D442615E185FA27400E23699 /* Foundation.framework in Frameworks */,
+				D4873B2AFBABB0B876A84A96 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +139,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32C39BF6C8D4AA2320F048E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */,
+				F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D4426151185FA27400E23699 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +156,7 @@
 				D4426185185FA27400E23699 /* Lets-Build-OTPublisherTests */,
 				D442615C185FA27400E23699 /* Frameworks */,
 				D442615B185FA27400E23699 /* Products */,
+				32C39BF6C8D4AA2320F048E3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -173,6 +188,7 @@
 				D442615D185FA27400E23699 /* Foundation.framework */,
 				D442615F185FA27400E23699 /* CoreGraphics.framework */,
 				D4426161185FA27400E23699 /* UIKit.framework */,
+				2DE0B7E4999C8669CFE3DDD4 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -238,9 +254,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D442618F185FA27400E23699 /* Build configuration list for PBXNativeTarget "Lets-Build-OTPublisher" */;
 			buildPhases = (
+				4470D3C3B09B0E2E9472C83A /* Check Pods Manifest.lock */,
 				D4426156185FA27400E23699 /* Sources */,
 				D4426157185FA27400E23699 /* Frameworks */,
 				D4426158185FA27400E23699 /* Resources */,
+				25FAD9C3916448A15EF6C000 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -324,6 +342,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25FAD9C3916448A15EF6C000 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4470D3C3B09B0E2E9472C83A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D4426156185FA27400E23699 /* Sources */ = {
@@ -469,11 +520,11 @@
 		};
 		D4426190185FA27400E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -489,11 +540,11 @@
 		};
 		D4426191185FA27400E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				FRAMEWORK_SEARCH_PATHS = "${SRCROOT}";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
