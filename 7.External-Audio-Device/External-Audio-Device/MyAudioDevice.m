@@ -204,10 +204,9 @@ static void print_error(const char* error, OSStatus code);
 
 - (BOOL)stopRendering
 {
-    BOOL ret = [self stopRenderingAndCapturing];
     playing = NO;
     playout_initialized = NO;
-    return ret;
+    return [self stopRenderingAndCapturing];
 }
 
 - (BOOL)isRendering
@@ -231,10 +230,9 @@ static void print_error(const char* error, OSStatus code);
 
 - (BOOL)stopCapture
 {
-    BOOL ret = [self stopRenderingAndCapturing];
     recording = NO;
     recording_initialized = NO;
-    return ret;
+    return [self stopRenderingAndCapturing];
 }
 
 - (BOOL)isCapturing
@@ -716,6 +714,11 @@ static void print_error(const char* error, OSStatus code) {
 {
     if (!auGraphStarted) {
         return YES;
+    }
+    
+    //Do not shut down if playing or recording is true.
+    if (recording || playing) {
+        return YES; //We have to lie a little bit here.
     }
     
     auGraphStarted = NO;
