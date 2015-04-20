@@ -82,6 +82,7 @@ static void print_error(const char* error, OSStatus code);
     BOOL recording_initialized;
     BOOL interrupted_playback;
     NSString* avAudioSessionCatigory;
+    BOOL isAudioSessionSetup;
 @public
     id _audioBus;
     
@@ -335,6 +336,7 @@ static void print_error(const char* error, OSStatus code) {
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     [mySession setCategory:avAudioSessionCatigory error:nil];
+    isAudioSessionSetup = NO;
 }
 
 - (void)freeupAudioBuffers
@@ -378,7 +380,11 @@ static void print_error(const char* error, OSStatus code) {
     
     mach_timebase_info(&info);
     
-    [self setupAudioSession];
+    if (!isAudioSessionSetup)
+    {
+        [self setupAudioSession];
+        isAudioSessionSetup = YES;
+    }
     
     size_t bytesPerSample = sizeof(SInt16);
     stream_format.mFormatID    = kAudioFormatLinearPCM;
