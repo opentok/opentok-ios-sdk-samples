@@ -82,6 +82,9 @@ static void print_error(const char* error, OSStatus code);
     BOOL recording_initialized;
     BOOL interrupted_playback;
     NSString* avAudioSessionCatigory;
+    NSString* avAudioSessionMode;
+    double avAudioSessionPreffSampleRate;
+    NSInteger avAudioSessionChannels;
     BOOL isAudioSessionSetup;
 @public
     id _audioBus;
@@ -336,6 +339,10 @@ static void print_error(const char* error, OSStatus code) {
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     [mySession setCategory:avAudioSessionCatigory error:nil];
+    [mySession setMode:avAudioSessionMode error:nil];
+    [mySession setPreferredSampleRate: avAudioSessionPreffSampleRate error: nil];
+    [mySession setPreferredInputNumberOfChannels:avAudioSessionChannels error:nil];
+
     isAudioSessionSetup = NO;
 }
 
@@ -356,6 +363,9 @@ static void print_error(const char* error, OSStatus code) {
 {
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     avAudioSessionCatigory = mySession.category;
+    avAudioSessionMode = mySession.mode;
+    avAudioSessionPreffSampleRate = mySession.preferredSampleRate;
+    avAudioSessionChannels = mySession.inputNumberOfChannels;
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [mySession setMode:AVAudioSessionModeVideoChat error:nil];
