@@ -21,7 +21,7 @@ your app.
 
 
 Application Notes
-=================
+-----------------
 
 * `recording_cb` and `playout_cb` are the two main operator functions in the
   audio graph once initialization has occurred and the session is active.
