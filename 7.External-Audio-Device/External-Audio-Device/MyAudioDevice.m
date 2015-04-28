@@ -340,8 +340,10 @@ static void print_error(const char* error, OSStatus code) {
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     [mySession setCategory:avAudioSessionCatigory error:nil];
     [mySession setMode:avAudioSessionMode error:nil];
-    [mySession setPreferredSampleRate: avAudioSessionPreffSampleRate error: nil];
-    [mySession setPreferredInputNumberOfChannels:avAudioSessionChannels error:nil];
+    [mySession setPreferredSampleRate: avAudioSessionPreffSampleRate
+                                error: nil];
+    [mySession setPreferredInputNumberOfChannels:avAudioSessionChannels
+                                           error:nil];
 
     isAudioSessionSetup = NO;
 }
@@ -396,7 +398,7 @@ static void print_error(const char* error, OSStatus code) {
         isAudioSessionSetup = YES;
     }
     
-    size_t bytesPerSample = sizeof(SInt16);
+    UInt32 bytesPerSample = sizeof(SInt16);
     stream_format.mFormatID    = kAudioFormatLinearPCM;
     stream_format.mFormatFlags =
     kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
@@ -528,9 +530,6 @@ static void print_error(const char* error, OSStatus code) {
         return NO;
     }
     
-//    AudioUnitSetParameter(mixer_unit, kMultiChannelMixerParam_Volume, kAudioUnitScope_Output, kOutputBus, 1.0f, 0);
-//    AudioUnitSetParameter(mixer_unit, kMultiChannelMixerParam_Volume, kAudioUnitScope_Input, kInputBus, 1.0f, 0);
-    
     UInt32 maximumFramesPerSlice = 640;
     
     result = AudioUnitSetProperty(mixer_unit,
@@ -624,7 +623,8 @@ static void print_error(const char* error, OSStatus code) {
                                       &stream_format,
                                       sizeof (stream_format));
         if (noErr != result) {
-            print_error("AudioUnitSetProperty (set mixer unit input stream format)",
+            print_error("AudioUnitSetProperty (set mixer unit input stream "
+                        "format)",
                         result);
             return NO;
         }
@@ -684,20 +684,23 @@ static void print_error(const char* error, OSStatus code) {
     return YES;
 }
 
-- (void) onInteruptionEvent: (NSNotification *) notification
+- (void) onInterruptionEvent: (NSNotification *) notification
 {
-    NSDictionary *interuptionDict = notification.userInfo;
-    NSInteger interuptionType =
-    [[interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey] integerValue];
+    NSDictionary *interruptionDict = notification.userInfo;
+    NSInteger interruptionType =
+    [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
+     integerValue];
     
-    switch (interuptionType) {
+    switch (interruptionType) {
         case AVAudioSessionInterruptionTypeBegan:
             [self stopCapture];
             [self stopRendering];
             break;
             
         case AVAudioSessionInterruptionTypeEnded:
-            [self configureAudioSessionWithDesiredAudioRoute: AUDIO_DEVICE_BLUETOOTH];
+            // Reconfigure audio session with highest priority device
+            [self configureAudioSessionWithDesiredAudioRoute:
+             AUDIO_DEVICE_BLUETOOTH];
             [self startCapture];
             [self startRendering];
             break;
@@ -711,9 +714,9 @@ static void print_error(const char* error, OSStatus code) {
 
 - (void) onRouteChangeEvent: (NSNotification *) notification
 {
-    NSDictionary *interuptionDict = notification.userInfo;
+    NSDictionary *interruptionDict = notification.userInfo;
     NSInteger routeChangeReason =
-    [[interuptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
+    [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
      integerValue];
     
     switch (routeChangeReason) {
@@ -748,7 +751,7 @@ static void print_error(const char* error, OSStatus code) {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     
     [center addObserver:self
-               selector:@selector(onInteruptionEvent:)
+               selector:@selector(onInterruptionEvent:)
                    name:AVAudioSessionInterruptionNotification object:nil];
     
     [center addObserver:self
@@ -871,21 +874,21 @@ static OSStatus recording_cb(void *ref_con,
     
     if (dev->recording) {
         
-        // Some sample code to generate a sine wave instead of use the mic
-        //        static double startingFrameCount = 0;
-        //        double j = startingFrameCount;
-        //        double cycleLength = kSampleRate. / 880.0;
-        //        int frame = 0;
-        //        for (frame = 0; frame < num_frames; ++frame)
-        //        {
-        //            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
-        //            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
-        //            (data)[frame] = (sample * 32767.0f);
-        //            j += 1.0;
-        //            if (j > cycleLength)
-        //                j -= cycleLength;
-        //        }
-        //        startingFrameCount = j;
+// Some sample code to generate a sine wave instead of use the mic
+//        static double startingFrameCount = 0;
+//        double j = startingFrameCount;
+//        double cycleLength = kSampleRate. / 880.0;
+//        int frame = 0;
+//        for (frame = 0; frame < num_frames; ++frame)
+//        {
+//            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
+//            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
+//            (data)[frame] = (sample * 32767.0f);
+//            j += 1.0;
+//            if (j > cycleLength)
+//                j -= cycleLength;
+//        }
+//        startingFrameCount = j;
         [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
                          numberOfSamples:num_frames];
     }
