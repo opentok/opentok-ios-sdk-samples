@@ -7,7 +7,7 @@
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
-#import "MyAudioDevice.h"
+#import "OTDefaultAudioDevice.h"
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
@@ -18,7 +18,7 @@
     OTSession* _session;
     OTPublisher* _publisher;
     OTSubscriber* _subscriber;
-    MyAudioDevice* _myAudioDevice;
+    OTDefaultAudioDevice* _myAudioDevice;
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -41,7 +41,7 @@ static bool subscribeToSelf = NO;
 {
     [super viewDidLoad];
     
-    _myAudioDevice = [[MyAudioDevice alloc] init];
+    _myAudioDevice = [[OTDefaultAudioDevice alloc] init];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
     
     // Step 1: As the view comes into the foreground, initialize a new instance

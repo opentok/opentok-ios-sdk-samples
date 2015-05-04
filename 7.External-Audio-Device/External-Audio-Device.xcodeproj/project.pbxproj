@@ -22,7 +22,7 @@
 		0CBBA414196B5192005F55D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA3F3196B5192005F55D4 /* UIKit.framework */; };
 		0CBBA41C196B5192005F55D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA41A196B5192005F55D4 /* InfoPlist.strings */; };
 		0CBBA41E196B5192005F55D4 /* External_Audio_DeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA41D196B5192005F55D4 /* External_Audio_DeviceTests.m */; };
-		0CBBA42B196B5314005F55D4 /* MyAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA42A196B5314005F55D4 /* MyAudioDevice.m */; };
+		0CBBA42B196B5314005F55D4 /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */; };
 		0CBBA435196B5482005F55D4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA42C196B5482005F55D4 /* AudioToolbox.framework */; };
 		0CBBA436196B5482005F55D4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA42D196B5482005F55D4 /* AVFoundation.framework */; };
 		0CBBA437196B5482005F55D4 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA42E196B5482005F55D4 /* CoreAudio.framework */; };
@@ -69,8 +69,8 @@
 		0CBBA419196B5192005F55D4 /* External-Audio-DeviceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "External-Audio-DeviceTests-Info.plist"; sourceTree = "<group>"; };
 		0CBBA41B196B5192005F55D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0CBBA41D196B5192005F55D4 /* External_Audio_DeviceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = External_Audio_DeviceTests.m; sourceTree = "<group>"; };
-		0CBBA429196B5314005F55D4 /* MyAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAudioDevice.h; sourceTree = "<group>"; };
-		0CBBA42A196B5314005F55D4 /* MyAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAudioDevice.m; sourceTree = "<group>"; };
+		0CBBA429196B5314005F55D4 /* OTDefaultAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDevice.h; sourceTree = "<group>"; };
+		0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDevice.m; sourceTree = "<group>"; };
 		0CBBA42C196B5482005F55D4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0CBBA42D196B5482005F55D4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0CBBA42E196B5482005F55D4 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -172,8 +172,8 @@
 		0CBBA3F5196B5192005F55D4 /* External-Audio-Device */ = {
 			isa = PBXGroup;
 			children = (
-				0CBBA429196B5314005F55D4 /* MyAudioDevice.h */,
-				0CBBA42A196B5314005F55D4 /* MyAudioDevice.m */,
+				0CBBA429196B5314005F55D4 /* OTDefaultAudioDevice.h */,
+				0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */,
 				0CBBA3FE196B5192005F55D4 /* AppDelegate.h */,
 				0CBBA3FF196B5192005F55D4 /* AppDelegate.m */,
 				0CBBA401196B5192005F55D4 /* Main_iPhone.storyboard */,
@@ -359,7 +359,7 @@
 			files = (
 				0CBBA409196B5192005F55D4 /* ViewController.m in Sources */,
 				0CBBA400196B5192005F55D4 /* AppDelegate.m in Sources */,
-				0CBBA42B196B5314005F55D4 /* MyAudioDevice.m in Sources */,
+				0CBBA42B196B5314005F55D4 /* OTDefaultAudioDevice.m in Sources */,
 				0CBBA3FC196B5192005F55D4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
