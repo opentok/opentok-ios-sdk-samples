@@ -7,11 +7,11 @@ callback, where we set up an audio device before initializing our first OpenTok
 object. It is important to note that audio device setup *must* occur before any
 instance of OTSession or OTPublisher is initialized:
 ```
-_myAudioDevice = [[MyAudioDevice alloc] init];
+_myAudioDevice = [[OTDefaultAudioDevice alloc] init];
 [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
 ```
 
-`MyAudioDevice` is an open source version of the default device driver used in 
+`OTDefaultAudioDevice` is a copy of the default device driver used in 
 the OpenTok iOS SDK. If no audio device is set prior to the first instantiation
 of OTSession, the default driver will be used. A common reason for a developer
 to look at this sample is to debug audio issues in their application. This is

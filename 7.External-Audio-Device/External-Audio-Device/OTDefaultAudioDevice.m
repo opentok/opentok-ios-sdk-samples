@@ -1,10 +1,10 @@
 //
-//  MyAudioDevice.m
+//  OTDefaultAudioDevice.m
 //
 //  Copyright (c) 2014 TokBox, Inc. All rights reserved.
 //
 
-#import "MyAudioDevice.h"
+#import "OTDefaultAudioDevice.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 #include <mach/mach.h>
@@ -65,12 +65,12 @@ static OSStatus playout_cb(void *ref_con,
 
 static void print_error(const char* error, OSStatus code);
 
-@interface MyAudioDevice ()
+@interface OTDefaultAudioDevice ()
 - (BOOL) setupAudioForGraph:(AUGraph *)au_graph playout:(BOOL)isPlayout;
 - (void) setupListenerBlocks;
 @end
 
-@implementation MyAudioDevice
+@implementation OTDefaultAudioDevice
 {
     OTAudioFormat *_audioFormat;
     
@@ -783,7 +783,7 @@ static void CheckError(OSStatus error, const char *operation) {
     //fprintf(stderr, "Error: %s (%s)\n", operation, errorString);
 }
 
-static void update_recording_delay(MyAudioDevice* device) {
+static void update_recording_delay(OTDefaultAudioDevice* device) {
     device->_recordingDelayMeasurementCounter++;
     
     if (device->_recordingDelayMeasurementCounter >= 100) {
@@ -834,7 +834,7 @@ static OSStatus recording_cb(void *ref_con,
                              AudioBufferList *data)
 {
 
-    MyAudioDevice *dev = (__bridge MyAudioDevice*) ref_con;
+    OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
 
     if (!dev->buffer_list || num_frames > dev->buffer_list_size)
     {
@@ -898,7 +898,7 @@ static OSStatus recording_cb(void *ref_con,
     return noErr;
 }
 
-static void update_playout_delay(MyAudioDevice* device) {
+static void update_playout_delay(OTDefaultAudioDevice* device) {
     device->_playoutDelayMeasurementCounter++;
     
     if (device->_playoutDelayMeasurementCounter >= 100) {
@@ -942,7 +942,7 @@ static OSStatus playout_cb(void *ref_con,
                            UInt32 num_frames,
                            AudioBufferList *buffer_list)
 {
-    MyAudioDevice *dev = (__bridge MyAudioDevice*) ref_con;
+    OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
     if (!dev->playing) { return 0; }
     

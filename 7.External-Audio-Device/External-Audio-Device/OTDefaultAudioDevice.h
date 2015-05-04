@@ -11,7 +11,7 @@
 #define AUDIO_DEVICE_BLUETOOTH   @"AudioSessionManagerDevice_Bluetooth"
 #define AUDIO_DEVICE_SPEAKER     @"AudioSessionManagerDevice_Speaker"
 
-@interface MyAudioDevice : NSObject <OTAudioDevice>
+@interface OTDefaultAudioDevice : NSObject <OTAudioDevice>
 
 /**
  Returns YES if a wired headset is available.
