@@ -49,7 +49,7 @@
 -(id)init {
     self = [super init];
     if (self) {
-        _capturePreset = AVCaptureSessionPreset352x288;
+        _capturePreset = AVCaptureSessionPreset640x480;
         [[self class] dimensionsForCapturePreset:_capturePreset
                                            width:&_captureWidth
                                           height:&_captureHeight];
