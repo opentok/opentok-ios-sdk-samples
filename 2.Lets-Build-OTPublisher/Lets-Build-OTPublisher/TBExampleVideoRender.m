@@ -465,6 +465,7 @@ static const GLsizei kNumTextures = 3 * kNumTextureSets;
     CGSize _lastImageSize;
     CGSize _lastViewportSize;
     BOOL _mirroring;
+    BOOL _flushVertices;
     GLfloat _vertices[16];
     
 }
@@ -516,7 +517,7 @@ static const GLsizei kNumTextures = 3 * kNumTextureSets;
     // Adjust position coordinates based on how the image will render to the
     // viewport. This logic tree implements a "scale to fill" semantic. You can
     // invert the logic if "scale to fit" works better for your needs.
-    if (imageRatio < viewportRatio) {
+    if (imageRatio > viewportRatio) {
         scaleY = viewportRatio / imageRatio;
     } else {
         scaleX = imageRatio / viewportRatio;
@@ -574,6 +575,7 @@ static const GLsizei kNumTextures = 3 * kNumTextureSets;
 
 - (void)setMirroring:(BOOL)mirroring {
     _mirroring = mirroring;
+    _flushVertices = YES;
 }
 
 - (BOOL)clearFrame {
@@ -600,6 +602,12 @@ static const GLsizei kNumTextures = 3 * kNumTextureSets;
     glClear(GL_COLOR_BUFFER_BIT);
     CGSize imageSize = CGSizeMake(frame.format.imageWidth,
                                   frame.format.imageHeight);
+    if (_flushVertices) {
+        _flushVertices = NO;
+        CGSize unitSize = CGSizeMake(1, 1);
+        [self updateVerticesWithViewportSize:unitSize
+                                   imageSize:unitSize];
+    }
     [self updateVerticesWithViewportSize:viewport.size
                                imageSize:imageSize];
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
