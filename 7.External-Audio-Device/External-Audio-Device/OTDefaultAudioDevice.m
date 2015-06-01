@@ -86,6 +86,9 @@ static void print_error(const char* error, OSStatus code);
     double avAudioSessionPreffSampleRate;
     NSInteger avAudioSessionChannels;
     BOOL isAudioSessionSetup;
+    BOOL isRecorderInterrupted;
+    BOOL isPlayerInterrupted;
+    BOOL areListenerBlocksSetup;
 @public
     id _audioBus;
     
@@ -99,6 +102,8 @@ static void print_error(const char* error, OSStatus code);
     uint32_t _playoutDelayMeasurementCounter;
     uint32_t _recordingDelayHWAndOS;
     uint32_t _recordingDelayMeasurementCounter;
+    Float64 _playout_AudioUnitProperty_Latency;
+    Float64 _recording_AudioUnitProperty_Latency;
 }
 
 #pragma mark - OTAudioDeviceImplementation
@@ -126,6 +131,7 @@ static void print_error(const char* error, OSStatus code);
 
 - (void)dealloc
 {
+    [self removeObservers];
     [self teardownAudio];
     _audioFormat = nil;
 }
@@ -203,7 +209,7 @@ static void print_error(const char* error, OSStatus code);
         print_error("AUGraphStart", result);
         playing = NO;
     }
-
+    
     return playing;
 }
 
@@ -223,11 +229,11 @@ static void print_error(const char* error, OSStatus code);
     }
     
     // publisher is already closed
-    if (!recording)
+    if (!recording && !isPlayerInterrupted)
     {
         [self teardownAudio];
     }
-
+    
     return YES;
 }
 
@@ -249,7 +255,7 @@ static void print_error(const char* error, OSStatus code);
         recording = NO;
         return NO;
     }
-
+    
     OSStatus result = AUGraphStart(au_record_graph);
     if (noErr != result) {
         print_error("AUGraphStart", result);
@@ -278,7 +284,7 @@ static void print_error(const char* error, OSStatus code);
     [self freeupAudioBuffers];
     
     // subscriber is already closed
-    if (!playing)
+    if (!playing && !isRecorderInterrupted)
     {
         [self teardownAudio];
     }
@@ -332,7 +338,6 @@ static void print_error(const char* error, OSStatus code) {
 
 - (void) teardownAudio
 {
-    [self removeObservers];
     [self disposePlayGraph];
     [self disposeRecordGraph];
     [self freeupAudioBuffers];
@@ -344,7 +349,7 @@ static void print_error(const char* error, OSStatus code) {
                                 error: nil];
     [mySession setPreferredInputNumberOfChannels:avAudioSessionChannels
                                            error:nil];
-
+    
     isAudioSessionSetup = NO;
 }
 
@@ -475,6 +480,13 @@ static void print_error(const char* error, OSStatus code) {
         return NO;
     }
     
+    Float64 f64 = 0;
+    UInt32 size = sizeof(f64);
+    OSStatus latency_result = AudioUnitGetProperty(voice_unit,
+                                                   kAudioUnitProperty_Latency,
+                                                   kAudioUnitScope_Global,
+                                                   0, &f64, &size);
+
     UInt32 flag = 1;
     if (!isPlayout)
     {
@@ -490,7 +502,14 @@ static void print_error(const char* error, OSStatus code) {
             return NO;
         }
         
-        
+        if (0 == latency_result)
+        {
+            _recording_AudioUnitProperty_Latency = f64;
+        }
+        else
+        {
+            _recording_AudioUnitProperty_Latency = 0;
+        }
     } else
     {
         playout_voice_unit = voice_unit;
@@ -506,6 +525,14 @@ static void print_error(const char* error, OSStatus code) {
             return NO;
         }
         
+        if (0 == latency_result)
+        {
+            _playout_AudioUnitProperty_Latency = f64;
+        }
+        else
+        {
+            _playout_AudioUnitProperty_Latency = 0;
+        }
     }
     
     result = AudioUnitSetProperty(voice_unit,
@@ -693,16 +720,36 @@ static void print_error(const char* error, OSStatus code) {
     
     switch (interruptionType) {
         case AVAudioSessionInterruptionTypeBegan:
-            [self stopCapture];
-            [self stopRendering];
+        {
+            if(recording)
+            {
+                isRecorderInterrupted = YES;
+                [self stopCapture];
+            }
+            if(playing)
+            {
+                isPlayerInterrupted = YES;
+                [self stopRendering];
+            }
+        }
             break;
             
         case AVAudioSessionInterruptionTypeEnded:
+        {
             // Reconfigure audio session with highest priority device
             [self configureAudioSessionWithDesiredAudioRoute:
              AUDIO_DEVICE_BLUETOOTH];
-            [self startCapture];
-            [self startRendering];
+            if(isRecorderInterrupted)
+            {
+                isRecorderInterrupted = NO;
+                [self startCapture];
+            }
+            if(isPlayerInterrupted)
+            {
+                isPlayerInterrupted = NO;
+                [self startRendering];
+            }
+        }
             break;
             
         default:
@@ -748,21 +795,26 @@ static void print_error(const char* error, OSStatus code) {
 
 - (void) setupListenerBlocks
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    
-    [center addObserver:self
-               selector:@selector(onInterruptionEvent:)
-                   name:AVAudioSessionInterruptionNotification object:nil];
-    
-    [center addObserver:self
-               selector:@selector(onRouteChangeEvent:)
-                   name:AVAudioSessionRouteChangeNotification object:nil];
+    if(!areListenerBlocksSetup)
+    {
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        
+        [center addObserver:self
+                   selector:@selector(onInterruptionEvent:)
+                       name:AVAudioSessionInterruptionNotification object:nil];
+        
+        [center addObserver:self
+                   selector:@selector(onRouteChangeEvent:)
+                       name:AVAudioSessionRouteChangeNotification object:nil];
+        areListenerBlocksSetup = YES;
+    }
 }
 
 - (void) removeObservers
 {
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center removeObserver:self];
+    areListenerBlocksSetup = NO;
 }
 
 static void CheckError(OSStatus error, const char *operation) {
@@ -784,6 +836,7 @@ static void CheckError(OSStatus error, const char *operation) {
 }
 
 static void update_recording_delay(OTDefaultAudioDevice* device) {
+    
     device->_recordingDelayMeasurementCounter++;
     
     if (device->_recordingDelayMeasurementCounter >= 100) {
@@ -803,17 +856,7 @@ static void update_recording_delay(OTDefaultAudioDevice* device) {
         interval = [mySession IOBufferDuration];
         device->_recordingDelayHWAndOS += (int)(interval * 1000000);
         
-        // AU latency
-        Float64 f64 = 0;
-        UInt32 size = sizeof(f64);
-        OSStatus result = AudioUnitGetProperty(device->recording_voice_unit,
-                                               kAudioUnitProperty_Latency,
-                                               kAudioUnitScope_Global,
-                                               0,
-                                               &f64,
-                                               &size);
-        if (0 != result) { return  ; }
-        device->_recordingDelayHWAndOS += (int)(f64 * 1000000);
+        device->_recordingDelayHWAndOS += (int)(device->_recording_AudioUnitProperty_Latency * 1000000);
         
         // To ms
         device->_recordingDelayHWAndOS =
@@ -833,9 +876,9 @@ static OSStatus recording_cb(void *ref_con,
                              UInt32 num_frames,
                              AudioBufferList *data)
 {
-
+    
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
-
+    
     if (!dev->buffer_list || num_frames > dev->buffer_list_size)
     {
         if (dev->buffer_list) {
@@ -874,21 +917,21 @@ static OSStatus recording_cb(void *ref_con,
     
     if (dev->recording) {
         
-// Some sample code to generate a sine wave instead of use the mic
-//        static double startingFrameCount = 0;
-//        double j = startingFrameCount;
-//        double cycleLength = kSampleRate. / 880.0;
-//        int frame = 0;
-//        for (frame = 0; frame < num_frames; ++frame)
-//        {
-//            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
-//            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
-//            (data)[frame] = (sample * 32767.0f);
-//            j += 1.0;
-//            if (j > cycleLength)
-//                j -= cycleLength;
-//        }
-//        startingFrameCount = j;
+        // Some sample code to generate a sine wave instead of use the mic
+        //        static double startingFrameCount = 0;
+        //        double j = startingFrameCount;
+        //        double cycleLength = kSampleRate. / 880.0;
+        //        int frame = 0;
+        //        for (frame = 0; frame < num_frames; ++frame)
+        //        {
+        //            int16_t* data = (int16_t*)dev->buffer_list->mBuffers[0].mData;
+        //            Float32 sample = (Float32)sin (2 * M_PI * (j / cycleLength));
+        //            (data)[frame] = (sample * 32767.0f);
+        //            j += 1.0;
+        //            if (j > cycleLength)
+        //                j -= cycleLength;
+        //        }
+        //        startingFrameCount = j;
         [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
                          numberOfSamples:num_frames];
     }
@@ -917,15 +960,7 @@ static void update_playout_delay(OTDefaultAudioDevice* device) {
         interval = [mySession IOBufferDuration];
         device->_playoutDelay += (int)(interval * 1000000);
         
-        // AU latency
-        Float64 f64 = 0;
-        UInt32 size = sizeof(f64);
-        OSStatus result = AudioUnitGetProperty(device->playout_voice_unit,
-                                               kAudioUnitProperty_Latency,
-                                               kAudioUnitScope_Global,
-                                               0, &f64, &size);
-        if (0 != result) { return ; }
-        device->_playoutDelay += (int)(f64 * 1000000);
+        device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * 1000000);
         
         // To ms
         device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
