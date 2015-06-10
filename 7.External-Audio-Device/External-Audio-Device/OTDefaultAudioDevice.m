@@ -383,7 +383,8 @@ static void print_error(const char* error, OSStatus code) {
     
     [mySession setPreferredSampleRate: kSampleRate error: nil];
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
-    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
+               withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
     
     [self setupListenerBlocks];
     [mySession setActive:YES error:nil];
@@ -695,11 +696,6 @@ static void print_error(const char* error, OSStatus code) {
 #ifdef DEBUG
     CAShow (*au_graph);
 #endif
-    
-    AVAudioSession *mySession = [AVAudioSession sharedInstance];
-    
-    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
-               withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
     
     result = AUGraphInitialize(*au_graph);
     
