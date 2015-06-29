@@ -8,10 +8,9 @@
 
 #import <Availability.h>
 #import <UIKit/UIKit.h>
-#import <CoreVideo/CoreVideo.h>
 #import <OpenTok/OpenTok.h>
+#import <CoreVideo/CoreVideo.h>
 #import "TBExampleVideoCapture.h"
-
 
 #define SYSTEM_VERSION_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -23,6 +22,10 @@
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+@class OTDeviceInfo;
+#define RUNTIME_IPHONE_4S [@"iPhone4,1" isEqualToString:[[OTDeviceInfo class] performSelector:@selector(machineName)]]
+
 
 @implementation TBExampleVideoCapture {
     id<OTVideoCaptureConsumer> _videoCaptureConsumer;
@@ -36,20 +39,27 @@
     AVCaptureDeviceInput *_videoInput;
     AVCaptureVideoDataOutput *_videoOutput;
     
-	BOOL _capturing;
+    BOOL _capturing;
     
+    dispatch_source_t _blackFrameTimer;
+    uint8_t* _blackFrame;
+    double _blackFrameTimeStarted;
 }
 
 @synthesize captureSession = _captureSession;
 @synthesize videoInput = _videoInput, videoOutput = _videoOutput;
 @synthesize videoCaptureConsumer = _videoCaptureConsumer;
 
-#define OT_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE 15
+#define OTK_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE 20
 
 -(id)init {
     self = [super init];
     if (self) {
-        _capturePreset = AVCaptureSessionPreset640x480;
+        if (RUNTIME_IPHONE_4S) {
+            _capturePreset = AVCaptureSessionPresetMedium;
+        } else {
+            _capturePreset = AVCaptureSessionPreset640x480;
+        }
         [[self class] dimensionsForCapturePreset:_capturePreset
                                            width:&_captureWidth
                                           height:&_captureHeight];
@@ -70,7 +80,7 @@
 }
 
 - (void)dealloc {
-	[self stopCapture];
+    [self stopCapture];
     [self releaseCapture];
     
     if (_capture_queue) {
@@ -116,7 +126,9 @@
 - (void) setTorchMode:(AVCaptureTorchMode) torchMode {
     
     AVCaptureDevice *device = [[self videoInput] device];
-    if ([device isTorchModeSupported:torchMode] && [device torchMode] != torchMode) {
+    if ([device isTorchModeSupported:torchMode] &&
+        [device torchMode] != torchMode)
+    {
         NSError *error;
         if ([device lockForConfiguration:&error]) {
             [device setTorchMode:torchMode];
@@ -156,9 +168,10 @@
 
 - (double) activeFrameRate {
     CMTime minFrameDuration = _videoInput.device.activeVideoMinFrameDuration;
-	double framesPerSecond = minFrameDuration.timescale / minFrameDuration.value;
+    double framesPerSecond =
+    minFrameDuration.timescale / minFrameDuration.value;
     
-	return framesPerSecond;
+    return framesPerSecond;
 }
 
 - (AVFrameRateRange*)frameRateRangeForFrameRate:(double)frameRate {
@@ -173,8 +186,11 @@
     return nil;
 }
 
-- (void)setActiveFrameRate:(double)frameRate {
-	
+// Yes this "lockConfiguration" is somewhat silly but we're now setting
+// the frame rate in initCapture *before* startRunning is called to
+// avoid contention, and we already have a config lock at that point.
+- (void)setActiveFrameRateImpl:(double)frameRate : (BOOL) lockConfiguration {
+    
     if (!_videoOutput || !_videoInput) {
         return;
     }
@@ -186,27 +202,37 @@
         return;
     }
     CMTime desiredMinFrameDuration = CMTimeMake(1, frameRate);
-    CMTime desiredMaxFrameDuration = CMTimeMake(1, frameRate);
+    CMTime desiredMaxFrameDuration = CMTimeMake(1, frameRate); // iOS 8 fix
+    /*frameRateRange.maxFrameDuration*/;
     
-    [_captureSession beginConfiguration];
+    if(lockConfiguration) [_captureSession beginConfiguration];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         NSError* error;
         if ([_videoInput.device lockForConfiguration:&error]) {
-            [_videoInput.device setActiveVideoMinFrameDuration:desiredMinFrameDuration];
-            [_videoInput.device setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
+            [_videoInput.device
+             setActiveVideoMinFrameDuration:desiredMinFrameDuration];
+            [_videoInput.device
+             setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
             [_videoInput.device unlockForConfiguration];
         } else {
             NSLog(@"%@", error);
         }
     } else {
-        AVCaptureConnection *conn = [_videoOutput connectionWithMediaType:AVMediaTypeVideo];
+        AVCaptureConnection *conn =
+        [_videoOutput connectionWithMediaType:AVMediaTypeVideo];
         if (conn.supportsVideoMinFrameDuration)
             conn.videoMinFrameDuration = desiredMinFrameDuration;
         if (conn.supportsVideoMaxFrameDuration)
             conn.videoMaxFrameDuration = desiredMaxFrameDuration;
     }
-    [_captureSession commitConfiguration];
+    if(lockConfiguration) [_captureSession commitConfiguration];
+}
+
+- (void)setActiveFrameRate:(double)frameRate {
+    dispatch_sync(_capture_queue, ^{
+        return [self setActiveFrameRateImpl : frameRate : TRUE];
+    });
 }
 
 + (void)dimensionsForCapturePreset:(NSString*)preset
@@ -248,33 +274,33 @@
 
 + (NSSet *)keyPathsForValuesAffectingAvailableCaptureSessionPresets
 {
-	return [NSSet setWithObjects:@"captureSession", @"videoInput", nil];
+    return [NSSet setWithObjects:@"captureSession", @"videoInput", nil];
 }
 
 - (NSArray *)availableCaptureSessionPresets
 {
-	NSArray *allSessionPresets = [NSArray arrayWithObjects:
-								  AVCaptureSessionPreset352x288,
-								  AVCaptureSessionPreset640x480,
-								  AVCaptureSessionPreset1280x720,
-								  AVCaptureSessionPreset1920x1080,
-								  AVCaptureSessionPresetPhoto,
-								  AVCaptureSessionPresetHigh,
-								  AVCaptureSessionPresetMedium,
-								  AVCaptureSessionPresetLow,
-								  nil];
-	
-	NSMutableArray *availableSessionPresets =
+    NSArray *allSessionPresets = [NSArray arrayWithObjects:
+                                  AVCaptureSessionPreset352x288,
+                                  AVCaptureSessionPreset640x480,
+                                  AVCaptureSessionPreset1280x720,
+                                  AVCaptureSessionPreset1920x1080,
+                                  AVCaptureSessionPresetPhoto,
+                                  AVCaptureSessionPresetHigh,
+                                  AVCaptureSessionPresetMedium,
+                                  AVCaptureSessionPresetLow,
+                                  nil];
+    
+    NSMutableArray *availableSessionPresets =
     [NSMutableArray arrayWithCapacity:9];
-	for (NSString *sessionPreset in allSessionPresets) {
-		if ([[self captureSession] canSetSessionPreset:sessionPreset])
-			[availableSessionPresets addObject:sessionPreset];
-	}
-	
-	return availableSessionPresets;
+    for (NSString *sessionPreset in allSessionPresets) {
+        if ([[self captureSession] canSetSessionPreset:sessionPreset])
+            [availableSessionPresets addObject:sessionPreset];
+    }
+    
+    return availableSessionPresets;
 }
 
-- (void)updateCaptureFormatWithWidth:(int)width height:(int)height
+- (void)updateCaptureFormatWithWidth:(uint32_t)width height:(uint32_t)height
 {
     _captureWidth = width;
     _captureHeight = height;
@@ -288,26 +314,27 @@
     return _captureSession.sessionPreset;
 }
 
-
 - (void) setCaptureSessionPreset:(NSString*)preset {
-    AVCaptureSession *session = [self captureSession];
-    
-    if ([session canSetSessionPreset:preset] &&
-        ![preset isEqualToString:session.sessionPreset]) {
+    dispatch_sync(_capture_queue, ^{
+        AVCaptureSession *session = [self captureSession];
         
-        [_captureSession beginConfiguration];
-        _captureSession.sessionPreset = preset;
-        _capturePreset = preset;
-        
-        [_videoOutput setVideoSettings:
-         [NSDictionary dictionaryWithObjectsAndKeys:
-          [NSNumber numberWithInt:
-           kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange],
-          kCVPixelBufferPixelFormatTypeKey,
-          nil]];
-        
-        [_captureSession commitConfiguration];
-    }
+        if ([session canSetSessionPreset:preset] &&
+            ![preset isEqualToString:session.sessionPreset]) {
+            
+            [_captureSession beginConfiguration];
+            _captureSession.sessionPreset = preset;
+            _capturePreset = preset;
+            
+            [_videoOutput setVideoSettings:
+             [NSDictionary dictionaryWithObjectsAndKeys:
+              [NSNumber numberWithInt:
+               kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange],
+              kCVPixelBufferPixelFormatTypeKey,
+              nil]];
+            
+            [_captureSession commitConfiguration];
+        }
+    });
 }
 
 - (BOOL) toggleCameraPosition {
@@ -336,55 +363,53 @@
 }
 
 - (void)setCameraPosition:(AVCaptureDevicePosition) position {
-    BOOL success = NO;
+    __block BOOL success = NO;
     
     NSString* preset = self.captureSession.sessionPreset;
     
-    if ([self hasMultipleCameras]) {
-        NSError *error;
-        AVCaptureDeviceInput *newVideoInput;
-	    
-        if (position == AVCaptureDevicePositionBack) {
-	        newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:
-                             [self backFacingCamera] error:&error];
-            [self setTorchMode:AVCaptureTorchModeOff];
-            _videoOutput.alwaysDiscardsLateVideoFrames = YES;
-        } else if (position == AVCaptureDevicePositionFront) {
-            newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:
-                             [self frontFacingCamera] error:&error];
-            _videoOutput.alwaysDiscardsLateVideoFrames = YES;
-        } else {
-            goto bail;
-        }
-        
-        AVCaptureSession *session = [self captureSession];
-        if (newVideoInput != nil) {
-            [session beginConfiguration];
-            [session removeInput:_videoInput];
-            if ([session canAddInput:newVideoInput]) {
-                [session addInput:newVideoInput];
-                [_videoInput release];
-                _videoInput = [newVideoInput retain];
-			} else {
-                success = NO;
-                [session addInput:_videoInput];
-            }
-            [session commitConfiguration];
-            success = YES;
-        } else if (error) {
-            success = NO;
-			//Handle error
-        }
+    if (![self hasMultipleCameras]) {
+        return;
     }
+    
+    NSError *error;
+    AVCaptureDeviceInput *newVideoInput;
+    
+    if (position == AVCaptureDevicePositionBack) {
+        newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:
+                         [self backFacingCamera] error:&error];
+        [self setTorchMode:AVCaptureTorchModeOff];
+        _videoOutput.alwaysDiscardsLateVideoFrames = YES;
+    } else if (position == AVCaptureDevicePositionFront) {
+        newVideoInput = [AVCaptureDeviceInput deviceInputWithDevice:
+                         [self frontFacingCamera] error:&error];
+        _videoOutput.alwaysDiscardsLateVideoFrames = YES;
+    } else {
+        return;
+    }
+    
+    dispatch_sync(_capture_queue, ^() {
+        AVCaptureSession *session = [self captureSession];
+        [session beginConfiguration];
+        [session removeInput:_videoInput];
+        if ([session canAddInput:newVideoInput]) {
+            [session addInput:newVideoInput];
+            [_videoInput release];
+            _videoInput = [newVideoInput retain];
+        } else {
+            success = NO;
+            [session addInput:_videoInput];
+        }
+        [session commitConfiguration];
+        success = YES;
+    });
     
     if (success) {
         [self setCaptureSessionPreset:preset];
     }
-bail:
     return;
 }
 
--(void)releaseCapture {
+- (void)releaseCapture {
     [self stopCapture];
     [_videoOutput setSampleBufferDelegate:nil queue:NULL];
     dispatch_sync(_capture_queue, ^() {
@@ -398,15 +423,22 @@ bail:
     [_videoInput release];
     _videoInput = nil;
     
+    if (_blackFrameTimer) {
+        dispatch_release(_blackFrameTimer);
+        _blackFrameTimer = nil;
+    }
+    
+    free(_blackFrame);
+    
 }
 
-- (void) initCapture {
+- (void)setupAudioVideoSession {
     //-- Setup Capture Session.
     
-	_captureSession = [[AVCaptureSession alloc] init];
+    _captureSession = [[AVCaptureSession alloc] init];
     [_captureSession beginConfiguration];
     
-	[_captureSession setSessionPreset:_capturePreset];
+    [_captureSession setSessionPreset:_capturePreset];
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         //Needs to be set in order to receive audio route/interruption events.
@@ -416,16 +448,29 @@ bail:
     //-- Create a video device and input from that Device.
     // Add the input to the capture session.
     AVCaptureDevice * videoDevice = [self frontFacingCamera];
-    if(videoDevice == nil)
-        assert(0);
+    if(videoDevice == nil) {
+        NSLog(@"ERROR[OpenTok]: Failed to acquire camera device for video "
+              "capture.");
+        return;
+    }
     
     //-- Add the device to the session.
     NSError *error;
     _videoInput = [[AVCaptureDeviceInput deviceInputWithDevice:videoDevice
                                                          error:&error] retain];
     
-    if(error)
-        assert(0); //TODO: Handle error
+    if (AVErrorApplicationIsNotAuthorizedToUseDevice == error.code) {
+        [self initBlackFrameSender];
+        [_captureSession release];
+        _captureSession = nil;
+        return;
+    }
+    
+    if(error || _videoInput == nil) {
+        NSLog(@"ERROR[OpenTok]: Failed to initialize default video caputre "
+              "session. (error=%@)", error);
+        return;
+    }
     
     [_captureSession addInput:_videoInput];
     
@@ -441,25 +486,82 @@ bail:
     [_videoOutput setSampleBufferDelegate:self queue:_capture_queue];
     
     [_captureSession addOutput:_videoOutput];
-	[_captureSession commitConfiguration];
+    
+    [self setActiveFrameRateImpl
+     : OTK_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE : FALSE];
+    
+    [_captureSession commitConfiguration];
     
     [_captureSession startRunning];
+}
+
+- (void)initCapture {
+    dispatch_async(_capture_queue, ^{
+        [self setupAudioVideoSession];
+    });
+}
+
+- (void)initBlackFrameSender {
+    _blackFrameTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
+                                              0, 0, _capture_queue);
+    int blackFrameWidth = 320;
+    int blackFrameHeight = 240;
+    [self updateCaptureFormatWithWidth:blackFrameWidth height:blackFrameHeight];
     
-    [self setActiveFrameRate:OT_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE];
+    _blackFrame = malloc(blackFrameWidth * blackFrameHeight * 3 / 2);
+    _blackFrameTimeStarted = CACurrentMediaTime();
+    
+    uint8_t* yPlane = _blackFrame;
+    uint8_t* uvPlane =
+    &(_blackFrame[(blackFrameHeight * blackFrameWidth)]);
+    
+    memset(yPlane, 0x00, blackFrameWidth * blackFrameHeight);
+    memset(uvPlane, 0x7F, blackFrameWidth * blackFrameHeight / 2);
+    
+    if (_blackFrameTimer)
+    {
+        dispatch_source_set_timer(_blackFrameTimer, dispatch_walltime(NULL, 0),
+                                  250ull * NSEC_PER_MSEC,
+                                  1ull * NSEC_PER_MSEC);
+        dispatch_source_set_event_handler(_blackFrameTimer, ^{
+            if (!_capturing) {
+                return;
+            }
+            
+            double now = CACurrentMediaTime();
+            _videoFrame.timestamp =
+            CMTimeMake((now - _blackFrameTimeStarted) * 90000, 90000);
+            _videoFrame.format.imageWidth = blackFrameWidth;
+            _videoFrame.format.imageHeight = blackFrameHeight;
+            
+            _videoFrame.format.estimatedFramesPerSecond = 4;
+            _videoFrame.format.estimatedCaptureDelay = 0;
+            _videoFrame.orientation = OTVideoOrientationUp;
+            
+            [_videoFrame clearPlanes];
+            
+            [_videoFrame.planes addPointer:yPlane];
+            [_videoFrame.planes addPointer:uvPlane];
+            
+            [_videoCaptureConsumer consumeFrame:_videoFrame];
+        });
+        
+        dispatch_resume(_blackFrameTimer);
+    }
     
 }
 
 - (BOOL) isCaptureStarted {
-    return _captureSession && _capturing;
+    return (_captureSession || _blackFrameTimer) && _capturing;
 }
 
 - (int32_t) startCapture {
-	_capturing = YES;
+    _capturing = YES;
     return 0;
 }
 
 - (int32_t) stopCapture {
-	_capturing = NO;
+    _capturing = NO;
     return 0;
 }
 
@@ -478,6 +580,8 @@ bail:
                 return OTVideoOrientationLeft;
             case UIInterfaceOrientationPortraitUpsideDown:
                 return OTVideoOrientationRight;
+            case UIInterfaceOrientationUnknown:
+                return OTVideoOrientationUp;
         }
     }
     else
@@ -491,6 +595,8 @@ bail:
                 return OTVideoOrientationLeft;
             case UIInterfaceOrientationPortraitUpsideDown:
                 return OTVideoOrientationRight;
+            case UIInterfaceOrientationUnknown:
+                return OTVideoOrientationUp;
         }
     }
     
@@ -632,8 +738,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CVPixelBufferLockBaseAddress(imageBuffer, 0);
     
     _videoFrame.timestamp = time;
-    size_t height = CVPixelBufferGetHeight(imageBuffer);
-    size_t width = CVPixelBufferGetWidth(imageBuffer);
+    uint32_t height = (uint32_t)CVPixelBufferGetHeight(imageBuffer);
+    uint32_t width = (uint32_t)CVPixelBufferGetWidth(imageBuffer);
     if (width != _captureWidth || height != _captureHeight) {
         [self updateCaptureFormatWithWidth:width height:height];
     }
