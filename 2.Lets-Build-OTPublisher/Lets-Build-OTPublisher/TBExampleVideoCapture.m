@@ -395,12 +395,12 @@
             [session addInput:newVideoInput];
             [_videoInput release];
             _videoInput = [newVideoInput retain];
+            success = YES;
         } else {
             success = NO;
             [session addInput:_videoInput];
         }
         [session commitConfiguration];
-        success = YES;
     });
     
     if (success) {
