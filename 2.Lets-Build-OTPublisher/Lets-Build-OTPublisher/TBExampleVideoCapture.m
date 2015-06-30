@@ -400,7 +400,6 @@
             [session addInput:_videoInput];
         }
         [session commitConfiguration];
-        success = YES;
     });
     
     if (success) {
