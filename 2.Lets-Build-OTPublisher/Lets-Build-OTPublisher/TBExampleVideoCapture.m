@@ -644,7 +644,7 @@
         
         if (hasNextAddress) {
             size_t planeLength =
-            dataWidth * CVPixelBufferGetHeightOfPlane(imageBuffer, i);
+            dataWidth;
             
             uint8_t* baseAddress =
             CVPixelBufferGetBaseAddressOfPlane(imageBuffer, i);
