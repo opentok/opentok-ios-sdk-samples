@@ -383,9 +383,14 @@ static void print_error(const char* error, OSStatus code) {
     
     [mySession setPreferredSampleRate: kSampleRate error: nil];
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
-    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
-               withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
     
+    NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers |
+                              AVAudioSessionCategoryOptionDefaultToSpeaker |
+                              AVAudioSessionCategoryOptionAllowBluetooth;
+    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
+               withOptions:audioOptions
+                     error:nil];
+
     [self setupListenerBlocks];
     [mySession setActive:YES error:nil];
 }
