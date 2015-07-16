@@ -1067,10 +1067,8 @@ static OSStatus playout_cb(void *ref_con,
     //ios 8.0 complains about Deactivating an audio session that has running
     // I/O. All I/O should be stopped or paused prior to deactivating the audio
     // session. Looks like we can get away by not using the setActive call
-    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
-        // close down our current session...
-        [audioSession setActive:NO error:nil];
-    }
+    // close down our current session...
+    [audioSession setActive:NO error:nil];
     
     NSUInteger audioOptions = 0;
     if ([AUDIO_DEVICE_BLUETOOTH isEqualToString:desiredAudioRoute]) {
@@ -1085,18 +1083,25 @@ static OSStatus playout_cb(void *ref_con,
         return NO;
     }
     
-    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
-        // Set our session to active...
-        if (![audioSession setActive:YES error:&err]) {
-            NSLog(@"unable to set audio session active: %@", err);
-            return NO;
-        }
-    }
     if ([AUDIO_DEVICE_SPEAKER isEqualToString:desiredAudioRoute]) {
         // replace AudiosessionSetProperty (deprecated from iOS7) with
         // AVAudioSession overrideOutputAudioPort
         [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
                                         error:&err];
+    }
+    
+    if([AUDIO_DEVICE_HEADSET isEqualToString: desiredAudioRoute]) {
+        [audioSession overrideOutputAudioPort: AVAudioSessionPortOverrideNone error:&err];
+    }
+    
+    if(err) {
+        NSLog(@"OTDefaultAudioDevice failed to set audio port %@ --- Error: %@", desiredAudioRoute, err.description);
+    }
+    
+    // Set our session to active...
+    if (![audioSession setActive:YES error:&err]) {
+        NSLog(@"unable to set audio session active: %@", err);
+        return NO;
     }
     
     return YES;
