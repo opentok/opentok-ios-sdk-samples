@@ -709,9 +709,33 @@ static void print_error(const char* error, OSStatus code) {
         return NO;
     }
     
+    [self setBluetoothAsPrefferedInputDevice];
+    
     return YES;
 }
 
+- (void)setBluetoothAsPrefferedInputDevice
+ {
+     // Apple's Bug(???) : Audio Interruption Ended notification won't be called
+     // for bluetooth devices if we dont set preffered input as bluetooth.
+     // Should work for non bluetooth routes/ports too. This makes both input
+     // and output to bluetooth device if available.
+     NSArray* bluetoothRoutes = @[AVAudioSessionPortBluetoothA2DP,
+                                  AVAudioSessionPortBluetoothLE,
+                                  AVAudioSessionPortBluetoothHFP];
+     NSArray* routes = [[AVAudioSession sharedInstance] availableInputs];
+     for (AVAudioSessionPortDescription* route in routes)
+     {
+         if ([bluetoothRoutes containsObject:route.portType])
+         {
+             [[AVAudioSession sharedInstance] setPreferredInput:route
+                                                          error:nil];
+             break;
+         }
+     }
+    
+ }
+ 
 - (void) onInterruptionEvent: (NSNotification *) notification
 {
     NSDictionary *interruptionDict = notification.userInfo;
@@ -1024,16 +1048,6 @@ static OSStatus playout_cb(void *ref_con,
         [audioSession setActive:YES error:nil];
     }
     
-    
-    // Open a session and see what our default is...
-    if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
-                       withOptions:AVAudioSessionCategoryOptionAllowBluetooth
-                             error:&err])
-    {
-        NSLog(@"unable to set audioSession category: %@", err);
-        return NO;
-    }
-    
     // Check for current route
     AVAudioSessionRouteDescription *currentRoute = [audioSession currentRoute];
     for (AVAudioSessionPortDescription *output in currentRoute.outputs) {
@@ -1071,20 +1085,11 @@ static OSStatus playout_cb(void *ref_con,
         // close down our current session...
         [audioSession setActive:NO error:nil];
     }
-    
-    NSUInteger audioOptions = 0;
+
     if ([AUDIO_DEVICE_BLUETOOTH isEqualToString:desiredAudioRoute]) {
-        audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth;
+        [self setBluetoothAsPrefferedInputDevice];
     }
-    
-    if (![audioSession setCategory:AVAudioSessionCategoryPlayAndRecord
-                       withOptions:audioOptions
-                             error:&err])
-    {
-        NSLog(@"unable to set audioSession category: %@", err);
-        return NO;
-    }
-    
+
     if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
         // Set our session to active...
         if (![audioSession setActive:YES error:&err]) {
@@ -1092,6 +1097,7 @@ static OSStatus playout_cb(void *ref_con,
             return NO;
         }
     }
+    
     if ([AUDIO_DEVICE_SPEAKER isEqualToString:desiredAudioRoute]) {
         // replace AudiosessionSetProperty (deprecated from iOS7) with
         // AVAudioSession overrideOutputAudioPort
