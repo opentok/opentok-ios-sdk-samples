@@ -1036,6 +1036,8 @@ static OSStatus playout_cb(void *ref_con,
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err;
     
+    _headsetDeviceAvailable = _bluetoothDeviceAvailable = NO;
+    
     //ios 8.0 complains about Deactivating an audio session that has running
     // I/O. All I/O should be stopped or paused prior to deactivating the audio
     // session. Looks like we can get away by not using the setActive call
@@ -1102,6 +1104,10 @@ static OSStatus playout_cb(void *ref_con,
         // replace AudiosessionSetProperty (deprecated from iOS7) with
         // AVAudioSession overrideOutputAudioPort
         [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+                                        error:&err];
+    } else
+    {
+        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideNone
                                         error:&err];
     }
     
