@@ -3,7 +3,8 @@ OpenTok iOS SDK Samples
 
 This repository is meant to provide some examples for you to better understand
 the features of the OpenTok iOS SDK. The sample applications are meant to be
-used with version 2.3 and higher of the OpenTok iOS SDK. Feel free to copy and
+used with the latest version of the
+[OpenTok iOS SDK](https://tokbox.com/developer/sdks/ios/). Feel free to copy and
 modify the source code herein for your own projects. Please consider sharing
 your modifications with us, especially if they might benefit other developers
 using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
