@@ -149,6 +149,7 @@
     if (appState == UIApplicationStateActive) {
         [self teardownGL];
     }
+    [EAGLContext setCurrentContext:nil];
     [_glContext release];
     [_displayLink invalidate];
     [_displayLink release];
