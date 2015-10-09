@@ -39,7 +39,7 @@ options:NSNumericSearch] != NSOrderedDescending)
 #if (TARGET_IPHONE_SIMULATOR)
 #define kSampleRate 44100
 #else
-#define kSampleRate 16000
+#define kSampleRate 48000
 #endif
 
 
@@ -562,20 +562,7 @@ static void print_error(const char* error, OSStatus code) {
         print_error("AudioUnitSetProperty Set Mixer Buss Count", result);
         return NO;
     }
-    
-    UInt32 maximumFramesPerSlice = 640;
-    
-    result = AudioUnitSetProperty(mixer_unit,
-                                  kAudioUnitProperty_MaximumFramesPerSlice,
-                                  kAudioUnitScope_Global,
-                                  0,
-                                  &maximumFramesPerSlice,
-                                  sizeof (maximumFramesPerSlice));
-    if (noErr != result) {
-        print_error("AudioUnitSetProperty Set Mixer Frames Per Slice", result);
-        return NO;
-    }
-    
+        
     UInt16 bus_num = kMixerStreamInStart;
     for (; bus_num < kMixerBusCount; ++bus_num) {
         if (isPlayout)
