@@ -42,12 +42,9 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
+static double kPreferredIOBufferDuration = 0.01;
 
 static mach_timebase_info_data_t info;
-
-static const UInt32 kMixerBusCount	= kMixerInputBusCount;
-static const UInt32 kMicBus			= 0;
-static const UInt32 kMixerStreamInStart = 1;
 
 static OSStatus recording_cb(void *ref_con,
                              AudioUnitRenderActionFlags *action_flags,
@@ -66,7 +63,7 @@ static OSStatus playout_cb(void *ref_con,
 static void print_error(const char* error, OSStatus code);
 
 @interface OTDefaultAudioDevice ()
-- (BOOL) setupAudioForGraph:(AUGraph *)au_graph playout:(BOOL)isPlayout;
+- (BOOL) setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
 - (void) setupListenerBlocks;
 @end
 
@@ -93,10 +90,9 @@ static void print_error(const char* error, OSStatus code);
     id _audioBus;
     
     AudioBufferList *buffer_list;
-    uint32_t buffer_list_size;
+    uint32_t buffer_num_frames;
+    uint32_t buffer_size;
     AudioStreamBasicDescription	stream_format;
-    AUGraph au_record_graph;
-    AUGraph au_play_graph;
     uint32_t _recordingDelay;
     uint32_t _playoutDelay;
     uint32_t _playoutDelayMeasurementCounter;
@@ -198,15 +194,15 @@ static void print_error(const char* error, OSStatus code);
     
     playing = YES;
     
-    if (NO == [self setupAudioForGraph:&au_play_graph playout:YES]) {
-        print_error("Failed to create play AUGraph",0);
+    if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
+        print_error("Failed to create play audio unit",0);
         playing = NO;
         return NO;
     }
     
-    OSStatus result = AUGraphStart(au_play_graph);
+    OSStatus result = AudioOutputUnitStart(playout_voice_unit);
     if (noErr != result) {
-        print_error("AUGraphStart", result);
+        print_error("AudioOutputUnitStart", result);
         playing = NO;
     }
     
@@ -221,10 +217,10 @@ static void print_error(const char* error, OSStatus code);
     
     playing = NO;
     
-    OSStatus result = AUGraphStop(au_play_graph);
+    OSStatus result = AudioOutputUnitStop(playout_voice_unit);
     
     if (noErr != result) {
-        print_error("AUGraphStop", result);
+        print_error("AudioOutputUnitStop", result);
         return NO;
     }
     
@@ -250,15 +246,15 @@ static void print_error(const char* error, OSStatus code);
     
     recording = YES;
     
-    if (NO == [self setupAudioForGraph:&au_record_graph playout:NO]) {
-        print_error("Failed to create record AUGraph",0);
+    if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
+        print_error("Failed to create record Audio Unit",0);
         recording = NO;
         return NO;
     }
     
-    OSStatus result = AUGraphStart(au_record_graph);
+    OSStatus result = AudioOutputUnitStart(recording_voice_unit);
     if (noErr != result) {
-        print_error("AUGraphStart", result);
+        print_error("AudioOutputUnitStart", result);
         recording = NO;
     }
     
@@ -274,10 +270,10 @@ static void print_error(const char* error, OSStatus code);
     
     recording = NO;
     
-    OSStatus result = AUGraphStop(au_record_graph);
+    OSStatus result = AudioOutputUnitStop(recording_voice_unit);
     
     if (noErr != result) {
-        print_error("AUGraphStop", result);
+        print_error("AudioOutputUnitStop", result);
         return NO;
     }
     
@@ -320,26 +316,28 @@ static void print_error(const char* error, OSStatus code) {
           error, (char*) &result_string);
 }
 
-- (void)disposePlayGraph
+- (void)disposePlayoutUnit
 {
-    if (au_play_graph) {
-        DisposeAUGraph(au_play_graph);
-        au_play_graph = NULL;
+    if (playout_voice_unit) {
+        AudioUnitUninitialize(playout_voice_unit);
+        AudioComponentInstanceDispose(playout_voice_unit);
+        playout_voice_unit = NULL;
     }
 }
 
-- (void)disposeRecordGraph
+- (void)disposeRecordUnit
 {
-    if (au_record_graph) {
-        DisposeAUGraph(au_record_graph);
-        au_record_graph = NULL;
+    if (recording_voice_unit) {
+        AudioUnitUninitialize(recording_voice_unit);
+        AudioComponentInstanceDispose(recording_voice_unit);
+        recording_voice_unit = NULL;
     }
 }
 
 - (void) teardownAudio
 {
-    [self disposePlayGraph];
-    [self disposeRecordGraph];
+    [self disposePlayoutUnit];
+    [self disposeRecordUnit];
     [self freeupAudioBuffers];
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
@@ -363,7 +361,7 @@ static void print_error(const char* error, OSStatus code) {
     if (buffer_list) {
         free(buffer_list);
         buffer_list = NULL;
-        buffer_list_size = 0;
+        buffer_num_frames = 0;
     }
 }
 - (void) setupAudioSession
@@ -383,346 +381,44 @@ static void print_error(const char* error, OSStatus code) {
     
     [mySession setPreferredSampleRate: kSampleRate error: nil];
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
+    [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration
+                                      error:nil];
     
     NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers |
-                              AVAudioSessionCategoryOptionDefaultToSpeaker |
-                              AVAudioSessionCategoryOptionAllowBluetooth;
+    AVAudioSessionCategoryOptionDefaultToSpeaker |
+    AVAudioSessionCategoryOptionAllowBluetooth;
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
                withOptions:audioOptions
                      error:nil];
-
+    
     [self setupListenerBlocks];
     [mySession setActive:YES error:nil];
-}
-
-- (BOOL) setupAudioForGraph:(AUGraph *)au_graph playout:(BOOL)isPlayout
-{
-    OSStatus result = noErr;
-    
-    if (*au_graph) { return YES; }
-    
-    mach_timebase_info(&info);
-    
-    if (!isAudioSessionSetup)
-    {
-        [self setupAudioSession];
-        isAudioSessionSetup = YES;
-    }
-    
-    UInt32 bytesPerSample = sizeof(SInt16);
-    stream_format.mFormatID    = kAudioFormatLinearPCM;
-    stream_format.mFormatFlags =
-    kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
-    stream_format.mBytesPerPacket  = bytesPerSample;
-    stream_format.mFramesPerPacket = 1;
-    stream_format.mBytesPerFrame   = bytesPerSample;
-    stream_format.mChannelsPerFrame= 1;
-    stream_format.mBitsPerChannel  = 8 * bytesPerSample;
-    stream_format.mSampleRate = (Float64) _audioFormat.sampleRate;
-    
-    result = NewAUGraph(au_graph);
-    
-    if (noErr != result) {NSLog(@"Error creating AUGraph"); return NO;}
-    
-    AudioComponentDescription io_dec;
-    io_dec.componentType          = kAudioUnitType_Output;
-    io_dec.componentSubType       = kAudioUnitSubType_VoiceProcessingIO;
-    io_dec.componentManufacturer  = kAudioUnitManufacturer_Apple;
-    io_dec.componentFlags         = 0;
-    io_dec.componentFlagsMask     = 0;
-    
-    // Multichannel mixer unit
-    AudioComponentDescription mixer_desc;
-    mixer_desc.componentType          = kAudioUnitType_Mixer;
-    mixer_desc.componentSubType       = kAudioUnitSubType_MultiChannelMixer;
-    mixer_desc.componentManufacturer  = kAudioUnitManufacturer_Apple;
-    mixer_desc.componentFlags         = 0;
-    mixer_desc.componentFlagsMask     = 0;
-    
-    AUNode   io_node;         // node for I/O unit
-    AUNode   mixer_node;      // node for Multichannel Mixer unit
-    
-    // Add the nodes to the audio processing graph
-    result = AUGraphAddNode (*au_graph, &io_dec, &io_node);
-    
-    if (noErr != result) {
-        print_error("AUGraphNewNode failed for I/O unit", result);
-        return NO;
-    }
-    
-    result = AUGraphAddNode (*au_graph, &mixer_desc, &mixer_node);
-    
-    if (noErr != result) {
-        print_error("AUGraphNewNode failed for Mixer unit", result);
-        return NO;
-    }
-    
-    result = AUGraphOpen(*au_graph);
-    
-    if (noErr != result) {
-        print_error("AUGraphOpen", result);
-        return NO;
-    }
-    
-    AudioUnit mixer_unit;
-    AudioUnit voice_unit;
-    
-    result = AUGraphNodeInfo(*au_graph,
-                             mixer_node,
-                             NULL,
-                             &mixer_unit);
-    if (noErr != result) {
-        print_error("AUGraphNodeInfo", result);
-        return NO;
-    }
     
     
-    result = AUGraphNodeInfo(*au_graph,
-                             io_node,
-                             NULL,
-                             &voice_unit);
-    if (noErr != result) {
-        print_error("AUGraphNodeInfo", result);
-        return NO;
-    }
-    
-    Float64 f64 = 0;
-    UInt32 size = sizeof(f64);
-    OSStatus latency_result = AudioUnitGetProperty(voice_unit,
-                                                   kAudioUnitProperty_Latency,
-                                                   kAudioUnitScope_Global,
-                                                   0, &f64, &size);
-
-    UInt32 flag = 1;
-    if (!isPlayout)
-    {
-        recording_voice_unit = voice_unit;
-        result = AudioUnitSetProperty(voice_unit,
-                                      kAudioOutputUnitProperty_EnableIO,
-                                      kAudioUnitScope_Input,
-                                      kInputBus,
-                                      &flag,
-                                      sizeof (flag));
-        if (noErr != result) {
-            print_error("AudioUnitSetProperty Enable Input", result);
-            return NO;
-        }
-        
-        if (0 == latency_result)
-        {
-            _recording_AudioUnitProperty_Latency = f64;
-        }
-        else
-        {
-            _recording_AudioUnitProperty_Latency = 0;
-        }
-    } else
-    {
-        playout_voice_unit = voice_unit;
-        
-        result = AudioUnitSetProperty(voice_unit,
-                                      kAudioOutputUnitProperty_EnableIO,
-                                      kAudioUnitScope_Output,
-                                      kOutputBus,
-                                      &flag,
-                                      sizeof (flag));
-        if (noErr != result) {
-            print_error("AudioUnitSetProperty Enable Output", result);
-            return NO;
-        }
-        
-        if (0 == latency_result)
-        {
-            _playout_AudioUnitProperty_Latency = f64;
-        }
-        else
-        {
-            _playout_AudioUnitProperty_Latency = 0;
-        }
-    }
-    
-    result = AudioUnitSetProperty(voice_unit,
-                                  kAudioUnitProperty_StreamFormat,
-                                  kAudioUnitScope_Output,
-                                  kInputBus,
-                                  &stream_format,
-                                  sizeof (stream_format));
-    if (noErr != result) {
-        print_error("AudioUnitSetProperty Set Format", result);
-        return NO;
-    }
-    
-    result = AudioUnitSetProperty(mixer_unit,
-                                  kAudioUnitProperty_ElementCount,
-                                  kAudioUnitScope_Input,
-                                  0,
-                                  &kMixerBusCount,
-                                  sizeof (kMixerBusCount));
-    if (noErr != result) {
-        print_error("AudioUnitSetProperty Set Mixer Buss Count", result);
-        return NO;
-    }
-        
-    UInt16 bus_num = kMixerStreamInStart;
-    for (; bus_num < kMixerBusCount; ++bus_num) {
-        if (isPlayout)
-        {
-            AURenderCallbackStruct input_cb;
-            input_cb.inputProc = &playout_cb;
-            input_cb.inputProcRefCon = (__bridge void *)(self);
-            
-            result = AUGraphSetNodeInputCallback(*au_graph,
-                                                 mixer_node,
-                                                 bus_num,
-                                                 &input_cb);
-            if (noErr != result) {
-                print_error("AUGraphSetNodeInputCallback", result);
-                return NO;
-            }
-        }
-        result = AudioUnitSetParameter(mixer_unit,
-                                       kMultiChannelMixerParam_Enable,
-                                       kAudioUnitScope_Input,
-                                       bus_num,
-                                       1,
-                                       0);
-    }
-    
-    
-    if (!isPlayout)
-    {
-        AudioUnitParameterValue is_off = 0;
-        result = AudioUnitSetParameter(mixer_unit,
-                                       kMultiChannelMixerParam_Enable,
-                                       kAudioUnitScope_Input,
-                                       kMicBus,
-                                       is_off,
-                                       0);
-        if (noErr != result) {
-            print_error("AudioUnitSetParameter (enable the mixer unit)",
-                        result);
-            return NO;
-        }
-        
-        AURenderCallbackStruct output_cb;
-        output_cb.inputProc = recording_cb;
-        output_cb.inputProcRefCon = (__bridge void *)(self);
-        result = AUGraphSetNodeInputCallback (*au_graph,
-                                              mixer_node,
-                                              kMicBus,
-                                              &output_cb);
-        if (noErr != result) {
-            print_error("AudioUnitSetProperty callback setup",
-                        result);
-            return NO;
-        }
-    }
-    
-    UInt16 busNumber = kMixerStreamInStart;
-    for (; busNumber < kMixerBusCount; ++busNumber) {
-        
-        result = AudioUnitSetProperty(mixer_unit,
-                                      kAudioUnitProperty_StreamFormat,
-                                      kAudioUnitScope_Input,
-                                      busNumber,
-                                      &stream_format,
-                                      sizeof (stream_format));
-        if (noErr != result) {
-            print_error("AudioUnitSetParameter (enable the mixer unit)",
-                        result);
-            return NO;
-        }
-    }
-    
-    if (!isPlayout)
-    {
-        result = AudioUnitSetProperty(mixer_unit,
-                                      kAudioUnitProperty_StreamFormat,
-                                      kAudioUnitScope_Input,
-                                      kMicBus,
-                                      &stream_format,
-                                      sizeof (stream_format));
-        if (noErr != result) {
-            print_error("AudioUnitSetProperty (set mixer unit input stream "
-                        "format)",
-                        result);
-            return NO;
-        }
-    }
-    Float64 sample_rate = _audioFormat.sampleRate;
-    
-    result = AudioUnitSetProperty(mixer_unit,
-                                  kAudioUnitProperty_SampleRate,
-                                  kAudioUnitScope_Output,
-                                  0,
-                                  &sample_rate,
-                                  sizeof (Float64));
-    if (noErr != result) {
-        print_error("AudioUnitSetProperty (set mixer output stream format)",
-                    result);
-        return NO;
-    }
-    
-    result = AudioUnitSetProperty(mixer_unit,
-                                  kAudioUnitProperty_StreamFormat,
-                                  kAudioUnitScope_Output,
-                                  0,
-                                  &stream_format,
-                                  sizeof (stream_format));
-    if (noErr != result) {
-        print_error
-        ("AudioUnitSetProperty (set mixer unit output stream format)", result);
-        return NO;
-    }
-    
-    result = AUGraphConnectNodeInput(*au_graph,
-                                     mixer_node,
-                                     0,
-                                     io_node,
-                                     0);
-    if (noErr != result) {
-        print_error("AUGraphConnectNodeInput", result);
-        return NO;
-    }
-    
-#ifdef DEBUG
-    CAShow (*au_graph);
-#endif
-    
-    result = AUGraphInitialize(*au_graph);
-    
-    if (noErr != result) {
-        print_error("AUGraphInitialize", result);
-        return NO;
-    }
-    
-    [self setBluetoothAsPrefferedInputDevice];
-    
-    return YES;
 }
 
 - (void)setBluetoothAsPrefferedInputDevice
- {
-     // Apple's Bug(???) : Audio Interruption Ended notification won't be called
-     // for bluetooth devices if we dont set preffered input as bluetooth.
-     // Should work for non bluetooth routes/ports too. This makes both input
-     // and output to bluetooth device if available.
-     NSArray* bluetoothRoutes = @[AVAudioSessionPortBluetoothA2DP,
-                                  AVAudioSessionPortBluetoothLE,
-                                  AVAudioSessionPortBluetoothHFP];
-     NSArray* routes = [[AVAudioSession sharedInstance] availableInputs];
-     for (AVAudioSessionPortDescription* route in routes)
-     {
-         if ([bluetoothRoutes containsObject:route.portType])
-         {
-             [[AVAudioSession sharedInstance] setPreferredInput:route
-                                                          error:nil];
-             break;
-         }
-     }
+{
+    // Apple's Bug(???) : Audio Interruption Ended notification won't be called
+    // for bluetooth devices if we dont set preffered input as bluetooth.
+    // Should work for non bluetooth routes/ports too. This makes both input
+    // and output to bluetooth device if available.
+    NSArray* bluetoothRoutes = @[AVAudioSessionPortBluetoothA2DP,
+                                 AVAudioSessionPortBluetoothLE,
+                                 AVAudioSessionPortBluetoothHFP];
+    NSArray* routes = [[AVAudioSession sharedInstance] availableInputs];
+    for (AVAudioSessionPortDescription* route in routes)
+    {
+        if ([bluetoothRoutes containsObject:route.portType])
+        {
+            [[AVAudioSession sharedInstance] setPreferredInput:route
+                                                         error:nil];
+            break;
+        }
+    }
     
- }
- 
+}
+
 - (void) onInterruptionEvent: (NSNotification *) notification
 {
     NSDictionary *interruptionDict = notification.userInfo;
@@ -773,35 +469,65 @@ static void print_error(const char* error, OSStatus code) {
 
 - (void) onRouteChangeEvent: (NSNotification *) notification
 {
+    
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger routeChangeReason =
     [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
      integerValue];
     
-    switch (routeChangeReason) {
-        case AVAudioSessionRouteChangeReasonUnknown:
-            break;
-            
-        case AVAudioSessionRouteChangeReasonNewDeviceAvailable:
-            break;
-            
-        case AVAudioSessionRouteChangeReasonOldDeviceUnavailable:
-            break;
-            
-        case AVAudioSessionRouteChangeReasonCategoryChange:
-            break;
-            
-        case AVAudioSessionRouteChangeReasonOverride:
-            break;
-            
-        case AVAudioSessionRouteChangeReasonWakeFromSleep:
-            break;
-            
-        case AVAudioSessionRouteChangeReasonNoSuitableRouteForCategory:
-            break;
-            
-        default:
-            break;
+    if (routeChangeReason == AVAudioSessionRouteChangeReasonRouteConfigurationChange ||
+        _audioFormat.sampleRate == [[AVAudioSession sharedInstance] sampleRate])
+        return;
+    
+    if(routeChangeReason == AVAudioSessionRouteChangeReasonOverride ||
+       routeChangeReason == AVAudioSessionRouteChangeReasonCategoryChange)
+    {
+        NSString *oldOutputDeviceName = nil;
+        NSString *currentOutputDeviceName = nil;
+        
+        if([[interruptionDict valueForKey:AVAudioSessionRouteChangePreviousRouteKey] outputs].count > 0)
+        {
+            AVAudioSessionPortDescription *portDesc = (AVAudioSessionPortDescription *)[[[interruptionDict valueForKey:AVAudioSessionRouteChangePreviousRouteKey] outputs] objectAtIndex:0];
+            oldOutputDeviceName = [portDesc portName];
+        }
+        
+        if([[[AVAudioSession sharedInstance] currentRoute] outputs].count > 0)
+        {
+            currentOutputDeviceName = [[[[[AVAudioSession sharedInstance] currentRoute] outputs]
+                                        objectAtIndex:0] portName];
+        }
+        // we need check this because some times we will receeive category change
+        // with the same device.
+        if([oldOutputDeviceName isEqualToString:currentOutputDeviceName])
+            return;
+        
+    }
+    
+    _audioFormat.sampleRate = [[AVAudioSession sharedInstance] sampleRate];
+    
+    // Restart the audio units with correct sample rate
+    if (recording)
+    {
+        OSStatus result = AudioOutputUnitStop(recording_voice_unit);
+        result = AudioUnitUninitialize(recording_voice_unit);
+        [self disposeRecordUnit];
+        if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
+            print_error("Failed to create play audio unit",0);
+            recording = NO;
+        }
+        result = AudioOutputUnitStart(recording_voice_unit);
+    }
+    
+    if (playing)
+    {
+        OSStatus result = AudioOutputUnitStop(playout_voice_unit);
+        result = AudioUnitUninitialize(playout_voice_unit);
+        [self disposePlayoutUnit];
+        if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
+            print_error("Failed to create play audio unit",0);
+            playing = NO;
+        }
+        result = AudioOutputUnitStart(playout_voice_unit);
     }
 }
 
@@ -856,11 +582,10 @@ static void update_recording_delay(OTDefaultAudioDevice* device) {
         
         device->_recordingDelayHWAndOS = 0;
         
-        // HW input latency
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
-        // HW output latency
-        NSTimeInterval interval = [mySession outputLatency];
+        // HW input latency
+        NSTimeInterval interval = [mySession inputLatency];
         
         device->_recordingDelayHWAndOS += (int)(interval * 1000000);
         
@@ -891,7 +616,7 @@ static OSStatus recording_cb(void *ref_con,
     
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
-    if (!dev->buffer_list || num_frames > dev->buffer_list_size)
+    if (!dev->buffer_list || num_frames > dev->buffer_num_frames)
     {
         if (dev->buffer_list) {
             free(dev->buffer_list->mBuffers[0].mData);
@@ -906,7 +631,8 @@ static OSStatus recording_cb(void *ref_con,
         dev->buffer_list->mBuffers[0].mDataByteSize = num_frames*sizeof(UInt16);
         dev->buffer_list->mBuffers[0].mData = malloc(num_frames*sizeof(UInt16));
         
-        dev->buffer_list_size = num_frames;
+        dev->buffer_num_frames = num_frames;
+        dev->buffer_size = dev->buffer_list->mBuffers[0].mDataByteSize;
     }
     
     OSStatus status;
@@ -947,6 +673,10 @@ static OSStatus recording_cb(void *ref_con,
         [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
                          numberOfSamples:num_frames];
     }
+    // some ocassions, AudioUnitRender only renders part of the buffer and then next
+    // call to the AudioUnitRender fails with smaller buffer.
+    if (dev->buffer_size != dev->buffer_list->mBuffers[0].mDataByteSize)
+        dev->buffer_list->mBuffers[0].mDataByteSize = dev->buffer_size;
     
     update_recording_delay(dev);
     
@@ -1021,7 +751,6 @@ static OSStatus playout_cb(void *ref_con,
     NSLog(@"detect current route");
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    NSError *err;
     
     _headsetDeviceAvailable = _bluetoothDeviceAvailable = NO;
     
@@ -1074,11 +803,11 @@ static OSStatus playout_cb(void *ref_con,
         // close down our current session...
         [audioSession setActive:NO error:nil];
     }
-
+    
     if ([AUDIO_DEVICE_BLUETOOTH isEqualToString:desiredAudioRoute]) {
         [self setBluetoothAsPrefferedInputDevice];
     }
-
+    
     if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
         // Set our session to active...
         if (![audioSession setActive:YES error:&err]) {
@@ -1097,6 +826,104 @@ static OSStatus playout_cb(void *ref_con,
         [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideNone
                                         error:&err];
     }
+    
+    return YES;
+}
+
+- (BOOL)setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
+{
+    
+    mach_timebase_info(&info);
+    
+    if (!isAudioSessionSetup)
+    {
+        [self setupAudioSession];
+        isAudioSessionSetup = YES;
+    }
+    
+    UInt32 bytesPerSample = sizeof(SInt16);
+    stream_format.mFormatID    = kAudioFormatLinearPCM;
+    stream_format.mFormatFlags =
+    kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
+    stream_format.mBytesPerPacket  = bytesPerSample;
+    stream_format.mFramesPerPacket = 1;
+    stream_format.mBytesPerFrame   = bytesPerSample;
+    stream_format.mChannelsPerFrame= 1;
+    stream_format.mBitsPerChannel  = 8 * bytesPerSample;
+    stream_format.mSampleRate = (Float64) _audioFormat.sampleRate;
+    
+    AudioComponentDescription audio_unit_description;
+    audio_unit_description.componentType = kAudioUnitType_Output;
+    audio_unit_description.componentSubType = kAudioUnitSubType_VoiceProcessingIO;
+    audio_unit_description.componentManufacturer = kAudioUnitManufacturer_Apple;
+    audio_unit_description.componentFlags = 0;
+    audio_unit_description.componentFlagsMask = 0;
+    
+    AudioComponent found_vpio_unit_ref =
+    AudioComponentFindNext(NULL, &audio_unit_description);
+    
+    AudioComponentInstanceNew(found_vpio_unit_ref, voice_unit);
+    
+    if (!isPlayout)
+    {
+        UInt32 enable_input = 1;
+        AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
+                             kAudioUnitScope_Input, kInputBus, &enable_input,
+                             sizeof(enable_input));
+        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
+                             kAudioUnitScope_Output, kInputBus,
+                             &stream_format, sizeof (stream_format));
+        AURenderCallbackStruct input_callback;
+        input_callback.inputProc = recording_cb;
+        input_callback.inputProcRefCon = (__bridge void *)(self);
+        
+        AudioUnitSetProperty(*voice_unit,
+                             kAudioOutputUnitProperty_SetInputCallback,
+                             kAudioUnitScope_Global, kInputBus, &input_callback,
+                             sizeof(input_callback));
+        UInt32 flag = 0;
+        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_ShouldAllocateBuffer,
+                             kAudioUnitScope_Output, kInputBus, &flag,
+                             sizeof(flag));
+        
+    } else
+    {
+        UInt32 enable_output = 1;
+        AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
+                             kAudioUnitScope_Output, kOutputBus, &enable_output,
+                             sizeof(enable_output));
+        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
+                             kAudioUnitScope_Input, kOutputBus,
+                             &stream_format, sizeof (stream_format));
+        AURenderCallbackStruct render_callback;
+        render_callback.inputProc = playout_cb;;
+        render_callback.inputProcRefCon = (__bridge void *)(self);
+        
+        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_SetRenderCallback,
+                             kAudioUnitScope_Input, kOutputBus, &render_callback,
+                             sizeof(render_callback));
+        
+    }
+    
+    Float64 f64 = 0;
+    UInt32 size = sizeof(f64);
+    OSStatus latency_result = AudioUnitGetProperty(*voice_unit,
+                                                   kAudioUnitProperty_Latency,
+                                                   kAudioUnitScope_Global,
+                                                   0, &f64, &size);
+    if (!isPlayout)
+    {
+        _recording_AudioUnitProperty_Latency = (0 == latency_result) ? f64 : 0;
+    }
+    else
+    {
+        _playout_AudioUnitProperty_Latency = (0 == latency_result) ? f64 : 0;
+    }
+    
+    // Initialize the Voice-Processing I/O unit instance.
+    AudioUnitInitialize(*voice_unit);
+    
+    [self setBluetoothAsPrefferedInputDevice];
     
     return YES;
 }
