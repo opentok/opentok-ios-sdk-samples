@@ -60,9 +60,13 @@ capture implementations provided herein.
     AUGraph API to create an audio session suitable for voice and video
     communications.
 
-7.	**Screen-Sharing** - This project demonstrates how to use a custom video
+8.	**Screen-Sharing** - This project demonstrates how to use a custom video
     capturer to publish a stream that uses a UI view (instead of a camera) as
     the video source.
+
+9.  **Default-Camera-Capturer** - This project demonstrates how to set resolution 
+    and framerate when using the default camera capturer. (i.e we set in Publisher
+    Constructor)
 
 Referencing OpenTok.framework
 -----------------------------
