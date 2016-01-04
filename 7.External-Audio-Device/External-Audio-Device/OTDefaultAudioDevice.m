@@ -850,7 +850,7 @@ static OSStatus playout_cb(void *ref_con,
     stream_format.mBytesPerFrame   = bytesPerSample;
     stream_format.mChannelsPerFrame= 1;
     stream_format.mBitsPerChannel  = 8 * bytesPerSample;
-    stream_format.mSampleRate = (Float64) _audioFormat.sampleRate;
+    stream_format.mSampleRate = (Float64) kSampleRate;
     
     AudioComponentDescription audio_unit_description;
     audio_unit_description.componentType = kAudioUnitType_Output;
