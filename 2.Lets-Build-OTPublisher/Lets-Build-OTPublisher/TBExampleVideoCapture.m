@@ -492,7 +492,15 @@
     
     [_captureSession commitConfiguration];
     
-    [_captureSession startRunning];
+    // Fix for 10 seconds delay occuring with new resolution and fps
+    // constructor as well as if you set cameraPosition right after regular init
+    // OPENTOK-27013, OPENTOK-26905
+    dispatch_time_t delay = dispatch_time(DISPATCH_TIME_NOW,
+                                          0.1 * NSEC_PER_SEC);
+    dispatch_after(delay,_capture_queue,^{
+        [_captureSession startRunning];
+    });
+
 }
 
 - (void)initCapture {
