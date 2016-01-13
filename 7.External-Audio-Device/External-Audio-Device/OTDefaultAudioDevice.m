@@ -42,6 +42,14 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
+#define OT_ENABLE_AUDIO_DEBUG 1
+
+#if OT_ENABLE_AUDIO_DEBUG
+#define OT_AUDIO_DEBUG(X) NSLog(@"%@", X)
+#elif
+#define OT_AUDIO_DEBUG(X)
+#endif
+
 static double kPreferredIOBufferDuration = 0.01;
 
 static mach_timebase_info_data_t info;
@@ -59,8 +67,6 @@ static OSStatus playout_cb(void *ref_con,
                            UInt32 bus_num,
                            UInt32 num_frames,
                            AudioBufferList *data);
-
-static void print_error(const char* error, OSStatus code);
 
 @interface OTDefaultAudioDevice ()
 - (BOOL) setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
@@ -111,6 +117,7 @@ static void print_error(const char* error, OSStatus code);
         _audioFormat = [[OTAudioFormat alloc] init];
         _audioFormat.sampleRate = kSampleRate;
         _audioFormat.numChannels = 1;
+    
     }
     return self;
 }
@@ -188,6 +195,8 @@ static void print_error(const char* error, OSStatus code);
 
 - (BOOL)startRendering
 {
+    NSLog(@"startRendering");
+    
     if (playing) {
         return YES;
     }
@@ -195,14 +204,12 @@ static void print_error(const char* error, OSStatus code);
     playing = YES;
     
     if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
-        print_error("Failed to create play audio unit",0);
         playing = NO;
         return NO;
     }
     
     OSStatus result = AudioOutputUnitStart(playout_voice_unit);
-    if (noErr != result) {
-        print_error("AudioOutputUnitStart", result);
+    if (CheckError(result, @"startRendering.AudioOutputUnitStart")) {
         playing = NO;
     }
     
@@ -211,6 +218,8 @@ static void print_error(const char* error, OSStatus code);
 
 - (BOOL)stopRendering
 {
+    NSLog(@"stopRendering");
+
     if (!playing) {
         return YES;
     }
@@ -218,9 +227,7 @@ static void print_error(const char* error, OSStatus code);
     playing = NO;
     
     OSStatus result = AudioOutputUnitStop(playout_voice_unit);
-    
-    if (noErr != result) {
-        print_error("AudioOutputUnitStop", result);
+    if (CheckError(result, @"stopRendering.AudioOutputUnitStop")) {
         return NO;
     }
     
@@ -240,6 +247,8 @@ static void print_error(const char* error, OSStatus code);
 
 - (BOOL)startCapture
 {
+    OT_AUDIO_DEBUG(@"startCapture");
+
     if (recording) {
         return YES;
     }
@@ -247,14 +256,12 @@ static void print_error(const char* error, OSStatus code);
     recording = YES;
     
     if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
-        print_error("Failed to create record Audio Unit",0);
         recording = NO;
         return NO;
     }
     
     OSStatus result = AudioOutputUnitStart(recording_voice_unit);
-    if (noErr != result) {
-        print_error("AudioOutputUnitStart", result);
+    if (CheckError(result, @"AudioOutputUnitStart")) {
         recording = NO;
     }
     
@@ -263,6 +270,7 @@ static void print_error(const char* error, OSStatus code);
 
 - (BOOL)stopCapture
 {
+    OT_AUDIO_DEBUG(@"stopCapture");
     
     if (!recording) {
         return YES;
@@ -272,8 +280,7 @@ static void print_error(const char* error, OSStatus code);
     
     OSStatus result = AudioOutputUnitStop(recording_voice_unit);
     
-    if (noErr != result) {
-        print_error("AudioOutputUnitStop", result);
+    if (CheckError(result, @"stopCapture.AudioOutputUnitStop")) {
         return NO;
     }
     
@@ -305,15 +312,37 @@ static void print_error(const char* error, OSStatus code);
 
 #pragma mark - AudioSession Setup
 
-static void print_error(const char* error, OSStatus code) {
+static NSString* FormatError(OSStatus error)
+{
+    uint32_t as_int = CFSwapInt32HostToLittle(error);
+    uint8_t* as_char = (uint8_t*) &as_int;
+    // see if it appears to be a 4-char-code
+    if (isprint(as_char[0]) &&
+        isprint(as_char[1]) &&
+        isprint(as_char[2]) &&
+        isprint(as_char[3]))
+    {
+        return [NSString stringWithFormat:@"%c%c%c%c",
+                as_int >> 24, as_int >> 16, as_int >> 8, as_int];
+    }
+    else
+    {
+        // no, format it as an integer
+        return [NSString stringWithFormat:@"%d", error];
+    }
+}
+
+/**
+ * @return YES if in error
+ */
+static bool CheckError(OSStatus error, NSString* function) {
+    if (!error) return NO;
     
-    char result_string[5];
-    UInt32 result = CFSwapInt32HostToBig (code);
-    bcopy (&result, result_string, 4);
-    result_string[4] = '\0';
+    NSString* error_string = FormatError(error);
+    NSLog(@"ERROR[OpenTok]:Audio device error: %@ returned error: %@",
+          function, error_string);
     
-    NSLog(@"ERROR[OpenTok]:Audio deivce error: %s error: %4.4s",
-          error, (char*) &result_string);
+    return YES;
 }
 
 - (void)disposePlayoutUnit
@@ -421,6 +450,7 @@ static void print_error(const char* error, OSStatus code) {
 
 - (void) onInterruptionEvent: (NSNotification *) notification
 {
+    NSLog(@"onInterruptionEvent");
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger interruptionType =
     [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
@@ -429,6 +459,7 @@ static void print_error(const char* error, OSStatus code) {
     switch (interruptionType) {
         case AVAudioSessionInterruptionTypeBegan:
         {
+            OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeBegan");
             if(recording)
             {
                 isRecorderInterrupted = YES;
@@ -444,6 +475,7 @@ static void print_error(const char* error, OSStatus code) {
             
         case AVAudioSessionInterruptionTypeEnded:
         {
+            OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
             // Reconfigure audio session with highest priority device
             [self configureAudioSessionWithDesiredAudioRoute:
              AUDIO_DEVICE_BLUETOOTH];
@@ -457,11 +489,12 @@ static void print_error(const char* error, OSStatus code) {
                 isPlayerInterrupted = NO;
                 [self startRendering];
             }
+            
         }
             break;
-            
+        
         default:
-            NSLog(@"Audio Session Interruption Notification"
+            OT_AUDIO_DEBUG(@"Audio Session Interruption Notification"
                   " case default.");
             break;
     }
@@ -512,7 +545,6 @@ static void print_error(const char* error, OSStatus code) {
         result = AudioUnitUninitialize(recording_voice_unit);
         [self disposeRecordUnit];
         if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
-            print_error("Failed to create play audio unit",0);
             recording = NO;
         }
         result = AudioOutputUnitStart(recording_voice_unit);
@@ -524,17 +556,28 @@ static void print_error(const char* error, OSStatus code) {
         result = AudioUnitUninitialize(playout_voice_unit);
         [self disposePlayoutUnit];
         if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
-            print_error("Failed to create play audio unit",0);
             playing = NO;
         }
         result = AudioOutputUnitStart(playout_voice_unit);
     }
 }
 
+- (void) onAppWillEnterForeground:(NSNotification*)notification
+{
+    OT_AUDIO_DEBUG(@"onAppWillEnterForeground");
+
+}
+
+- (void) onAppEnteredBackground:(NSNotification*)notification
+{
+    OT_AUDIO_DEBUG(@"onAppEnteredBackground");
+}
+
 - (void) setupListenerBlocks
 {
     if(!areListenerBlocksSetup)
     {
+        NSLog(@"setupListenerBlocks");
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         
         [center addObserver:self
@@ -544,33 +587,24 @@ static void print_error(const char* error, OSStatus code) {
         [center addObserver:self
                    selector:@selector(onRouteChangeEvent:)
                        name:AVAudioSessionRouteChangeNotification object:nil];
+
+        [center addObserver:self
+                   selector:@selector(onAppWillEnterForeground:)
+                       name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        [center addObserver:self
+                   selector:@selector(onAppEnteredBackground:)
+                       name:UIApplicationDidEnterBackgroundNotification object:nil];
         areListenerBlocksSetup = YES;
     }
 }
 
 - (void) removeObservers
 {
+    NSLog(@"removeObservers");
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center removeObserver:self];
     areListenerBlocksSetup = NO;
-}
-
-static void CheckError(OSStatus error, const char *operation) {
-    if (error == noErr) return;
-    
-    char errorString[20] = {};
-    //check fourcc code
-    *(UInt32*)(errorString + 1) = CFSwapInt32HostToBig(error);
-    if (isprint(errorString[1]) && isprint(errorString[2]) &&
-        isprint(errorString[3]) && isprint(errorString[4]))
-    {
-        errorString[0] = errorString[5] = '\'';
-        errorString[6] = '\0';
-    }
-    else {
-        //sprintf(errorString, "%d", (int)error);
-    }
-    //fprintf(stderr, "Error: %s (%s)\n", operation, errorString);
 }
 
 static void update_recording_delay(OTDefaultAudioDevice* device) {
@@ -650,7 +684,7 @@ static OSStatus recording_cb(void *ref_con,
                              dev->buffer_list);
     
     if (status != noErr) {
-        CheckError(status, "AudioUnitRender Failed");
+        CheckError(status, @"AudioUnitRender");
     }
     
     if (dev->recording) {
@@ -832,6 +866,7 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
 {
+    OSStatus result;
     
     mach_timebase_info(&info);
     
@@ -862,7 +897,16 @@ static OSStatus playout_cb(void *ref_con,
     AudioComponent found_vpio_unit_ref =
     AudioComponentFindNext(NULL, &audio_unit_description);
     
-    AudioComponentInstanceNew(found_vpio_unit_ref, voice_unit);
+    result = AudioComponentInstanceNew(found_vpio_unit_ref, voice_unit);
+    
+    if (CheckError(result, @"setupAudioUnit.AudioComponentInstanceNew")) {
+        return NO;
+    }
+    
+    if (!*voice_unit) {
+        NSLog(@"ERROR[OpenTok]: AudioComponentInstanceNew returned null unit");
+        NSLog(@"return code was %d", result);
+    }
     
     if (!isPlayout)
     {
