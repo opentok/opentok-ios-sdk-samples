@@ -35,12 +35,13 @@ static NSString* const kToken = @"";
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = NO;
 
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _myAudioDevice = [[OTDefaultAudioDevice alloc] init];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
     
@@ -226,15 +227,6 @@ didFailWithError:(OTError*)error
     [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                           widgetHeight)];
     [self.view addSubview:_subscriber.view];
-
-    //do audio stuff only after the 2-way chat is in place
-    //detecting just for debug purpose
-    [_myAudioDevice detectCurrentRoute];
-    
-    // change audio route to bluetooth,if present, else headset otherwise device
-    // speakers
-    [_myAudioDevice
-     configureAudioSessionWithDesiredAudioRoute:AUDIO_DEVICE_BLUETOOTH];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -243,6 +235,12 @@ didFailWithError:(OTError*)error
     NSLog(@"subscriber %@ didFailWithError %@",
           subscriber.stream.streamId,
           error);
+}
+
+- (void)subscriberDidDisconnectFromStream:(OTSubscriberKit *)subscriber
+{
+    NSLog(@"subscriberDidDisconnectFromStream %@", subscriber);
+    [self cleanupSubscriber];
 }
 
 # pragma mark - OTPublisher delegate callbacks
@@ -263,6 +261,8 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit*)publisher
   streamDestroyed:(OTStream *)stream
 {
+    NSLog(@"publisher %@ streamDestroyed %@", publisher, stream);
+    
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
