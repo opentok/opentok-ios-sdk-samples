@@ -26,21 +26,22 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"100";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX4xMDB-fjE0NTI3MjEzOTA5NzN-MzAwNER6WnY3RWhiY1pLbjFtRTRJS2Nafn4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9OThjMzUyY2ExN2Q1OGUyMDFhMjY5MTVmZDJlNDQ0ZjU4MTZiNjRhYjpzZXNzaW9uX2lkPTJfTVg0eE1EQi1makUwTlRJM01qRXpPVEE1TnpOLU16QXdORVI2V25ZM1JXaGlZMXBMYmpGdFJUUkpTMk5hZm40JmNyZWF0ZV90aW1lPTE0NTI3MTk2MjMmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ1MjcxOTYyMy45MDg2OTM0MzczNzU4JmV4cGlyZV90aW1lPTE0NTUzMTE2MjM=";
+static NSString* const kToken = @"";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = NO;
+
 
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _myAudioDevice = [[OTDefaultAudioDevice alloc] init];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
     
@@ -236,6 +237,12 @@ didFailWithError:(OTError*)error
           error);
 }
 
+- (void)subscriberDidDisconnectFromStream:(OTSubscriberKit *)subscriber
+{
+    NSLog(@"subscriberDidDisconnectFromStream %@", subscriber);
+    [self cleanupSubscriber];
+}
+
 # pragma mark - OTPublisher delegate callbacks
 
 - (void)publisher:(OTPublisherKit *)publisher
@@ -254,6 +261,8 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit*)publisher
   streamDestroyed:(OTStream *)stream
 {
+    NSLog(@"publisher %@ streamDestroyed %@", publisher, stream);
+    
     if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
