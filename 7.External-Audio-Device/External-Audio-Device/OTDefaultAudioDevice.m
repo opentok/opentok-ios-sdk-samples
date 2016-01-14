@@ -42,7 +42,7 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
-#define OT_ENABLE_AUDIO_DEBUG 1
+#define OT_ENABLE_AUDIO_DEBUG 0
 
 #if OT_ENABLE_AUDIO_DEBUG
 #define OT_AUDIO_DEBUG(X) NSLog(@"%@", X)
@@ -159,6 +159,8 @@ static OSStatus playout_cb(void *ref_con,
     return YES;
 }
 
+// Audio Unit lifecycle is bound to start/stop cycles, so we don't have much
+// to do here.
 - (BOOL)initializeRendering
 {
     if (playing) {
@@ -181,6 +183,8 @@ static OSStatus playout_cb(void *ref_con,
     return YES;
 }
 
+// Audio Unit lifecycle is bound to start/stop cycles, so we don't have much
+// to do here.
 - (BOOL)initializeCapture
 {
     if (recording) {
@@ -201,16 +205,15 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)startRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopRendering");
+        OT_AUDIO_DEBUG(@"startRendering");
         
         if (playing) {
             return YES;
         }
         
-        playing = NO;
+        playing = YES;
         
         if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
-            NSLog(@"no render audio unit");
             playing = NO;
             return NO;
         }
@@ -520,23 +523,27 @@ static bool CheckError(OSStatus error, NSString* function) {
     }
 }
 
-- (void) onRouteChangeEvent: (NSNotification *) notification
+- (void) onRouteChangeEvent:(NSNotification *) notification
 {
     dispatch_async(_safetyQueue, ^() {
         [self handleRouteChangeEvent:notification];
     });
 }
 
-- (void) handleRouteChangeEvent: (NSNotification *) notification
+- (void) handleRouteChangeEvent:(NSNotification *) notification
 {
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger routeChangeReason =
     [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
      integerValue];
     
-    if (routeChangeReason == AVAudioSessionRouteChangeReasonRouteConfigurationChange ||
-        _audioFormat.sampleRate == [[AVAudioSession sharedInstance] sampleRate])
+    // We'll receive a routeChangedEvent when the audio unit starts; don't
+    // process events we caused internally.
+    if (AVAudioSessionRouteChangeReasonRouteConfigurationChange ==
+        routeChangeReason)
+    {
         return;
+    }
     
     if(routeChangeReason == AVAudioSessionRouteChangeReasonOverride ||
        routeChangeReason == AVAudioSessionRouteChangeReasonCategoryChange)
@@ -544,9 +551,15 @@ static bool CheckError(OSStatus error, NSString* function) {
         NSString *oldOutputDeviceName = nil;
         NSString *currentOutputDeviceName = nil;
         
-        if([[interruptionDict valueForKey:AVAudioSessionRouteChangePreviousRouteKey] outputs].count > 0)
+        AVAudioSessionRouteDescription* oldRouteDesc =
+        [interruptionDict valueForKey:AVAudioSessionRouteChangePreviousRouteKey];
+        NSArray<AVAudioSessionPortDescription*>* outputs =
+        [oldRouteDesc outputs];
+        
+        if(outputs.count > 0)
         {
-            AVAudioSessionPortDescription *portDesc = (AVAudioSessionPortDescription *)[[[interruptionDict valueForKey:AVAudioSessionRouteChangePreviousRouteKey] outputs] objectAtIndex:0];
+            AVAudioSessionPortDescription *portDesc =
+            (AVAudioSessionPortDescription *)[outputs objectAtIndex:0];
             oldOutputDeviceName = [portDesc portName];
         }
         
@@ -555,48 +568,31 @@ static bool CheckError(OSStatus error, NSString* function) {
             currentOutputDeviceName = [[[[[AVAudioSession sharedInstance] currentRoute] outputs]
                                         objectAtIndex:0] portName];
         }
-        // we need check this because some times we will receeive category change
-        // with the same device.
-        if([oldOutputDeviceName isEqualToString:currentOutputDeviceName])
-            return;
         
+        // we need check this because some times we will receive category change
+        // with the same device.
+        if([oldOutputDeviceName isEqualToString:currentOutputDeviceName]) {
+            return;
+        }
     }
     
-    _audioFormat.sampleRate = [[AVAudioSession sharedInstance] sampleRate];
+    // We've made it here, there's been a legit route change.
+    // Reset and reallocate everything.
     
     // Restart the audio units with correct sample rate
     if (recording)
     {
-        OSStatus result = AudioOutputUnitStop(recording_voice_unit);
-        result = AudioUnitUninitialize(recording_voice_unit);
+        [self stopCapture];
         [self disposeRecordUnit];
-        if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
-            recording = NO;
-        }
-        result = AudioOutputUnitStart(recording_voice_unit);
+        [self startCapture];
     }
     
     if (playing)
     {
-        OSStatus result = AudioOutputUnitStop(playout_voice_unit);
-        result = AudioUnitUninitialize(playout_voice_unit);
+        [self stopRendering];
         [self disposePlayoutUnit];
-        if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
-            playing = NO;
-        }
-        result = AudioOutputUnitStart(playout_voice_unit);
+        [self startRendering];
     }
-}
-
-- (void) onAppWillEnterForeground:(NSNotification*)notification
-{
-    OT_AUDIO_DEBUG(@"onAppWillEnterForeground");
-
-}
-
-- (void) onAppEnteredBackground:(NSNotification*)notification
-{
-    OT_AUDIO_DEBUG(@"onAppEnteredBackground");
 }
 
 - (void) setupListenerBlocks
@@ -613,20 +609,12 @@ static bool CheckError(OSStatus error, NSString* function) {
                    selector:@selector(onRouteChangeEvent:)
                        name:AVAudioSessionRouteChangeNotification object:nil];
 
-        [center addObserver:self
-                   selector:@selector(onAppWillEnterForeground:)
-                       name:UIApplicationWillEnterForegroundNotification object:nil];
-        
-        [center addObserver:self
-                   selector:@selector(onAppEnteredBackground:)
-                       name:UIApplicationDidEnterBackgroundNotification object:nil];
         areListenerBlocksSetup = YES;
     }
 }
 
 - (void) removeObservers
 {
-    NSLog(@"removeObservers");
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center removeObserver:self];
     areListenerBlocksSetup = NO;
@@ -807,7 +795,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)detectCurrentRoute
 {
     // called on startup to initialize the devices that are available...
-    NSLog(@"detect current route");
+    OT_AUDIO_DEBUG(@"detect current route");
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     
@@ -836,21 +824,21 @@ static OSStatus playout_cb(void *ref_con,
     }
     
     if (_headsetDeviceAvailable) {
-        NSLog(@"Current route is Headset");
+        OT_AUDIO_DEBUG(@"Current route is Headset");
     }
     
     if (_bluetoothDeviceAvailable) {
-        NSLog(@"Current route is Bluetooth");
+        OT_AUDIO_DEBUG(@"Current route is Bluetooth");
     }
     
     if(!_bluetoothDeviceAvailable && !_headsetDeviceAvailable) {
-        NSLog(@"Current route is device speaker");
+        OT_AUDIO_DEBUG(@"Current route is device speaker");
     }
     
     return YES;
 }
 
-- (BOOL)configureAudioSessionWithDesiredAudioRoute:(NSString *)desiredAudioRoute
+- (BOOL)configureAudioSessionWithDesiredAudioRoute:(NSString*)desiredAudioRoute
 {
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err;
