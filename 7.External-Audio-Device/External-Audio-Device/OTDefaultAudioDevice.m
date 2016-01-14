@@ -46,7 +46,7 @@ options:NSNumericSearch] != NSOrderedDescending)
 
 #if OT_ENABLE_AUDIO_DEBUG
 #define OT_AUDIO_DEBUG(X) NSLog(@"%@", X)
-#elif
+#else
 #define OT_AUDIO_DEBUG(X)
 #endif
 
@@ -92,6 +92,10 @@ static OSStatus playout_cb(void *ref_con,
     BOOL isRecorderInterrupted;
     BOOL isPlayerInterrupted;
     BOOL areListenerBlocksSetup;
+    
+    /* synchronize all access to the audio subsystem */
+    dispatch_queue_t _safetyQueue;
+    
 @public
     id _audioBus;
     
@@ -117,7 +121,8 @@ static OSStatus playout_cb(void *ref_con,
         _audioFormat = [[OTAudioFormat alloc] init];
         _audioFormat.sampleRate = kSampleRate;
         _audioFormat.numChannels = 1;
-    
+        _safetyQueue = dispatch_queue_create("ot-audio-driver",
+                                             DISPATCH_QUEUE_SERIAL);
     }
     return self;
 }
@@ -195,49 +200,54 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)startRendering
 {
-    NSLog(@"startRendering");
-    
-    if (playing) {
-        return YES;
-    }
-    
-    playing = YES;
-    
-    if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
+    @synchronized(self) {
+        OT_AUDIO_DEBUG(@"stopRendering");
+        
+        if (playing) {
+            return YES;
+        }
+        
         playing = NO;
-        return NO;
+        
+        if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
+            NSLog(@"no render audio unit");
+            playing = NO;
+            return NO;
+        }
+        
+        OSStatus result = AudioOutputUnitStart(playout_voice_unit);
+        if (CheckError(result, @"startRendering.AudioOutputUnitStart")) {
+            playing = NO;
+        }
+        
+        return playing;
     }
-    
-    OSStatus result = AudioOutputUnitStart(playout_voice_unit);
-    if (CheckError(result, @"startRendering.AudioOutputUnitStart")) {
-        playing = NO;
-    }
-    
-    return playing;
 }
 
 - (BOOL)stopRendering
 {
-    NSLog(@"stopRendering");
+    @synchronized(self) {
+        OT_AUDIO_DEBUG(@"stopRendering");
 
-    if (!playing) {
+        if (!playing) {
+            return YES;
+        }
+        
+        playing = NO;
+        
+        OSStatus result = AudioOutputUnitStop(playout_voice_unit);
+        if (CheckError(result, @"stopRendering.AudioOutputUnitStop")) {
+            return NO;
+        }
+        
+        // publisher is already closed
+        if (!recording && !isPlayerInterrupted)
+        {
+            [self teardownAudio];
+        }
+        
         return YES;
     }
-    
-    playing = NO;
-    
-    OSStatus result = AudioOutputUnitStop(playout_voice_unit);
-    if (CheckError(result, @"stopRendering.AudioOutputUnitStop")) {
-        return NO;
-    }
-    
-    // publisher is already closed
-    if (!recording && !isPlayerInterrupted)
-    {
-        [self teardownAudio];
-    }
-    
-    return YES;
 }
 
 - (BOOL)isRendering
@@ -247,52 +257,56 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)startCapture
 {
-    OT_AUDIO_DEBUG(@"startCapture");
-
-    if (recording) {
-        return YES;
+    @synchronized(self) {
+        OT_AUDIO_DEBUG(@"startCapture");
+        
+        if (recording) {
+            return YES;
+        }
+        
+        recording = YES;
+        
+        if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
+            recording = NO;
+            return NO;
+        }
+        
+        OSStatus result = AudioOutputUnitStart(recording_voice_unit);
+        if (CheckError(result, @"startCapture.AudioOutputUnitStart")) {
+            recording = NO;
+        }
+        
+        return recording;
     }
-    
-    recording = YES;
-    
-    if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
-        recording = NO;
-        return NO;
-    }
-    
-    OSStatus result = AudioOutputUnitStart(recording_voice_unit);
-    if (CheckError(result, @"AudioOutputUnitStart")) {
-        recording = NO;
-    }
-    
-    return recording;
 }
 
 - (BOOL)stopCapture
 {
-    OT_AUDIO_DEBUG(@"stopCapture");
-    
-    if (!recording) {
+    @synchronized(self) {
+        OT_AUDIO_DEBUG(@"stopCapture");
+        
+        if (!recording) {
+            return YES;
+        }
+        
+        recording = NO;
+        
+        OSStatus result = AudioOutputUnitStop(recording_voice_unit);
+        
+        if (CheckError(result, @"stopCapture.AudioOutputUnitStop")) {
+            return NO;
+        }
+        
+        [self freeupAudioBuffers];
+        
+        // subscriber is already closed
+        if (!playing && !isRecorderInterrupted)
+        {
+            [self teardownAudio];
+        }
+        
         return YES;
     }
-    
-    recording = NO;
-    
-    OSStatus result = AudioOutputUnitStop(recording_voice_unit);
-    
-    if (CheckError(result, @"stopCapture.AudioOutputUnitStop")) {
-        return NO;
-    }
-    
-    [self freeupAudioBuffers];
-    
-    // subscriber is already closed
-    if (!playing && !isRecorderInterrupted)
-    {
-        [self teardownAudio];
-    }
-    
-    return YES;
 }
 
 - (BOOL)isCapturing
@@ -448,9 +462,15 @@ static bool CheckError(OSStatus error, NSString* function) {
     
 }
 
-- (void) onInterruptionEvent: (NSNotification *) notification
+- (void) onInterruptionEvent:(NSNotification *) notification
 {
-    NSLog(@"onInterruptionEvent");
+    dispatch_async(_safetyQueue, ^() {
+        [self handleInterruptionEvent:notification];
+    });
+}
+
+- (void) handleInterruptionEvent:(NSNotification *) notification
+{
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger interruptionType =
     [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
@@ -502,7 +522,13 @@ static bool CheckError(OSStatus error, NSString* function) {
 
 - (void) onRouteChangeEvent: (NSNotification *) notification
 {
-    
+    dispatch_async(_safetyQueue, ^() {
+        [self handleRouteChangeEvent:notification];
+    });
+}
+
+- (void) handleRouteChangeEvent: (NSNotification *) notification
+{
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger routeChangeReason =
     [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
@@ -577,7 +603,6 @@ static bool CheckError(OSStatus error, NSString* function) {
 {
     if(!areListenerBlocksSetup)
     {
-        NSLog(@"setupListenerBlocks");
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         
         [center addObserver:self
@@ -903,11 +928,6 @@ static OSStatus playout_cb(void *ref_con,
         return NO;
     }
     
-    if (!*voice_unit) {
-        NSLog(@"ERROR[OpenTok]: AudioComponentInstanceNew returned null unit");
-        NSLog(@"return code was %d", result);
-    }
-    
     if (!isPlayout)
     {
         UInt32 enable_input = 1;
@@ -965,7 +985,10 @@ static OSStatus playout_cb(void *ref_con,
     }
     
     // Initialize the Voice-Processing I/O unit instance.
-    AudioUnitInitialize(*voice_unit);
+    result = AudioUnitInitialize(*voice_unit);
+    if (CheckError(result, @"setupAudioUnit.AudioUnitInitialize")) {
+        return NO;
+    }
     
     [self setBluetoothAsPrefferedInputDevice];
     

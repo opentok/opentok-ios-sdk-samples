@@ -26,11 +26,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"100";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX4xMDB-fjE0NTI3MjEzOTA5NzN-MzAwNER6WnY3RWhiY1pLbjFtRTRJS2Nafn4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9OThjMzUyY2ExN2Q1OGUyMDFhMjY5MTVmZDJlNDQ0ZjU4MTZiNjRhYjpzZXNzaW9uX2lkPTJfTVg0eE1EQi1makUwTlRJM01qRXpPVEE1TnpOLU16QXdORVI2V25ZM1JXaGlZMXBMYmpGdFJUUkpTMk5hZm40JmNyZWF0ZV90aW1lPTE0NTI3MTk2MjMmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ1MjcxOTYyMy45MDg2OTM0MzczNzU4JmV4cGlyZV90aW1lPTE0NTUzMTE2MjM=";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = NO;
@@ -226,15 +226,6 @@ didFailWithError:(OTError*)error
     [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                           widgetHeight)];
     [self.view addSubview:_subscriber.view];
-
-    //do audio stuff only after the 2-way chat is in place
-    //detecting just for debug purpose
-    [_myAudioDevice detectCurrentRoute];
-    
-    // change audio route to bluetooth,if present, else headset otherwise device
-    // speakers
-    [_myAudioDevice
-     configureAudioSessionWithDesiredAudioRoute:AUDIO_DEVICE_BLUETOOTH];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
