@@ -110,7 +110,8 @@
     dispatch_source_set_event_handler(_timer, ^{
         @autoreleasepool {
             __block UIImage* screen = [_self screenshot];
-            [_self consumeFrame:[screen CGImage]];
+            CGImageRef paddedScreen = [self resizeAndPadImage:screen];
+            [_self consumeFrame:paddedScreen];
         }
     });
 }
@@ -186,42 +187,79 @@
 }
 
 // From https://bugs.chromium.org/p/webrtc/issues/detail?id=4643#c7 :
-// Don't send any image larger than 1920px on either edge. Additionally, don't
+// Don't send any image larger than 1280px on either edge. Additionally, don't
 // send any image with dimensions %16 != 0
-#define EDGE_LIMIT 1920.0f
+#define EDGE_LIMIT 1280.0f
+#define DIMENSION_FACTOR 16.0f
+- (CGImageRef)resizeAndPadImage:(UIImage*)sourceUIImage {
+    CGImageRef sourceCGImage = [sourceUIImage CGImage];
+    CGFloat sourceWidth = CGImageGetWidth(sourceCGImage);
+    CGFloat sourceHeight = CGImageGetHeight(sourceCGImage);
+    double sourceAspectRatio = sourceWidth / sourceHeight;
+    
+    CGFloat destContainerWidth = sourceWidth;
+    CGFloat destContainerHeight = sourceHeight;
+    CGFloat destImageWidth = sourceWidth;
+    CGFloat destImageHeight = sourceHeight;
+    
+    if (EDGE_LIMIT < sourceWidth && sourceAspectRatio >= 1.0) {
+        destContainerWidth = EDGE_LIMIT;
+        destContainerHeight = destContainerWidth / sourceAspectRatio;
+        destContainerHeight +=
+        (DIMENSION_FACTOR - fmod(destContainerHeight, DIMENSION_FACTOR));
+        destImageWidth = destContainerWidth;
+        destImageHeight = destContainerWidth / sourceAspectRatio;
+    }
+    
+    if (EDGE_LIMIT < destContainerHeight && sourceAspectRatio <= 1.0) {
+        destContainerHeight = EDGE_LIMIT;
+        destContainerWidth = destContainerHeight * sourceAspectRatio;
+        destContainerWidth +=
+        (DIMENSION_FACTOR - fmod(destContainerWidth, DIMENSION_FACTOR));
+        destImageHeight = destContainerHeight;
+        destImageWidth = destContainerHeight * sourceAspectRatio;
+    }
+    
+    CGRect destRectForSourceImage = CGRectZero;
+    CGSize destContainerSize =
+    CGSizeMake(destContainerWidth, destContainerHeight);
+    
+    if (sourceAspectRatio > 1.0) {
+        destRectForSourceImage.origin.x = 0;
+        destRectForSourceImage.origin.y =
+        (destContainerHeight - destImageHeight) / 2;
+        destRectForSourceImage.size.width = destContainerWidth;
+        destRectForSourceImage.size.height =
+        destContainerWidth / sourceAspectRatio;
+    } else {
+        destRectForSourceImage.origin.x =
+        (destContainerWidth - destImageWidth) / 2;
+        destRectForSourceImage.origin.y = 0;
+        destRectForSourceImage.size.height = destContainerHeight;
+        destRectForSourceImage.size.width =
+        destContainerHeight * sourceAspectRatio;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(destContainerSize, NO, 1.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    //UIGraphicsPushContext(context);
+    
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextTranslateCTM(context, 0, -destRectForSourceImage.size.height);
+    CGContextDrawImage(context, destRectForSourceImage, sourceCGImage);
+    
+    // Clean up and get the new image.
+    //UIGraphicsPopContext();
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return [newImage CGImage];
+}
+
 - (UIImage *)screenshot
 {
-    CGSize imageSize = CGSizeZero;
-    imageSize = [UIScreen mainScreen].bounds.size;
-    
-    double scaleFactor = [UIScreen mainScreen].scale;
-    double aspectRatio = imageSize.width / imageSize.height;
-    if (EDGE_LIMIT < (scaleFactor * imageSize.height)) {
-        imageSize.height = EDGE_LIMIT / scaleFactor;
-        imageSize.width = imageSize.height * aspectRatio;
-    }
-    if (EDGE_LIMIT < (scaleFactor * imageSize.width)) {
-        imageSize.width = EDGE_LIMIT / scaleFactor;
-        imageSize.height = imageSize.width / aspectRatio;
-    }
-    
-    if (fmod(imageSize.height,16) != 0 || fmod(imageSize.width,16) != 0) {
-        imageSize.height = (int)ceilf(imageSize.height/16)*16;
-        imageSize.width = (int)ceilf(imageSize.width/16)*16;
-    }
-    
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
-    
-    if ([self.view respondsToSelector:
-         @selector(drawViewHierarchyInRect:afterScreenUpdates:)])
-    {
-        [self.view
-         drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
-    }
-    else {
-        [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
-    }
-    
+    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, NO, 0.0);
+    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
