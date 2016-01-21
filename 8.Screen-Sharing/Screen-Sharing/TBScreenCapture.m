@@ -185,13 +185,32 @@
     return 0;
 }
 
+// From https://bugs.chromium.org/p/webrtc/issues/detail?id=4643#c7 :
+// Don't send any image larger than 1920px on either edge. Additionally, don't
+// send any image with dimensions %16 != 0
+#define EDGE_LIMIT 1920.0f
 - (UIImage *)screenshot
 {
     CGSize imageSize = CGSizeZero;
-    
     imageSize = [UIScreen mainScreen].bounds.size;
     
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0);
+    double scaleFactor = [UIScreen mainScreen].scale;
+    double aspectRatio = imageSize.width / imageSize.height;
+    if (EDGE_LIMIT < (scaleFactor * imageSize.height)) {
+        imageSize.height = EDGE_LIMIT / scaleFactor;
+        imageSize.width = imageSize.height * aspectRatio;
+    }
+    if (EDGE_LIMIT < (scaleFactor * imageSize.width)) {
+        imageSize.width = EDGE_LIMIT / scaleFactor;
+        imageSize.height = imageSize.width / aspectRatio;
+    }
+    
+    if (fmod(imageSize.height,16) != 0 || fmod(imageSize.width,16) != 0) {
+        imageSize.height = (int)ceilf(imageSize.height/16)*16;
+        imageSize.width = (int)ceilf(imageSize.width/16)*16;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0);
     
     if ([self.view respondsToSelector:
          @selector(drawViewHierarchyInRect:afterScreenUpdates:)])
