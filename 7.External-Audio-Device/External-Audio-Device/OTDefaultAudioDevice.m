@@ -231,7 +231,7 @@ static OSStatus playout_cb(void *ref_con,
 {
     @synchronized(self) {
         OT_AUDIO_DEBUG(@"stopRendering");
-
+        
         if (!playing) {
             return YES;
         }
@@ -327,6 +327,55 @@ static OSStatus playout_cb(void *ref_con,
     return _recordingDelay;
 }
 
+#pragma mark - Resetting Audio Devices
+
+- (BOOL)resetCaptureUnit {
+    @synchronized(self) {
+        
+        OSStatus result = AudioOutputUnitStop(recording_voice_unit);
+        [self disposeRecordUnit];
+        
+        if (CheckError(result, @"stopCapture.AudioOutputUnitStop")) {
+            return NO;
+        }
+        
+        [self freeupAudioBuffers];
+        
+        if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
+            return NO;
+        }
+        
+        result = AudioOutputUnitStart(recording_voice_unit);
+        if (CheckError(result, @"startCapture.AudioOutputUnitStart")) {
+            return NO;
+        }
+        
+        return YES;
+    }
+}
+
+- (BOOL)resetRenderUnit {
+    @synchronized(self) {
+        
+        OSStatus result = AudioOutputUnitStop(playout_voice_unit);
+        if (CheckError(result, @"stopRendering.AudioOutputUnitStop")) {
+            return NO;
+        }
+        [self disposePlayoutUnit];
+        
+        if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
+            return NO;
+        }
+        
+        result = AudioOutputUnitStart(playout_voice_unit);
+        if (CheckError(result, @"startRendering.AudioOutputUnitStart")) {
+            return NO;
+        }
+        
+        return YES;
+    }
+}
+
 #pragma mark - AudioSession Setup
 
 static NSString* FormatError(OSStatus error)
@@ -345,7 +394,7 @@ static NSString* FormatError(OSStatus error)
     else
     {
         // no, format it as an integer
-        return [NSString stringWithFormat:@"%d", error];
+        return [NSString stringWithFormat:@"%d", (int)error];
     }
 }
 
@@ -515,10 +564,10 @@ static bool CheckError(OSStatus error, NSString* function) {
             
         }
             break;
-        
+            
         default:
             OT_AUDIO_DEBUG(@"Audio Session Interruption Notification"
-                  " case default.");
+                           " case default.");
             break;
     }
 }
@@ -582,16 +631,12 @@ static bool CheckError(OSStatus error, NSString* function) {
     // Restart the audio units with correct sample rate
     if (recording)
     {
-        [self stopCapture];
-        [self disposeRecordUnit];
-        [self startCapture];
+        [self resetCaptureUnit];
     }
     
     if (playing)
     {
-        [self stopRendering];
-        [self disposePlayoutUnit];
-        [self startRendering];
+        [self resetRenderUnit];
     }
 }
 
@@ -608,7 +653,7 @@ static bool CheckError(OSStatus error, NSString* function) {
         [center addObserver:self
                    selector:@selector(onRouteChangeEvent:)
                        name:AVAudioSessionRouteChangeNotification object:nil];
-
+        
         areListenerBlocksSetup = YES;
     }
 }
