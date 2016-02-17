@@ -28,11 +28,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"100";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX4xMDB-fjE0NTU2NzcwODU2NDN-Q1hLaUZ0K2lLSFNBQjRnUVY4OEVYdGtCfn4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9NDA0ZDg4ZjZhOTg0MjY5ZTJmZGM5NDY3YWE2OWQ3MDg3MDcyNzY3YTpzZXNzaW9uX2lkPTJfTVg0eE1EQi1makUwTlRVMk56Y3dPRFUyTkROLVExaExhVVowSzJsTFNGTkJRalJuVVZZNE9FVllkR3RDZm40JmNyZWF0ZV90aW1lPTE0NTU2NzUxODEmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ1NTY3NTE4MS4wNDk4MTk4NzUwNDg0NiZleHBpcmVfdGltZT0xNDU4MjY3MTgx";
+static NSString* const kToken = @"";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = YES;
