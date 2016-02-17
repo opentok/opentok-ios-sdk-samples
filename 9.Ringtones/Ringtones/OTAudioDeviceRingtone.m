@@ -6,14 +6,14 @@
 //  Copyright © 2016 TokBox, Inc. All rights reserved.
 //
 
-#import "OTAudioPlayer.h"
+#import "OTAudioDeviceRingtone.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface OTAudioPlayer() <AVAudioPlayerDelegate>
+@interface OTAudioDeviceRingtone() <AVAudioPlayerDelegate>
 
 @end
 
-@implementation OTAudioPlayer {
+@implementation OTAudioDeviceRingtone {
     AVAudioPlayer* _audioPlayer;
     NSMutableArray* _deferredCallbacks;
 }

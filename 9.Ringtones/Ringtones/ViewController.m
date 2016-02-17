@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
-#import "OTAudioPlayer.h"
+#import "OTAudioDeviceRingtone.h"
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
@@ -19,7 +19,7 @@
     OTSession* _session;
     OTPublisher* _publisher;
     OTSubscriber* _subscriber;
-    OTAudioPlayer* _myAudioDevice;
+    OTAudioDeviceRingtone* _myAudioDevice;
     BOOL _reconnectPlease;
 }
 static double widgetHeight = 240;
@@ -43,7 +43,7 @@ static bool subscribeToSelf = YES;
 {
     [super viewDidLoad];
     
-    _myAudioDevice = [[OTAudioPlayer alloc] init];
+    _myAudioDevice = [[OTAudioDeviceRingtone alloc] init];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
     
     UITapGestureRecognizer* tap =

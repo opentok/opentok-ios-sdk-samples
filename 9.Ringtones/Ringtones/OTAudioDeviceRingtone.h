@@ -8,7 +8,7 @@
 
 #import "OTDefaultAudioDevice.h"
 
-@interface OTAudioPlayer : OTDefaultAudioDevice
+@interface OTAudioDeviceRingtone : OTDefaultAudioDevice
 
 // Initializes an audio player and immediately starts playback.
 // As long as the ringtone is playing, OpenTok audio calls will be deferred.

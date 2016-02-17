@@ -39,3 +39,7 @@ Application Notes
 * There is no timeout or repeat for the audio player. Once the asset is played
   to completion, all calls from OTAudioBus will be passed to the audio driver, 
   and playback/capture will proceed as normal.
+
+* An additional tap gesture recognizer has been added to this sample to show
+  and test that this sequence will work through multiple calls. The 
+  `resetSession` method is added to implement this workflow.
