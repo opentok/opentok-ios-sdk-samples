@@ -50,13 +50,12 @@ static bool subscribeToSelf = YES;
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(resetSession)];
     [self.view addGestureRecognizer:tap];
-    
     [self resetSession];
 }
 
 - (void)resetSession {
     if (_session) {
-        [_session disconnect];
+        [_session disconnect:nil];
         _reconnectPlease = YES;
         return;
     }
@@ -65,7 +64,7 @@ static bool subscribeToSelf = YES;
                                                      ofType:@"mp3"];
     NSURL* url = [NSURL URLWithString:path];
     [_myAudioDevice playRingtoneFromURL:url];
-
+    
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
     _session = [[OTSession alloc] initWithApiKey:kApiKey

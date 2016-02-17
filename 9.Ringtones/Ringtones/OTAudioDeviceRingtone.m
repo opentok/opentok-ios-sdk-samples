@@ -8,6 +8,9 @@
 
 #import "OTAudioDeviceRingtone.h"
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioServices.h>
+
+#define VIBRATE_FREQUENCY_SECONDS 1.0f
 
 @interface OTAudioDeviceRingtone() <AVAudioPlayerDelegate>
 
@@ -16,7 +19,11 @@
 @implementation OTAudioDeviceRingtone {
     AVAudioPlayer* _audioPlayer;
     NSMutableArray* _deferredCallbacks;
+    BOOL _vibratesWithRingtone;
+    NSTimer* _vibrateTimer;
 }
+
+@synthesize vibratesWithRingtone = _vibratesWithRingtone;
 
 -(instancetype)init
 {
@@ -29,17 +36,67 @@
 
 - (void)playRingtoneFromURL:(NSURL*)url
 {
+    // Stop & replace existing audio player
+    if (_audioPlayer) {
+        [_audioPlayer stop];
+        _audioPlayer = nil;
+    }
+    
     NSError* error = nil;
     _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url
                                                           error:&error];
+    if (error) {
+        NSLog(@"Ringtone audio player initialization failure %@", error);
+        _audioPlayer = nil;
+        return;
+    }
     [_audioPlayer setDelegate:self];
+    
+    // Tell player to loop indefinitely
+    [_audioPlayer setNumberOfLoops:-1];
+    
+    // Allow background playback, only if the default driver hasn't already
+    // started running. Setting the category while the audio session is
+    // configured for voice chat (PlayAndRecord) will interrupt recording and
+    // cause problems if a publisher is running.
+    if (!self.isCapturing && !self.isRendering) {
+        AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryPlayback
+                            error:nil];
+        [audioSession setActive:YES error:nil];
+    }
+    
+    // setup timer to vibrate device with some frequency
+    if (_vibratesWithRingtone) {
+        _vibrateTimer =
+        [NSTimer scheduledTimerWithTimeInterval:VIBRATE_FREQUENCY_SECONDS
+                                         target:self
+                                       selector:@selector(buzz:)
+                                       userInfo:nil
+                                        repeats:YES];
+    }
+    
+    // finally, begin playback
     [_audioPlayer play];
 }
 
 - (void)stopRingtone {
+    // Stop Audio
     [_audioPlayer stop];
     _audioPlayer = nil;
+    
+    // Stop vibration
+    [_vibrateTimer invalidate];
+    _vibrateTimer = nil;
+    
+    // Allow deferred audio callback calls to flow
     [self flushDeferredCallbacks];
+}
+
+- (void)buzz:(NSTimer*)timer {
+    if (_vibratesWithRingtone) {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
 }
 
 /**
@@ -115,16 +172,14 @@
                        successfully:(BOOL)flag
 {
     NSLog(@"audioPlayerDidFinishPlaying success=%d", flag);
-    _audioPlayer = nil;
-    [self flushDeferredCallbacks];
+    [self stopRingtone];
 }
 
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player
                                  error:(NSError * __nullable)error
 {
     NSLog(@"audioPlayerDecodeErrorDidOccur %@", error);
-    _audioPlayer = nil;
-    [self flushDeferredCallbacks];
+    [self stopRingtone];
 }
 
 

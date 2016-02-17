@@ -36,9 +36,9 @@ issued to stop playback of the ringtone:
 Application Notes
 -----------------
 
-* There is no timeout or repeat for the audio player. Once the asset is played
-  to completion, all calls from OTAudioBus will be passed to the audio driver, 
-  and playback/capture will proceed as normal.
+* There is no timeout for the audio player. If the asset plays to completion or
+  there is an error, all calls from OTAudioBus will be passed to the audio
+  driver, and playback/capture for OpenTok will proceed as normal.
 
 * An additional tap gesture recognizer has been added to this sample to show
   and test that this sequence will work through multiple calls. The 
