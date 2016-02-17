@@ -84,7 +84,7 @@ static OSStatus playout_cb(void *ref_con,
     BOOL recording;
     BOOL recording_initialized;
     BOOL interrupted_playback;
-    NSString* avAudioSessionCatigory;
+    NSString* _previousAVAudioSessionCategory;
     NSString* avAudioSessionMode;
     double avAudioSessionPreffSampleRate;
     NSInteger avAudioSessionChannels;
@@ -92,6 +92,7 @@ static OSStatus playout_cb(void *ref_con,
     BOOL isRecorderInterrupted;
     BOOL isPlayerInterrupted;
     BOOL areListenerBlocksSetup;
+    BOOL _isResetting;
     
     /* synchronize all access to the audio subsystem */
     dispatch_queue_t _safetyQueue;
@@ -244,7 +245,7 @@ static OSStatus playout_cb(void *ref_con,
         }
         
         // publisher is already closed
-        if (!recording && !isPlayerInterrupted)
+        if (!recording && !isPlayerInterrupted && !_isResetting)
         {
             [self teardownAudio];
         }
@@ -303,7 +304,7 @@ static OSStatus playout_cb(void *ref_con,
         [self freeupAudioBuffers];
         
         // subscriber is already closed
-        if (!playing && !isRecorderInterrupted)
+        if (!playing && !isRecorderInterrupted && !_isResetting)
         {
             [self teardownAudio];
         }
@@ -387,7 +388,7 @@ static bool CheckError(OSStatus error, NSString* function) {
     [self freeupAudioBuffers];
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
-    [mySession setCategory:avAudioSessionCatigory error:nil];
+    [mySession setCategory:_previousAVAudioSessionCategory error:nil];
     [mySession setMode:avAudioSessionMode error:nil];
     [mySession setPreferredSampleRate: avAudioSessionPreffSampleRate
                                 error: nil];
@@ -413,7 +414,7 @@ static bool CheckError(OSStatus error, NSString* function) {
 - (void) setupAudioSession
 {
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
-    avAudioSessionCatigory = mySession.category;
+    _previousAVAudioSessionCategory = mySession.category;
     avAudioSessionMode = mySession.mode;
     avAudioSessionPreffSampleRate = mySession.preferredSampleRate;
     avAudioSessionChannels = mySession.inputNumberOfChannels;
@@ -577,9 +578,9 @@ static bool CheckError(OSStatus error, NSString* function) {
     }
     
     // We've made it here, there's been a legit route change.
-    // Reset and reallocate everything.
-    
     // Restart the audio units with correct sample rate
+    _isResetting = YES;
+    
     if (recording)
     {
         [self stopCapture];
@@ -593,6 +594,8 @@ static bool CheckError(OSStatus error, NSString* function) {
         [self disposePlayoutUnit];
         [self startRendering];
     }
+    
+    _isResetting = NO;
 }
 
 - (void) setupListenerBlocks
@@ -773,7 +776,7 @@ static OSStatus playout_cb(void *ref_con,
     uint32_t count =
     [dev->_audioBus readRenderData:buffer_list->mBuffers[0].mData
                    numberOfSamples:num_frames];
-    
+        
     if (count != num_frames) {
         //TODO: Not really an error, but conerning. Network issues?
     }
