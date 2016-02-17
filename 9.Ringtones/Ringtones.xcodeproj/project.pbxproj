@@ -1,0 +1,611 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5B0567A2B18619E963A94EA2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12985DF2387F03EF524AF949 /* libPods.a */; };
+		D415AB251C74052800A070E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB241C74052800A070E1 /* main.m */; };
+		D415AB281C74052800A070E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB271C74052800A070E1 /* AppDelegate.m */; };
+		D415AB2B1C74052800A070E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB2A1C74052800A070E1 /* ViewController.m */; };
+		D415AB2E1C74052800A070E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D415AB2C1C74052800A070E1 /* Main.storyboard */; };
+		D415AB301C74052800A070E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D415AB2F1C74052800A070E1 /* Assets.xcassets */; };
+		D415AB331C74052800A070E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D415AB311C74052800A070E1 /* LaunchScreen.storyboard */; };
+		D415AB3E1C74052800A070E1 /* RingtonesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB3D1C74052800A070E1 /* RingtonesTests.m */; };
+		D415AB491C74052800A070E1 /* RingtonesUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB481C74052800A070E1 /* RingtonesUITests.m */; };
+		D415AB591C7405FA00A070E1 /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */; };
+		D415AB5C1C74083D00A070E1 /* OTAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB5B1C74083D00A070E1 /* OTAudioPlayer.m */; };
+		D415AB5E1C7409AD00A070E1 /* bananaphone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D415AB3A1C74052800A070E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D415AB181C74052800A070E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D415AB1F1C74052800A070E1;
+			remoteInfo = Ringtones;
+		};
+		D415AB451C74052800A070E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D415AB181C74052800A070E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D415AB1F1C74052800A070E1;
+			remoteInfo = Ringtones;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		12985DF2387F03EF524AF949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		532AB47470C1524CAA2138D0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		834B325DAB6AD554F90CFABA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		D415AB201C74052800A070E1 /* Ringtones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ringtones.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D415AB241C74052800A070E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D415AB261C74052800A070E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D415AB271C74052800A070E1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D415AB291C74052800A070E1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D415AB2A1C74052800A070E1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D415AB2D1C74052800A070E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D415AB2F1C74052800A070E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D415AB321C74052800A070E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D415AB341C74052800A070E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D415AB391C74052800A070E1 /* RingtonesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RingtonesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D415AB3D1C74052800A070E1 /* RingtonesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RingtonesTests.m; sourceTree = "<group>"; };
+		D415AB3F1C74052800A070E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D415AB441C74052800A070E1 /* RingtonesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RingtonesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D415AB481C74052800A070E1 /* RingtonesUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RingtonesUITests.m; sourceTree = "<group>"; };
+		D415AB4A1C74052800A070E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D415AB571C7405FA00A070E1 /* OTDefaultAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTDefaultAudioDevice.h; path = "../7.External-Audio-Device/External-Audio-Device/OTDefaultAudioDevice.h"; sourceTree = "<group>"; };
+		D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTDefaultAudioDevice.m; path = "../7.External-Audio-Device/External-Audio-Device/OTDefaultAudioDevice.m"; sourceTree = "<group>"; };
+		D415AB5A1C74083D00A070E1 /* OTAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAudioPlayer.h; sourceTree = "<group>"; };
+		D415AB5B1C74083D00A070E1 /* OTAudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAudioPlayer.m; sourceTree = "<group>"; };
+		D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bananaphone.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D415AB1D1C74052800A070E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B0567A2B18619E963A94EA2 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D415AB361C74052800A070E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D415AB411C74052800A070E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D415AB171C74052800A070E1 = {
+			isa = PBXGroup;
+			children = (
+				D415AB561C7405E900A070E1 /* Project 7: External Audio Device */,
+				D415AB221C74052800A070E1 /* Ringtones */,
+				D415AB3C1C74052800A070E1 /* RingtonesTests */,
+				D415AB471C74052800A070E1 /* RingtonesUITests */,
+				D415AB211C74052800A070E1 /* Products */,
+				F2BA5AAAC8F047197CA179D3 /* Pods */,
+				FFF526400B8103E282FA1F1C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D415AB211C74052800A070E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D415AB201C74052800A070E1 /* Ringtones.app */,
+				D415AB391C74052800A070E1 /* RingtonesTests.xctest */,
+				D415AB441C74052800A070E1 /* RingtonesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D415AB221C74052800A070E1 /* Ringtones */ = {
+			isa = PBXGroup;
+			children = (
+				D415AB261C74052800A070E1 /* AppDelegate.h */,
+				D415AB271C74052800A070E1 /* AppDelegate.m */,
+				D415AB5A1C74083D00A070E1 /* OTAudioPlayer.h */,
+				D415AB5B1C74083D00A070E1 /* OTAudioPlayer.m */,
+				D415AB291C74052800A070E1 /* ViewController.h */,
+				D415AB2A1C74052800A070E1 /* ViewController.m */,
+				D415AB2C1C74052800A070E1 /* Main.storyboard */,
+				D415AB2F1C74052800A070E1 /* Assets.xcassets */,
+				D415AB311C74052800A070E1 /* LaunchScreen.storyboard */,
+				D415AB341C74052800A070E1 /* Info.plist */,
+				D415AB231C74052800A070E1 /* Supporting Files */,
+			);
+			path = Ringtones;
+			sourceTree = "<group>";
+		};
+		D415AB231C74052800A070E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */,
+				D415AB241C74052800A070E1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D415AB3C1C74052800A070E1 /* RingtonesTests */ = {
+			isa = PBXGroup;
+			children = (
+				D415AB3D1C74052800A070E1 /* RingtonesTests.m */,
+				D415AB3F1C74052800A070E1 /* Info.plist */,
+			);
+			path = RingtonesTests;
+			sourceTree = "<group>";
+		};
+		D415AB471C74052800A070E1 /* RingtonesUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D415AB481C74052800A070E1 /* RingtonesUITests.m */,
+				D415AB4A1C74052800A070E1 /* Info.plist */,
+			);
+			path = RingtonesUITests;
+			sourceTree = "<group>";
+		};
+		D415AB561C7405E900A070E1 /* Project 7: External Audio Device */ = {
+			isa = PBXGroup;
+			children = (
+				D415AB571C7405FA00A070E1 /* OTDefaultAudioDevice.h */,
+				D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */,
+			);
+			name = "Project 7: External Audio Device";
+			sourceTree = "<group>";
+		};
+		F2BA5AAAC8F047197CA179D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				532AB47470C1524CAA2138D0 /* Pods.debug.xcconfig */,
+				834B325DAB6AD554F90CFABA /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FFF526400B8103E282FA1F1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				12985DF2387F03EF524AF949 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D415AB1F1C74052800A070E1 /* Ringtones */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D415AB4D1C74052800A070E1 /* Build configuration list for PBXNativeTarget "Ringtones" */;
+			buildPhases = (
+				E59049AAF532D79D81941E30 /* Check Pods Manifest.lock */,
+				D415AB1C1C74052800A070E1 /* Sources */,
+				D415AB1D1C74052800A070E1 /* Frameworks */,
+				D415AB1E1C74052800A070E1 /* Resources */,
+				AC4EE45521324EE90FFB31FF /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Ringtones;
+			productName = Ringtones;
+			productReference = D415AB201C74052800A070E1 /* Ringtones.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D415AB381C74052800A070E1 /* RingtonesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D415AB501C74052800A070E1 /* Build configuration list for PBXNativeTarget "RingtonesTests" */;
+			buildPhases = (
+				D415AB351C74052800A070E1 /* Sources */,
+				D415AB361C74052800A070E1 /* Frameworks */,
+				D415AB371C74052800A070E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D415AB3B1C74052800A070E1 /* PBXTargetDependency */,
+			);
+			name = RingtonesTests;
+			productName = RingtonesTests;
+			productReference = D415AB391C74052800A070E1 /* RingtonesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D415AB431C74052800A070E1 /* RingtonesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D415AB531C74052800A070E1 /* Build configuration list for PBXNativeTarget "RingtonesUITests" */;
+			buildPhases = (
+				D415AB401C74052800A070E1 /* Sources */,
+				D415AB411C74052800A070E1 /* Frameworks */,
+				D415AB421C74052800A070E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D415AB461C74052800A070E1 /* PBXTargetDependency */,
+			);
+			name = RingtonesUITests;
+			productName = RingtonesUITests;
+			productReference = D415AB441C74052800A070E1 /* RingtonesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D415AB181C74052800A070E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "TokBox, Inc.";
+				TargetAttributes = {
+					D415AB1F1C74052800A070E1 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					D415AB381C74052800A070E1 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = D415AB1F1C74052800A070E1;
+					};
+					D415AB431C74052800A070E1 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = D415AB1F1C74052800A070E1;
+					};
+				};
+			};
+			buildConfigurationList = D415AB1B1C74052800A070E1 /* Build configuration list for PBXProject "Ringtones" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D415AB171C74052800A070E1;
+			productRefGroup = D415AB211C74052800A070E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D415AB1F1C74052800A070E1 /* Ringtones */,
+				D415AB381C74052800A070E1 /* RingtonesTests */,
+				D415AB431C74052800A070E1 /* RingtonesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D415AB1E1C74052800A070E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D415AB5E1C7409AD00A070E1 /* bananaphone.mp3 in Resources */,
+				D415AB331C74052800A070E1 /* LaunchScreen.storyboard in Resources */,
+				D415AB301C74052800A070E1 /* Assets.xcassets in Resources */,
+				D415AB2E1C74052800A070E1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D415AB371C74052800A070E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D415AB421C74052800A070E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AC4EE45521324EE90FFB31FF /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E59049AAF532D79D81941E30 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D415AB1C1C74052800A070E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D415AB2B1C74052800A070E1 /* ViewController.m in Sources */,
+				D415AB281C74052800A070E1 /* AppDelegate.m in Sources */,
+				D415AB5C1C74083D00A070E1 /* OTAudioPlayer.m in Sources */,
+				D415AB251C74052800A070E1 /* main.m in Sources */,
+				D415AB591C7405FA00A070E1 /* OTDefaultAudioDevice.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D415AB351C74052800A070E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D415AB3E1C74052800A070E1 /* RingtonesTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D415AB401C74052800A070E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D415AB491C74052800A070E1 /* RingtonesUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D415AB3B1C74052800A070E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D415AB1F1C74052800A070E1 /* Ringtones */;
+			targetProxy = D415AB3A1C74052800A070E1 /* PBXContainerItemProxy */;
+		};
+		D415AB461C74052800A070E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D415AB1F1C74052800A070E1 /* Ringtones */;
+			targetProxy = D415AB451C74052800A070E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D415AB2C1C74052800A070E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D415AB2D1C74052800A070E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D415AB311C74052800A070E1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D415AB321C74052800A070E1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D415AB4B1C74052800A070E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D415AB4C1C74052800A070E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D415AB4E1C74052800A070E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 532AB47470C1524CAA2138D0 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Ringtones/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.Ringtones;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D415AB4F1C74052800A070E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 834B325DAB6AD554F90CFABA /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Ringtones/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.Ringtones;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D415AB511C74052800A070E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RingtonesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.RingtonesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ringtones.app/Ringtones";
+			};
+			name = Debug;
+		};
+		D415AB521C74052800A070E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = RingtonesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.RingtonesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Ringtones.app/Ringtones";
+			};
+			name = Release;
+		};
+		D415AB541C74052800A070E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RingtonesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.RingtonesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Ringtones;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D415AB551C74052800A070E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = RingtonesUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.RingtonesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = Ringtones;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D415AB1B1C74052800A070E1 /* Build configuration list for PBXProject "Ringtones" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D415AB4B1C74052800A070E1 /* Debug */,
+				D415AB4C1C74052800A070E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D415AB4D1C74052800A070E1 /* Build configuration list for PBXNativeTarget "Ringtones" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D415AB4E1C74052800A070E1 /* Debug */,
+				D415AB4F1C74052800A070E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D415AB501C74052800A070E1 /* Build configuration list for PBXNativeTarget "RingtonesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D415AB511C74052800A070E1 /* Debug */,
+				D415AB521C74052800A070E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D415AB531C74052800A070E1 /* Build configuration list for PBXNativeTarget "RingtonesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D415AB541C74052800A070E1 /* Debug */,
+				D415AB551C74052800A070E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D415AB181C74052800A070E1 /* Project object */;
+}
