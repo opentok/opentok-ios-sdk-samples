@@ -16,7 +16,7 @@
 // As long as the ringtone is playing, OpenTok audio calls will be deferred.
 - (void)playRingtoneFromURL:(NSURL*)url;
 
-// Immediately stops the rington and allows OpenTok audio calls to flow
+// Immediately stops the ringtone and allows OpenTok audio calls to flow
 - (void)stopRingtone;
 
 @end
