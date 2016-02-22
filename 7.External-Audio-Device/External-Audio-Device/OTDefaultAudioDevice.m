@@ -45,9 +45,9 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define OT_ENABLE_AUDIO_DEBUG 0
 
 #if OT_ENABLE_AUDIO_DEBUG
-#define OT_AUDIO_DEBUG(X) NSLog(@"%@", X)
+#define OT_AUDIO_DEBUG NSLog
 #else
-#define OT_AUDIO_DEBUG(X)
+#define OT_AUDIO_DEBUG(...)
 #endif
 
 static double kPreferredIOBufferDuration = 0.01;
@@ -426,7 +426,7 @@ static bool CheckError(OSStatus error, NSString* function) {
         [mySession setMode:AVAudioSessionModeVoiceChat error:nil];
     }
     
-    [mySession setPreferredSampleRate: kSampleRate error: nil];
+    [mySession setPreferredSampleRate:kSampleRate error: nil];
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
     [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration
                                       error:nil];
@@ -575,6 +575,9 @@ static bool CheckError(OSStatus error, NSString* function) {
         if([oldOutputDeviceName isEqualToString:currentOutputDeviceName]) {
             return;
         }
+        
+        OT_AUDIO_DEBUG(@"routeChanged: old=%@ new=%@",
+                       oldOutputDeviceName, currentOutputDeviceName);
     }
     
     // We've made it here, there's been a legit route change.
