@@ -42,9 +42,10 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
-#define OT_ENABLE_AUDIO_DEBUG 0
+//#define OT_ENABLE_AUDIO_DEBUG 0
 
-#if OT_ENABLE_AUDIO_DEBUG
+//#if OT_ENABLE_AUDIO_DEBUG
+#if DEBUG
 #define OT_AUDIO_DEBUG NSLog
 #else
 #define OT_AUDIO_DEBUG(...)
@@ -418,30 +419,43 @@ static bool CheckError(OSStatus error, NSString* function) {
     avAudioSessionMode = mySession.mode;
     avAudioSessionPreffSampleRate = mySession.preferredSampleRate;
     avAudioSessionChannels = mySession.inputNumberOfChannels;
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        [mySession setMode:AVAudioSessionModeVideoChat error:nil];
+
+    NSError *error;
+
+    [mySession setMode:AVAudioSessionModeVideoChat error:&error];
+    if (error) {
+        OT_AUDIO_DEBUG(@"%@", error.localizedDescription);
+        error = nil;
     }
-    else {
-        [mySession setMode:AVAudioSessionModeVoiceChat error:nil];
+    
+    [mySession setPreferredSampleRate:kSampleRate error:&error];
+    if (error) {
+        OT_AUDIO_DEBUG(@"%@", error.localizedDescription);
+        error = nil;
     }
+
+    [mySession setPreferredInputNumberOfChannels:1 error:&error];
+    if (error) {
+        OT_AUDIO_DEBUG(@"%@", error.localizedDescription);
+        error = nil;
+    }
+
+    [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration error:&error];
     
-    [mySession setPreferredSampleRate:kSampleRate error: nil];
-    [mySession setPreferredInputNumberOfChannels:1 error:nil];
-    [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration
-                                      error:nil];
-    
-    NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers |
-    AVAudioSessionCategoryOptionDefaultToSpeaker |
-    AVAudioSessionCategoryOptionAllowBluetooth;
-    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
-               withOptions:audioOptions
-                     error:nil];
+    NSUInteger audioOptions = AVAudioSessionCategoryOptionDefaultToSpeaker | AVAudioSessionCategoryOptionAllowBluetooth;
+    [mySession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:audioOptions error:&error];
+    if (error) {
+        OT_AUDIO_DEBUG(@"%@", error.localizedDescription);
+        error = nil;
+    }
     
     [self setupListenerBlocks];
-    [mySession setActive:YES error:nil];
-    
-    
+
+    [mySession setActive:YES error:&error];
+    if (error) {
+        OT_AUDIO_DEBUG(@"%@", error.localizedDescription);
+        error = nil;
+    }
 }
 
 - (void)setBluetoothAsPrefferedInputDevice
@@ -476,20 +490,18 @@ static bool CheckError(OSStatus error, NSString* function) {
 - (void) handleInterruptionEvent:(NSNotification *) notification
 {
     NSDictionary *interruptionDict = notification.userInfo;
-    NSInteger interruptionType =
-    [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
-     integerValue];
+    NSInteger interruptionType = [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey] integerValue];
     
     switch (interruptionType) {
         case AVAudioSessionInterruptionTypeBegan:
         {
             OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeBegan");
-            if(recording)
+            if (recording)
             {
                 isRecorderInterrupted = YES;
                 [self stopCapture];
             }
-            if(playing)
+            if (playing)
             {
                 isPlayerInterrupted = YES;
                 [self stopRendering];
@@ -501,8 +513,7 @@ static bool CheckError(OSStatus error, NSString* function) {
         {
             OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
             // Reconfigure audio session with highest priority device
-            [self configureAudioSessionWithDesiredAudioRoute:
-             AUDIO_DEVICE_BLUETOOTH];
+            [self configureAudioSessionWithDesiredAudioRoute: AUDIO_DEVICE_BLUETOOTH];
             if(isRecorderInterrupted)
             {
                 isRecorderInterrupted = NO;
@@ -518,8 +529,7 @@ static bool CheckError(OSStatus error, NSString* function) {
             break;
         
         default:
-            OT_AUDIO_DEBUG(@"Audio Session Interruption Notification"
-                  " case default.");
+            OT_AUDIO_DEBUG(@"Audio Session Interruption Notification case default.");
             break;
     }
 }
@@ -535,13 +545,11 @@ static bool CheckError(OSStatus error, NSString* function) {
 {
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger routeChangeReason =
-    [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
-     integerValue];
+    [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
     
     // We'll receive a routeChangedEvent when the audio unit starts; don't
     // process events we caused internally.
-    if (AVAudioSessionRouteChangeReasonRouteConfigurationChange ==
-        routeChangeReason)
+    if (AVAudioSessionRouteChangeReasonRouteConfigurationChange == routeChangeReason)
     {
         return;
     }
@@ -807,18 +815,6 @@ static OSStatus playout_cb(void *ref_con,
     
     _headsetDeviceAvailable = _bluetoothDeviceAvailable = NO;
     
-    //ios 8.0 complains about Deactivating an audio session that has running
-    // I/O. All I/O should be stopped or paused prior to deactivating the audio
-    // session. Looks like we can get away by not using the setActive call
-    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
-        // close down our current session...
-        [audioSession setActive:NO error:nil];
-        
-        // start a new audio session. Without activation, the default route will
-        // always be (inputs: null, outputs: Speaker)
-        [audioSession setActive:YES error:nil];
-    }
-    
     // Check for current route
     AVAudioSessionRouteDescription *currentRoute = [audioSession currentRoute];
     for (AVAudioSessionPortDescription *output in currentRoute.outputs) {
@@ -849,35 +845,20 @@ static OSStatus playout_cb(void *ref_con,
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err;
     
-    //ios 8.0 complains about Deactivating an audio session that has running
-    // I/O. All I/O should be stopped or paused prior to deactivating the audio
-    // session. Looks like we can get away by not using the setActive call
-    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
-        // close down our current session...
-        [audioSession setActive:NO error:nil];
-    }
-    
     if ([AUDIO_DEVICE_BLUETOOTH isEqualToString:desiredAudioRoute]) {
         [self setBluetoothAsPrefferedInputDevice];
-    }
-    
-    if (SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"7.0")) {
-        // Set our session to active...
-        if (![audioSession setActive:YES error:&err]) {
-            NSLog(@"unable to set audio session active: %@", err);
-            return NO;
-        }
     }
     
     if ([AUDIO_DEVICE_SPEAKER isEqualToString:desiredAudioRoute]) {
         // replace AudiosessionSetProperty (deprecated from iOS7) with
         // AVAudioSession overrideOutputAudioPort
-        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
-                                        error:&err];
-    } else
-    {
-        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideNone
-                                        error:&err];
+        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&err];
+    } else {
+        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&err];
+    }
+    
+    if (err) {
+        OT_AUDIO_DEBUG(@"%@", err.localizedDescription);
     }
     
     return YES;
