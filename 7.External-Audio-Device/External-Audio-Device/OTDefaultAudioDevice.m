@@ -432,7 +432,6 @@ static bool CheckError(OSStatus error, NSString* function) {
                                       error:nil];
     
     NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers |
-    AVAudioSessionCategoryOptionDefaultToSpeaker |
     AVAudioSessionCategoryOptionAllowBluetooth;
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
                withOptions:audioOptions
