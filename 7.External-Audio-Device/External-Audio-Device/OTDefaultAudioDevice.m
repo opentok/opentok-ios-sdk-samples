@@ -31,10 +31,6 @@ options:NSNumericSearch] == NSOrderedAscending)
 options:NSNumericSearch] != NSOrderedDescending)
 
 
-#define kMixerInputBusCount 2
-#define kOutputBus 0
-#define kInputBus 1
-
 // Simulator *must* run at 44.1 kHz in order to function properly.
 #if (TARGET_IPHONE_SIMULATOR)
 #define kSampleRate 44100
@@ -103,7 +99,6 @@ static OSStatus playout_cb(void *ref_con,
     AudioBufferList *buffer_list;
     uint32_t buffer_num_frames;
     uint32_t buffer_size;
-    AudioStreamBasicDescription	stream_format;
     uint32_t _recordingDelay;
     uint32_t _playoutDelay;
     uint32_t _playoutDelayMeasurementCounter;
@@ -361,6 +356,11 @@ static bool CheckError(OSStatus error, NSString* function) {
           function, error_string);
     
     return YES;
+}
+
+- (void)checkAndPrintError:(OSStatus)error function:(NSString *)function
+{
+    CheckError(error,function);
 }
 
 - (void)disposePlayoutUnit
@@ -772,6 +772,7 @@ static OSStatus playout_cb(void *ref_con,
                            UInt32 num_frames,
                            AudioBufferList *buffer_list)
 {
+
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
     if (!dev->playing) { return 0; }
@@ -953,14 +954,7 @@ static OSStatus playout_cb(void *ref_con,
         AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_StreamFormat,
                              kAudioUnitScope_Input, kOutputBus,
                              &stream_format, sizeof (stream_format));
-        AURenderCallbackStruct render_callback;
-        render_callback.inputProc = playout_cb;;
-        render_callback.inputProcRefCon = (__bridge void *)(self);
-        
-        AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_SetRenderCallback,
-                             kAudioUnitScope_Input, kOutputBus, &render_callback,
-                             sizeof(render_callback));
-        
+        [self setPlayOutRenderCallback:*voice_unit];
     }
     
     Float64 f64 = 0;
@@ -985,7 +979,18 @@ static OSStatus playout_cb(void *ref_con,
     }
     
     [self setBluetoothAsPrefferedInputDevice];
-    
     return YES;
 }
+
+- (BOOL)setPlayOutRenderCallback:(AudioUnit)unit
+{
+    AURenderCallbackStruct render_callback;
+    render_callback.inputProc = playout_cb;;
+    render_callback.inputProcRefCon = (__bridge void *)(self);
+        OSStatus result = AudioUnitSetProperty(unit, kAudioUnitProperty_SetRenderCallback,
+                                 kAudioUnitScope_Input, kOutputBus, &render_callback,
+                                 sizeof(render_callback));
+    return (result == 0);
+}
+
 @end

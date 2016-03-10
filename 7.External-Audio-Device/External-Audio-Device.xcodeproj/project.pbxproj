@@ -36,6 +36,7 @@
 		23C817701978929E00A35EAB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C8176F1978929E00A35EAB /* OpenTok.framework */; };
 		660F4C2B0F4C1FFAA189E6B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1EFDF8E8E53CE96B87CAAC4 /* libPods.a */; };
 		A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */; };
+		A5E74EB01C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		23C8176F1978929E00A35EAB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		86673DCA9D4E9F8004BF2970 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDeviceWithVolumeControl.m; sourceTree = "<group>"; };
+		A5E74EAF1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDeviceWithVolumeControl.h; sourceTree = "<group>"; };
 		E1EFDF8E8E53CE96B87CAAC4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,6 +177,8 @@
 			children = (
 				0CBBA429196B5314005F55D4 /* OTDefaultAudioDevice.h */,
 				0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */,
+				A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */,
+				A5E74EAF1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.h */,
 				0CBBA3FE196B5192005F55D4 /* AppDelegate.h */,
 				0CBBA3FF196B5192005F55D4 /* AppDelegate.m */,
 				0CBBA401196B5192005F55D4 /* Main_iPhone.storyboard */,
@@ -361,6 +366,7 @@
 				0CBBA400196B5192005F55D4 /* AppDelegate.m in Sources */,
 				0CBBA42B196B5314005F55D4 /* OTDefaultAudioDevice.m in Sources */,
 				0CBBA3FC196B5192005F55D4 /* main.m in Sources */,
+				A5E74EB01C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
