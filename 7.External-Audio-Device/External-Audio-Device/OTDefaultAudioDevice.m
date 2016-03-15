@@ -208,10 +208,13 @@ static OSStatus playout_cb(void *ref_con,
         }
         
         playing = YES;
-        
-        if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
-            playing = NO;
-            return NO;
+        // Initialize only when playout voice unit is already teardown
+        if(playout_voice_unit == NULL)
+        {
+            if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
+                playing = NO;
+                return NO;
+            }
         }
         
         OSStatus result = AudioOutputUnitStart(playout_voice_unit);
@@ -264,10 +267,13 @@ static OSStatus playout_cb(void *ref_con,
         }
         
         recording = YES;
-        
-        if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
-            recording = NO;
-            return NO;
+        // Initialize only when recording voice unit is already teardown
+        if(recording_voice_unit == NULL)
+        {
+            if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
+                recording = NO;
+                return NO;
+            }
         }
         
         OSStatus result = AudioOutputUnitStart(recording_voice_unit);
