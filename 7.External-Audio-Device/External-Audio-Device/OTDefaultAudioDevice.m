@@ -481,18 +481,29 @@ static bool CheckError(OSStatus error, NSString* function) {
 
 - (void) onInterruptionEvent:(NSNotification *) notification
 {
-    dispatch_async(_safetyQueue, ^() {
-        [self handleInterruptionEvent:notification];
-    });
-}
-
-- (void) handleInterruptionEvent:(NSNotification *) notification
-{
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger interruptionType =
     [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
      integerValue];
-    
+
+    if (interruptionType == AVAudioSessionInterruptionTypeBegan)
+    {
+        dispatch_async(_safetyQueue, ^() {
+            [self handleInterruptionEvent:interruptionType];
+        });
+    }
+    else
+    {
+        /* 2 seconds delay gives time to release ios system apps
+         (e.g. phone call, siri, facetime) audio session */
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), _safetyQueue, ^{
+            [self handleInterruptionEvent:interruptionType];
+        });
+    }
+}
+
+- (void) handleInterruptionEvent:(NSInteger) interruptionType
+{
     switch (interruptionType) {
         case AVAudioSessionInterruptionTypeBegan:
         {
@@ -614,6 +625,19 @@ static bool CheckError(OSStatus error, NSString* function) {
     _isResetting = NO;
 }
 
+/* When ringer is off, we dont get interruption ended callback
+ as mentioned in apple doc : "There is no guarantee that a begin
+ interruption will have an end interruption."
+ The only cavity here is, some times we get two callbacks from interruption
+ handler as well as from here which we handle synchronously with safteyQueue
+ */
+- (void) appDidBecomeActive:(NSNotification *) notification
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), _safetyQueue, ^{
+        [self handleInterruptionEvent:AVAudioSessionInterruptionTypeEnded];
+    });
+}
+
 - (void) setupListenerBlocks
 {
     if(!areListenerBlocksSetup)
@@ -628,6 +652,11 @@ static bool CheckError(OSStatus error, NSString* function) {
                    selector:@selector(onRouteChangeEvent:)
                        name:AVAudioSessionRouteChangeNotification object:nil];
         
+        [center addObserver:self
+                   selector:@selector(appDidBecomeActive:)
+                       name:UIApplicationDidBecomeActiveNotification
+                     object:nil];
+
         areListenerBlocksSetup = YES;
     }
 }
