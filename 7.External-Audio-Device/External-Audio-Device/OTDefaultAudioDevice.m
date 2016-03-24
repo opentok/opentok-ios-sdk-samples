@@ -89,6 +89,7 @@ static OSStatus playout_cb(void *ref_con,
     BOOL isPlayerInterrupted;
     BOOL areListenerBlocksSetup;
     BOOL _isResetting;
+    int _restartRetryCount;
     
     /* synchronize all access to the audio subsystem */
     dispatch_queue_t _safetyQueue;
@@ -119,6 +120,7 @@ static OSStatus playout_cb(void *ref_con,
         _audioFormat.numChannels = 1;
         _safetyQueue = dispatch_queue_create("ot-audio-driver",
                                              DISPATCH_QUEUE_SERIAL);
+        _restartRetryCount = 0;
     }
     return self;
 }
@@ -275,7 +277,7 @@ static OSStatus playout_cb(void *ref_con,
                 return NO;
             }
         }
-        
+
         OSStatus result = AudioOutputUnitStart(recording_voice_unit);
         if (CheckError(result, @"startCapture.AudioOutputUnitStart")) {
             recording = NO;
@@ -481,18 +483,18 @@ static bool CheckError(OSStatus error, NSString* function) {
 
 - (void) onInterruptionEvent:(NSNotification *) notification
 {
-    dispatch_async(_safetyQueue, ^() {
-        [self handleInterruptionEvent:notification];
-    });
-}
-
-- (void) handleInterruptionEvent:(NSNotification *) notification
-{
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger interruptionType =
     [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
      integerValue];
-    
+
+    dispatch_async(_safetyQueue, ^() {
+        [self handleInterruptionEvent:interruptionType];
+    });
+}
+
+- (void) handleInterruptionEvent:(NSInteger) interruptionType
+{
     switch (interruptionType) {
         case AVAudioSessionInterruptionTypeBegan:
         {
@@ -518,9 +520,34 @@ static bool CheckError(OSStatus error, NSString* function) {
              AUDIO_DEVICE_BLUETOOTH];
             if(isRecorderInterrupted)
             {
-                isRecorderInterrupted = NO;
-                [self startCapture];
+                if([self startCapture] == YES)
+                {
+                    isRecorderInterrupted = NO;
+                    _restartRetryCount = 0;
+                } else
+                {
+                    _restartRetryCount++;
+                    if(_restartRetryCount < 3)
+                    {
+                        dispatch_after(
+                                       dispatch_time(
+                                        DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
+                                       _safetyQueue, ^{
+                            [self handleInterruptionEvent:
+                             AVAudioSessionInterruptionTypeEnded];
+                        });
+                    } else
+                    {
+                        // This shouldn't happen!
+                        isRecorderInterrupted = NO;
+                        isPlayerInterrupted = NO;
+                        _restartRetryCount = 0;
+                        NSLog(@"ERROR[OpenTok]:Unable to acquire audio session");
+                    }
+                    return;
+                }
             }
+
             if(isPlayerInterrupted)
             {
                 isPlayerInterrupted = NO;
@@ -585,10 +612,10 @@ static bool CheckError(OSStatus error, NSString* function) {
         
         // we need check this because some times we will receive category change
         // with the same device.
-        if([oldOutputDeviceName isEqualToString:currentOutputDeviceName]) {
+        if([oldOutputDeviceName isEqualToString:currentOutputDeviceName] ||
+           currentOutputDeviceName == nil ||  oldOutputDeviceName == nil) {
             return;
         }
-        
         OT_AUDIO_DEBUG(@"routeChanged: old=%@ new=%@",
                        oldOutputDeviceName, currentOutputDeviceName);
     }
@@ -614,6 +641,19 @@ static bool CheckError(OSStatus error, NSString* function) {
     _isResetting = NO;
 }
 
+/* When ringer is off, we dont get interruption ended callback
+ as mentioned in apple doc : "There is no guarantee that a begin
+ interruption will have an end interruption."
+ The only caveat here is, some times we get two callbacks from interruption
+ handler as well as from here which we handle synchronously with safteyQueue
+ */
+- (void) appDidBecomeActive:(NSNotification *) notification
+{
+    dispatch_async(_safetyQueue, ^{
+        [self handleInterruptionEvent:AVAudioSessionInterruptionTypeEnded];
+    });
+}
+
 - (void) setupListenerBlocks
 {
     if(!areListenerBlocksSetup)
@@ -628,6 +668,11 @@ static bool CheckError(OSStatus error, NSString* function) {
                    selector:@selector(onRouteChangeEvent:)
                        name:AVAudioSessionRouteChangeNotification object:nil];
         
+        [center addObserver:self
+                   selector:@selector(appDidBecomeActive:)
+                       name:UIApplicationDidBecomeActiveNotification
+                     object:nil];
+
         areListenerBlocksSetup = YES;
     }
 }
