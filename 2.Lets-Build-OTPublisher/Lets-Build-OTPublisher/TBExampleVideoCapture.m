@@ -504,7 +504,7 @@
 }
 
 - (void)initCapture {
-    dispatch_async(_capture_queue, ^{
+    dispatch_sync(_capture_queue, ^{
         [self setupAudioVideoSession];
     });
 }
