@@ -128,8 +128,8 @@ static bool subscribeToSelf = YES;
     _myPhotoVideoCaptureModule = [[TBExamplePhotoVideoCapture alloc] init];
     _publisher = [[TBExamplePublisher alloc]
                   initWithDelegate:self
-                  name:[[UIDevice currentDevice] name]];
-    [_publisher setVideoCapture:_myPhotoVideoCaptureModule];
+                  name:[[UIDevice currentDevice] name]
+                  capturer: _myPhotoVideoCaptureModule];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
