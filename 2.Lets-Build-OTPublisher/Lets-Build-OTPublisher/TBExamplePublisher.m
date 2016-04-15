@@ -52,6 +52,21 @@
     return self;
 }
 
+- (id)initWithDelegate:(id<OTPublisherDelegate>)delegate
+                  name:(NSString*)name
+              capturer:(id<OTVideoCapture>)capturer
+{
+    self = [super initWithDelegate:delegate name:name];
+    if (self) {
+        [self setVideoCapture:capturer];
+        
+        _videoView =
+        [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+        [self setVideoRender:_videoView];
+    }
+    return self;
+}
+
 - (void)dealloc {
     [_videoView release];
     _videoView = nil;
