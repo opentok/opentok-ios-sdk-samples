@@ -186,15 +186,12 @@
     return 0;
 }
 
-// From https://bugs.chromium.org/p/webrtc/issues/detail?id=4643#c7 :
-// Don't send any image larger than 1280px on either edge. Additionally, don't
-// send any image with dimensions %16 != 0
-#define EDGE_LIMIT 1280.0f
-#define DIMENSION_FACTOR 16.0f
-- (CGImageRef)resizeAndPadImage:(UIImage*)sourceUIImage {
-    CGImageRef sourceCGImage = [sourceUIImage CGImage];
-    CGFloat sourceWidth = CGImageGetWidth(sourceCGImage);
-    CGFloat sourceHeight = CGImageGetHeight(sourceCGImage);
++ (void)dimensionsForInputSize:(CGSize)input
+                 containerSize:(CGSize*)destContainerSize
+                      drawRect:(CGRect*)destDrawRect
+{
+    CGFloat sourceWidth = input.width;
+    CGFloat sourceHeight = input.height;
     double sourceAspectRatio = sourceWidth / sourceHeight;
     
     CGFloat destContainerWidth = sourceWidth;
@@ -203,66 +200,93 @@
     CGFloat destImageHeight = sourceHeight;
     
     // if image is wider than tall and width breaks edge size limit
-    if (EDGE_LIMIT < sourceWidth && sourceAspectRatio >= 1.0) {
-        destContainerWidth = EDGE_LIMIT;
+    if (MAX_EDGE_SIZE_LIMIT < sourceWidth && sourceAspectRatio >= 1.0) {
+        destContainerWidth = MAX_EDGE_SIZE_LIMIT;
         destContainerHeight = destContainerWidth / sourceAspectRatio;
-        destContainerHeight +=
-        (DIMENSION_FACTOR - fmod(destContainerHeight, DIMENSION_FACTOR));
+        if (0 != fmod(destContainerHeight, EDGE_DIMENSION_COMMON_FACTOR)) {
+            // add padding to make height % 16 == 0
+            destContainerHeight +=
+            (EDGE_DIMENSION_COMMON_FACTOR - fmod(destContainerHeight,
+                                                 EDGE_DIMENSION_COMMON_FACTOR));
+        }
         destImageWidth = destContainerWidth;
         destImageHeight = destContainerWidth / sourceAspectRatio;
     }
     
     // if image is taller than wide and height breaks edge size limit
-    if (EDGE_LIMIT < destContainerHeight && sourceAspectRatio <= 1.0) {
-        destContainerHeight = EDGE_LIMIT;
+    if (MAX_EDGE_SIZE_LIMIT < destContainerHeight && sourceAspectRatio <= 1.0) {
+        destContainerHeight = MAX_EDGE_SIZE_LIMIT;
         destContainerWidth = destContainerHeight * sourceAspectRatio;
-        destContainerWidth +=
-        (DIMENSION_FACTOR - fmod(destContainerWidth, DIMENSION_FACTOR));
+        if (0 != fmod(destContainerWidth, EDGE_DIMENSION_COMMON_FACTOR)) {
+            // add padding to make width % 16 == 0
+            destContainerWidth +=
+            (EDGE_DIMENSION_COMMON_FACTOR - fmod(destContainerWidth,
+                                                 EDGE_DIMENSION_COMMON_FACTOR));
+        }
         destImageHeight = destContainerHeight;
         destImageWidth = destContainerHeight * sourceAspectRatio;
     }
     
     // ensure the dimensions of the resulting container are safe
-    if (fmod(destContainerWidth, DIMENSION_FACTOR) != 0) {
-        double remainder = fmod(destContainerWidth, DIMENSION_FACTOR);
+    if (fmod(destContainerWidth, EDGE_DIMENSION_COMMON_FACTOR) != 0) {
+        double remainder = fmod(destContainerWidth,
+                                EDGE_DIMENSION_COMMON_FACTOR);
         // increase the edge size only if doing so does not break the edge limit
-        if (destContainerWidth + (DIMENSION_FACTOR - remainder) > EDGE_LIMIT) {
+        if (destContainerWidth + (EDGE_DIMENSION_COMMON_FACTOR - remainder) >
+            MAX_EDGE_SIZE_LIMIT)
+        {
             destContainerWidth -= remainder;
         } else {
-            destContainerWidth += DIMENSION_FACTOR - remainder;
+            destContainerWidth += EDGE_DIMENSION_COMMON_FACTOR - remainder;
         }
     }
     // ensure the dimensions of the resulting container are safe
-    if (fmod(destContainerHeight, DIMENSION_FACTOR) != 0) {
-        double remainder = fmod(destContainerHeight, DIMENSION_FACTOR);
+    if (fmod(destContainerHeight, EDGE_DIMENSION_COMMON_FACTOR) != 0) {
+        double remainder = fmod(destContainerHeight,
+                                EDGE_DIMENSION_COMMON_FACTOR);
         // increase the edge size only if doing so does not break the edge limit
-        if (destContainerHeight + (DIMENSION_FACTOR - remainder) > EDGE_LIMIT) {
+        if (destContainerHeight + (EDGE_DIMENSION_COMMON_FACTOR - remainder) >
+            MAX_EDGE_SIZE_LIMIT)
+        {
             destContainerHeight -= remainder;
         } else {
-            destContainerHeight += DIMENSION_FACTOR - remainder;
+            destContainerHeight += EDGE_DIMENSION_COMMON_FACTOR - remainder;
         }
     }
     
-    CGRect destRectForSourceImage = CGRectZero;
-    CGSize destContainerSize =
-    CGSizeMake(destContainerWidth, destContainerHeight);
+    destContainerSize->width = destContainerWidth;
+    destContainerSize->height = destContainerHeight;
     
     // scale and recenter source image to fit in destination container
     if (sourceAspectRatio > 1.0) {
-        destRectForSourceImage.origin.x = 0;
-        destRectForSourceImage.origin.y =
+        destDrawRect->origin.x = 0;
+        destDrawRect->origin.y =
         (destContainerHeight - destImageHeight) / 2;
-        destRectForSourceImage.size.width = destContainerWidth;
-        destRectForSourceImage.size.height =
+        destDrawRect->size.width = destContainerWidth;
+        destDrawRect->size.height =
         destContainerWidth / sourceAspectRatio;
     } else {
-        destRectForSourceImage.origin.x =
+        destDrawRect->origin.x =
         (destContainerWidth - destImageWidth) / 2;
-        destRectForSourceImage.origin.y = 0;
-        destRectForSourceImage.size.height = destContainerHeight;
-        destRectForSourceImage.size.width =
+        destDrawRect->origin.y = 0;
+        destDrawRect->size.height = destContainerHeight;
+        destDrawRect->size.width =
         destContainerHeight * sourceAspectRatio;
     }
+
+}
+
+- (CGImageRef)resizeAndPadImage:(UIImage*)sourceUIImage {
+    CGImageRef sourceCGImage = [sourceUIImage CGImage];
+    CGFloat sourceWidth = CGImageGetWidth(sourceCGImage);
+    CGFloat sourceHeight = CGImageGetHeight(sourceCGImage);
+    CGSize sourceSize = CGSizeMake(sourceWidth, sourceHeight);
+    CGSize destContainerSize = CGSizeZero;
+    CGRect destRectForSourceImage = CGRectZero;
+    
+    [TBScreenCapture dimensionsForInputSize:sourceSize
+                              containerSize:&destContainerSize
+                                   drawRect:&destRectForSourceImage];
     
     UIGraphicsBeginImageContextWithOptions(destContainerSize, NO, 1.0);
     CGContextRef context = UIGraphicsGetCurrentContext();
