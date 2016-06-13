@@ -37,6 +37,8 @@
 		0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */; };
 		0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC1C08219B7C6D600BD819F /* Accelerate.framework */; };
 		28DDDB628DA40355DC810653 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABAC0704DF5C8CD82166D79 /* libPods.a */; };
+		937E3C4857A0A002D3C63517 /* libPods-Screen-SharingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB895B40DD1C0074BC08F03 /* libPods-Screen-SharingTests.a */; };
+		A3EAD4329912AA1045B0715F /* libPods-Screen-Sharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED43E618AE9053AFCE334576 /* libPods-Screen-Sharing.a */; };
 		D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AF64351A23B5E20026C892 /* VideoToolbox.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B370C5691561D4C44D49E91 /* Pods-Screen-Sharing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.debug.xcconfig"; sourceTree = "<group>"; };
 		0C1685231A71920900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		0C613A9319DB44F4004B479B /* logo_opentok_registered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_opentok_registered.png; sourceTree = "<group>"; };
 		0C99B76619AE909300A60ABA /* Screen-Sharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Screen-Sharing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,8 +90,13 @@
 		0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBScreenCapture.m; sourceTree = "<group>"; };
 		0CC1C08219B7C6D600BD819F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		1DB8C19FE827DF773911AE47 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2509C938910408512BFC2D69 /* Pods-Screen-SharingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-SharingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-SharingTests/Pods-Screen-SharingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FB895B40DD1C0074BC08F03 /* libPods-Screen-SharingTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Screen-SharingTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7440DA5D42DD31A06870298B /* Pods-Screen-Sharing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-Sharing.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing.release.xcconfig"; sourceTree = "<group>"; };
+		8D6F1D10D9CA3EE3DF3F3B83 /* Pods-Screen-SharingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screen-SharingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screen-SharingTests/Pods-Screen-SharingTests.release.xcconfig"; sourceTree = "<group>"; };
 		D4AF64351A23B5E20026C892 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		DA2C941DD2794AED8097AB81 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		ED43E618AE9053AFCE334576 /* libPods-Screen-Sharing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Screen-Sharing.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FABAC0704DF5C8CD82166D79 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -115,6 +123,7 @@
 				0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */,
 				0C99B7B619AE913A00A60ABA /* GLKit.framework in Frameworks */,
 				28DDDB628DA40355DC810653 /* libPods.a in Frameworks */,
+				A3EAD4329912AA1045B0715F /* libPods-Screen-Sharing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +133,7 @@
 			files = (
 				0C99B78E19AE909300A60ABA /* UIKit.framework in Frameworks */,
 				0C99B78D19AE909300A60ABA /* Foundation.framework in Frameworks */,
+				937E3C4857A0A002D3C63517 /* libPods-Screen-SharingTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +181,8 @@
 				0C99B76B19AE909300A60ABA /* CoreGraphics.framework */,
 				0C99B76D19AE909300A60ABA /* UIKit.framework */,
 				FABAC0704DF5C8CD82166D79 /* libPods.a */,
+				ED43E618AE9053AFCE334576 /* libPods-Screen-Sharing.a */,
+				4FB895B40DD1C0074BC08F03 /* libPods-Screen-SharingTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -227,6 +239,10 @@
 			children = (
 				1DB8C19FE827DF773911AE47 /* Pods.debug.xcconfig */,
 				DA2C941DD2794AED8097AB81 /* Pods.release.xcconfig */,
+				0B370C5691561D4C44D49E91 /* Pods-Screen-Sharing.debug.xcconfig */,
+				7440DA5D42DD31A06870298B /* Pods-Screen-Sharing.release.xcconfig */,
+				2509C938910408512BFC2D69 /* Pods-Screen-SharingTests.debug.xcconfig */,
+				8D6F1D10D9CA3EE3DF3F3B83 /* Pods-Screen-SharingTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -238,11 +254,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C99B79B19AE909300A60ABA /* Build configuration list for PBXNativeTarget "Screen-Sharing" */;
 			buildPhases = (
-				8D1A680295BD84105FCB195A /* Check Pods Manifest.lock */,
+				8D1A680295BD84105FCB195A /* 📦 Check Pods Manifest.lock */,
 				0C99B76219AE909300A60ABA /* Sources */,
 				0C99B76319AE909300A60ABA /* Frameworks */,
 				0C99B76419AE909300A60ABA /* Resources */,
-				6576CC2F88AFC325491AF9EE /* Copy Pods Resources */,
+				6576CC2F88AFC325491AF9EE /* 📦 Copy Pods Resources */,
+				59E819B36C857582961D1A2F /* 📦 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,9 +274,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0C99B79E19AE909300A60ABA /* Build configuration list for PBXNativeTarget "Screen-SharingTests" */;
 			buildPhases = (
+				33AA7177556AAE7B7CCE2766 /* 📦 Check Pods Manifest.lock */,
 				0C99B78619AE909300A60ABA /* Sources */,
 				0C99B78719AE909300A60ABA /* Frameworks */,
 				0C99B78819AE909300A60ABA /* Resources */,
+				D2DED7A659A510E37572A7C5 /* 📦 Embed Pods Frameworks */,
+				00D096AD2018C3D7F3B6E833 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -280,6 +300,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "TokBox Inc.";
 				TargetAttributes = {
+					0C99B76519AE909300A60ABA = {
+						DevelopmentTeam = MGD69Q275W;
+					};
 					0C99B78919AE909300A60ABA = {
 						TestTargetID = 0C99B76519AE909300A60ABA;
 					};
@@ -328,34 +351,94 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6576CC2F88AFC325491AF9EE /* Copy Pods Resources */ = {
+		00D096AD2018C3D7F3B6E833 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screen-SharingTests/Pods-Screen-SharingTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D1A680295BD84105FCB195A /* Check Pods Manifest.lock */ = {
+		33AA7177556AAE7B7CCE2766 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		59E819B36C857582961D1A2F /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6576CC2F88AFC325491AF9EE /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screen-Sharing/Pods-Screen-Sharing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D1A680295BD84105FCB195A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2DED7A659A510E37572A7C5 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screen-SharingTests/Pods-Screen-SharingTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -500,10 +583,12 @@
 		};
 		0C99B79C19AE909300A60ABA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1DB8C19FE827DF773911AE47 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 0B370C5691561D4C44D49E91 /* Pods-Screen-Sharing.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -513,16 +598,19 @@
 				GCC_PREFIX_HEADER = "Screen-Sharing/Screen-Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		0C99B79D19AE909300A60ABA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA2C941DD2794AED8097AB81 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 7440DA5D42DD31A06870298B /* Pods-Screen-Sharing.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -532,12 +620,14 @@
 				GCC_PREFIX_HEADER = "Screen-Sharing/Screen-Sharing-Prefix.pch";
 				INFOPLIST_FILE = "Screen-Sharing/Screen-Sharing-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		0C99B79F19AE909300A60ABA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2509C938910408512BFC2D69 /* Pods-Screen-SharingTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Screen-Sharing.app/Screen-Sharing";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -560,6 +650,7 @@
 		};
 		0C99B7A019AE909300A60ABA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D6F1D10D9CA3EE3DF3F3B83 /* Pods-Screen-SharingTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Screen-Sharing.app/Screen-Sharing";
 				FRAMEWORK_SEARCH_PATHS = (
