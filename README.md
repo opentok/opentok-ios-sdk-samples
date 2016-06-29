@@ -60,9 +60,15 @@ capture implementations provided herein.
     AUGraph API to create an audio session suitable for voice and video
     communications.
 
-7.	**Screen-Sharing** - This project demonstrates how to use a custom video
+8.	**Screen-Sharing** - This project demonstrates how to use a custom video
     capturer to publish a stream that uses a UI view (instead of a camera) as
     the video source.
+
+9.	**Ringtones** - This project extends on the work done in Project 7
+    (External Audio Device) by extending the sample audio driver with an
+    AVAudioPlayer controller, which will play a short ringtone while waiting for
+    the subscriber to connect to the client device.
+
 
 Referencing OpenTok.framework
 -----------------------------
