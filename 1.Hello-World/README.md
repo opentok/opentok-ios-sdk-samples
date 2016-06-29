@@ -21,7 +21,7 @@ Application Notes
     hierarchy from inside the callback, without any asynchronous callouts.
 
 *   When the main view loads, the ViewController calls the
-    `[OTSession initWithApiKey: sessionId: delegate:]]` method to initialize
+    `[OTSession initWithApiKey: sessionId: delegate:]` method to initialize
     a Session object. The app then calls the
     `[OTSession connectWithToken:error]` to connect to the session. The
     `[OTSessionDelegate sessionDidConnect:]` message is sent when the app
