@@ -203,7 +203,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)startRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"startRendering");
+        OT_AUDIO_DEBUG(@"startRendering %d",playing);
         
         if (playing) {
             return YES;
@@ -231,7 +231,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)stopRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopRendering");
+        OT_AUDIO_DEBUG(@"stopRendering %d",playing);
         
         if (!playing) {
             return YES;
@@ -247,6 +247,7 @@ static OSStatus playout_cb(void *ref_con,
         // publisher is already closed
         if (!recording && !isPlayerInterrupted && !_isResetting)
         {
+            OT_AUDIO_DEBUG(@"teardownAudio from stopRendering");
             [self teardownAudio];
         }
         
@@ -262,7 +263,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)startCapture
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"startCapture");
+        OT_AUDIO_DEBUG(@"startCapture %d",recording);
         
         if (recording) {
             return YES;
@@ -290,7 +291,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)stopCapture
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopCapture");
+        OT_AUDIO_DEBUG(@"stopCapture %d",recording);
         
         if (!recording) {
             return YES;
@@ -309,6 +310,7 @@ static OSStatus playout_cb(void *ref_con,
         // subscriber is already closed
         if (!playing && !isRecorderInterrupted && !_isResetting)
         {
+            OT_AUDIO_DEBUG(@"teardownAudio from stopCapture");
             [self teardownAudio];
         }
         
@@ -439,24 +441,31 @@ static bool CheckError(OSStatus error, NSString* function) {
     [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration
                                       error:nil];
     
+    NSError *error = nil;
     NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers;
 #if !(TARGET_OS_TV)
     audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth ;
     audioOptions |= AVAudioSessionCategoryOptionDefaultToSpeaker;
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
                withOptions:audioOptions
-                     error:nil];
+                     error:&error];
 #else
     [mySession setCategory:AVAudioSessionCategoryPlayback
                withOptions:audioOptions
-                     error:nil];
+                     error:&error];
 #endif
     
+    if (error)
+        OT_AUDIO_DEBUG(@"Audiosession setCategory %@",error);
+    
+    error = nil;
     
     [self setupListenerBlocks];
-    [mySession setActive:YES error:nil];
+    [mySession setActive:YES error:&error];
     
-    
+    if (error)
+        OT_AUDIO_DEBUG(@"Audiosession setActive %@",error);
+
 }
 
 - (void)setBluetoothAsPrefferedInputDevice
@@ -483,6 +492,8 @@ static bool CheckError(OSStatus error, NSString* function) {
 
 - (void) onInterruptionEvent:(NSNotification *) notification
 {
+    OT_AUDIO_DEBUG(@"onInterruptionEvent %@",notification);
+    
     NSDictionary *interruptionDict = notification.userInfo;
     NSInteger interruptionType =
     [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
@@ -495,77 +506,81 @@ static bool CheckError(OSStatus error, NSString* function) {
 
 - (void) handleInterruptionEvent:(NSInteger) interruptionType
 {
-    switch (interruptionType) {
-        case AVAudioSessionInterruptionTypeBegan:
-        {
-            OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeBegan");
-            if(recording)
+    @synchronized(self) {
+        OT_AUDIO_DEBUG(@"handleInterruptionEvent %ld",(long)interruptionType);
+        switch (interruptionType) {
+            case AVAudioSessionInterruptionTypeBegan:
             {
-                isRecorderInterrupted = YES;
-                [self stopCapture];
-            }
-            if(playing)
-            {
-                isPlayerInterrupted = YES;
-                [self stopRendering];
-            }
-        }
-            break;
-            
-        case AVAudioSessionInterruptionTypeEnded:
-        {
-            OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
-            // Reconfigure audio session with highest priority device
-            [self configureAudioSessionWithDesiredAudioRoute:
-             AUDIO_DEVICE_BLUETOOTH];
-            if(isRecorderInterrupted)
-            {
-                if([self startCapture] == YES)
+                OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeBegan");
+                if(recording)
                 {
-                    isRecorderInterrupted = NO;
-                    _restartRetryCount = 0;
-                } else
+                    isRecorderInterrupted = YES;
+                    [self stopCapture];
+                }
+                if(playing)
                 {
-                    _restartRetryCount++;
-                    if(_restartRetryCount < 3)
-                    {
-                        dispatch_after(
-                                       dispatch_time(
-                                        DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
-                                       _safetyQueue, ^{
-                            [self handleInterruptionEvent:
-                             AVAudioSessionInterruptionTypeEnded];
-                        });
-                    } else
-                    {
-                        // This shouldn't happen!
-                        isRecorderInterrupted = NO;
-                        isPlayerInterrupted = NO;
-                        _restartRetryCount = 0;
-                        NSLog(@"ERROR[OpenTok]:Unable to acquire audio session");
-                    }
-                    return;
+                    isPlayerInterrupted = YES;
+                    [self stopRendering];
                 }
             }
-
-            if(isPlayerInterrupted)
+                break;
+                
+            case AVAudioSessionInterruptionTypeEnded:
             {
-                isPlayerInterrupted = NO;
-                [self startRendering];
+                OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
+                // Reconfigure audio session with highest priority device
+                [self configureAudioSessionWithDesiredAudioRoute:
+                 AUDIO_DEVICE_BLUETOOTH];
+                if(isRecorderInterrupted)
+                {
+                    if([self startCapture] == YES)
+                    {
+                        isRecorderInterrupted = NO;
+                        _restartRetryCount = 0;
+                    } else
+                    {
+                        _restartRetryCount++;
+                        if(_restartRetryCount < 3)
+                        {
+                            dispatch_after(
+                                           dispatch_time(
+                                                         DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
+                                           _safetyQueue, ^{
+                                               [self handleInterruptionEvent:
+                                                AVAudioSessionInterruptionTypeEnded];
+                                           });
+                        } else
+                        {
+                            // This shouldn't happen!
+                            isRecorderInterrupted = NO;
+                            isPlayerInterrupted = NO;
+                            _restartRetryCount = 0;
+                            NSLog(@"ERROR[OpenTok]:Unable to acquire audio session");
+                        }
+                        return;
+                    }
+                }
+                
+                if(isPlayerInterrupted)
+                {
+                    isPlayerInterrupted = NO;
+                    [self startRendering];
+                }
+                
             }
-            
+                break;
+                
+            default:
+                OT_AUDIO_DEBUG(@"Audio Session Interruption Notification"
+                               " case default.");
+                break;
         }
-            break;
-            
-        default:
-            OT_AUDIO_DEBUG(@"Audio Session Interruption Notification"
-                           " case default.");
-            break;
     }
 }
 
 - (void) onRouteChangeEvent:(NSNotification *) notification
 {
+    OT_AUDIO_DEBUG(@"onRouteChangeEvent %@",notification);
     dispatch_async(_safetyQueue, ^() {
         [self handleRouteChangeEvent:notification];
     });
@@ -620,25 +635,27 @@ static bool CheckError(OSStatus error, NSString* function) {
                        oldOutputDeviceName, currentOutputDeviceName);
     }
     
-    // We've made it here, there's been a legit route change.
-    // Restart the audio units with correct sample rate
-    _isResetting = YES;
-    
-    if (recording)
-    {
-        [self stopCapture];
-        [self disposeRecordUnit];
-        [self startCapture];
+    @synchronized(self) {
+        // We've made it here, there's been a legit route change.
+        // Restart the audio units with correct sample rate
+        _isResetting = YES;
+        
+        if (recording)
+        {
+            [self stopCapture];
+            [self disposeRecordUnit];
+            [self startCapture];
+        }
+        
+        if (playing)
+        {
+            [self stopRendering];
+            [self disposePlayoutUnit];
+            [self startRendering];
+        }
+        
+        _isResetting = NO;
     }
-    
-    if (playing)
-    {
-        [self stopRendering];
-        [self disposePlayoutUnit];
-        [self startRendering];
-    }
-    
-    _isResetting = NO;
 }
 
 /* When ringer is off, we dont get interruption ended callback
@@ -649,6 +666,7 @@ static bool CheckError(OSStatus error, NSString* function) {
  */
 - (void) appDidBecomeActive:(NSNotification *) notification
 {
+    OT_AUDIO_DEBUG(@"appDidBecomeActive %@",notification);
     dispatch_async(_safetyQueue, ^{
         [self handleInterruptionEvent:AVAudioSessionInterruptionTypeEnded];
     });
@@ -717,6 +735,8 @@ static void update_recording_delay(OTDefaultAudioDevice* device) {
     device->_recordingDelay = device->_recordingDelayHWAndOS;
 }
 
+double mPrevRecordTime = 0;
+double mPrevPlayTime = 0;
 static OSStatus recording_cb(void *ref_con,
                              AudioUnitRenderActionFlags *action_flags,
                              const AudioTimeStamp *time_stamp,
@@ -783,6 +803,18 @@ static OSStatus recording_cb(void *ref_con,
         //        startingFrameCount = j;
         [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
                          numberOfSamples:num_frames];
+    } else
+    {
+
+        double currentTime = CACurrentMediaTime();
+        double delta =  currentTime - mPrevRecordTime;
+        if (delta >= 2 && mPrevRecordTime > 0)
+        {
+            OT_AUDIO_DEBUG(@"Audiounits recording but no data to record! (%f)",delta);
+            mPrevRecordTime = currentTime;
+        }
+        if (mPrevRecordTime == 0)
+            mPrevRecordTime = currentTime;
     }
     // some ocassions, AudioUnitRender only renders part of the buffer and then next
     // call to the AudioUnitRender fails with smaller buffer.
@@ -832,7 +864,20 @@ static OSStatus playout_cb(void *ref_con,
 {
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
-    if (!dev->playing) { return 0; }
+    if (!dev->playing) {
+        
+        double currentTime = CACurrentMediaTime();
+        double delta =  currentTime - mPrevPlayTime;
+        if (delta >= 2 && mPrevPlayTime > 0)
+        {
+            OT_AUDIO_DEBUG(@"Audiounits playing but no data to play! (%f)",delta);
+            mPrevPlayTime = currentTime;
+        }
+        if (mPrevPlayTime == 0)
+            mPrevPlayTime = currentTime;
+
+        return 0;
+    }
     
     uint32_t count =
     [dev->_audioBus readRenderData:buffer_list->mBuffers[0].mData
@@ -904,6 +949,8 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)configureAudioSessionWithDesiredAudioRoute:(NSString*)desiredAudioRoute
 {
+    OT_AUDIO_DEBUG(@"configureAudioSessionWithDesiredAudioRoute %@",desiredAudioRoute);
+    
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     NSError *err;
     
