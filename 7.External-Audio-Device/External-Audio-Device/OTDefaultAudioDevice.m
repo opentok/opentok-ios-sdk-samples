@@ -735,8 +735,6 @@ static void update_recording_delay(OTDefaultAudioDevice* device) {
     device->_recordingDelay = device->_recordingDelayHWAndOS;
 }
 
-double mPrevRecordTime = 0;
-double mPrevPlayTime = 0;
 static OSStatus recording_cb(void *ref_con,
                              AudioUnitRenderActionFlags *action_flags,
                              const AudioTimeStamp *time_stamp,
@@ -803,18 +801,6 @@ static OSStatus recording_cb(void *ref_con,
         //        startingFrameCount = j;
         [dev->_audioBus writeCaptureData:dev->buffer_list->mBuffers[0].mData
                          numberOfSamples:num_frames];
-    } else
-    {
-
-        double currentTime = CACurrentMediaTime();
-        double delta =  currentTime - mPrevRecordTime;
-        if (delta >= 2 && mPrevRecordTime > 0)
-        {
-            OT_AUDIO_DEBUG(@"Audiounits recording but no data to record! (%f)",delta);
-            mPrevRecordTime = currentTime;
-        }
-        if (mPrevRecordTime == 0)
-            mPrevRecordTime = currentTime;
     }
     // some ocassions, AudioUnitRender only renders part of the buffer and then next
     // call to the AudioUnitRender fails with smaller buffer.
@@ -865,17 +851,6 @@ static OSStatus playout_cb(void *ref_con,
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
     if (!dev->playing) {
-        
-        double currentTime = CACurrentMediaTime();
-        double delta =  currentTime - mPrevPlayTime;
-        if (delta >= 2 && mPrevPlayTime > 0)
-        {
-            OT_AUDIO_DEBUG(@"Audiounits playing but no data to play! (%f)",delta);
-            mPrevPlayTime = currentTime;
-        }
-        if (mPrevPlayTime == 0)
-            mPrevPlayTime = currentTime;
-
         return 0;
     }
     
