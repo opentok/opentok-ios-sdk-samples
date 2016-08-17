@@ -9,9 +9,7 @@
 #import "OTDefaultAudioDevice.h"
 
 @interface OTDefaultAudioDeviceWithVolumeControl : OTDefaultAudioDevice
-{
-    
-}
+
 // value range - 0 (min) and 1 (max)
 -(void)setPlayoutVolume:(float)value;
 @end

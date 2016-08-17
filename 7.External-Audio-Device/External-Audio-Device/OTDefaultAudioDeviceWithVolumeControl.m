@@ -8,10 +8,14 @@
 
 #import "OTDefaultAudioDeviceWithVolumeControl.h"
 
-@interface OTDefaultAudioDevice(Private)
+/* private API declares: for internal use only. */
+@interface OTDefaultAudioDevice()
+
 - (BOOL)setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout;
 - (void)disposePlayoutUnit;
 - (void)checkAndPrintError:(OSStatus)error function:(NSString *)function;
+- (BOOL)setPlayOutRenderCallback:(AudioUnit)unit;
+
 @end
 
 @implementation OTDefaultAudioDeviceWithVolumeControl
@@ -47,7 +51,7 @@
         
         //disable voip render callback (is this really needed ?)
         AURenderCallbackStruct render_callback;
-        render_callback.inputProc = NULL;;
+        render_callback.inputProc = NULL;
         render_callback.inputProcRefCon = (__bridge void *)(self);
         AudioUnitSetProperty(*voice_unit, kAudioUnitProperty_SetRenderCallback,
                                                kAudioUnitScope_Input, kOutputBus, &render_callback,

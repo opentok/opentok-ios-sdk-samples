@@ -94,7 +94,9 @@ static OSStatus playout_cb(void *ref_con,
     /* synchronize all access to the audio subsystem */
     dispatch_queue_t _safetyQueue;
     
-@public
+    BOOL _headsetDeviceAvailable;
+    BOOL _bluetoothDeviceAvailable;
+    
     id _audioBus;
     
     AudioBufferList *buffer_list;
