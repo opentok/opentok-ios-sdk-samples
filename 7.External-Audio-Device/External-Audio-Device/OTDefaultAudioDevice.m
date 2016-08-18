@@ -69,6 +69,7 @@ static OSStatus playout_cb(void *ref_con,
 - (void) setupListenerBlocks;
 @end
 
+
 @implementation OTDefaultAudioDevice
 {
     OTAudioFormat *_audioFormat;
@@ -112,6 +113,15 @@ static OSStatus playout_cb(void *ref_con,
 }
 
 #pragma mark - OTAudioDeviceImplementation
+
++ (instancetype)sharedInstance {
+    static OTDefaultAudioDevice* _sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[OTDefaultAudioDevice alloc] init];
+    });
+    return _sharedInstance;
+}
 
 - (instancetype)init
 {

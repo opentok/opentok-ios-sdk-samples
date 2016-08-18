@@ -18,7 +18,6 @@
     OTSession* _session;
     OTPublisher* _publisher;
     OTSubscriber* _subscriber;
-    OTDefaultAudioDeviceWithVolumeControl* _myAudioDevice;
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -41,9 +40,10 @@ static bool subscribeToSelf = NO;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    _myAudioDevice = [[OTDefaultAudioDeviceWithVolumeControl alloc] init];
-    [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
+    
+    OTDefaultAudioDeviceWithVolumeControl* audioDevice =
+    [OTDefaultAudioDeviceWithVolumeControl sharedInstance];
+    [OTAudioDeviceManager setAudioDevice:audioDevice];
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.

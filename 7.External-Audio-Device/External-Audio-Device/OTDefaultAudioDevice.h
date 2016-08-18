@@ -20,4 +20,12 @@
     AudioStreamBasicDescription stream_format;
 }
 
+/**
+ * Audio device lifecycle should live for the duration of the process, and
+ * needs to be set before OTSession is initialized.
+ *
+ * It is not recommended to initialize unique audio device instances.
+ */
++ (instancetype)sharedInstance;
+
 @end
