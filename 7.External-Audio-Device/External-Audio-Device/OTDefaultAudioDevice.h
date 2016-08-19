@@ -28,7 +28,12 @@
  */
 + (instancetype)sharedInstance;
 
-
+/** 
+ * Override the audio unit preferred component subtype. This can be used to
+ * force RemoteIO to be used instead of VPIO (the default). It is recommended
+ * to set this prior to instantiating any publisher/subscriber; changes will
+ * not take effect until after the next audio unit setup call.
+ */
 @property (nonatomic) uint32_t preferredAudioComponentSubtype;
 
 @end
