@@ -38,7 +38,7 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
-#define OT_ENABLE_AUDIO_DEBUG 0
+#define OT_ENABLE_AUDIO_DEBUG 1
 
 #if OT_ENABLE_AUDIO_DEBUG
 #define OT_AUDIO_DEBUG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
@@ -69,6 +69,8 @@ static OSStatus playout_cb(void *ref_con,
 - (void) setupListenerBlocks;
 @end
 
+#define OT_AUDIO_RESTART_ATTEMPTS 3
+#define OT_AUDIO_RESTART_DELAY_SECONDS 1.0f
 
 @implementation OTDefaultAudioDevice
 {
@@ -76,21 +78,18 @@ static OSStatus playout_cb(void *ref_con,
     
     AudioUnit recording_voice_unit;
     AudioUnit playout_voice_unit;
-    BOOL playing;
-    BOOL playout_initialized;
-    BOOL recording;
-    BOOL recording_initialized;
-    BOOL interrupted_playback;
+    
+    BOOL _playbackRequested;
+    BOOL _playing;
+    BOOL _recordingRequested;
+    BOOL _recording;
+    
     NSString* _previousAVAudioSessionCategory;
     NSString* avAudioSessionMode;
     double avAudioSessionPreffSampleRate;
     NSInteger avAudioSessionChannels;
     BOOL isAudioSessionSetup;
-    BOOL isRecorderInterrupted;
-    BOOL isPlayerInterrupted;
     BOOL areListenerBlocksSetup;
-    BOOL _isResetting;
-    int _restartRetryCount;
     
     /* synchronize all access to the audio subsystem */
     dispatch_queue_t _safetyQueue;
@@ -110,7 +109,11 @@ static OSStatus playout_cb(void *ref_con,
     uint32_t _recordingDelayMeasurementCounter;
     Float64 _playout_AudioUnitProperty_Latency;
     Float64 _recording_AudioUnitProperty_Latency;
+    
+    uint32_t _preferredAudioComponentSubtype;
 }
+
+@synthesize preferredAudioComponentSubtype = _preferredAudioComponentSubtype;
 
 #pragma mark - OTAudioDeviceImplementation
 
@@ -132,7 +135,7 @@ static OSStatus playout_cb(void *ref_con,
         _audioFormat.numChannels = 1;
         _safetyQueue = dispatch_queue_create("ot-audio-driver",
                                              DISPATCH_QUEUE_SERIAL);
-        _restartRetryCount = 0;
+        _preferredAudioComponentSubtype = 0;
     }
     return self;
 }
@@ -173,19 +176,15 @@ static OSStatus playout_cb(void *ref_con,
 // to do here.
 - (BOOL)initializeRendering
 {
-    if (playing) {
+    if (_playing) {
         return NO;
     }
-    if (playout_initialized) {
-        return YES;
-    }
-    playout_initialized = true;
     return YES;
 }
 
 - (BOOL)renderingIsInitialized
 {
-    return playout_initialized;
+    return YES;
 }
 
 - (BOOL)captureIsAvailable
@@ -197,59 +196,54 @@ static OSStatus playout_cb(void *ref_con,
 // to do here.
 - (BOOL)initializeCapture
 {
-    if (recording) {
+    if (_recording) {
         return NO;
     }
-    if (recording_initialized) {
-        return YES;
-    }
-    recording_initialized = true;
     return YES;
 }
 
 - (BOOL)captureIsInitialized
 {
-    return recording_initialized;
+    return YES;
 }
 
 - (BOOL)startRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"startRendering %d",playing);
+        OT_AUDIO_DEBUG(@"startRendering %d", _playing);
         
-        if (playing) {
+        if (_playing) {
             return YES;
         }
         
-        playing = YES;
         // Initialize only when playout voice unit is already teardown
         if(playout_voice_unit == NULL)
         {
-            if (NO == [self setupAudioUnit:&playout_voice_unit playout:YES]) {
-                playing = NO;
+            _playing = [self setupAudioUnit:&playout_voice_unit playout:YES];
+            if (!_playing) {
                 return NO;
             }
         }
         
         OSStatus result = AudioOutputUnitStart(playout_voice_unit);
         if (CheckError(result, @"startRendering.AudioOutputUnitStart")) {
-            playing = NO;
+            _playing = NO;
         }
         
-        return playing;
+        return _playing;
     }
 }
 
 - (BOOL)stopRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopRendering %d",playing);
+        OT_AUDIO_DEBUG(@"stopRendering %d", _playing);
         
-        if (!playing) {
+        if (!_playing) {
             return YES;
         }
         
-        playing = NO;
+        _playing = NO;
         
         OSStatus result = AudioOutputUnitStop(playout_voice_unit);
         if (CheckError(result, @"stopRendering.AudioOutputUnitStop")) {
@@ -257,7 +251,7 @@ static OSStatus playout_cb(void *ref_con,
         }
         
         // publisher is already closed
-        if (!recording && !isPlayerInterrupted && !_isResetting)
+        if (!_recording && !_recordingRequested)
         {
             OT_AUDIO_DEBUG(@"teardownAudio from stopRendering");
             [self teardownAudio];
@@ -269,47 +263,48 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)isRendering
 {
-    return playing;
+    return _playing;
 }
 
 - (BOOL)startCapture
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"startCapture %d",recording);
+        OT_AUDIO_DEBUG(@"startCapture %d", _recording);
         
-        if (recording) {
+        if (_recording) {
             return YES;
         }
         
-        recording = YES;
+        _recording = YES;
         // Initialize only when recording voice unit is already teardown
         if(recording_voice_unit == NULL)
         {
-            if (NO == [self setupAudioUnit:&recording_voice_unit playout:NO]) {
-                recording = NO;
+            _recording = [self setupAudioUnit:&recording_voice_unit playout:NO];
+            
+            if (!_recording) {
                 return NO;
             }
         }
 
         OSStatus result = AudioOutputUnitStart(recording_voice_unit);
         if (CheckError(result, @"startCapture.AudioOutputUnitStart")) {
-            recording = NO;
+            _recording = NO;
         }
         
-        return recording;
+        return _recording;
     }
 }
 
 - (BOOL)stopCapture
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopCapture %d",recording);
+        OT_AUDIO_DEBUG(@"stopCapture %d", _recording);
         
-        if (!recording) {
+        if (!_recording) {
             return YES;
         }
         
-        recording = NO;
+        _recording = NO;
         
         OSStatus result = AudioOutputUnitStop(recording_voice_unit);
         
@@ -319,8 +314,8 @@ static OSStatus playout_cb(void *ref_con,
         
         [self freeupAudioBuffers];
         
-        // subscriber is already closed
-        if (!playing && !isRecorderInterrupted && !_isResetting)
+        // teardown if system is not in use
+        if (!_recording && !_recordingRequested)
         {
             OT_AUDIO_DEBUG(@"teardownAudio from stopCapture");
             [self teardownAudio];
@@ -332,7 +327,7 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)isCapturing
 {
-    return recording;
+    return _recording;
 }
 
 - (uint16_t)estimatedRenderDelay
@@ -343,6 +338,58 @@ static OSStatus playout_cb(void *ref_con,
 - (uint16_t)estimatedCaptureDelay
 {
     return _recordingDelay;
+}
+
+#pragma mark - Additional Public Interface (Utility)
+
+- (void)restartAudio {
+    dispatch_async(_safetyQueue, ^() {
+        [self doRestartAudio:3];
+    });
+}
+
+- (void)doRestartAudio:(int)retries {
+    if (retries <= 0) {
+        OT_AUDIO_DEBUG(@"Could not restart audio. Giving up.");
+        return;
+    } else {
+        OT_AUDIO_DEBUG(@"Restarting audio with record=%d playback=%d retry=%d",
+                       _recordingRequested, _playbackRequested, retries);
+    }
+    
+    BOOL success = YES;
+    
+    if (_recordingRequested)
+    {
+        success &= [self stopCapture];
+        [self disposeRecordUnit];
+        success &= [self startCapture];
+    }
+    
+    if (_playbackRequested)
+    {
+        success &= [self stopRendering];
+        [self disposePlayoutUnit];
+        success &= [self startRendering];
+    }
+    
+    if (success) {
+        OT_AUDIO_DEBUG(@"Restart audio success");
+        _recordingRequested = NO;
+        _playbackRequested = NO;
+    } else {
+        --retries;
+        OT_AUDIO_DEBUG(@"Could not restart audio. Will retry %d times.",
+                       retries);
+        dispatch_after
+        (dispatch_time(DISPATCH_TIME_NOW,
+                       (int64_t)(OT_AUDIO_RESTART_DELAY_SECONDS *
+                                 NSEC_PER_SEC)),
+         _safetyQueue,
+         ^(){
+             [self doRestartAudio:retries];
+         });
+    }
 }
 
 #pragma mark - AudioSession Setup
@@ -502,6 +549,8 @@ static bool CheckError(OSStatus error, NSString* function) {
     
 }
 
+#pragma mark - System interruptions and audio route changes
+
 - (void) onInterruptionEvent:(NSNotification *) notification
 {
     OT_AUDIO_DEBUG(@"onInterruptionEvent %@",notification);
@@ -524,14 +573,14 @@ static bool CheckError(OSStatus error, NSString* function) {
             case AVAudioSessionInterruptionTypeBegan:
             {
                 OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeBegan");
-                if(recording)
+                _recordingRequested = _recording;
+                _playbackRequested = _playing;
+                if (_recording)
                 {
-                    isRecorderInterrupted = YES;
                     [self stopCapture];
                 }
-                if(playing)
+                if (_playing)
                 {
-                    isPlayerInterrupted = YES;
                     [self stopRendering];
                 }
             }
@@ -543,42 +592,7 @@ static bool CheckError(OSStatus error, NSString* function) {
                 // Reconfigure audio session with highest priority device
                 [self configureAudioSessionWithDesiredAudioRoute:
                  AUDIO_DEVICE_BLUETOOTH];
-                if(isRecorderInterrupted)
-                {
-                    if([self startCapture] == YES)
-                    {
-                        isRecorderInterrupted = NO;
-                        _restartRetryCount = 0;
-                    } else
-                    {
-                        _restartRetryCount++;
-                        if(_restartRetryCount < 3)
-                        {
-                            dispatch_after(
-                                           dispatch_time(
-                                                         DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
-                                           _safetyQueue, ^{
-                                               [self handleInterruptionEvent:
-                                                AVAudioSessionInterruptionTypeEnded];
-                                           });
-                        } else
-                        {
-                            // This shouldn't happen!
-                            isRecorderInterrupted = NO;
-                            isPlayerInterrupted = NO;
-                            _restartRetryCount = 0;
-                            NSLog(@"ERROR[OpenTok]:Unable to acquire audio session");
-                        }
-                        return;
-                    }
-                }
-                
-                if(isPlayerInterrupted)
-                {
-                    isPlayerInterrupted = NO;
-                    [self startRendering];
-                }
-                
+                [self restartAudio];
             }
                 break;
                 
@@ -647,27 +661,11 @@ static bool CheckError(OSStatus error, NSString* function) {
                        oldOutputDeviceName, currentOutputDeviceName);
     }
     
-    @synchronized(self) {
-        // We've made it here, there's been a legit route change.
-        // Restart the audio units with correct sample rate
-        _isResetting = YES;
-        
-        if (recording)
-        {
-            [self stopCapture];
-            [self disposeRecordUnit];
-            [self startCapture];
-        }
-        
-        if (playing)
-        {
-            [self stopRendering];
-            [self disposePlayoutUnit];
-            [self startRendering];
-        }
-        
-        _isResetting = NO;
-    }
+    // We've made it here, there's been a legit route change.
+    // Restart the audio units with correct sample rate
+    _recordingRequested = _recording;
+    _playbackRequested = _playing;
+    [self restartAudio];
 }
 
 /* When ringer is off, we dont get interruption ended callback
@@ -713,6 +711,8 @@ static bool CheckError(OSStatus error, NSString* function) {
     [center removeObserver:self];
     areListenerBlocksSetup = NO;
 }
+
+#pragma mark - native audio callbacks
 
 static void update_recording_delay(OTDefaultAudioDevice* device) {
     
@@ -794,7 +794,7 @@ static OSStatus recording_cb(void *ref_con,
         CheckError(status, @"AudioUnitRender");
     }
     
-    if (dev->recording) {
+    if (dev->_recording) {
         
         // Some sample code to generate a sine wave instead of use the mic
         //        static double startingFrameCount = 0;
@@ -862,7 +862,7 @@ static OSStatus playout_cb(void *ref_con,
 {
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
-    if (!dev->playing) {
+    if (!dev->_playing) {
         return 0;
     }
     
@@ -879,7 +879,7 @@ static OSStatus playout_cb(void *ref_con,
     return 0;
 }
 
-#pragma mark BlueTooth
+#pragma mark - BlueTooth
 
 - (BOOL)isBluetoothDevice:(NSString*)portType {
     
@@ -1002,11 +1002,18 @@ static OSStatus playout_cb(void *ref_con,
     
     AudioComponentDescription audio_unit_description;
     audio_unit_description.componentType = kAudioUnitType_Output;
+    if (_preferredAudioComponentSubtype) {
+        audio_unit_description.componentSubType =
+        _preferredAudioComponentSubtype;
+    } else {
 #if !(TARGET_OS_TV)
-    audio_unit_description.componentSubType = kAudioUnitSubType_VoiceProcessingIO;
+        audio_unit_description.componentSubType =
+        kAudioUnitSubType_VoiceProcessingIO;
 #else
-    audio_unit_description.componentSubType = kAudioUnitSubType_RemoteIO;
+        audio_unit_description.componentSubType =
+        kAudioUnitSubType_RemoteIO;
 #endif
+    }
     audio_unit_description.componentManufacturer = kAudioUnitManufacturer_Apple;
     audio_unit_description.componentFlags = 0;
     audio_unit_description.componentFlagsMask = 0;

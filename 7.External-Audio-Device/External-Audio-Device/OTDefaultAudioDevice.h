@@ -28,4 +28,7 @@
  */
 + (instancetype)sharedInstance;
 
+
+@property (nonatomic) uint32_t preferredAudioComponentSubtype;
+
 @end
