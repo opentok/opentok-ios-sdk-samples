@@ -38,7 +38,7 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
-#define OT_ENABLE_AUDIO_DEBUG 1
+#define OT_ENABLE_AUDIO_DEBUG 0
 
 #if OT_ENABLE_AUDIO_DEBUG
 #define OT_AUDIO_DEBUG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
@@ -344,7 +344,7 @@ static OSStatus playout_cb(void *ref_con,
 
 - (void)restartAudio {
     dispatch_async(_safetyQueue, ^() {
-        [self doRestartAudio:3];
+        [self doRestartAudio:OT_AUDIO_RESTART_ATTEMPTS];
     });
 }
 
