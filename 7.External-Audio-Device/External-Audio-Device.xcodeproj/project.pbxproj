@@ -37,7 +37,7 @@
 		A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */; };
 		A5E74EB01C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */; };
 		AA926F4FAAC2A2F9DABFC35D /* libPods-External-Audio-DeviceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5491F5A48594DE9AF5D392B /* libPods-External-Audio-DeviceTests.a */; };
-		D4D55F6E1D5E1D6E008DC3AD /* libPods-External-Audio-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D55F6D1D5E1D6E008DC3AD /* libPods-External-Audio-Device.a */; };
+		D4D55F7E1D762270008DC3AD /* libPods-External-Audio-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 943E500C5D5F5093F7988BBA /* libPods-External-Audio-Device.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,7 +104,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4D55F6E1D5E1D6E008DC3AD /* libPods-External-Audio-Device.a in Frameworks */,
 				0C1685201A71913F00A507E3 /* libc++.dylib in Frameworks */,
 				A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */,
 				0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */,
@@ -121,6 +120,7 @@
 				0CBBA3F2196B5192005F55D4 /* CoreGraphics.framework in Frameworks */,
 				0CBBA3F4196B5192005F55D4 /* UIKit.framework in Frameworks */,
 				0CBBA3F0196B5192005F55D4 /* Foundation.framework in Frameworks */,
+				D4D55F7E1D762270008DC3AD /* libPods-External-Audio-Device.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

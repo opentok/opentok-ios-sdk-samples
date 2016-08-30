@@ -36,7 +36,6 @@
 		0C99B7BE19AE913A00A60ABA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C99B7B019AE913A00A60ABA /* QuartzCore.framework */; };
 		0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */; };
 		0CC1C08319B7C6D600BD819F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CC1C08219B7C6D600BD819F /* Accelerate.framework */; };
-		28DDDB628DA40355DC810653 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABAC0704DF5C8CD82166D79 /* libPods.a */; };
 		937E3C4857A0A002D3C63517 /* libPods-Screen-SharingTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FB895B40DD1C0074BC08F03 /* libPods-Screen-SharingTests.a */; };
 		A3EAD4329912AA1045B0715F /* libPods-Screen-Sharing.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED43E618AE9053AFCE334576 /* libPods-Screen-Sharing.a */; };
 		D4AF64361A23B5E20026C892 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AF64351A23B5E20026C892 /* VideoToolbox.framework */; };
@@ -122,7 +121,6 @@
 				0C99B76A19AE909300A60ABA /* Foundation.framework in Frameworks */,
 				0C99B7B419AE913A00A60ABA /* libsqlite3.dylib in Frameworks */,
 				0C99B7B619AE913A00A60ABA /* GLKit.framework in Frameworks */,
-				28DDDB628DA40355DC810653 /* libPods.a in Frameworks */,
 				A3EAD4329912AA1045B0715F /* libPods-Screen-Sharing.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
