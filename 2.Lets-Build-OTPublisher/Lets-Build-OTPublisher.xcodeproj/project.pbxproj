@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C1685381A71932900A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685371A71932900A507E3 /* libc++.dylib */; };
 		A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */; };
+		CA00CF5B5D480784BE1E593A /* libPods-Lets-Build-OTPublisher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA931693B8F0523173C32BF /* libPods-Lets-Build-OTPublisher.a */; };
+		D346C658BC90E6754241919F /* libPods-Lets-Build-OTPublisherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAD8ADD724BD49184B76BF3 /* libPods-Lets-Build-OTPublisherTests.a */; };
 		D442615E185FA27400E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615D185FA27400E23699 /* Foundation.framework */; };
 		D4426160185FA27400E23699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615F185FA27400E23699 /* CoreGraphics.framework */; };
 		D4426162185FA27400E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426161185FA27400E23699 /* UIKit.framework */; };
@@ -39,7 +41,6 @@
 		D44261BB185FA64100E23699 /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = D44261B8185FA64100E23699 /* ShaderUtilities.c */; };
 		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; };
 		D44261D8185FAED800E23699 /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D7185FAED800E23699 /* TBExampleSubscriber.m */; };
-		D4873B2AFBABB0B876A84A96 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE0B7E4999C8669CFE3DDD4 /* libPods.a */; };
 		D4F8FD9F194125E300364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FD9E194125E300364672 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +57,11 @@
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		2DE0B7E4999C8669CFE3DDD4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F2AC6EF28931086EF68449B /* Pods-Lets-Build-OTPublisherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E83AA23345F74D6AABB6CFB /* Pods-Lets-Build-OTPublisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisher.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher.release.xcconfig"; sourceTree = "<group>"; };
+		9CA931693B8F0523173C32BF /* libPods-Lets-Build-OTPublisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lets-Build-OTPublisher.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		C876258B5D33B67B130C1E51 /* Pods-Lets-Build-OTPublisherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets-Build-OTPublisher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442615D185FA27400E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -99,7 +104,9 @@
 		D44261D6185FAED800E23699 /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
 		D44261D7185FAED800E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
 		D4F8FD9E194125E300364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		ECAD8ADD724BD49184B76BF3 /* libPods-Lets-Build-OTPublisherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lets-Build-OTPublisherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FDFBDB4E6A52ED55EA777D25 /* Pods-Lets-Build-OTPublisher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +130,7 @@
 				D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */,
 				D4426162185FA27400E23699 /* UIKit.framework in Frameworks */,
 				D442615E185FA27400E23699 /* Foundation.framework in Frameworks */,
-				D4873B2AFBABB0B876A84A96 /* libPods.a in Frameworks */,
+				CA00CF5B5D480784BE1E593A /* libPods-Lets-Build-OTPublisher.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +140,7 @@
 			files = (
 				D4426182185FA27400E23699 /* UIKit.framework in Frameworks */,
 				D4426181185FA27400E23699 /* Foundation.framework in Frameworks */,
+				D346C658BC90E6754241919F /* libPods-Lets-Build-OTPublisherTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +152,10 @@
 			children = (
 				CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */,
 				F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */,
+				FDFBDB4E6A52ED55EA777D25 /* Pods-Lets-Build-OTPublisher.debug.xcconfig */,
+				8E83AA23345F74D6AABB6CFB /* Pods-Lets-Build-OTPublisher.release.xcconfig */,
+				C876258B5D33B67B130C1E51 /* Pods-Lets-Build-OTPublisherTests.debug.xcconfig */,
+				3F2AC6EF28931086EF68449B /* Pods-Lets-Build-OTPublisherTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -189,6 +201,8 @@
 				D442615F185FA27400E23699 /* CoreGraphics.framework */,
 				D4426161185FA27400E23699 /* UIKit.framework */,
 				2DE0B7E4999C8669CFE3DDD4 /* libPods.a */,
+				9CA931693B8F0523173C32BF /* libPods-Lets-Build-OTPublisher.a */,
+				ECAD8ADD724BD49184B76BF3 /* libPods-Lets-Build-OTPublisherTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -254,11 +268,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D442618F185FA27400E23699 /* Build configuration list for PBXNativeTarget "Lets-Build-OTPublisher" */;
 			buildPhases = (
-				4470D3C3B09B0E2E9472C83A /* Check Pods Manifest.lock */,
+				4470D3C3B09B0E2E9472C83A /* 📦 Check Pods Manifest.lock */,
 				D4426156185FA27400E23699 /* Sources */,
 				D4426157185FA27400E23699 /* Frameworks */,
 				D4426158185FA27400E23699 /* Resources */,
-				25FAD9C3916448A15EF6C000 /* Copy Pods Resources */,
+				25FAD9C3916448A15EF6C000 /* 📦 Copy Pods Resources */,
+				490FA7E60C78501B9FFD4FC9 /* 📦 Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -273,9 +288,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4426192185FA27400E23699 /* Build configuration list for PBXNativeTarget "Lets-Build-OTPublisherTests" */;
 			buildPhases = (
+				4A4EBE73FD52AA4A91C49ACF /* 📦 Check Pods Manifest.lock */,
 				D442617A185FA27400E23699 /* Sources */,
 				D442617B185FA27400E23699 /* Frameworks */,
 				D442617C185FA27400E23699 /* Resources */,
+				05F41AA43F2A7D4F1A7AD140 /* 📦 Embed Pods Frameworks */,
+				8B5D41A9D960E243B4C3FD7C /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -344,34 +362,94 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		25FAD9C3916448A15EF6C000 /* Copy Pods Resources */ = {
+		05F41AA43F2A7D4F1A7AD140 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4470D3C3B09B0E2E9472C83A /* Check Pods Manifest.lock */ = {
+		25FAD9C3916448A15EF6C000 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4470D3C3B09B0E2E9472C83A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		490FA7E60C78501B9FFD4FC9 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A4EBE73FD52AA4A91C49ACF /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8B5D41A9D960E243B4C3FD7C /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -520,7 +598,7 @@
 		};
 		D4426190185FA27400E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = FDFBDB4E6A52ED55EA777D25 /* Pods-Lets-Build-OTPublisher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -541,7 +619,7 @@
 		};
 		D4426191185FA27400E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */;
+			baseConfigurationReference = 8E83AA23345F74D6AABB6CFB /* Pods-Lets-Build-OTPublisher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -562,6 +640,7 @@
 		};
 		D4426193185FA27400E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C876258B5D33B67B130C1E51 /* Pods-Lets-Build-OTPublisherTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lets-Build-OTPublisher.app/Lets-Build-OTPublisher";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -584,6 +663,7 @@
 		};
 		D4426194185FA27400E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F2AC6EF28931086EF68449B /* Pods-Lets-Build-OTPublisherTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lets-Build-OTPublisher.app/Lets-Build-OTPublisher";
 				FRAMEWORK_SEARCH_PATHS = (
