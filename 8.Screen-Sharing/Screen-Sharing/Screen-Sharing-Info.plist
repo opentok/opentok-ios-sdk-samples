@@ -48,5 +48,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Opentok needs access to the camera to stream your video</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Opentok needs access to the microphone to stream your audio</string>
 </dict>
 </plist>
