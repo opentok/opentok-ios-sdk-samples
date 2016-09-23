@@ -18,10 +18,6 @@
 		0CBBA406196B5192005F55D4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA404196B5192005F55D4 /* Main_iPad.storyboard */; };
 		0CBBA409196B5192005F55D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA408196B5192005F55D4 /* ViewController.m */; };
 		0CBBA40B196B5192005F55D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA40A196B5192005F55D4 /* Images.xcassets */; };
-		0CBBA413196B5192005F55D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA3EF196B5192005F55D4 /* Foundation.framework */; };
-		0CBBA414196B5192005F55D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA3F3196B5192005F55D4 /* UIKit.framework */; };
-		0CBBA41C196B5192005F55D4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA41A196B5192005F55D4 /* InfoPlist.strings */; };
-		0CBBA41E196B5192005F55D4 /* External_Audio_DeviceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA41D196B5192005F55D4 /* External_Audio_DeviceTests.m */; };
 		0CBBA42B196B5314005F55D4 /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */; };
 		0CBBA435196B5482005F55D4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA42C196B5482005F55D4 /* AudioToolbox.framework */; };
 		0CBBA436196B5482005F55D4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA42D196B5482005F55D4 /* AVFoundation.framework */; };
@@ -34,21 +30,10 @@
 		0CBBA43D196B5482005F55D4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA434196B5482005F55D4 /* SystemConfiguration.framework */; };
 		0CBBA443196B55EA005F55D4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */; };
 		23C817701978929E00A35EAB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C8176F1978929E00A35EAB /* OpenTok.framework */; };
+		4EB43EE63EE17F5D2000F4E3 /* Pods_External_Audio_Device.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF99107F821744A6A3216054 /* Pods_External_Audio_Device.framework */; };
 		A5D01FB81A3A1397005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */; };
 		A5E74EB01C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */; };
-		AA926F4FAAC2A2F9DABFC35D /* libPods-External-Audio-DeviceTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5491F5A48594DE9AF5D392B /* libPods-External-Audio-DeviceTests.a */; };
-		D4D55F7E1D762270008DC3AD /* libPods-External-Audio-Device.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 943E500C5D5F5093F7988BBA /* libPods-External-Audio-Device.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		0CBBA415196B5192005F55D4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 0CBBA3E4196B5192005F55D4 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 0CBBA3EB196B5192005F55D4;
-			remoteInfo = "External-Audio-Device";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0C16851F1A71913F00A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
@@ -67,10 +52,6 @@
 		0CBBA407196B5192005F55D4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0CBBA408196B5192005F55D4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0CBBA40A196B5192005F55D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		0CBBA410196B5192005F55D4 /* External-Audio-DeviceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "External-Audio-DeviceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0CBBA419196B5192005F55D4 /* External-Audio-DeviceTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "External-Audio-DeviceTests-Info.plist"; sourceTree = "<group>"; };
-		0CBBA41B196B5192005F55D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0CBBA41D196B5192005F55D4 /* External_Audio_DeviceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = External_Audio_DeviceTests.m; sourceTree = "<group>"; };
 		0CBBA429196B5314005F55D4 /* OTDefaultAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDevice.h; sourceTree = "<group>"; };
 		0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDevice.m; sourceTree = "<group>"; };
 		0CBBA42C196B5482005F55D4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -86,13 +67,13 @@
 		0F51F5367B329F01B2A8F366 /* Pods-External-Audio-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.release.xcconfig"; path = "Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.release.xcconfig"; sourceTree = "<group>"; };
 		13AFCEA6E44C99C59DADB00D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		23C8176F1978929E00A35EAB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
-		448821499848D63E81E1515B /* Pods-External-Audio-DeviceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-DeviceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-External-Audio-DeviceTests/Pods-External-Audio-DeviceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		86673DCA9D4E9F8004BF2970 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		943E500C5D5F5093F7988BBA /* libPods-External-Audio-Device.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-External-Audio-Device.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9BBE203E1B4B72A99824AE0E /* Pods-External-Audio-DeviceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-DeviceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-External-Audio-DeviceTests/Pods-External-Audio-DeviceTests.release.xcconfig"; sourceTree = "<group>"; };
+		A35452C168B724F0263E020D /* Pods-External-Audio-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.release.xcconfig"; path = "../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.release.xcconfig"; sourceTree = "<group>"; };
 		A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDeviceWithVolumeControl.m; sourceTree = "<group>"; };
 		A5E74EAF1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDeviceWithVolumeControl.h; sourceTree = "<group>"; };
+		BF99107F821744A6A3216054 /* Pods_External_Audio_Device.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_External_Audio_Device.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D261436393575065B3DA4A03 /* Pods-External-Audio-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.debug.xcconfig"; sourceTree = "<group>"; };
 		D4D55F6D1D5E1D6E008DC3AD /* libPods-External-Audio-Device.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-External-Audio-Device.a"; path = "Pods/../build/Debug-iphoneos/libPods-External-Audio-Device.a"; sourceTree = "<group>"; };
 		E1EFDF8E8E53CE96B87CAAC4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5491F5A48594DE9AF5D392B /* libPods-External-Audio-DeviceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-External-Audio-DeviceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,17 +101,7 @@
 				0CBBA3F2196B5192005F55D4 /* CoreGraphics.framework in Frameworks */,
 				0CBBA3F4196B5192005F55D4 /* UIKit.framework in Frameworks */,
 				0CBBA3F0196B5192005F55D4 /* Foundation.framework in Frameworks */,
-				D4D55F7E1D762270008DC3AD /* libPods-External-Audio-Device.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		0CBBA40D196B5192005F55D4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0CBBA414196B5192005F55D4 /* UIKit.framework in Frameworks */,
-				0CBBA413196B5192005F55D4 /* Foundation.framework in Frameworks */,
-				AA926F4FAAC2A2F9DABFC35D /* libPods-External-Audio-DeviceTests.a in Frameworks */,
+				4EB43EE63EE17F5D2000F4E3 /* Pods_External_Audio_Device.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				0CBBA3F5196B5192005F55D4 /* External-Audio-Device */,
-				0CBBA417196B5192005F55D4 /* External-Audio-DeviceTests */,
 				0CBBA3EE196B5192005F55D4 /* Frameworks */,
 				0CBBA3ED196B5192005F55D4 /* Products */,
 				CC86A2FBC51EE3688979EC5B /* Pods */,
@@ -152,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				0CBBA3EC196B5192005F55D4 /* External-Audio-Device.app */,
-				0CBBA410196B5192005F55D4 /* External-Audio-DeviceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,8 +147,8 @@
 				0CBBA3F1196B5192005F55D4 /* CoreGraphics.framework */,
 				0CBBA3F3196B5192005F55D4 /* UIKit.framework */,
 				E1EFDF8E8E53CE96B87CAAC4 /* libPods.a */,
-				943E500C5D5F5093F7988BBA /* libPods-External-Audio-Device.a */,
 				E5491F5A48594DE9AF5D392B /* libPods-External-Audio-DeviceTests.a */,
+				BF99107F821744A6A3216054 /* Pods_External_Audio_Device.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,24 +183,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		0CBBA417196B5192005F55D4 /* External-Audio-DeviceTests */ = {
-			isa = PBXGroup;
-			children = (
-				0CBBA41D196B5192005F55D4 /* External_Audio_DeviceTests.m */,
-				0CBBA418196B5192005F55D4 /* Supporting Files */,
-			);
-			path = "External-Audio-DeviceTests";
-			sourceTree = "<group>";
-		};
-		0CBBA418196B5192005F55D4 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0CBBA419196B5192005F55D4 /* External-Audio-DeviceTests-Info.plist */,
-				0CBBA41A196B5192005F55D4 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		CC86A2FBC51EE3688979EC5B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,8 +190,8 @@
 				86673DCA9D4E9F8004BF2970 /* Pods.release.xcconfig */,
 				EF841CD48667821B57AA2574 /* Pods-External-Audio-Device.debug.xcconfig */,
 				0F51F5367B329F01B2A8F366 /* Pods-External-Audio-Device.release.xcconfig */,
-				448821499848D63E81E1515B /* Pods-External-Audio-DeviceTests.debug.xcconfig */,
-				9BBE203E1B4B72A99824AE0E /* Pods-External-Audio-DeviceTests.release.xcconfig */,
+				D261436393575065B3DA4A03 /* Pods-External-Audio-Device.debug.xcconfig */,
+				A35452C168B724F0263E020D /* Pods-External-Audio-Device.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -252,12 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CBBA421196B5192005F55D4 /* Build configuration list for PBXNativeTarget "External-Audio-Device" */;
 			buildPhases = (
-				D4C0708E4F43AAD554835C7A /* 📦 Check Pods Manifest.lock */,
+				D4C0708E4F43AAD554835C7A /* [CP] Check Pods Manifest.lock */,
 				0CBBA3E8196B5192005F55D4 /* Sources */,
 				0CBBA3E9196B5192005F55D4 /* Frameworks */,
 				0CBBA3EA196B5192005F55D4 /* Resources */,
-				8619D8D86FC67238EE1FB812 /* 📦 Copy Pods Resources */,
-				61E639C2E2ED6184F820FA6B /* 📦 Embed Pods Frameworks */,
+				8619D8D86FC67238EE1FB812 /* [CP] Copy Pods Resources */,
+				61E639C2E2ED6184F820FA6B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,27 +219,6 @@
 			productReference = 0CBBA3EC196B5192005F55D4 /* External-Audio-Device.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0CBBA40F196B5192005F55D4 /* External-Audio-DeviceTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 0CBBA424196B5192005F55D4 /* Build configuration list for PBXNativeTarget "External-Audio-DeviceTests" */;
-			buildPhases = (
-				86B873ABE515F6CDBE708DF9 /* 📦 Check Pods Manifest.lock */,
-				0CBBA40C196B5192005F55D4 /* Sources */,
-				0CBBA40D196B5192005F55D4 /* Frameworks */,
-				0CBBA40E196B5192005F55D4 /* Resources */,
-				9C52F3B0B51DCF3BE4F191E3 /* 📦 Embed Pods Frameworks */,
-				491A3C95CD7352644EB3442B /* 📦 Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				0CBBA416196B5192005F55D4 /* PBXTargetDependency */,
-			);
-			name = "External-Audio-DeviceTests";
-			productName = "External-Audio-DeviceTests";
-			productReference = 0CBBA410196B5192005F55D4 /* External-Audio-DeviceTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -297,11 +227,6 @@
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "TokBox Inc.";
-				TargetAttributes = {
-					0CBBA40F196B5192005F55D4 = {
-						TestTargetID = 0CBBA3EB196B5192005F55D4;
-					};
-				};
 			};
 			buildConfigurationList = 0CBBA3E7196B5192005F55D4 /* Build configuration list for PBXProject "External-Audio-Device" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -317,7 +242,6 @@
 			projectRoot = "";
 			targets = (
 				0CBBA3EB196B5192005F55D4 /* External-Audio-Device */,
-				0CBBA40F196B5192005F55D4 /* External-Audio-DeviceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -334,100 +258,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0CBBA40E196B5192005F55D4 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0CBBA41C196B5192005F55D4 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		491A3C95CD7352644EB3442B /* 📦 Copy Pods Resources */ = {
+		61E639C2E2ED6184F820FA6B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-External-Audio-DeviceTests/Pods-External-Audio-DeviceTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		61E639C2E2ED6184F820FA6B /* 📦 Embed Pods Frameworks */ = {
+		8619D8D86FC67238EE1FB812 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8619D8D86FC67238EE1FB812 /* 📦 Copy Pods Resources */ = {
+		D4C0708E4F43AAD554835C7A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		86B873ABE515F6CDBE708DF9 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9C52F3B0B51DCF3BE4F191E3 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-External-Audio-DeviceTests/Pods-External-Audio-DeviceTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D4C0708E4F43AAD554835C7A /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,23 +321,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		0CBBA40C196B5192005F55D4 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0CBBA41E196B5192005F55D4 /* External_Audio_DeviceTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		0CBBA416196B5192005F55D4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 0CBBA3EB196B5192005F55D4 /* External-Audio-Device */;
-			targetProxy = 0CBBA415196B5192005F55D4 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0CBBA3F8196B5192005F55D4 /* InfoPlist.strings */ = {
@@ -491,14 +346,6 @@
 				0CBBA405196B5192005F55D4 /* Base */,
 			);
 			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		0CBBA41A196B5192005F55D4 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0CBBA41B196B5192005F55D4 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -578,13 +425,13 @@
 		};
 		0CBBA422196B5192005F55D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF841CD48667821B57AA2574 /* Pods-External-Audio-Device.debug.xcconfig */;
+			baseConfigurationReference = D261436393575065B3DA4A03 /* Pods-External-Audio-Device.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -608,13 +455,13 @@
 		};
 		0CBBA423196B5192005F55D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F51F5367B329F01B2A8F366 /* Pods-External-Audio-Device.release.xcconfig */;
+			baseConfigurationReference = A35452C168B724F0263E020D /* Pods-External-Audio-Device.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "libstdc++";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -636,48 +483,6 @@
 			};
 			name = Release;
 		};
-		0CBBA425196B5192005F55D4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 448821499848D63E81E1515B /* Pods-External-Audio-DeviceTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/External-Audio-Device.app/External-Audio-Device";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "External-Audio-Device/External-Audio-Device-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "External-Audio-DeviceTests/External-Audio-DeviceTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		0CBBA426196B5192005F55D4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9BBE203E1B4B72A99824AE0E /* Pods-External-Audio-DeviceTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/External-Audio-Device.app/External-Audio-Device";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "External-Audio-Device/External-Audio-Device-Prefix.pch";
-				INFOPLIST_FILE = "External-Audio-DeviceTests/External-Audio-DeviceTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -695,15 +500,6 @@
 			buildConfigurations = (
 				0CBBA422196B5192005F55D4 /* Debug */,
 				0CBBA423196B5192005F55D4 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		0CBBA424196B5192005F55D4 /* Build configuration list for PBXNativeTarget "External-Audio-DeviceTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				0CBBA425196B5192005F55D4 /* Debug */,
-				0CBBA426196B5192005F55D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

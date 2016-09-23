@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C1685381A71932900A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C1685371A71932900A507E3 /* libc++.dylib */; };
 		A5D01FA81A3A124C005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */; };
-		CA00CF5B5D480784BE1E593A /* libPods-Lets-Build-OTPublisher.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CA931693B8F0523173C32BF /* libPods-Lets-Build-OTPublisher.a */; };
-		D346C658BC90E6754241919F /* libPods-Lets-Build-OTPublisherTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAD8ADD724BD49184B76BF3 /* libPods-Lets-Build-OTPublisherTests.a */; };
+		AD20DC49068C04F01EA03530 /* Pods_Lets_Build_OTPublisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFBD533DA60800DDA53F17EE /* Pods_Lets_Build_OTPublisher.framework */; };
 		D442615E185FA27400E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615D185FA27400E23699 /* Foundation.framework */; };
 		D4426160185FA27400E23699 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615F185FA27400E23699 /* CoreGraphics.framework */; };
 		D4426162185FA27400E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426161185FA27400E23699 /* UIKit.framework */; };
@@ -21,10 +20,6 @@
 		D4426174185FA27400E23699 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4426172185FA27400E23699 /* Main_iPad.storyboard */; };
 		D4426177185FA27400E23699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426176185FA27400E23699 /* ViewController.m */; };
 		D4426179185FA27400E23699 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4426178185FA27400E23699 /* Images.xcassets */; };
-		D4426181185FA27400E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442615D185FA27400E23699 /* Foundation.framework */; };
-		D4426182185FA27400E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426161185FA27400E23699 /* UIKit.framework */; };
-		D442618A185FA27400E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426188185FA27400E23699 /* InfoPlist.strings */; };
-		D442618C185FA27400E23699 /* Lets_Build_OTPublisherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D442618B185FA27400E23699 /* Lets_Build_OTPublisherTests.m */; };
 		D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4426195185FA35F00E23699 /* OpenTok.framework */; };
 		D44261A7185FA37600E23699 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619A185FA37600E23699 /* libsqlite3.dylib */; };
 		D44261A9185FA37600E23699 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D442619C185FA37600E23699 /* SystemConfiguration.framework */; };
@@ -44,24 +39,13 @@
 		D4F8FD9F194125E300364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FD9E194125E300364672 /* GLKit.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D4426183185FA27400E23699 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D4426152185FA27400E23699 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D4426159185FA27400E23699;
-			remoteInfo = "Lets-Build-OTPublisher";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		2DE0B7E4999C8669CFE3DDD4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F2AC6EF28931086EF68449B /* Pods-Lets-Build-OTPublisherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D95F01B7FF53F7C2BE84B3E /* Pods-Lets-Build-OTPublisher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisher.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher.debug.xcconfig"; sourceTree = "<group>"; };
+		8B3CD6B96240F258AF4E6E58 /* Pods-Lets-Build-OTPublisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisher.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher.release.xcconfig"; sourceTree = "<group>"; };
 		8E83AA23345F74D6AABB6CFB /* Pods-Lets-Build-OTPublisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisher.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher.release.xcconfig"; sourceTree = "<group>"; };
-		9CA931693B8F0523173C32BF /* libPods-Lets-Build-OTPublisher.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lets-Build-OTPublisher.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		C876258B5D33B67B130C1E51 /* Pods-Lets-Build-OTPublisherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBCA2C0A5D5DC7D0A4465332 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lets-Build-OTPublisher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442615D185FA27400E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,10 +62,6 @@
 		D4426175185FA27400E23699 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D4426176185FA27400E23699 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D4426178185FA27400E23699 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D442617E185FA27400E23699 /* Lets-Build-OTPublisherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lets-Build-OTPublisherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4426187185FA27400E23699 /* Lets-Build-OTPublisherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Lets-Build-OTPublisherTests-Info.plist"; sourceTree = "<group>"; };
-		D4426189185FA27400E23699 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D442618B185FA27400E23699 /* Lets_Build_OTPublisherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Lets_Build_OTPublisherTests.m; sourceTree = "<group>"; };
 		D4426195185FA35F00E23699 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		D442619A185FA37600E23699 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D442619C185FA37600E23699 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -105,6 +85,7 @@
 		D44261D7185FAED800E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
 		D4F8FD9E194125E300364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		ECAD8ADD724BD49184B76BF3 /* libPods-Lets-Build-OTPublisherTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lets-Build-OTPublisherTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EFBD533DA60800DDA53F17EE /* Pods_Lets_Build_OTPublisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lets_Build_OTPublisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FDFBDB4E6A52ED55EA777D25 /* Pods-Lets-Build-OTPublisher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lets-Build-OTPublisher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,17 +111,7 @@
 				D4426196185FA35F00E23699 /* OpenTok.framework in Frameworks */,
 				D4426162185FA27400E23699 /* UIKit.framework in Frameworks */,
 				D442615E185FA27400E23699 /* Foundation.framework in Frameworks */,
-				CA00CF5B5D480784BE1E593A /* libPods-Lets-Build-OTPublisher.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D442617B185FA27400E23699 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4426182185FA27400E23699 /* UIKit.framework in Frameworks */,
-				D4426181185FA27400E23699 /* Foundation.framework in Frameworks */,
-				D346C658BC90E6754241919F /* libPods-Lets-Build-OTPublisherTests.a in Frameworks */,
+				AD20DC49068C04F01EA03530 /* Pods_Lets_Build_OTPublisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +125,8 @@
 				F080383D0BBAC932371EEE9F /* Pods.release.xcconfig */,
 				FDFBDB4E6A52ED55EA777D25 /* Pods-Lets-Build-OTPublisher.debug.xcconfig */,
 				8E83AA23345F74D6AABB6CFB /* Pods-Lets-Build-OTPublisher.release.xcconfig */,
-				C876258B5D33B67B130C1E51 /* Pods-Lets-Build-OTPublisherTests.debug.xcconfig */,
-				3F2AC6EF28931086EF68449B /* Pods-Lets-Build-OTPublisherTests.release.xcconfig */,
+				6D95F01B7FF53F7C2BE84B3E /* Pods-Lets-Build-OTPublisher.debug.xcconfig */,
+				8B3CD6B96240F258AF4E6E58 /* Pods-Lets-Build-OTPublisher.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -165,7 +136,6 @@
 			children = (
 				D44261B1185FA39200E23699 /* README.md */,
 				D4426163185FA27400E23699 /* Lets-Build-OTPublisher */,
-				D4426185185FA27400E23699 /* Lets-Build-OTPublisherTests */,
 				D442615C185FA27400E23699 /* Frameworks */,
 				D442615B185FA27400E23699 /* Products */,
 				32C39BF6C8D4AA2320F048E3 /* Pods */,
@@ -176,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */,
-				D442617E185FA27400E23699 /* Lets-Build-OTPublisherTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -201,8 +170,8 @@
 				D442615F185FA27400E23699 /* CoreGraphics.framework */,
 				D4426161185FA27400E23699 /* UIKit.framework */,
 				2DE0B7E4999C8669CFE3DDD4 /* libPods.a */,
-				9CA931693B8F0523173C32BF /* libPods-Lets-Build-OTPublisher.a */,
 				ECAD8ADD724BD49184B76BF3 /* libPods-Lets-Build-OTPublisherTests.a */,
+				EFBD533DA60800DDA53F17EE /* Pods_Lets_Build_OTPublisher.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -243,24 +212,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D4426185185FA27400E23699 /* Lets-Build-OTPublisherTests */ = {
-			isa = PBXGroup;
-			children = (
-				D442618B185FA27400E23699 /* Lets_Build_OTPublisherTests.m */,
-				D4426186185FA27400E23699 /* Supporting Files */,
-			);
-			path = "Lets-Build-OTPublisherTests";
-			sourceTree = "<group>";
-		};
-		D4426186185FA27400E23699 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4426187185FA27400E23699 /* Lets-Build-OTPublisherTests-Info.plist */,
-				D4426188185FA27400E23699 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -268,12 +219,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D442618F185FA27400E23699 /* Build configuration list for PBXNativeTarget "Lets-Build-OTPublisher" */;
 			buildPhases = (
-				4470D3C3B09B0E2E9472C83A /* 📦 Check Pods Manifest.lock */,
+				4470D3C3B09B0E2E9472C83A /* [CP] Check Pods Manifest.lock */,
 				D4426156185FA27400E23699 /* Sources */,
 				D4426157185FA27400E23699 /* Frameworks */,
 				D4426158185FA27400E23699 /* Resources */,
-				25FAD9C3916448A15EF6C000 /* 📦 Copy Pods Resources */,
-				490FA7E60C78501B9FFD4FC9 /* 📦 Embed Pods Frameworks */,
+				25FAD9C3916448A15EF6C000 /* [CP] Copy Pods Resources */,
+				490FA7E60C78501B9FFD4FC9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -284,27 +235,6 @@
 			productReference = D442615A185FA27400E23699 /* Lets-Build-OTPublisher.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D442617D185FA27400E23699 /* Lets-Build-OTPublisherTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D4426192185FA27400E23699 /* Build configuration list for PBXNativeTarget "Lets-Build-OTPublisherTests" */;
-			buildPhases = (
-				4A4EBE73FD52AA4A91C49ACF /* 📦 Check Pods Manifest.lock */,
-				D442617A185FA27400E23699 /* Sources */,
-				D442617B185FA27400E23699 /* Frameworks */,
-				D442617C185FA27400E23699 /* Resources */,
-				05F41AA43F2A7D4F1A7AD140 /* 📦 Embed Pods Frameworks */,
-				8B5D41A9D960E243B4C3FD7C /* 📦 Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D4426184185FA27400E23699 /* PBXTargetDependency */,
-			);
-			name = "Lets-Build-OTPublisherTests";
-			productName = "Lets-Build-OTPublisherTests";
-			productReference = D442617E185FA27400E23699 /* Lets-Build-OTPublisherTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -313,11 +243,6 @@
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "TokBox, Inc.";
-				TargetAttributes = {
-					D442617D185FA27400E23699 = {
-						TestTargetID = D4426159185FA27400E23699;
-					};
-				};
 			};
 			buildConfigurationList = D4426155185FA27400E23699 /* Build configuration list for PBXProject "Lets-Build-OTPublisher" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -333,7 +258,6 @@
 			projectRoot = "";
 			targets = (
 				D4426159185FA27400E23699 /* Lets-Build-OTPublisher */,
-				D442617D185FA27400E23699 /* Lets-Build-OTPublisherTests */,
 			);
 		};
 /* End PBXProject section */
@@ -351,55 +275,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D442617C185FA27400E23699 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D442618A185FA27400E23699 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05F41AA43F2A7D4F1A7AD140 /* 📦 Embed Pods Frameworks */ = {
+		25FAD9C3916448A15EF6C000 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		25FAD9C3916448A15EF6C000 /* 📦 Copy Pods Resources */ = {
+		4470D3C3B09B0E2E9472C83A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4470D3C3B09B0E2E9472C83A /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,49 +308,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		490FA7E60C78501B9FFD4FC9 /* 📦 Embed Pods Frameworks */ = {
+		490FA7E60C78501B9FFD4FC9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4A4EBE73FD52AA4A91C49ACF /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8B5D41A9D960E243B4C3FD7C /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lets-Build-OTPublisherTests/Pods-Lets-Build-OTPublisherTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Lets-Build-OTPublisher/Pods-Lets-Build-OTPublisher-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -470,23 +341,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D442617A185FA27400E23699 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D442618C185FA27400E23699 /* Lets_Build_OTPublisherTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D4426184185FA27400E23699 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D4426159185FA27400E23699 /* Lets-Build-OTPublisher */;
-			targetProxy = D4426183185FA27400E23699 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D4426166185FA27400E23699 /* InfoPlist.strings */ = {
@@ -513,14 +368,6 @@
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		D4426188185FA27400E23699 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4426189185FA27400E23699 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -540,7 +387,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -579,7 +425,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -598,12 +443,12 @@
 		};
 		D4426190185FA27400E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDFBDB4E6A52ED55EA777D25 /* Pods-Lets-Build-OTPublisher.debug.xcconfig */;
+			baseConfigurationReference = 6D95F01B7FF53F7C2BE84B3E /* Pods-Lets-Build-OTPublisher.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -619,12 +464,12 @@
 		};
 		D4426191185FA27400E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8E83AA23345F74D6AABB6CFB /* Pods-Lets-Build-OTPublisher.release.xcconfig */;
+			baseConfigurationReference = 8B3CD6B96240F258AF4E6E58 /* Pods-Lets-Build-OTPublisher.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -635,48 +480,6 @@
 				INFOPLIST_FILE = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		D4426193185FA27400E23699 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C876258B5D33B67B130C1E51 /* Pods-Lets-Build-OTPublisherTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lets-Build-OTPublisher.app/Lets-Build-OTPublisher";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Lets-Build-OTPublisherTests/Lets-Build-OTPublisherTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		D4426194185FA27400E23699 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F2AC6EF28931086EF68449B /* Pods-Lets-Build-OTPublisherTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Lets-Build-OTPublisher.app/Lets-Build-OTPublisher";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Lets-Build-OTPublisher-Prefix.pch";
-				INFOPLIST_FILE = "Lets-Build-OTPublisherTests/Lets-Build-OTPublisherTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -697,15 +500,6 @@
 			buildConfigurations = (
 				D4426190185FA27400E23699 /* Debug */,
 				D4426191185FA27400E23699 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D4426192185FA27400E23699 /* Build configuration list for PBXNativeTarget "Lets-Build-OTPublisherTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D4426193185FA27400E23699 /* Debug */,
-				D4426194185FA27400E23699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
