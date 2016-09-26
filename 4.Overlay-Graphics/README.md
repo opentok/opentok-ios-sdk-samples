@@ -3,7 +3,7 @@ Project 4: Overlay Graphics
 
 This project shows how to overlay graphics and UI controls onto publisher and 
 subscriber views. It basically extends [project 2][1], "Let's build
-OTPublisher.' By the end of a code review, you should learn how to add
+OTPublisher." By the end of a code review, you should learn how to add
 graphics on top of publisher and subscriber video views.
 
 Configuration Notes

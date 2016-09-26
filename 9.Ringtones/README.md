@@ -29,8 +29,8 @@ issued to stop playback of the ringtone:
     
     // Stop ringtone from playing, as the subscriber will connect shortly
     [_myAudioDevice stopRingtone];
-    ...
-
+    // ...
+}
 ```
 
 Application Notes

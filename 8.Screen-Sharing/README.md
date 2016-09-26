@@ -46,13 +46,13 @@ video type of the published stream to `OTPublisherKitVideoTypeScreen`. This
 optimizes the video encoding for screen sharing. It is recommended to use a low
 frame rate (5 frames per second or lower) with this video type. When using the
 screen video type in a session that uses the [OpenTok Media
-Server](https://tokbox.com/opentok/tutorials/create-session/#media-mode), the
+Router](https://tokbox.com/opentok/tutorials/create-session/#media-mode), the
 audio-only fallback feature is disabled, so that the video does not drop out in
 subscribers. (However, the publisher in this sample does not publish audio.)
 
 The code instantiates a TBScreenCapture object and passes it into the
 `[_publisher setVideoCapture:]` method. This sets the custom video capturer for
-the publisher The TBScreenCapture class implements the OTVideoCapture protocol,
+the publisher. The TBScreenCapture class implements the OTVideoCapture protocol,
 defined in the OpenTok iOS SDK.
 
 The implementation of the `[OTVideoCapture initCapture:]` method sets up a timer
