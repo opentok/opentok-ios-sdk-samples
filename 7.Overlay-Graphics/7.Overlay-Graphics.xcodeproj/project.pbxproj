@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
+		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
+		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
+		A535047A18FD469B00E68BD9 /* archiving_on-10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047418FD469B00E68BD9 /* archiving_on-10@2x.png */; };
+		A535047B18FD469B00E68BD9 /* archiving_pulse-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047518FD469B00E68BD9 /* archiving_pulse-Small.png */; };
+		A535047C18FD469B00E68BD9 /* archiving_pulse-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047618FD469B00E68BD9 /* archiving_pulse-Small@2x.png */; };
+		A5595EBE19C9512A0040B99C /* Headset.png in Resources */ = {isa = PBXBuildFile; fileRef = A5595EBC19C9512A0040B99C /* Headset.png */; };
+		A5595EBF19C9512A0040B99C /* Headset@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5595EBD19C9512A0040B99C /* Headset@2x.png */; };
+		A5595ED319CAD5810040B99C /* silhouette.png in Resources */ = {isa = PBXBuildFile; fileRef = A5595ED219CAD5810040B99C /* silhouette.png */; };
+		A56B2BB418C085AD001E082A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BB218C085AD001E082A /* InfoPlist.strings */; };
+		A56B2BB618C085AD001E082A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BB518C085AD001E082A /* main.m */; };
+		A56B2BBA18C085AD001E082A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BB918C085AD001E082A /* AppDelegate.m */; };
+		A56B2BBD18C085AD001E082A /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BBB18C085AD001E082A /* Main_iPhone.storyboard */; };
+		A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BBE18C085AD001E082A /* Main_iPad.storyboard */; };
+		A56B2BC318C085AD001E082A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BC218C085AD001E082A /* ViewController.m */; };
+		A56B2BC518C085AD001E082A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BC418C085AD001E082A /* Images.xcassets */; };
+		A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE918C08648001E082A /* ShaderUtilities.c */; };
+		A599E6431990F9D1001A8B3A /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */; };
+		A599E6441990F9D1001A8B3A /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */; };
+		A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */; };
+		A5A6081C18C0921800192466 /* TBExampleOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081118C0921800192466 /* TBExampleOverlayView.m */; };
+		A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081518C0921800192466 /* TBExampleUnderlayView.m */; };
+		A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081718C0921800192466 /* TBExampleVideoView.m */; };
+		A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */; };
+		A5FA8EE61A5DE18A002DC195 /* audioOnlyActive.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */; };
+		A5FA8EE71A5DE18A002DC195 /* audioOnlyInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */; };
+		A5FA8EE81A5DE18A002DC195 /* highCongestion.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */; };
+		A5FA8EE91A5DE18A002DC195 /* midCongestion.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE01A5DE18A002DC195 /* midCongestion.png */; };
+		A5FA8EEA1A5DE18A002DC195 /* mutePublisher.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE11A5DE18A002DC195 /* mutePublisher.png */; };
+		A5FA8EEB1A5DE18A002DC195 /* muteSubscriber.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE21A5DE18A002DC195 /* muteSubscriber.png */; };
+		A5FA8EEC1A5DE18A002DC195 /* swapCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE31A5DE18A002DC195 /* swapCamera.png */; };
+		A5FA8EED1A5DE18A002DC195 /* unmutePublisher.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */; };
+		A5FA8EEE1A5DE18A002DC195 /* unmuteSubscriber.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */; };
+		D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */; };
+		D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A3B375B86A4474C95B0B7ED /* libPods-Overlay-GraphicsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Overlay-GraphicsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C16852F1A71927700A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		36E39CD914172B59A2E936DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3A8B605D2A23C06A5390F2BC /* Pods-Overlay-Graphics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.release.xcconfig"; sourceTree = "<group>"; };
+		50FE120C5DDB5D3EB8634BDA /* Pods-Overlay-Graphics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.debug.xcconfig"; sourceTree = "<group>"; };
+		7F224EC05C6BC425D399CD3F /* Pods-Overlay-Graphics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.release.xcconfig"; sourceTree = "<group>"; };
+		8CB048233FBE70F982E65FBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		91DD8E06C3F2152B79C8E169 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
+		A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small@2x.png"; sourceTree = "<group>"; };
+		A535047318FD469B00E68BD9 /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
+		A535047418FD469B00E68BD9 /* archiving_on-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10@2x.png"; sourceTree = "<group>"; };
+		A535047518FD469B00E68BD9 /* archiving_pulse-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-Small.png"; sourceTree = "<group>"; };
+		A535047618FD469B00E68BD9 /* archiving_pulse-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-Small@2x.png"; sourceTree = "<group>"; };
+		A5595EBC19C9512A0040B99C /* Headset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Headset.png; sourceTree = "<group>"; };
+		A5595EBD19C9512A0040B99C /* Headset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Headset@2x.png"; sourceTree = "<group>"; };
+		A5595ED219CAD5810040B99C /* silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silhouette.png; sourceTree = "<group>"; };
+		A56B2BA618C085AD001E082A /* 7.Overlay-Graphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "7.Overlay-Graphics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56B2BA918C085AD001E082A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A56B2BAB18C085AD001E082A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A56B2BAD18C085AD001E082A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A56B2BB118C085AD001E082A /* 7.Overlay-Graphics-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "7.Overlay-Graphics-Info.plist"; sourceTree = "<group>"; };
+		A56B2BB318C085AD001E082A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A56B2BB518C085AD001E082A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A56B2BB718C085AD001E082A /* 7.Overlay-Graphics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "7.Overlay-Graphics-Prefix.pch"; sourceTree = "<group>"; };
+		A56B2BB818C085AD001E082A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A56B2BB918C085AD001E082A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A56B2BBC18C085AD001E082A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A56B2BBF18C085AD001E082A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		A56B2BC118C085AD001E082A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A56B2BC218C085AD001E082A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A56B2BC418C085AD001E082A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A56B2BE918C08648001E082A /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
+		A56B2BEA18C08648001E082A /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
+		A599E63F1990F9D1001A8B3A /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
+		A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
+		A599E6411990F9D1001A8B3A /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
+		A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
+		A5A607E018C08B6B00192466 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenTok.framework; path = ../../OpenTok.framework; sourceTree = "<group>"; };
+		A5A607E218C08B8500192466 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		A5A607E418C08B8A00192466 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		A5A607E618C08B9B00192466 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A5A607E818C08BA100192466 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A5A607F618C08F3D00192466 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A5A607F818C08F4B00192466 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		A5A6080E18C0921800192466 /* TBExampleOverlayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleOverlayButton.h; sourceTree = "<group>"; };
+		A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleOverlayButton.m; sourceTree = "<group>"; };
+		A5A6081018C0921800192466 /* TBExampleOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleOverlayView.h; sourceTree = "<group>"; };
+		A5A6081118C0921800192466 /* TBExampleOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleOverlayView.m; sourceTree = "<group>"; };
+		A5A6081418C0921800192466 /* TBExampleUnderlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleUnderlayView.h; sourceTree = "<group>"; };
+		A5A6081518C0921800192466 /* TBExampleUnderlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleUnderlayView.m; sourceTree = "<group>"; };
+		A5A6081618C0921800192466 /* TBExampleVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoView.h; sourceTree = "<group>"; };
+		A5A6081718C0921800192466 /* TBExampleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoView.m; sourceTree = "<group>"; };
+		A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBAudioLevelMeter.h; sourceTree = "<group>"; };
+		A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBAudioLevelMeter.m; sourceTree = "<group>"; };
+		A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioOnlyActive.png; sourceTree = "<group>"; };
+		A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioOnlyInactive.png; sourceTree = "<group>"; };
+		A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highCongestion.png; sourceTree = "<group>"; };
+		A5FA8EE01A5DE18A002DC195 /* midCongestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = midCongestion.png; sourceTree = "<group>"; };
+		A5FA8EE11A5DE18A002DC195 /* mutePublisher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mutePublisher.png; sourceTree = "<group>"; };
+		A5FA8EE21A5DE18A002DC195 /* muteSubscriber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = muteSubscriber.png; sourceTree = "<group>"; };
+		A5FA8EE31A5DE18A002DC195 /* swapCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapCamera.png; sourceTree = "<group>"; };
+		A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmutePublisher.png; sourceTree = "<group>"; };
+		A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmuteSubscriber.png; sourceTree = "<group>"; };
+		B228397B930BC8F804948CE4 /* Pods-7.Overlay-Graphics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-7.Overlay-Graphics.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-7.Overlay-Graphics/Pods-7.Overlay-Graphics.debug.xcconfig"; sourceTree = "<group>"; };
+		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
+		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
+		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
+		D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
+		D4F8FDAC194129B900364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		D4F8FDAE194129C400364672 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		DEB315C9477266CB75B2469A /* Pods-7.Overlay-Graphics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-7.Overlay-Graphics.release.xcconfig"; path = "../Pods/Target Support Files/Pods-7.Overlay-Graphics/Pods-7.Overlay-Graphics.release.xcconfig"; sourceTree = "<group>"; };
+		F35EA5A367B528232718F411 /* Pods_Overlay_Graphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overlay_Graphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC633EEFF09BA9F8B04B27E4 /* Pods-Overlay-Graphics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A56B2BA318C085AD001E082A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A56B2B9D18C085AD001E082A = {
+			isa = PBXGroup;
+			children = (
+				D4F8FDA11941271300364672 /* Project 2: Custom-Video-Driver */,
+				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
+				A56B2BA818C085AD001E082A /* Frameworks */,
+				A56B2BA718C085AD001E082A /* Products */,
+				EA1E35793883168B2358D00A /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		A56B2BA718C085AD001E082A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A56B2BA618C085AD001E082A /* 7.Overlay-Graphics.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A56B2BA818C085AD001E082A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C16852F1A71927700A507E3 /* libc++.dylib */,
+				A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */,
+				A5A607E018C08B6B00192466 /* OpenTok.framework */,
+				A5A607E818C08BA100192466 /* libsqlite3.dylib */,
+				D4F8FDAE194129C400364672 /* OpenGLES.framework */,
+				D4F8FDAC194129B900364672 /* GLKit.framework */,
+				A5A607F818C08F4B00192466 /* CoreTelephony.framework */,
+				A5A607F618C08F3D00192466 /* SystemConfiguration.framework */,
+				A5A607E618C08B9B00192466 /* AudioToolbox.framework */,
+				A5A607E418C08B8A00192466 /* CoreVideo.framework */,
+				A5A607E218C08B8500192466 /* CoreMedia.framework */,
+				A56B2BA918C085AD001E082A /* Foundation.framework */,
+				A56B2BAB18C085AD001E082A /* CoreGraphics.framework */,
+				A56B2BAD18C085AD001E082A /* UIKit.framework */,
+				91DD8E06C3F2152B79C8E169 /* libPods.a */,
+				0A3B375B86A4474C95B0B7ED /* libPods-Overlay-GraphicsTests.a */,
+				F35EA5A367B528232718F411 /* Pods_Overlay_Graphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A56B2BAF18C085AD001E082A /* Overlay-Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				A5A6080B18C0920600192466 /* Views */,
+				A599E63F1990F9D1001A8B3A /* TBExamplePublisher.h */,
+				A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */,
+				A599E6411990F9D1001A8B3A /* TBExampleSubscriber.h */,
+				A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */,
+				A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */,
+				A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */,
+				A56B2BE918C08648001E082A /* ShaderUtilities.c */,
+				A56B2BEA18C08648001E082A /* ShaderUtilities.h */,
+				A56B2BB818C085AD001E082A /* AppDelegate.h */,
+				A56B2BB918C085AD001E082A /* AppDelegate.m */,
+				A56B2BBB18C085AD001E082A /* Main_iPhone.storyboard */,
+				A56B2BBE18C085AD001E082A /* Main_iPad.storyboard */,
+				A56B2BC118C085AD001E082A /* ViewController.h */,
+				A56B2BC218C085AD001E082A /* ViewController.m */,
+				A56B2BC418C085AD001E082A /* Images.xcassets */,
+				A56B2BB018C085AD001E082A /* Supporting Files */,
+			);
+			path = "Overlay-Graphics";
+			sourceTree = "<group>";
+		};
+		A56B2BB018C085AD001E082A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */,
+				A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */,
+				A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */,
+				A5FA8EE01A5DE18A002DC195 /* midCongestion.png */,
+				A5FA8EE11A5DE18A002DC195 /* mutePublisher.png */,
+				A5FA8EE21A5DE18A002DC195 /* muteSubscriber.png */,
+				A5FA8EE31A5DE18A002DC195 /* swapCamera.png */,
+				A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */,
+				A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */,
+				A5595ED219CAD5810040B99C /* silhouette.png */,
+				A5595EBC19C9512A0040B99C /* Headset.png */,
+				A5595EBD19C9512A0040B99C /* Headset@2x.png */,
+				A535047118FD469B00E68BD9 /* archiving_off-Small.png */,
+				A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */,
+				A535047318FD469B00E68BD9 /* archiving_on-10.png */,
+				A535047418FD469B00E68BD9 /* archiving_on-10@2x.png */,
+				A535047518FD469B00E68BD9 /* archiving_pulse-Small.png */,
+				A535047618FD469B00E68BD9 /* archiving_pulse-Small@2x.png */,
+				A56B2BB118C085AD001E082A /* 7.Overlay-Graphics-Info.plist */,
+				A56B2BB218C085AD001E082A /* InfoPlist.strings */,
+				A56B2BB518C085AD001E082A /* main.m */,
+				A56B2BB718C085AD001E082A /* 7.Overlay-Graphics-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5A6080B18C0920600192466 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5A6080E18C0921800192466 /* TBExampleOverlayButton.h */,
+				A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */,
+				A5A6081018C0921800192466 /* TBExampleOverlayView.h */,
+				A5A6081118C0921800192466 /* TBExampleOverlayView.m */,
+				A5A6081418C0921800192466 /* TBExampleUnderlayView.h */,
+				A5A6081518C0921800192466 /* TBExampleUnderlayView.m */,
+				A5A6081618C0921800192466 /* TBExampleVideoView.h */,
+				A5A6081718C0921800192466 /* TBExampleVideoView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D4F8FDA11941271300364672 /* Project 2: Custom-Video-Driver */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */,
+				D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */,
+				D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */,
+				D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */,
+			);
+			name = "Project 2: Custom-Video-Driver";
+			sourceTree = "<group>";
+		};
+		EA1E35793883168B2358D00A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8CB048233FBE70F982E65FBA /* Pods.debug.xcconfig */,
+				36E39CD914172B59A2E936DB /* Pods.release.xcconfig */,
+				FC633EEFF09BA9F8B04B27E4 /* Pods-Overlay-Graphics.debug.xcconfig */,
+				3A8B605D2A23C06A5390F2BC /* Pods-Overlay-Graphics.release.xcconfig */,
+				50FE120C5DDB5D3EB8634BDA /* Pods-Overlay-Graphics.debug.xcconfig */,
+				7F224EC05C6BC425D399CD3F /* Pods-Overlay-Graphics.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A56B2BA518C085AD001E082A /* 7.Overlay-Graphics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A56B2BDB18C085AE001E082A /* Build configuration list for PBXNativeTarget "7.Overlay-Graphics" */;
+			buildPhases = (
+				2807BCDE3AA8E4BAE7145FDC /* [CP] Check Pods Manifest.lock */,
+				A56B2BA218C085AD001E082A /* Sources */,
+				A56B2BA318C085AD001E082A /* Frameworks */,
+				A56B2BA418C085AD001E082A /* Resources */,
+				AD79C3A75670A80B326013F1 /* [CP] Copy Pods Resources */,
+				FAB49610D559625AE23193E0 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "7.Overlay-Graphics";
+			productName = "Overlay-Graphics";
+			productReference = A56B2BA618C085AD001E082A /* 7.Overlay-Graphics.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A56B2B9E18C085AD001E082A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Tokbox;
+			};
+			buildConfigurationList = A56B2BA118C085AD001E082A /* Build configuration list for PBXProject "7.Overlay-Graphics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A56B2B9D18C085AD001E082A;
+			productRefGroup = A56B2BA718C085AD001E082A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A56B2BA518C085AD001E082A /* 7.Overlay-Graphics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A56B2BA418C085AD001E082A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A535047A18FD469B00E68BD9 /* archiving_on-10@2x.png in Resources */,
+				A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */,
+				A535047C18FD469B00E68BD9 /* archiving_pulse-Small@2x.png in Resources */,
+				A56B2BC518C085AD001E082A /* Images.xcassets in Resources */,
+				A5FA8EED1A5DE18A002DC195 /* unmutePublisher.png in Resources */,
+				A5FA8EE91A5DE18A002DC195 /* midCongestion.png in Resources */,
+				A5FA8EE61A5DE18A002DC195 /* audioOnlyActive.png in Resources */,
+				A56B2BBD18C085AD001E082A /* Main_iPhone.storyboard in Resources */,
+				A5595EBE19C9512A0040B99C /* Headset.png in Resources */,
+				A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */,
+				A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */,
+				A5595ED319CAD5810040B99C /* silhouette.png in Resources */,
+				A5FA8EEA1A5DE18A002DC195 /* mutePublisher.png in Resources */,
+				A56B2BB418C085AD001E082A /* InfoPlist.strings in Resources */,
+				A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */,
+				A5FA8EEE1A5DE18A002DC195 /* unmuteSubscriber.png in Resources */,
+				A5FA8EE81A5DE18A002DC195 /* highCongestion.png in Resources */,
+				A535047B18FD469B00E68BD9 /* archiving_pulse-Small.png in Resources */,
+				A5FA8EE71A5DE18A002DC195 /* audioOnlyInactive.png in Resources */,
+				A5595EBF19C9512A0040B99C /* Headset@2x.png in Resources */,
+				A5FA8EEB1A5DE18A002DC195 /* muteSubscriber.png in Resources */,
+				A5FA8EEC1A5DE18A002DC195 /* swapCamera.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2807BCDE3AA8E4BAE7145FDC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AD79C3A75670A80B326013F1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAB49610D559625AE23193E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A56B2BA218C085AD001E082A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */,
+				A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */,
+				A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */,
+				A56B2BC318C085AD001E082A /* ViewController.m in Sources */,
+				A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */,
+				A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */,
+				A56B2BBA18C085AD001E082A /* AppDelegate.m in Sources */,
+				A599E6431990F9D1001A8B3A /* TBExamplePublisher.m in Sources */,
+				D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */,
+				A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */,
+				A56B2BB618C085AD001E082A /* main.m in Sources */,
+				A599E6441990F9D1001A8B3A /* TBExampleSubscriber.m in Sources */,
+				A5A6081C18C0921800192466 /* TBExampleOverlayView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A56B2BB218C085AD001E082A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A56B2BB318C085AD001E082A /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A56B2BBB18C085AD001E082A /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A56B2BBC18C085AD001E082A /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		A56B2BBE18C085AD001E082A /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A56B2BBF18C085AD001E082A /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A56B2BD918C085AE001E082A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A56B2BDA18C085AE001E082A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A56B2BDC18C085AE001E082A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50FE120C5DDB5D3EB8634BDA /* Pods-Overlay-Graphics.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SRCROOT}",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Overlay-Graphics/7.Overlay-Graphics-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/7.Overlay-Graphics\"",
+					"\"$(SRCROOT)/quicksvg/QuickSVG $(SRCROOT)/../2.Custom-Video-Driver/2.Custom-Video-Driver",
+				);
+				INFOPLIST_FILE = "Overlay-Graphics/7.Overlay-Graphics-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A56B2BDD18C085AE001E082A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F224EC05C6BC425D399CD3F /* Pods-Overlay-Graphics.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${SRCROOT}",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Overlay-Graphics/7.Overlay-Graphics-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/7.Overlay-Graphics\"",
+					"\"$(SRCROOT)/quicksvg/QuickSVG $(SRCROOT)/../2.Custom-Video-Driver/2.Custom-Video-Driver",
+				);
+				INFOPLIST_FILE = "Overlay-Graphics/7.Overlay-Graphics-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A56B2BA118C085AD001E082A /* Build configuration list for PBXProject "7.Overlay-Graphics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A56B2BD918C085AE001E082A /* Debug */,
+				A56B2BDA18C085AE001E082A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A56B2BDB18C085AE001E082A /* Build configuration list for PBXNativeTarget "7.Overlay-Graphics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A56B2BDC18C085AE001E082A /* Debug */,
+				A56B2BDD18C085AE001E082A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A56B2B9E18C085AD001E082A /* Project object */;
+}

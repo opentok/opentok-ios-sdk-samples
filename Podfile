@@ -2,47 +2,48 @@ platform :ios, '7.0'
 use_frameworks!
 workspace 'Opentok-iOS-samples'
 
-target 'Hello-World' do
-	project '1.Hello-World/Hello-World.xcodeproj'
+target '1.Hello-World' do
+	project '1.Hello-World/1.Hello-World.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Lets-Build-OTPublisher' do
-	project '2.Lets-Build-OTPublisher/Lets-Build-OTPublisher.xcodeproj'
+target '2.Custom-Video-Driver' do
+	project '2.Custom-Video-Driver/2.Custom-Video-Driver.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Live-Photo-Capture' do
-	project '3.Live-Photo-Capture/Live-Photo-Capture.xcodeproj'
+target '3.Custom-Audio-Driver' do
+	project '3.Custom-Audio-Driver/3.Custom-Audio-Driver.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Overlay-Graphics' do
-	project '4.Overlay-Graphics/Overlay-Graphics.xcodeproj'
+target '4.Screen-Sharing' do
+	project '4.Screen-Sharing/4.Screen-Sharing.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Multi-Party-Call' do
-	project '5.Multi-Party-Call/Multi-Party-Call.xcodeproj'
+target '5.Live-Photo-Capture' do
+	project '5.Live-Photo-Capture/5.Live-Photo-Capture.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Audio-Levels' do
-	project '6.Audio-Levels/Audio-Levels.xcodeproj'
+
+target '6.Simple-Multiparty' do
+	project '6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'External-Audio-Device' do
-	project '7.External-Audio-Device/External-Audio-Device.xcodeproj'
+target '7.Overlay-Graphics' do
+	project '7.Overlay-Graphics/7.Overlay-Graphics.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Screen-Sharing' do
-	project '8.Screen-Sharing/Screen-Sharing.xcodeproj'
+target '8.Audio-Levels' do
+	project '8.Audio-Levels/8.Audio-Levels.xcodeproj'
 	pod 'OpenTok'
 end
 
-target 'Ringtones' do
-	project '9.Ringtones/Ringtones.xcodeproj'
+target '9.Ringtones' do
+	project '9.Ringtones/9.Ringtones.xcodeproj'
 	pod 'OpenTok'
 end
