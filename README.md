@@ -35,7 +35,7 @@ capture implementations provided herein.
     capturer to publish a stream that uses a UI view (instead of a camera) as
     the video source.
 
-5.	**Live-Photo-Capture* - This project extends the video capture module 
+5.	**Live-Photo-Capture** - This project extends the video capture module 
 	implemented in project 2, and demonstrates how the AVFoundation media 
 	capture APIs can be used to simultaneously stream video and capture 
 	high-resolution photos from the same camera.
@@ -64,8 +64,8 @@ capture implementations provided herein.
     along with an audio meter UI for visualization of publisher and subscriber
     audio levels.
 
-9.	**Ringtones** - This project extends on the work done in Project 7
-    (External Audio Device) by extending the sample audio driver with an
+9.	**Ringtones** - This project extends on the work done in Project 3
+    (Custom Audio Driver) by extending the sample audio driver with an
     AVAudioPlayer controller, which will play a short ringtone while waiting for
     the subscriber to connect to the client device.
 
