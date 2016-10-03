@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C1685301A71927700A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16852F1A71927700A507E3 /* libc++.dylib */; };
-		9EC79D7A4D839EBB4C1272B0 /* libPods-Overlay-GraphicsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A3B375B86A4474C95B0B7ED /* libPods-Overlay-GraphicsTests.a */; };
+		2986E1415C5ACB78D9AD8786 /* Pods_Overlay_Graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F35EA5A367B528232718F411 /* Pods_Overlay_Graphics.framework */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
 		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
 		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
@@ -28,10 +28,6 @@
 		A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BBE18C085AD001E082A /* Main_iPad.storyboard */; };
 		A56B2BC318C085AD001E082A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BC218C085AD001E082A /* ViewController.m */; };
 		A56B2BC518C085AD001E082A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BC418C085AD001E082A /* Images.xcassets */; };
-		A56B2BCD18C085AD001E082A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BA918C085AD001E082A /* Foundation.framework */; };
-		A56B2BCE18C085AE001E082A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A56B2BAD18C085AD001E082A /* UIKit.framework */; };
-		A56B2BD618C085AE001E082A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BD418C085AE001E082A /* InfoPlist.strings */; };
-		A56B2BD818C085AE001E082A /* Overlay_GraphicsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BD718C085AE001E082A /* Overlay_GraphicsTests.m */; };
 		A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE918C08648001E082A /* ShaderUtilities.c */; };
 		A599E6431990F9D1001A8B3A /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */; };
 		A599E6441990F9D1001A8B3A /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */; };
@@ -57,29 +53,19 @@
 		A5FA8EEC1A5DE18A002DC195 /* swapCamera.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE31A5DE18A002DC195 /* swapCamera.png */; };
 		A5FA8EED1A5DE18A002DC195 /* unmutePublisher.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */; };
 		A5FA8EEE1A5DE18A002DC195 /* unmuteSubscriber.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */; };
-		BC8CA3BABC31DF1B0A8DF9B1 /* libPods-Overlay-Graphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A54187ECDD139BE13A584FE7 /* libPods-Overlay-Graphics.a */; };
 		D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */; };
 		D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */; };
 		D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAC194129B900364672 /* GLKit.framework */; };
 		D4F8FDAF194129C400364672 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8FDAE194129C400364672 /* OpenGLES.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A56B2BCF18C085AE001E082A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A56B2B9E18C085AD001E082A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A56B2BA518C085AD001E082A;
-			remoteInfo = "Overlay-Graphics";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		0A3B375B86A4474C95B0B7ED /* libPods-Overlay-GraphicsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Overlay-GraphicsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16852F1A71927700A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		36E39CD914172B59A2E936DB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		3A8B605D2A23C06A5390F2BC /* Pods-Overlay-Graphics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.release.xcconfig"; sourceTree = "<group>"; };
-		4C67DB97EA5524020ED8D617 /* Pods-Overlay-GraphicsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-GraphicsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overlay-GraphicsTests/Pods-Overlay-GraphicsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		50FE120C5DDB5D3EB8634BDA /* Pods-Overlay-Graphics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.debug.xcconfig"; sourceTree = "<group>"; };
+		7F224EC05C6BC425D399CD3F /* Pods-Overlay-Graphics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.release.xcconfig"; sourceTree = "<group>"; };
 		8CB048233FBE70F982E65FBA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		91DD8E06C3F2152B79C8E169 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
@@ -88,7 +74,6 @@
 		A535047418FD469B00E68BD9 /* archiving_on-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10@2x.png"; sourceTree = "<group>"; };
 		A535047518FD469B00E68BD9 /* archiving_pulse-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-Small.png"; sourceTree = "<group>"; };
 		A535047618FD469B00E68BD9 /* archiving_pulse-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-Small@2x.png"; sourceTree = "<group>"; };
-		A54187ECDD139BE13A584FE7 /* libPods-Overlay-Graphics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Overlay-Graphics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5595EBC19C9512A0040B99C /* Headset.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Headset.png; sourceTree = "<group>"; };
 		A5595EBD19C9512A0040B99C /* Headset@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Headset@2x.png"; sourceTree = "<group>"; };
 		A5595ED219CAD5810040B99C /* silhouette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silhouette.png; sourceTree = "<group>"; };
@@ -107,10 +92,6 @@
 		A56B2BC118C085AD001E082A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A56B2BC218C085AD001E082A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A56B2BC418C085AD001E082A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A56B2BCA18C085AD001E082A /* Overlay-GraphicsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Overlay-GraphicsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A56B2BD318C085AE001E082A /* Overlay-GraphicsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Overlay-GraphicsTests-Info.plist"; sourceTree = "<group>"; };
-		A56B2BD518C085AE001E082A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A56B2BD718C085AE001E082A /* Overlay_GraphicsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Overlay_GraphicsTests.m; sourceTree = "<group>"; };
 		A56B2BE918C08648001E082A /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
 		A56B2BEA18C08648001E082A /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
 		A599E63F1990F9D1001A8B3A /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
@@ -150,7 +131,7 @@
 		D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../2.Lets-Build-OTPublisher/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
 		D4F8FDAC194129B900364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D4F8FDAE194129C400364672 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		E77577DA4E1EC79235664DFF /* Pods-Overlay-GraphicsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-GraphicsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overlay-GraphicsTests/Pods-Overlay-GraphicsTests.release.xcconfig"; sourceTree = "<group>"; };
+		F35EA5A367B528232718F411 /* Pods_Overlay_Graphics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overlay_Graphics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC633EEFF09BA9F8B04B27E4 /* Pods-Overlay-Graphics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overlay-Graphics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,17 +154,7 @@
 				D4F8FDAD194129B900364672 /* GLKit.framework in Frameworks */,
 				A56B2BAE18C085AD001E082A /* UIKit.framework in Frameworks */,
 				A56B2BAA18C085AD001E082A /* Foundation.framework in Frameworks */,
-				BC8CA3BABC31DF1B0A8DF9B1 /* libPods-Overlay-Graphics.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A56B2BC718C085AD001E082A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A56B2BCE18C085AE001E082A /* UIKit.framework in Frameworks */,
-				A56B2BCD18C085AD001E082A /* Foundation.framework in Frameworks */,
-				9EC79D7A4D839EBB4C1272B0 /* libPods-Overlay-GraphicsTests.a in Frameworks */,
+				2986E1415C5ACB78D9AD8786 /* Pods_Overlay_Graphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +166,6 @@
 			children = (
 				D4F8FDA11941271300364672 /* Project 2 - Let's Build OTPubilsher */,
 				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
-				A56B2BD118C085AE001E082A /* Overlay-GraphicsTests */,
 				A56B2BA818C085AD001E082A /* Frameworks */,
 				A56B2BA718C085AD001E082A /* Products */,
 				EA1E35793883168B2358D00A /* Pods */,
@@ -206,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				A56B2BA618C085AD001E082A /* Overlay-Graphics.app */,
-				A56B2BCA18C085AD001E082A /* Overlay-GraphicsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,8 +198,8 @@
 				A56B2BAB18C085AD001E082A /* CoreGraphics.framework */,
 				A56B2BAD18C085AD001E082A /* UIKit.framework */,
 				91DD8E06C3F2152B79C8E169 /* libPods.a */,
-				A54187ECDD139BE13A584FE7 /* libPods-Overlay-Graphics.a */,
 				0A3B375B86A4474C95B0B7ED /* libPods-Overlay-GraphicsTests.a */,
+				F35EA5A367B528232718F411 /* Pods_Overlay_Graphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -288,24 +257,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A56B2BD118C085AE001E082A /* Overlay-GraphicsTests */ = {
-			isa = PBXGroup;
-			children = (
-				A56B2BD718C085AE001E082A /* Overlay_GraphicsTests.m */,
-				A56B2BD218C085AE001E082A /* Supporting Files */,
-			);
-			path = "Overlay-GraphicsTests";
-			sourceTree = "<group>";
-		};
-		A56B2BD218C085AE001E082A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A56B2BD318C085AE001E082A /* Overlay-GraphicsTests-Info.plist */,
-				A56B2BD418C085AE001E082A /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		A5A6080B18C0920600192466 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -339,8 +290,8 @@
 				36E39CD914172B59A2E936DB /* Pods.release.xcconfig */,
 				FC633EEFF09BA9F8B04B27E4 /* Pods-Overlay-Graphics.debug.xcconfig */,
 				3A8B605D2A23C06A5390F2BC /* Pods-Overlay-Graphics.release.xcconfig */,
-				4C67DB97EA5524020ED8D617 /* Pods-Overlay-GraphicsTests.debug.xcconfig */,
-				E77577DA4E1EC79235664DFF /* Pods-Overlay-GraphicsTests.release.xcconfig */,
+				50FE120C5DDB5D3EB8634BDA /* Pods-Overlay-Graphics.debug.xcconfig */,
+				7F224EC05C6BC425D399CD3F /* Pods-Overlay-Graphics.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -352,12 +303,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A56B2BDB18C085AE001E082A /* Build configuration list for PBXNativeTarget "Overlay-Graphics" */;
 			buildPhases = (
-				2807BCDE3AA8E4BAE7145FDC /* 📦 Check Pods Manifest.lock */,
+				2807BCDE3AA8E4BAE7145FDC /* [CP] Check Pods Manifest.lock */,
 				A56B2BA218C085AD001E082A /* Sources */,
 				A56B2BA318C085AD001E082A /* Frameworks */,
 				A56B2BA418C085AD001E082A /* Resources */,
-				AD79C3A75670A80B326013F1 /* 📦 Copy Pods Resources */,
-				FAB49610D559625AE23193E0 /* 📦 Embed Pods Frameworks */,
+				AD79C3A75670A80B326013F1 /* [CP] Copy Pods Resources */,
+				FAB49610D559625AE23193E0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -368,27 +319,6 @@
 			productReference = A56B2BA618C085AD001E082A /* Overlay-Graphics.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A56B2BC918C085AD001E082A /* Overlay-GraphicsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A56B2BDE18C085AE001E082A /* Build configuration list for PBXNativeTarget "Overlay-GraphicsTests" */;
-			buildPhases = (
-				89DE07C7EDD792E9FC9FC3E6 /* 📦 Check Pods Manifest.lock */,
-				A56B2BC618C085AD001E082A /* Sources */,
-				A56B2BC718C085AD001E082A /* Frameworks */,
-				A56B2BC818C085AD001E082A /* Resources */,
-				205A907839143B5757FA89B1 /* 📦 Embed Pods Frameworks */,
-				C9231FB3080536CA45048E0D /* 📦 Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A56B2BD018C085AE001E082A /* PBXTargetDependency */,
-			);
-			name = "Overlay-GraphicsTests";
-			productName = "Overlay-GraphicsTests";
-			productReference = A56B2BCA18C085AD001E082A /* Overlay-GraphicsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -397,11 +327,6 @@
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Tokbox;
-				TargetAttributes = {
-					A56B2BC918C085AD001E082A = {
-						TestTargetID = A56B2BA518C085AD001E082A;
-					};
-				};
 			};
 			buildConfigurationList = A56B2BA118C085AD001E082A /* Build configuration list for PBXProject "Overlay-Graphics" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -417,7 +342,6 @@
 			projectRoot = "";
 			targets = (
 				A56B2BA518C085AD001E082A /* Overlay-Graphics */,
-				A56B2BC918C085AD001E082A /* Overlay-GraphicsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -452,40 +376,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A56B2BC818C085AD001E082A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A56B2BD618C085AE001E082A /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		205A907839143B5757FA89B1 /* 📦 Embed Pods Frameworks */ = {
+		2807BCDE3AA8E4BAE7145FDC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overlay-GraphicsTests/Pods-Overlay-GraphicsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2807BCDE3AA8E4BAE7145FDC /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,64 +394,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		89DE07C7EDD792E9FC9FC3E6 /* 📦 Check Pods Manifest.lock */ = {
+		AD79C3A75670A80B326013F1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AD79C3A75670A80B326013F1 /* 📦 Copy Pods Resources */ = {
+		FAB49610D559625AE23193E0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C9231FB3080536CA45048E0D /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overlay-GraphicsTests/Pods-Overlay-GraphicsTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FAB49610D559625AE23193E0 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Overlay-Graphics/Pods-Overlay-Graphics-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -576,23 +447,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A56B2BC618C085AD001E082A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A56B2BD818C085AE001E082A /* Overlay_GraphicsTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A56B2BD018C085AE001E082A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A56B2BA518C085AD001E082A /* Overlay-Graphics */;
-			targetProxy = A56B2BCF18C085AE001E082A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A56B2BB218C085AD001E082A /* InfoPlist.strings */ = {
@@ -619,14 +474,6 @@
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		A56B2BD418C085AE001E082A /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A56B2BD518C085AE001E082A /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -646,7 +493,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -685,7 +531,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -704,12 +549,12 @@
 		};
 		A56B2BDC18C085AE001E082A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC633EEFF09BA9F8B04B27E4 /* Pods-Overlay-Graphics.debug.xcconfig */;
+			baseConfigurationReference = 50FE120C5DDB5D3EB8634BDA /* Pods-Overlay-Graphics.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -731,12 +576,12 @@
 		};
 		A56B2BDD18C085AE001E082A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A8B605D2A23C06A5390F2BC /* Pods-Overlay-Graphics.release.xcconfig */;
+			baseConfigurationReference = 7F224EC05C6BC425D399CD3F /* Pods-Overlay-Graphics.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -753,48 +598,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A56B2BDF18C085AE001E082A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C67DB97EA5524020ED8D617 /* Pods-Overlay-GraphicsTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Overlay-Graphics.app/Overlay-Graphics";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Overlay-Graphics/Overlay-Graphics-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Overlay-GraphicsTests/Overlay-GraphicsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A56B2BE018C085AE001E082A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E77577DA4E1EC79235664DFF /* Pods-Overlay-GraphicsTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Overlay-Graphics.app/Overlay-Graphics";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Overlay-Graphics/Overlay-Graphics-Prefix.pch";
-				INFOPLIST_FILE = "Overlay-GraphicsTests/Overlay-GraphicsTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -815,15 +618,6 @@
 			buildConfigurations = (
 				A56B2BDC18C085AE001E082A /* Debug */,
 				A56B2BDD18C085AE001E082A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A56B2BDE18C085AE001E082A /* Build configuration list for PBXNativeTarget "Overlay-GraphicsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A56B2BDF18C085AE001E082A /* Debug */,
-				A56B2BE018C085AE001E082A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

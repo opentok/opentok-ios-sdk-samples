@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01C9497A05EB942A405F78F3 /* libPods-Multi-Party-CallTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A381A5531DF89E7F66743B69 /* libPods-Multi-Party-CallTests.a */; };
 		0C16852E1A71925600A507E3 /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C16852D1A71925600A507E3 /* libc++.dylib */; };
+		60B015E31DA8BC17C2CAB08C /* Pods_Multi_Party_Call.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F6E11B209442BB4CE7791F1 /* Pods_Multi_Party_Call.framework */; };
 		A554AFA7190A9B3100A6910E /* archiving_on-5.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF90190A9B3100A6910E /* archiving_on-5.png */; };
 		A554AFA8190A9B3100A6910E /* archiving_on-5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF91190A9B3100A6910E /* archiving_on-5@2x.png */; };
 		A554AFA9190A9B3100A6910E /* archiving_pulse-15.png in Resources */ = {isa = PBXBuildFile; fileRef = A554AF92190A9B3100A6910E /* archiving_pulse-15.png */; };
@@ -50,10 +50,6 @@
 		A5B6110118F2845100841E6B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */; };
 		A5B6110718F2845100841E6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6110618F2845100841E6B /* ViewController.m */; };
 		A5B6110918F2845100841E6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B6110818F2845100841E6B /* Images.xcassets */; };
-		A5B6111118F2845100841E6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610ED18F2845100841E6B /* Foundation.framework */; };
-		A5B6111218F2845100841E6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B610F118F2845100841E6B /* UIKit.framework */; };
-		A5B6111A18F2845100841E6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B6111818F2845100841E6B /* InfoPlist.strings */; };
-		A5B6111C18F2845100841E6B /* Multi_Party_CallTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */; };
 		A5B6113318F2992800841E6B /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113218F2992800841E6B /* OpenTok.framework */; };
 		A5B6113518F29A9000841E6B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113418F29A9000841E6B /* CoreTelephony.framework */; };
 		A5B6113718F29A9200841E6B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B6113618F29A9200841E6B /* SystemConfiguration.framework */; };
@@ -64,27 +60,17 @@
 		A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A5B6114018F29B7400841E6B /* ShaderUtilities.c */; };
 		A5D01FB61A3A136E005D84F9 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D01FB51A3A136E005D84F9 /* VideoToolbox.framework */; };
 		D492D19419547ECF00F4F534 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D492D19319547ECF00F4F534 /* GLKit.framework */; };
-		EE536D01CE945FD49ADD88B1 /* libPods-Multi-Party-Call.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 061F8613C72DE7F14A396BD6 /* libPods-Multi-Party-Call.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A5B6111318F2845100841E6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5B610E218F2845100841E6B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5B610E918F2845100841E6B;
-			remoteInfo = "Multi-Party-Call";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		061F8613C72DE7F14A396BD6 /* libPods-Multi-Party-Call.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Multi-Party-Call.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16852D1A71925600A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		1AFF0C35675122ABDB60918F /* Pods-Multi-Party-Call.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Party-Call.release.xcconfig"; path = "Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call.release.xcconfig"; sourceTree = "<group>"; };
+		2DAD4B19A510ED0ACB1D2591 /* Pods-Multi-Party-Call.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Party-Call.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call.release.xcconfig"; sourceTree = "<group>"; };
 		32C9E834B2AC4F7798E0C4B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		46E5EF39F9308BD8F61C221E /* Pods-Multi-Party-CallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Party-CallTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Multi-Party-CallTests/Pods-Multi-Party-CallTests.debug.xcconfig"; sourceTree = "<group>"; };
+		47574C05B3211CDB9DD0A02A /* Pods-Multi-Party-Call.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Party-Call.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call.debug.xcconfig"; sourceTree = "<group>"; };
 		74E2051E9CAEB905DFBB7C96 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F642B75E225B22C6B09C28 /* Pods-Multi-Party-Call.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Party-Call.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call.debug.xcconfig"; sourceTree = "<group>"; };
+		7F6E11B209442BB4CE7791F1 /* Pods_Multi_Party_Call.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Multi_Party_Call.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A381A5531DF89E7F66743B69 /* libPods-Multi-Party-CallTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Multi-Party-CallTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A554AF90190A9B3100A6910E /* archiving_on-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-5.png"; sourceTree = "<group>"; };
 		A554AF91190A9B3100A6910E /* archiving_on-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-5@2x.png"; sourceTree = "<group>"; };
@@ -132,10 +118,6 @@
 		A5B6110518F2845100841E6B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A5B6110618F2845100841E6B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A5B6110818F2845100841E6B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A5B6110E18F2845100841E6B /* Multi-Party-CallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Multi-Party-CallTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5B6111718F2845100841E6B /* Multi-Party-CallTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Multi-Party-CallTests-Info.plist"; sourceTree = "<group>"; };
-		A5B6111918F2845100841E6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Multi_Party_CallTests.m; sourceTree = "<group>"; };
 		A5B6113218F2992800841E6B /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5B6113418F29A9000841E6B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A5B6113618F29A9200841E6B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -148,7 +130,6 @@
 		A5D01FB51A3A136E005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		B025DECC3717D60FD82CE247 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		D492D19319547ECF00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		DB3F032E054DBDBAB2AEA34D /* Pods-Multi-Party-CallTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Multi-Party-CallTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Multi-Party-CallTests/Pods-Multi-Party-CallTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,17 +150,7 @@
 				A5B6113B18F29A9800841E6B /* CoreVideo.framework in Frameworks */,
 				A5B6113D18F29A9A00841E6B /* CoreMedia.framework in Frameworks */,
 				A5B610EE18F2845100841E6B /* Foundation.framework in Frameworks */,
-				EE536D01CE945FD49ADD88B1 /* libPods-Multi-Party-Call.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5B6110B18F2845100841E6B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5B6111218F2845100841E6B /* UIKit.framework in Frameworks */,
-				A5B6111118F2845100841E6B /* Foundation.framework in Frameworks */,
-				01C9497A05EB942A405F78F3 /* libPods-Multi-Party-CallTests.a in Frameworks */,
+				60B015E31DA8BC17C2CAB08C /* Pods_Multi_Party_Call.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,8 +164,8 @@
 				32C9E834B2AC4F7798E0C4B0 /* Pods.release.xcconfig */,
 				76F642B75E225B22C6B09C28 /* Pods-Multi-Party-Call.debug.xcconfig */,
 				1AFF0C35675122ABDB60918F /* Pods-Multi-Party-Call.release.xcconfig */,
-				46E5EF39F9308BD8F61C221E /* Pods-Multi-Party-CallTests.debug.xcconfig */,
-				DB3F032E054DBDBAB2AEA34D /* Pods-Multi-Party-CallTests.release.xcconfig */,
+				47574C05B3211CDB9DD0A02A /* Pods-Multi-Party-Call.debug.xcconfig */,
+				2DAD4B19A510ED0ACB1D2591 /* Pods-Multi-Party-Call.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -203,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				A5B610F318F2845100841E6B /* Multi-Party-Call */,
-				A5B6111518F2845100841E6B /* Multi-Party-CallTests */,
 				A5B610EC18F2845100841E6B /* Frameworks */,
 				A5B610EB18F2845100841E6B /* Products */,
 				256BB02B82B03C7677E78AA5 /* Pods */,
@@ -214,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				A5B610EA18F2845100841E6B /* Multi-Party-Call.app */,
-				A5B6110E18F2845100841E6B /* Multi-Party-CallTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,8 +205,8 @@
 				A5B610EF18F2845100841E6B /* CoreGraphics.framework */,
 				A5B610F118F2845100841E6B /* UIKit.framework */,
 				74E2051E9CAEB905DFBB7C96 /* libPods.a */,
-				061F8613C72DE7F14A396BD6 /* libPods-Multi-Party-Call.a */,
 				A381A5531DF89E7F66743B69 /* libPods-Multi-Party-CallTests.a */,
+				7F6E11B209442BB4CE7791F1 /* Pods_Multi_Party_Call.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -301,24 +270,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A5B6111518F2845100841E6B /* Multi-Party-CallTests */ = {
-			isa = PBXGroup;
-			children = (
-				A5B6111B18F2845100841E6B /* Multi_Party_CallTests.m */,
-				A5B6111618F2845100841E6B /* Supporting Files */,
-			);
-			path = "Multi-Party-CallTests";
-			sourceTree = "<group>";
-		};
-		A5B6111618F2845100841E6B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A5B6111718F2845100841E6B /* Multi-Party-CallTests-Info.plist */,
-				A5B6111818F2845100841E6B /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -326,12 +277,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5B6111F18F2845100841E6B /* Build configuration list for PBXNativeTarget "Multi-Party-Call" */;
 			buildPhases = (
-				17764ADFE73DC38314090330 /* 📦 Check Pods Manifest.lock */,
+				17764ADFE73DC38314090330 /* [CP] Check Pods Manifest.lock */,
 				A5B610E618F2845100841E6B /* Sources */,
 				A5B610E718F2845100841E6B /* Frameworks */,
 				A5B610E818F2845100841E6B /* Resources */,
-				681E6C6C5B35313110552B6D /* 📦 Copy Pods Resources */,
-				5A33A391D0F65CD1F9F64FEE /* 📦 Embed Pods Frameworks */,
+				681E6C6C5B35313110552B6D /* [CP] Copy Pods Resources */,
+				5A33A391D0F65CD1F9F64FEE /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -342,27 +293,6 @@
 			productReference = A5B610EA18F2845100841E6B /* Multi-Party-Call.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A5B6110D18F2845100841E6B /* Multi-Party-CallTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A5B6112218F2845100841E6B /* Build configuration list for PBXNativeTarget "Multi-Party-CallTests" */;
-			buildPhases = (
-				25E3685C39C10ECEC12E8024 /* 📦 Check Pods Manifest.lock */,
-				A5B6110A18F2845100841E6B /* Sources */,
-				A5B6110B18F2845100841E6B /* Frameworks */,
-				A5B6110C18F2845100841E6B /* Resources */,
-				2F4951FA8F2B51C588275B55 /* 📦 Embed Pods Frameworks */,
-				4D0BC9E454610B3D09A8B2BC /* 📦 Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A5B6111418F2845100841E6B /* PBXTargetDependency */,
-			);
-			name = "Multi-Party-CallTests";
-			productName = "Multi-Party-CallTests";
-			productReference = A5B6110E18F2845100841E6B /* Multi-Party-CallTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -371,11 +301,6 @@
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Tokbox;
-				TargetAttributes = {
-					A5B6110D18F2845100841E6B = {
-						TestTargetID = A5B610E918F2845100841E6B;
-					};
-				};
 			};
 			buildConfigurationList = A5B610E518F2845100841E6B /* Build configuration list for PBXProject "Multi-Party-Call" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -391,7 +316,6 @@
 			projectRoot = "";
 			targets = (
 				A5B610E918F2845100841E6B /* Multi-Party-Call */,
-				A5B6110D18F2845100841E6B /* Multi-Party-CallTests */,
 			);
 		};
 /* End PBXProject section */
@@ -439,25 +363,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A5B6110C18F2845100841E6B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5B6111A18F2845100841E6B /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17764ADFE73DC38314090330 /* 📦 Check Pods Manifest.lock */ = {
+		17764ADFE73DC38314090330 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,79 +381,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		25E3685C39C10ECEC12E8024 /* 📦 Check Pods Manifest.lock */ = {
+		5A33A391D0F65CD1F9F64FEE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2F4951FA8F2B51C588275B55 /* 📦 Embed Pods Frameworks */ = {
+		681E6C6C5B35313110552B6D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Multi-Party-CallTests/Pods-Multi-Party-CallTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4D0BC9E454610B3D09A8B2BC /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Multi-Party-CallTests/Pods-Multi-Party-CallTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5A33A391D0F65CD1F9F64FEE /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		681E6C6C5B35313110552B6D /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Multi-Party-Call/Pods-Multi-Party-Call-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -554,23 +425,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A5B6110A18F2845100841E6B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5B6111C18F2845100841E6B /* Multi_Party_CallTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A5B6111418F2845100841E6B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A5B610E918F2845100841E6B /* Multi-Party-Call */;
-			targetProxy = A5B6111318F2845100841E6B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A5B610F618F2845100841E6B /* InfoPlist.strings */ = {
@@ -587,14 +442,6 @@
 				A5B6110018F2845100841E6B /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		A5B6111818F2845100841E6B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5B6111918F2845100841E6B /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -674,12 +521,12 @@
 		};
 		A5B6112018F2845100841E6B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76F642B75E225B22C6B09C28 /* Pods-Multi-Party-Call.debug.xcconfig */;
+			baseConfigurationReference = 47574C05B3211CDB9DD0A02A /* Pods-Multi-Party-Call.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}/Multi-Party-Call",
@@ -701,12 +548,12 @@
 		};
 		A5B6112118F2845100841E6B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1AFF0C35675122ABDB60918F /* Pods-Multi-Party-Call.release.xcconfig */;
+			baseConfigurationReference = 2DAD4B19A510ED0ACB1D2591 /* Pods-Multi-Party-Call.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}/Multi-Party-Call",
@@ -723,48 +570,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		A5B6112318F2845100841E6B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 46E5EF39F9308BD8F61C221E /* Pods-Multi-Party-CallTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Multi-Party-Call.app/Multi-Party-Call";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Multi-Party-Call/Multi-Party-Call-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Multi-Party-CallTests/Multi-Party-CallTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A5B6112418F2845100841E6B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB3F032E054DBDBAB2AEA34D /* Pods-Multi-Party-CallTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Multi-Party-Call.app/Multi-Party-Call";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Multi-Party-Call/Multi-Party-Call-Prefix.pch";
-				INFOPLIST_FILE = "Multi-Party-CallTests/Multi-Party-CallTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
@@ -785,15 +590,6 @@
 			buildConfigurations = (
 				A5B6112018F2845100841E6B /* Debug */,
 				A5B6112118F2845100841E6B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A5B6112218F2845100841E6B /* Build configuration list for PBXNativeTarget "Multi-Party-CallTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5B6112318F2845100841E6B /* Debug */,
-				A5B6112418F2845100841E6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -70,16 +70,14 @@ capture implementations provided herein.
     the subscriber to connect to the client device.
 
 
-Referencing OpenTok.framework
+Installing OpenTok.framework
 -----------------------------
 
-Each project includes a symlink to `OpenTok.framework`, up one directory level
-from the root of this repository. If you are reading this from a distribution
-tarball of the OpenTok iOS SDK, then these links should work fine. If you have
-[cloned][opentok-ios-samples] this repository
-directly, you will have to update the links to point to your copy of
-`OpenTok.framework`, available at
-https://tokbox.com/opentok/libraries/client/ios/.
+We are using CocoaPods to install OpenTok dependency in the sample projects. 
+Just run `pod install` on the root folder of the samples and the dependency will
+be automatically installed.
+
+After running that command, open the generated xcworkspace file to run the samples.
 
 Getting Sample Code Updates
 ---------------------------

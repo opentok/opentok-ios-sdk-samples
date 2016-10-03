@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		03A85A44E030153E1061D31B /* libPods-Hello-WorldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F09A74A40BDB337161758A /* libPods-Hello-WorldTests.a */; };
+		B0DA9742BDC1B798603A2388 /* Pods_Hello_World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE506A446CCE1CD6968A97A /* Pods_Hello_World.framework */; };
 		D4426101185F81D800E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D44260FF185F81D800E23699 /* InfoPlist.strings */; };
 		D4426103185F81D800E23699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426102185F81D800E23699 /* main.m */; };
 		D4426107185F81D800E23699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426106185F81D800E23699 /* AppDelegate.m */; };
@@ -15,34 +15,20 @@
 		D442610D185F81D800E23699 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D442610B185F81D800E23699 /* Main_iPad.storyboard */; };
 		D4426110185F81D800E23699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D442610F185F81D800E23699 /* ViewController.m */; };
 		D4426112185F81D800E23699 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4426111185F81D800E23699 /* Images.xcassets */; };
-		D442611A185F81D800E23699 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F6185F81D800E23699 /* Foundation.framework */; };
-		D442611B185F81D800E23699 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260FA185F81D800E23699 /* UIKit.framework */; };
-		D4426123185F81D800E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426121185F81D800E23699 /* InfoPlist.strings */; };
-		D4426125185F81D800E23699 /* Hello_WorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426124185F81D800E23699 /* Hello_WorldTests.m */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
-		D4D55F6C1D5E160B008DC3AD /* libPods-Hello-World.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D55F6B1D5E160B008DC3AD /* libPods-Hello-World.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D442611C185F81D800E23699 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D44260EB185F81D800E23699 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D44260F2185F81D800E23699;
-			remoteInfo = "Hello-World";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00BACA06E8CDB759A9349E08 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		07F09A74A40BDB337161758A /* libPods-Hello-WorldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hello-WorldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16853B1A71949A00A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		2B710F9C8F6081B4B94172C5 /* Pods-Hello-WorldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-WorldTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hello-WorldTests/Pods-Hello-WorldTests.release.xcconfig"; sourceTree = "<group>"; };
 		4C7569C7C0E5AA3DB7CB5998 /* Pods-Hello-World.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-World.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World.debug.xcconfig"; sourceTree = "<group>"; };
-		58AE6BC6D9E2846DCFF31A82 /* Pods-Hello-WorldTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-WorldTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hello-WorldTests/Pods-Hello-WorldTests.debug.xcconfig"; sourceTree = "<group>"; };
+		85AA6E19D5F9E7D4BF7267C6 /* Pods-Hello-World.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-World.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World.release.xcconfig"; sourceTree = "<group>"; };
+		9AE506A446CCE1CD6968A97A /* Pods_Hello_World.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hello_World.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D01FB21A3A133C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A9594D9D1BA292CF1D7DFE4F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		ABCE318488C50D6D9DF10334 /* Pods-Hello-World.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-World.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World.release.xcconfig"; sourceTree = "<group>"; };
+		B4A4CBAB49DBD8C387B2343B /* Pods-Hello-World.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello-World.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World.debug.xcconfig"; sourceTree = "<group>"; };
 		D44260F3185F81D800E23699 /* Hello-World.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hello-World.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260F8185F81D800E23699 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,10 +44,6 @@
 		D442610E185F81D800E23699 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		D442610F185F81D800E23699 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D4426111185F81D800E23699 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D4426117185F81D800E23699 /* Hello-WorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Hello-WorldTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4426120185F81D800E23699 /* Hello-WorldTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hello-WorldTests-Info.plist"; sourceTree = "<group>"; };
-		D4426122185F81D800E23699 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D4426124185F81D800E23699 /* Hello_WorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Hello_WorldTests.m; sourceTree = "<group>"; };
 		D442612E185F82AB00E23699 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		D4426132185F876500E23699 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D4426138185F877600E23699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -75,7 +57,6 @@
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D492D19019547E4C00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D4D55F6B1D5E160B008DC3AD /* libPods-Hello-World.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Hello-World.a"; path = "../../../Library/Developer/Xcode/DerivedData/Hello-World-fvvtmwacfbzjjderquqykxqtaapp/Build/Products/Debug-iphonesimulator/libPods-Hello-World.a"; sourceTree = "<group>"; };
-		EC00452EF808ED505E813D8C /* libPods-Hello-World.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Hello-World.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAF0E6D86210263CECC6A3B9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -84,17 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4D55F6C1D5E160B008DC3AD /* libPods-Hello-World.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D4426114185F81D800E23699 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D442611B185F81D800E23699 /* UIKit.framework in Frameworks */,
-				D442611A185F81D800E23699 /* Foundation.framework in Frameworks */,
-				03A85A44E030153E1061D31B /* libPods-Hello-WorldTests.a in Frameworks */,
+				B0DA9742BDC1B798603A2388 /* Pods_Hello_World.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +79,8 @@
 				00BACA06E8CDB759A9349E08 /* Pods.release.xcconfig */,
 				4C7569C7C0E5AA3DB7CB5998 /* Pods-Hello-World.debug.xcconfig */,
 				ABCE318488C50D6D9DF10334 /* Pods-Hello-World.release.xcconfig */,
-				58AE6BC6D9E2846DCFF31A82 /* Pods-Hello-WorldTests.debug.xcconfig */,
-				2B710F9C8F6081B4B94172C5 /* Pods-Hello-WorldTests.release.xcconfig */,
+				85AA6E19D5F9E7D4BF7267C6 /* Pods-Hello-World.release.xcconfig */,
+				B4A4CBAB49DBD8C387B2343B /* Pods-Hello-World.debug.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -119,7 +90,6 @@
 			children = (
 				D442614B185F92BF00E23699 /* README.md */,
 				D44260FC185F81D800E23699 /* Hello-World */,
-				D442611E185F81D800E23699 /* Hello-WorldTests */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
 				410C4A602988CA38003C08BB /* Pods */,
@@ -130,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				D44260F3185F81D800E23699 /* Hello-World.app */,
-				D4426117185F81D800E23699 /* Hello-WorldTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,8 +125,8 @@
 				D44260F8185F81D800E23699 /* CoreGraphics.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
 				FAF0E6D86210263CECC6A3B9 /* libPods.a */,
-				EC00452EF808ED505E813D8C /* libPods-Hello-World.a */,
 				07F09A74A40BDB337161758A /* libPods-Hello-WorldTests.a */,
+				9AE506A446CCE1CD6968A97A /* Pods_Hello_World.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,24 +157,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D442611E185F81D800E23699 /* Hello-WorldTests */ = {
-			isa = PBXGroup;
-			children = (
-				D4426124185F81D800E23699 /* Hello_WorldTests.m */,
-				D442611F185F81D800E23699 /* Supporting Files */,
-			);
-			path = "Hello-WorldTests";
-			sourceTree = "<group>";
-		};
-		D442611F185F81D800E23699 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4426120185F81D800E23699 /* Hello-WorldTests-Info.plist */,
-				D4426121185F81D800E23699 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -213,12 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Hello-World" */;
 			buildPhases = (
-				EFC642817FFA643DBA2BE3B9 /* 📦 Check Pods Manifest.lock */,
+				EFC642817FFA643DBA2BE3B9 /* [CP] Check Pods Manifest.lock */,
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
 				D44260F1185F81D800E23699 /* Resources */,
-				6BCB70CF839CC031482FB46A /* 📦 Copy Pods Resources */,
-				BE14926A190FCEBAD58D9673 /* 📦 Embed Pods Frameworks */,
+				6BCB70CF839CC031482FB46A /* [CP] Copy Pods Resources */,
+				BE14926A190FCEBAD58D9673 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -229,27 +180,6 @@
 			productReference = D44260F3185F81D800E23699 /* Hello-World.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D4426116185F81D800E23699 /* Hello-WorldTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D442612B185F81D800E23699 /* Build configuration list for PBXNativeTarget "Hello-WorldTests" */;
-			buildPhases = (
-				223814A5EEC1179ACF686636 /* 📦 Check Pods Manifest.lock */,
-				D4426113185F81D800E23699 /* Sources */,
-				D4426114185F81D800E23699 /* Frameworks */,
-				D4426115185F81D800E23699 /* Resources */,
-				3193DF0E13699D11F551F75D /* 📦 Embed Pods Frameworks */,
-				827D0FBD50FFE9C7551726BA /* 📦 Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D442611D185F81D800E23699 /* PBXTargetDependency */,
-			);
-			name = "Hello-WorldTests";
-			productName = "Hello-WorldTests";
-			productReference = D4426117185F81D800E23699 /* Hello-WorldTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -259,8 +189,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
-					D4426116185F81D800E23699 = {
-						TestTargetID = D44260F2185F81D800E23699;
+					D44260F2185F81D800E23699 = {
+						DevelopmentTeam = E69WFXMSE9;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -278,7 +209,6 @@
 			projectRoot = "";
 			targets = (
 				D44260F2185F81D800E23699 /* Hello-World */,
-				D4426116185F81D800E23699 /* Hello-WorldTests */,
 			);
 		};
 /* End PBXProject section */
@@ -296,100 +226,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4426115185F81D800E23699 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4426123185F81D800E23699 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		223814A5EEC1179ACF686636 /* 📦 Check Pods Manifest.lock */ = {
+		6BCB70CF839CC031482FB46A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3193DF0E13699D11F551F75D /* 📦 Embed Pods Frameworks */ = {
+		BE14926A190FCEBAD58D9673 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hello-WorldTests/Pods-Hello-WorldTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6BCB70CF839CC031482FB46A /* 📦 Copy Pods Resources */ = {
+		EFC642817FFA643DBA2BE3B9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		827D0FBD50FFE9C7551726BA /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hello-WorldTests/Pods-Hello-WorldTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BE14926A190FCEBAD58D9673 /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hello-World/Pods-Hello-World-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFC642817FFA643DBA2BE3B9 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,23 +287,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D4426113185F81D800E23699 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D4426125185F81D800E23699 /* Hello_WorldTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D442611D185F81D800E23699 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D44260F2185F81D800E23699 /* Hello-World */;
-			targetProxy = D442611C185F81D800E23699 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D44260FF185F81D800E23699 /* InfoPlist.strings */ = {
@@ -453,53 +314,9 @@
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		D4426121185F81D800E23699 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4426122185F81D800E23699 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D4426126185F81D800E23699 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		D4426127185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -514,7 +331,6 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -530,32 +346,14 @@
 			};
 			name = Release;
 		};
-		D4426129185F81D800E23699 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C7569C7C0E5AA3DB7CB5998 /* Pods-Hello-World.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${SRCROOT}",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
-				INFOPLIST_FILE = "Hello-World/Hello-World-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ABCE318488C50D6D9DF10334 /* Pods-Hello-World.release.xcconfig */;
+			baseConfigurationReference = 85AA6E19D5F9E7D4BF7267C6 /* Pods-Hello-World.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				ENABLE_BITCODE = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -568,47 +366,54 @@
 			};
 			name = Release;
 		};
-		D442612C185F81D800E23699 /* Debug */ = {
+		F8DE15D11D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58AE6BC6D9E2846DCFF31A82 /* Pods-Hello-WorldTests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hello-World.app/Hello-World";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Hello-WorldTests/Hello-WorldTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
-		D442612D185F81D800E23699 /* Release */ = {
+		F8DE15D21D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B710F9C8F6081B4B94172C5 /* Pods-Hello-WorldTests.release.xcconfig */;
+			baseConfigurationReference = B4A4CBAB49DBD8C387B2343B /* Pods-Hello-World.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Hello-World.app/Hello-World";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Hello-World/Hello-World-Prefix.pch";
-				INFOPLIST_FILE = "Hello-WorldTests/Hello-WorldTests-Info.plist";
+				INFOPLIST_FILE = "Hello-World/Hello-World-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
+				WRAPPER_EXTENSION = app;
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -616,8 +421,8 @@
 		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Hello-World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D4426126185F81D800E23699 /* Debug */,
 				D4426127185F81D800E23699 /* Release */,
+				F8DE15D11D95710C00EFFA79 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -625,17 +430,8 @@
 		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Hello-World" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D4426129185F81D800E23699 /* Debug */,
 				D442612A185F81D800E23699 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D442612B185F81D800E23699 /* Build configuration list for PBXNativeTarget "Hello-WorldTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D442612C185F81D800E23699 /* Debug */,
-				D442612D185F81D800E23699 /* Release */,
+				F8DE15D21D95710C00EFFA79 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
