@@ -1,4 +1,4 @@
-Project 7: External Audio Device
+Project 3: Custom Audio Drvier
 ================================
 
 This project implements a controller nearly identical to the hello world sample.

@@ -1,7 +1,7 @@
 Project 9: Play a Ringtone
 ==========================
 
-This project extends on the work done in Project 7 (External Audio Device) by
+This project extends on the work done in Project 3 (Custom-Audio-Driver) by
 extending the sample audio driver with an AVAudioPlayer controller, which will
 play a short ringtone while waiting for the subscriber to connect to the client
 device.

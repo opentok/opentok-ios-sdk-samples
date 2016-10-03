@@ -1,4 +1,4 @@
-Project 6: Audio Levels
+Project 8: Audio Levels
 ==================================
 
 This project shows how to use the OpenTok iOS SDK to develop audio-only calls

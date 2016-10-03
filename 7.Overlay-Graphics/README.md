@@ -1,4 +1,4 @@
-Project 4: Overlay Graphics
+Project 7: Overlay Graphics
 ===========================
 
 This project shows how to overlay graphics and UI controls onto publisher and 
@@ -62,7 +62,7 @@ Application Notes
     Simulator because the custom video capturer needs to acquire video from an
     iOS device camera.
 
-[1]: ../2.Lets-Build-OTPublisher
+[1]: ../2.Custom-Video-Driver
 [2]: https://tokbox.com/opentok/tutorials/create-session/#media-mode
 [3]: https://tokbox.com/opentok/tutorials/archiving/
 [4]: https://tokbox.com/opentok/libraries/server/

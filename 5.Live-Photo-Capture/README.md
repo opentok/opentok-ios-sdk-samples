@@ -1,4 +1,4 @@
-Project 3: Live Photo Capture
+Project 5: Live Photo Capture
 =============================
 
 This project extends some of the material we presented in [Project 2][1], by 
@@ -50,4 +50,4 @@ Application Notes
     Simulator because the custom video capturer needs to acquire video from an
     iOS device camera.
 
-[1]: ../2.Lets-Build-OTPublisher
+[1]: ../2.Custom-Video-Driver

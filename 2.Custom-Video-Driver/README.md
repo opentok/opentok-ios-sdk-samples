@@ -1,4 +1,4 @@
-Project 2: Let's Build OTPublisher
+Project 2: Custom Video Driver
 ==================================
 
 This project uses the custom video driver features in the OpenTok iOS SDK.
