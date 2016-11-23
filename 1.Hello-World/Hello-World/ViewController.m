@@ -17,6 +17,7 @@
     OTSession* _session;
     OTPublisher* _publisher;
     OTSubscriber* _subscriber;
+    UIActivityIndicatorView *_loadingView;
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -125,7 +126,19 @@ static bool subscribeToSelf = NO;
     
     OTError *error = nil;
     [_session subscribe:_subscriber error:&error];
-    if (error)
+    
+    if (!error)
+    {
+        [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth, widgetHeight)];
+        [self.view addSubview:_subscriber.view];
+        
+        _loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        _loadingView.frame = CGRectMake(0, 0, 30, 30);
+        _loadingView.center = CGPointMake(widgetWidth / 2, widgetHeight / 2);
+        [_subscriber.view addSubview:_loadingView];
+        [_loadingView startAnimating];
+    }
+    else
     {
         [self showAlert:[error localizedDescription]];
     }
@@ -217,9 +230,8 @@ didFailWithError:(OTError*)error
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
     assert(_subscriber == subscriber);
-    [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
-                                         widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
