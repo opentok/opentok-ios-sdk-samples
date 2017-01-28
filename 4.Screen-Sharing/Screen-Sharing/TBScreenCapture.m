@@ -35,7 +35,7 @@
         _minFrameDuration = CMTimeMake(1, 5);
         _queue = dispatch_queue_create("SCREEN_CAPTURE", NULL);
         
-//        OTVideoFormat *format = [[OTVideoFormat alloc] init];
+        OTVideoFormat *format = [[OTVideoFormat alloc] init];
         [format setPixelFormat:OTPixelFormatARGB];
         
         _videoFrame = [[OTVideoFrame alloc] initWithFormat:format];
@@ -110,7 +110,7 @@
     dispatch_source_set_event_handler(_timer, ^{
         @autoreleasepool {
             __block UIImage* screen = [_self screenshot];
-            CGImageRef paddedScreen = [self resizeAndPadImage:screen];
+//            CGImageRef paddedScreen = [self resizeAndPadImage:screen];
             CGImageRef paddedScreen = [screen CGImage];
             [_self consumeFrame:paddedScreen];
         }
