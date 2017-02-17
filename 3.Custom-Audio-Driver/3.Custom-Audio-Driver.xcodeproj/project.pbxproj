@@ -16,6 +16,7 @@
 		0CBBA40B196B5192005F55D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA40A196B5192005F55D4 /* Images.xcassets */; };
 		0CBBA42B196B5314005F55D4 /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */; };
 		A5E74EB01C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */; };
+		DB3315F6C99A58C0DA327756 /* Pods_3_Custom_Audio_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB150707A1192F3F4E8D586D /* Pods_3_Custom_Audio_Driver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,15 +50,18 @@
 		0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0F51F5367B329F01B2A8F366 /* Pods-External-Audio-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.release.xcconfig"; path = "Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.release.xcconfig"; sourceTree = "<group>"; };
 		13AFCEA6E44C99C59DADB00D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		18381D36922158BEC8849A7F /* Pods-3.Custom-Audio-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3.Custom-Audio-Driver.release.xcconfig"; path = "../Pods/Target Support Files/Pods-3.Custom-Audio-Driver/Pods-3.Custom-Audio-Driver.release.xcconfig"; sourceTree = "<group>"; };
 		23C8176F1978929E00A35EAB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		86673DCA9D4E9F8004BF2970 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A35452C168B724F0263E020D /* Pods-External-Audio-Device.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.release.xcconfig"; path = "../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.release.xcconfig"; sourceTree = "<group>"; };
 		A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDeviceWithVolumeControl.m; sourceTree = "<group>"; };
 		A5E74EAF1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDeviceWithVolumeControl.h; sourceTree = "<group>"; };
+		AB150707A1192F3F4E8D586D /* Pods_3_Custom_Audio_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3_Custom_Audio_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF99107F821744A6A3216054 /* Pods_External_Audio_Device.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_External_Audio_Device.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D261436393575065B3DA4A03 /* Pods-External-Audio-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.debug.xcconfig"; sourceTree = "<group>"; };
 		D4D55F6D1D5E1D6E008DC3AD /* libPods-External-Audio-Device.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-External-Audio-Device.a"; path = "Pods/../build/Debug-iphoneos/libPods-External-Audio-Device.a"; sourceTree = "<group>"; };
+		D78D9DD25C38459C924164C0 /* Pods-3.Custom-Audio-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3.Custom-Audio-Driver.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-3.Custom-Audio-Driver/Pods-3.Custom-Audio-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 		E1EFDF8E8E53CE96B87CAAC4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5491F5A48594DE9AF5D392B /* libPods-External-Audio-DeviceTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-External-Audio-DeviceTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF841CD48667821B57AA2574 /* Pods-External-Audio-Device.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-External-Audio-Device.debug.xcconfig"; path = "Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device.debug.xcconfig"; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB3315F6C99A58C0DA327756 /* Pods_3_Custom_Audio_Driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +120,7 @@
 				E1EFDF8E8E53CE96B87CAAC4 /* libPods.a */,
 				E5491F5A48594DE9AF5D392B /* libPods-External-Audio-DeviceTests.a */,
 				BF99107F821744A6A3216054 /* Pods_External_Audio_Device.framework */,
+				AB150707A1192F3F4E8D586D /* Pods_3_Custom_Audio_Driver.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,6 +164,8 @@
 				0F51F5367B329F01B2A8F366 /* Pods-External-Audio-Device.release.xcconfig */,
 				D261436393575065B3DA4A03 /* Pods-External-Audio-Device.debug.xcconfig */,
 				A35452C168B724F0263E020D /* Pods-External-Audio-Device.release.xcconfig */,
+				D78D9DD25C38459C924164C0 /* Pods-3.Custom-Audio-Driver.debug.xcconfig */,
+				18381D36922158BEC8849A7F /* Pods-3.Custom-Audio-Driver.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -244,7 +252,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-3.Custom-Audio-Driver/Pods-3.Custom-Audio-Driver-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8619D8D86FC67238EE1FB812 /* [CP] Copy Pods Resources */ = {
@@ -259,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-External-Audio-Device/Pods-External-Audio-Device-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-3.Custom-Audio-Driver/Pods-3.Custom-Audio-Driver-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D4C0708E4F43AAD554835C7A /* [CP] Check Pods Manifest.lock */ = {
@@ -274,7 +282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -396,7 +404,7 @@
 		};
 		0CBBA422196B5192005F55D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D261436393575065B3DA4A03 /* Pods-External-Audio-Device.debug.xcconfig */;
+			baseConfigurationReference = D78D9DD25C38459C924164C0 /* Pods-3.Custom-Audio-Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -427,7 +435,7 @@
 		};
 		0CBBA423196B5192005F55D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A35452C168B724F0263E020D /* Pods-External-Audio-Device.release.xcconfig */;
+			baseConfigurationReference = 18381D36922158BEC8849A7F /* Pods-3.Custom-Audio-Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

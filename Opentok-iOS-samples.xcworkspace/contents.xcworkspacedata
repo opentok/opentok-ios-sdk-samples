@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:1.Hello-World/1.Hello-World.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:2.Custom-Video-Driver/2.Custom-Video-Driver.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:3.Custom-Audio-Driver/3.Custom-Audio-Driver.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:4.Screen-Sharing/4.Screen-Sharing.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:5.Live-Photo-Capture/5.Live-Photo-Capture.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:7.Overlay-Graphics/7.Overlay-Graphics.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:8.Audio-Levels/8.Audio-Levels.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:9.Ringtones/9.Ringtones.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>
