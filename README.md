@@ -17,7 +17,7 @@ each, you will have an understanding of the OpenTok iOS SDK API. Additionally,
 you will be able to get started with writing your own extensions to the default
 capture implementations provided herein.
 
-1.	**Hello World** - This basic application demonstrates a short path to 
+1.	**Basic-Video-Chat** - This basic application demonstrates a short path to 
 	getting started with the OpenTok iOS SDK.
 
 2.	**Custom-Video-Driver** - This project provides classes that implement

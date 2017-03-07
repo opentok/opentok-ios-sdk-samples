@@ -8,6 +8,18 @@
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
 
+// *** Fill the following variables using your own Project info  ***
+// ***          https://dashboard.tokbox.com/projects            ***
+// Replace with your OpenTok API key
+static NSString* const kApiKey = @"";
+// Replace with your generated session ID
+static NSString* const kSessionId = @"";
+// Replace with your generated token
+static NSString* const kToken = @"";
+
+// Change to NO to subscribe to streams other than your own.
+static bool subscribeToSelf = NO;
+
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
 
@@ -20,18 +32,6 @@
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
-
-// *** Fill the following variables using your own Project info  ***
-// ***          https://dashboard.tokbox.com/projects            ***
-// Replace with your OpenTok API key
-static NSString* const kApiKey = @"100";
-// Replace with your generated session ID
-static NSString* const kSessionId = @"1_MX4xMDB-fjE0ODczNTE4OTEyNzh-ZU1RYnpvdGNyRFlia2kyM1JKcklKOG9Wfn4";
-// Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9ZjkzN2VkMmU4YmM1MzJhN2M5OWE0ZGQzMjAzYmYwNGYwMDNlY2JkZTpzZXNzaW9uX2lkPTFfTVg0eE1EQi1makUwT0Rjek5URTRPVEV5TnpoLVpVMVJZbnB2ZEdOeVJGbGlhMmt5TTFKS2NrbEtPRzlXZm40JmNyZWF0ZV90aW1lPTE0ODczNTE4NjAmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ4NzM1MTg2MC42MzE1MzYyNzcwMzQxJmV4cGlyZV90aW1lPTE0ODk5NDM4NjA=";
-
-// Change to NO to subscribe to streams other than your own.
-static bool subscribeToSelf = NO;
 
 #pragma mark - View lifecycle
 
@@ -99,7 +99,8 @@ static bool subscribeToSelf = NO;
         [self showAlert:[error localizedDescription]];
     }
     
-    [self.view addSubview:_publisher.view];
+//    [self.view addSubview:_publisher.view];
+    [self.view insertSubview:_publisher.view atIndex:0];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
 }
 
@@ -219,7 +220,8 @@ didFailWithError:(OTError*)error
     assert(_subscriber == subscriber);
     [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                          widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+//    [self.view addSubview:_subscriber.view];
+    [self.view insertSubview:_subscriber.view atIndex:0];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -274,6 +276,13 @@ didFailWithError:(OTError*)error
                                                otherButtonTitles:nil] ;
         [alert show];
     });
+}
+
+-(void)subscriberVideoDisabled:(OTSubscriber *)subscriber reason:(OTSubscriberVideoEventReason)reason {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+- (IBAction)buttonPressed:(id)sender {
+    _subscriber.subscribeToVideo = NO;
 }
 
 @end

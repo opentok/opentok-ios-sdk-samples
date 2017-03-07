@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		76AD0F2ACAD823BDE02E2D7E /* Pods_8_Audio_Levels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 213FCB2BD238E341DC57A450 /* Pods_8_Audio_Levels.framework */; };
 		A5F4845C198A3C0E00E6C689 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5F4845A198A3C0E00E6C689 /* InfoPlist.strings */; };
 		A5F4845E198A3C0E00E6C689 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F4845D198A3C0E00E6C689 /* main.m */; };
 		A5F48462198A3C0E00E6C689 /* TBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F48461198A3C0E00E6C689 /* TBAppDelegate.m */; };
@@ -44,15 +43,6 @@
 
 /* Begin PBXFileReference section */
 		0C1685271A71923100A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		106237D9E4540055CA4056B4 /* Pods-8.Audio-Levels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-8.Audio-Levels.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-8.Audio-Levels/Pods-8.Audio-Levels.debug.xcconfig"; sourceTree = "<group>"; };
-		1AE77334F9160358B6BDF954 /* Pods_Audio_Levels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audio_Levels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		213FCB2BD238E341DC57A450 /* Pods_8_Audio_Levels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_8_Audio_Levels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55DFA42F6886A97AD76CB393 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		7141F1353204CAA8A56380EC /* Pods-Audio-Levels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audio-Levels.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Audio-Levels/Pods-Audio-Levels.debug.xcconfig"; sourceTree = "<group>"; };
-		7B737F70D9A72E47D40BB5A5 /* Pods-Audio-Levels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audio-Levels.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Audio-Levels/Pods-Audio-Levels.debug.xcconfig"; sourceTree = "<group>"; };
-		895F27CDB5D7A8394C536344 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8BAE296621F1268AF720E4A3 /* Pods-Audio-Levels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audio-Levels.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Audio-Levels/Pods-Audio-Levels.release.xcconfig"; sourceTree = "<group>"; };
-		93FE299DD9DFFF6A047505E6 /* Pods-8.Audio-Levels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-8.Audio-Levels.release.xcconfig"; path = "../Pods/Target Support Files/Pods-8.Audio-Levels/Pods-8.Audio-Levels.release.xcconfig"; sourceTree = "<group>"; };
 		A51739F1198A4E3A005102BE /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A57C4CAB199DD64300210EC3 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		A5F4844E198A3C0E00E6C689 /* 8.Audio-Levels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "8.Audio-Levels.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,9 +98,6 @@
 		A5F484CF198A467300E6C689 /* speakerActive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speakerActive@2x.png"; sourceTree = "<group>"; };
 		A5F484D0198A467300E6C689 /* speakerMuted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speakerMuted.png; sourceTree = "<group>"; };
 		A5F484D1198A467300E6C689 /* speakerMuted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speakerMuted@2x.png"; sourceTree = "<group>"; };
-		D12FC3B5E472603F88F710DE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4AFD2EB6308B3FE38483233 /* Pods-Audio-Levels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audio-Levels.release.xcconfig"; path = "Pods/Target Support Files/Pods-Audio-Levels/Pods-Audio-Levels.release.xcconfig"; sourceTree = "<group>"; };
-		F90E2039FAA6E650BC82C49D /* libPods-Audio-LevelsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Audio-LevelsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,35 +105,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76AD0F2ACAD823BDE02E2D7E /* Pods_8_Audio_Levels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0537491D1E562F6399399AB8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				895F27CDB5D7A8394C536344 /* Pods.debug.xcconfig */,
-				55DFA42F6886A97AD76CB393 /* Pods.release.xcconfig */,
-				7B737F70D9A72E47D40BB5A5 /* Pods-Audio-Levels.debug.xcconfig */,
-				F4AFD2EB6308B3FE38483233 /* Pods-Audio-Levels.release.xcconfig */,
-				7141F1353204CAA8A56380EC /* Pods-Audio-Levels.debug.xcconfig */,
-				8BAE296621F1268AF720E4A3 /* Pods-Audio-Levels.release.xcconfig */,
-				106237D9E4540055CA4056B4 /* Pods-8.Audio-Levels.debug.xcconfig */,
-				93FE299DD9DFFF6A047505E6 /* Pods-8.Audio-Levels.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		A5F48445198A3C0E00E6C689 = {
 			isa = PBXGroup;
 			children = (
 				A5F48457198A3C0E00E6C689 /* Audio-Levels */,
 				A5F48450198A3C0E00E6C689 /* Frameworks */,
 				A5F4844F198A3C0E00E6C689 /* Products */,
-				0537491D1E562F6399399AB8 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,10 +148,6 @@
 				A5F48451198A3C0E00E6C689 /* Foundation.framework */,
 				A5F48453198A3C0E00E6C689 /* CoreGraphics.framework */,
 				A5F48455198A3C0E00E6C689 /* UIKit.framework */,
-				D12FC3B5E472603F88F710DE /* libPods.a */,
-				F90E2039FAA6E650BC82C49D /* libPods-Audio-LevelsTests.a */,
-				1AE77334F9160358B6BDF954 /* Pods_Audio_Levels.framework */,
-				213FCB2BD238E341DC57A450 /* Pods_8_Audio_Levels.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,12 +212,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5F48483198A3C0E00E6C689 /* Build configuration list for PBXNativeTarget "8.Audio-Levels" */;
 			buildPhases = (
-				B20B7C2E46567A902F6725CF /* [CP] Check Pods Manifest.lock */,
 				A5F4844A198A3C0E00E6C689 /* Sources */,
 				A5F4844B198A3C0E00E6C689 /* Frameworks */,
 				A5F4844C198A3C0E00E6C689 /* Resources */,
-				30C19CA7FB268F21AAB48037 /* [CP] Copy Pods Resources */,
-				80D2905F273070F4E92A775C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -326,54 +289,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		30C19CA7FB268F21AAB48037 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-8.Audio-Levels/Pods-8.Audio-Levels-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80D2905F273070F4E92A775C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-8.Audio-Levels/Pods-8.Audio-Levels-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B20B7C2E46567A902F6725CF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5F4844A198A3C0E00E6C689 /* Sources */ = {
@@ -482,7 +397,6 @@
 		};
 		A5F48484198A3C0E00E6C689 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 106237D9E4540055CA4056B4 /* Pods-8.Audio-Levels.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -497,7 +411,6 @@
 		};
 		A5F48485198A3C0E00E6C689 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93FE299DD9DFFF6A047505E6 /* Pods-8.Audio-Levels.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
