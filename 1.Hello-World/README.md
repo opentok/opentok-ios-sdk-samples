@@ -4,6 +4,8 @@ Project 1: Hello World
 The Hello World app is a very simple application meant to get a new developer
 started using the OpenTok iOS SDK.
 
+A Swift version is available here: https://github.com/thepatrick/Opentok-HelloWorld-Swift
+
 Application Notes
 -----------------
 
@@ -55,7 +57,6 @@ Application Notes
     * In a browser, load the browser_demo.html file from the web server. Click
       the Connect and Publish buttons. Run the app on your iOS device to send
       and receive streams between the device and the browser.
-
 
 Configuration Notes
 -------------------
