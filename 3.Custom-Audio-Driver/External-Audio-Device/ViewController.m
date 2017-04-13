@@ -95,9 +95,9 @@ static bool subscribeToSelf = NO;
  */
 - (void)doPublish
 {
-    _publisher =
-    [[OTPublisher alloc] initWithDelegate:self
-                                     name:[[UIDevice currentDevice] name]];
+    OTPublisherSettings *setting = [[OTPublisherSettings alloc] init];
+    setting.name = [UIDevice currentDevice].name;
+    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:setting];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
