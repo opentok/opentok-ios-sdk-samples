@@ -864,9 +864,9 @@ OTPublisherDelegate>{
 - (void)setupPublisher
 {
 	// create one time publisher and style publisher
-    OTPublisherSettings *setting = [[OTPublisherSettings alloc] init];
-    setting.name = [UIDevice currentDevice].name;
-    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:setting];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = [UIDevice currentDevice].name;
+    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     
     [self willAnimateRotationToInterfaceOrientation:
      [[UIApplication sharedApplication] statusBarOrientation] duration:1.0];

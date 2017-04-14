@@ -138,9 +138,9 @@ OTPublisherDelegate>{
 - (void)setupPublisher
 {
     // create one time publisher and style publisher
-    OTPublisherSettings *setting = [[OTPublisherSettings alloc] init];
-    setting.name = self.publisherName;
-	 _publisher = [[OTPublisher alloc] initWithDelegate:self settings:setting];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = self.publisherName;
+	 _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     _publisher.publishVideo = NO;
 }
 

@@ -36,9 +36,9 @@
 - (id)initWithDelegate:(id<OTPublisherDelegate>)delegate
                   name:(NSString*)name
 {
-    OTPublisherSettings *setting = [[OTPublisherSettings alloc] init];
-    setting.name = name;
-    self = [super initWithDelegate:delegate settings:setting];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = name;
+    self = [super initWithDelegate:delegate settings:settings];
     if (self) {
         TBExampleVideoCapture* videoCapture =
         [[[TBExampleVideoCapture alloc] init] autorelease];
@@ -58,9 +58,9 @@
                   name:(NSString*)name
               capturer:(id<OTVideoCapture>)capturer
 {
-    OTPublisherSettings *setting = [[OTPublisherSettings alloc] init];
-    setting.name = name;
-    self = [super initWithDelegate:delegate settings:setting];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = name;
+    self = [super initWithDelegate:delegate settings:settings];
     if (self) {
         [self setVideoCapture:capturer];
         
