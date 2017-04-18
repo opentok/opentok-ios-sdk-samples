@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8809C64B9283E4D23E2BF55 /* Pods_5_Live_Photo_Capture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27EC841C644F5A42E4C89190 /* Pods_5_Live_Photo_Capture.framework */; };
 		D44261F0185FC8D600E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D44261EE185FC8D600E23699 /* InfoPlist.strings */; };
 		D44261F2185FC8D600E23699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261F1185FC8D600E23699 /* main.m */; };
 		D44261F6185FC8D600E23699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261F5185FC8D600E23699 /* AppDelegate.m */; };
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		010D3F96249136D12074DC44 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C1685331A71930400A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		1753B88C112E8D4DB88F6516 /* Pods-5.Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Live-Photo-Capture.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
+		27EC841C644F5A42E4C89190 /* Pods_5_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_5_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B5C89EC9B6BD0D4D2BB47A7 /* Pods-Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
 		35339DD51D5BEAE1338B949A /* Pods-Live-Photo-Capture.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.debug.xcconfig"; sourceTree = "<group>"; };
 		54D5FF3A0FED5CB24D1C93A5 /* Pods-Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live-Photo-Capture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Live-Photo-Capture/Pods-Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		D4426247185FCF6A00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D4F8FD9C194125D100364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		EB45062647514FD30EAB33B7 /* Pods_Live_Photo_Capture.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Live_Photo_Capture.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECE243C30272B125F718368D /* Pods-5.Live-Photo-Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-5.Live-Photo-Capture.release.xcconfig"; path = "../Pods/Target Support Files/Pods-5.Live-Photo-Capture/Pods-5.Live-Photo-Capture.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8809C64B9283E4D23E2BF55 /* Pods_5_Live_Photo_Capture.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +96,8 @@
 				54D5FF3A0FED5CB24D1C93A5 /* Pods-Live-Photo-Capture.release.xcconfig */,
 				6CB2A58901A8077759FDA75D /* Pods-Live-Photo-Capture.debug.xcconfig */,
 				2B5C89EC9B6BD0D4D2BB47A7 /* Pods-Live-Photo-Capture.release.xcconfig */,
+				1753B88C112E8D4DB88F6516 /* Pods-5.Live-Photo-Capture.debug.xcconfig */,
+				ECE243C30272B125F718368D /* Pods-5.Live-Photo-Capture.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -137,6 +144,7 @@
 				010D3F96249136D12074DC44 /* libPods.a */,
 				CAA93CAF3C1D733118BC00CA /* libPods-Live-Photo-CaptureTests.a */,
 				EB45062647514FD30EAB33B7 /* Pods_Live_Photo_Capture.framework */,
+				27EC841C644F5A42E4C89190 /* Pods_5_Live_Photo_Capture.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,7 +304,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -419,7 +427,7 @@
 		};
 		D4426218185FC8D600E23699 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CB2A58901A8077759FDA75D /* Pods-Live-Photo-Capture.debug.xcconfig */;
+			baseConfigurationReference = 1753B88C112E8D4DB88F6516 /* Pods-5.Live-Photo-Capture.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -447,7 +455,7 @@
 		};
 		D4426219185FC8D600E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B5C89EC9B6BD0D4D2BB47A7 /* Pods-Live-Photo-Capture.release.xcconfig */;
+			baseConfigurationReference = ECE243C30272B125F718368D /* Pods-5.Live-Photo-Capture.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
