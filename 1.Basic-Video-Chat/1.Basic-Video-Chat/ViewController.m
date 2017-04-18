@@ -99,8 +99,7 @@ static double widgetWidth = 320;
         [self showAlert:[error localizedDescription]];
     }
     
-//    [self.view addSubview:_publisher.view];
-    [self.view insertSubview:_publisher.view atIndex:0];
+    [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
 }
 
@@ -220,8 +219,7 @@ didFailWithError:(OTError*)error
     assert(_subscriber == subscriber);
     [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                          widgetHeight)];
-//    [self.view addSubview:_subscriber.view];
-    [self.view insertSubview:_subscriber.view atIndex:0];
+    [self.view addSubview:_subscriber.view];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -276,13 +274,6 @@ didFailWithError:(OTError*)error
                                                otherButtonTitles:nil] ;
         [alert show];
     });
-}
-
--(void)subscriberVideoDisabled:(OTSubscriber *)subscriber reason:(OTSubscriberVideoEventReason)reason {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-}
-- (IBAction)buttonPressed:(id)sender {
-    _subscriber.subscribeToVideo = NO;
 }
 
 @end
