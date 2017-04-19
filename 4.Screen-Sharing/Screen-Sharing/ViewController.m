@@ -96,11 +96,11 @@ static bool subscribeToSelf = NO;
     
     // We're not using Audio for this publisher, so don't bother setting up the
     // audio track.
-    _publisher =
-    [[OTPublisherKit alloc] initWithDelegate:self
-                                        name:[UIDevice currentDevice].name
-                                  audioTrack:YES
-                                  videoTrack:YES];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = [UIDevice currentDevice].name;
+    settings.audioTrack = YES;
+    settings.videoTrack = YES;
+    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     
     // Additionally, the publisher video type can be updated to signal to
     // receivers that the video is from a screencast. This value also disables

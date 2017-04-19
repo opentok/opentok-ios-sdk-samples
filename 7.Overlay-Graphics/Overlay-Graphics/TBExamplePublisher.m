@@ -26,14 +26,14 @@
  */
 
 - (id)init {
-    self = [self initWithDelegate:nil name:nil];
+    self = [self initWithDelegate:nil settings:nil];
     if (self) {
         // nothing to do!
     }
     return self;
 }
 - (id)initWithDelegate:(id<OTPublisherDelegate>)delegate {
-    self = [self initWithDelegate:delegate name:nil];
+    self = [self initWithDelegate:delegate settings:nil];
     if (self) {
         // nothing to do!
     }
@@ -43,7 +43,9 @@
 - (id)initWithDelegate:(id<OTPublisherDelegate>)delegate
                   name:(NSString*)name
 {
-    self = [super initWithDelegate:delegate name:name];
+    OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
+    settings.name = name;
+    self = [super initWithDelegate:delegate settings:settings];
     if (self) {
         TBExampleVideoCapture* videoCapture =
         [[[TBExampleVideoCapture alloc] init] autorelease];
