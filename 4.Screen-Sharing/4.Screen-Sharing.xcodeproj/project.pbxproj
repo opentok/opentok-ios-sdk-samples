@@ -16,6 +16,7 @@
 		0C99B78319AE909300A60ABA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C99B78219AE909300A60ABA /* ViewController.m */; };
 		0C99B78519AE909300A60ABA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C99B78419AE909300A60ABA /* Images.xcassets */; };
 		0CC1C07F19B7C23F00BD819F /* TBScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */; };
+		872FE39CE349791559F41B70 /* Pods_4_Screen_Sharing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4DC0A576AAA582EE34A6880 /* Pods_4_Screen_Sharing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				872FE39CE349791559F41B70 /* Pods_4_Screen_Sharing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
