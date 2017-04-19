@@ -7,29 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A06FEC231EA6C6B5008368A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A06FEC171EA6C6B5008368A8 /* AppDelegate.m */; };
-		A06FEC241EA6C6B5008368A8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06FEC181EA6C6B5008368A8 /* Main_iPad.storyboard */; };
-		A06FEC251EA6C6B5008368A8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06FEC1A1EA6C6B5008368A8 /* Main_iPhone.storyboard */; };
-		A06FEC261EA6C6B5008368A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A06FEC1C1EA6C6B5008368A8 /* InfoPlist.strings */; };
-		A06FEC271EA6C6B5008368A8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06FEC1E1EA6C6B5008368A8 /* Images.xcassets */; };
-		A06FEC281EA6C6B5008368A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A06FEC1F1EA6C6B5008368A8 /* main.m */; };
-		A06FEC291EA6C6B5008368A8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06FEC211EA6C6B5008368A8 /* ViewController.m */; };
+		A01C50FA1EA7E30300AA24B1 /* 1.Basics-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A01C50EC1EA7E30300AA24B1 /* 1.Basics-Info.plist */; };
+		A01C50FB1EA7E30300AA24B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C50EF1EA7E30300AA24B1 /* AppDelegate.m */; };
+		A01C50FC1EA7E30300AA24B1 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01C50F01EA7E30300AA24B1 /* Main_iPad.storyboard */; };
+		A01C50FD1EA7E30300AA24B1 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01C50F21EA7E30300AA24B1 /* Main_iPhone.storyboard */; };
+		A01C50FE1EA7E30300AA24B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A01C50F41EA7E30300AA24B1 /* InfoPlist.strings */; };
+		A01C50FF1EA7E30300AA24B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A01C50F61EA7E30300AA24B1 /* Images.xcassets */; };
+		A01C51001EA7E30300AA24B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C50F71EA7E30300AA24B1 /* main.m */; };
+		A01C51011EA7E30300AA24B1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A01C50F91EA7E30300AA24B1 /* ViewController.m */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A06FEC141EA6C6B5008368A8 /* 1.Basic-Video-Chat-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "1.Basic-Video-Chat-Info.plist"; sourceTree = "<group>"; };
-		A06FEC151EA6C6B5008368A8 /* 1.Basic-Video-Chat-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "1.Basic-Video-Chat-Prefix.pch"; sourceTree = "<group>"; };
-		A06FEC161EA6C6B5008368A8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A06FEC171EA6C6B5008368A8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A06FEC191EA6C6B5008368A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		A06FEC1B1EA6C6B5008368A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		A06FEC1D1EA6C6B5008368A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A06FEC1E1EA6C6B5008368A8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A06FEC1F1EA6C6B5008368A8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A06FEC201EA6C6B5008368A8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A06FEC211EA6C6B5008368A8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		D44260F3185F81D800E23699 /* 1.Basic-Video-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "1.Basic-Video-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01C50EC1EA7E30300AA24B1 /* 1.Basics-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "1.Basics-Info.plist"; sourceTree = "<group>"; };
+		A01C50ED1EA7E30300AA24B1 /* 1.Basics-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "1.Basics-Prefix.pch"; sourceTree = "<group>"; };
+		A01C50EE1EA7E30300AA24B1 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A01C50EF1EA7E30300AA24B1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A01C50F11EA7E30300AA24B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		A01C50F31EA7E30300AA24B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		A01C50F51EA7E30300AA24B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A01C50F61EA7E30300AA24B1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A01C50F71EA7E30300AA24B1 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A01C50F81EA7E30300AA24B1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		A01C50F91EA7E30300AA24B1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D44260F3185F81D800E23699 /* 1.Basics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1.Basics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -46,29 +47,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A06FEC131EA6C6B5008368A8 /* 1.Basic-Video-Chat */ = {
+		A01C50EB1EA7E30300AA24B1 /* 1.Basics */ = {
 			isa = PBXGroup;
 			children = (
-				A06FEC141EA6C6B5008368A8 /* 1.Basic-Video-Chat-Info.plist */,
-				A06FEC151EA6C6B5008368A8 /* 1.Basic-Video-Chat-Prefix.pch */,
-				A06FEC161EA6C6B5008368A8 /* AppDelegate.h */,
-				A06FEC171EA6C6B5008368A8 /* AppDelegate.m */,
-				A06FEC181EA6C6B5008368A8 /* Main_iPad.storyboard */,
-				A06FEC1A1EA6C6B5008368A8 /* Main_iPhone.storyboard */,
-				A06FEC1C1EA6C6B5008368A8 /* InfoPlist.strings */,
-				A06FEC1E1EA6C6B5008368A8 /* Images.xcassets */,
-				A06FEC1F1EA6C6B5008368A8 /* main.m */,
-				A06FEC201EA6C6B5008368A8 /* ViewController.h */,
-				A06FEC211EA6C6B5008368A8 /* ViewController.m */,
+				A01C50EC1EA7E30300AA24B1 /* 1.Basics-Info.plist */,
+				A01C50ED1EA7E30300AA24B1 /* 1.Basics-Prefix.pch */,
+				A01C50EE1EA7E30300AA24B1 /* AppDelegate.h */,
+				A01C50EF1EA7E30300AA24B1 /* AppDelegate.m */,
+				A01C50F01EA7E30300AA24B1 /* Main_iPad.storyboard */,
+				A01C50F21EA7E30300AA24B1 /* Main_iPhone.storyboard */,
+				A01C50F41EA7E30300AA24B1 /* InfoPlist.strings */,
+				A01C50F61EA7E30300AA24B1 /* Images.xcassets */,
+				A01C50F71EA7E30300AA24B1 /* main.m */,
+				A01C50F81EA7E30300AA24B1 /* ViewController.h */,
+				A01C50F91EA7E30300AA24B1 /* ViewController.m */,
 			);
-			path = "1.Basic-Video-Chat";
+			path = 1.Basics;
 			sourceTree = "<group>";
 		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
 				D442614B185F92BF00E23699 /* README.md */,
-				A06FEC131EA6C6B5008368A8 /* 1.Basic-Video-Chat */,
+				A01C50EB1EA7E30300AA24B1 /* 1.Basics */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
 			);
@@ -77,7 +78,7 @@
 		D44260F4185F81D800E23699 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D44260F3185F81D800E23699 /* 1.Basic-Video-Chat.app */,
+				D44260F3185F81D800E23699 /* 1.Basics.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D44260F2185F81D800E23699 /* 1.Basic-Video-Chat */ = {
+		D44260F2185F81D800E23699 /* 1.Basics */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "1.Basic-Video-Chat" */;
+			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "1.Basics" */;
 			buildPhases = (
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
@@ -106,9 +107,9 @@
 			);
 			dependencies = (
 			);
-			name = "1.Basic-Video-Chat";
+			name = 1.Basics;
 			productName = "Hello-World";
-			productReference = D44260F3185F81D800E23699 /* 1.Basic-Video-Chat.app */;
+			productReference = D44260F3185F81D800E23699 /* 1.Basics.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -126,7 +127,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "1.Basic-Video-Chat" */;
+			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "1.Basics" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -139,7 +140,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D44260F2185F81D800E23699 /* 1.Basic-Video-Chat */,
+				D44260F2185F81D800E23699 /* 1.Basics */,
 			);
 		};
 /* End PBXProject section */
@@ -149,11 +150,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06FEC261EA6C6B5008368A8 /* InfoPlist.strings in Resources */,
-				A06FEC271EA6C6B5008368A8 /* Images.xcassets in Resources */,
-				A06FEC241EA6C6B5008368A8 /* Main_iPad.storyboard in Resources */,
-				A06FEC251EA6C6B5008368A8 /* Main_iPhone.storyboard in Resources */,
+				A01C50FD1EA7E30300AA24B1 /* Main_iPhone.storyboard in Resources */,
+				A01C50FC1EA7E30300AA24B1 /* Main_iPad.storyboard in Resources */,
+				A01C50FA1EA7E30300AA24B1 /* 1.Basics-Info.plist in Resources */,
+				A01C50FF1EA7E30300AA24B1 /* Images.xcassets in Resources */,
 				D442614C185F92C000E23699 /* README.md in Resources */,
+				A01C50FE1EA7E30300AA24B1 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,35 +166,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06FEC291EA6C6B5008368A8 /* ViewController.m in Sources */,
-				A06FEC281EA6C6B5008368A8 /* main.m in Sources */,
-				A06FEC231EA6C6B5008368A8 /* AppDelegate.m in Sources */,
+				A01C51011EA7E30300AA24B1 /* ViewController.m in Sources */,
+				A01C51001EA7E30300AA24B1 /* main.m in Sources */,
+				A01C50FB1EA7E30300AA24B1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A06FEC181EA6C6B5008368A8 /* Main_iPad.storyboard */ = {
+		A01C50F01EA7E30300AA24B1 /* Main_iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A06FEC191EA6C6B5008368A8 /* Base */,
+				A01C50F11EA7E30300AA24B1 /* Base */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
-		A06FEC1A1EA6C6B5008368A8 /* Main_iPhone.storyboard */ = {
+		A01C50F21EA7E30300AA24B1 /* Main_iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A06FEC1B1EA6C6B5008368A8 /* Base */,
+				A01C50F31EA7E30300AA24B1 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		A06FEC1C1EA6C6B5008368A8 /* InfoPlist.strings */ = {
+		A01C50F41EA7E30300AA24B1 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A06FEC1D1EA6C6B5008368A8 /* en */,
+				A01C50F51EA7E30300AA24B1 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -246,8 +248,8 @@
 					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "1.Basic-Video-Chat/1.Basic-Video-Chat-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/1.Basic-Video-Chat/1.Basic-Video-Chat-Info.plist";
+				GCC_PREFIX_HEADER = "1.Basic-Video-Chat/1.Basics-Prefix.pch";
+				INFOPLIST_FILE = "1.Basic-Video-Chat/1.Basics-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -302,8 +304,8 @@
 					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "1.Basic-Video-Chat/1.Basic-Video-Chat-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/1.Basic-Video-Chat/1.Basic-Video-Chat-Info.plist";
+				GCC_PREFIX_HEADER = "1.Basic-Video-Chat/1.Basics-Prefix.pch";
+				INFOPLIST_FILE = "1.Basic-Video-Chat/1.Basics-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -313,7 +315,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "1.Basic-Video-Chat" */ = {
+		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "1.Basics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4426127185F81D800E23699 /* Release */,
@@ -322,7 +324,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "1.Basic-Video-Chat" */ = {
+		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "1.Basics" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D442612A185F81D800E23699 /* Release */,
