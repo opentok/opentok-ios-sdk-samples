@@ -1,5 +1,0 @@
-platform :ios, '8.0'
-
-target '4.Screen-Sharing' do
-    pod 'OpenTok'
-end
