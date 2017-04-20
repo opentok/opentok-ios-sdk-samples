@@ -10,7 +10,7 @@ This example also shows how to display an indicator when the session is being
 archived. (See the [Archiving overview][1] documentation.)
 
 *Important:* To use this application, follow the instructions in the
-[Quick Start](../README.md/quick-start) section of the main README file
+[Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
 
 Application Notes

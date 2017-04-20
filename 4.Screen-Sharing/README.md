@@ -8,7 +8,7 @@ See the "Lets build OTPublisher" sample code for basic information on using a
 custom video capturer.
 
 *Important:* To use this application, follow the instructions in the
-[Quick Start](../README.md/quick-start) section of the main README file
+[Quick Start](../README.md#quick-start) section of the main README file
 for this repository.
 
 The main storyboard includes a UITextView object that is referenced in the
