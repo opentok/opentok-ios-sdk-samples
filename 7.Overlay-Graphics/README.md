@@ -6,6 +6,10 @@ subscriber views. It basically extends [project 2][1], "Let's build
 OTPublisher." By the end of a code review, you should learn how to add
 graphics on top of publisher and subscriber video views.
 
+*Important:* To use this application, follow the instructions in the
+[Quick Start](../README.md/quick-start) section of the main README file
+for this repository.
+
 Configuration Notes
 ===================
 

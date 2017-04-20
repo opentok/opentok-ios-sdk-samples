@@ -5,6 +5,10 @@ This project shows how to use the OpenTok iOS SDK to develop audio-only calls
 with  multiple subscribers and audio levels. By the end of a code review, you
 should learn how to add audio only calls with the OpenTok iOS SDK.
 
+*Important:* To use this application, follow the instructions in the
+[Quick Start](../README.md/quick-start) section of the main README file
+for this repository.
+
 Application Notes
 =================
 

@@ -8,6 +8,10 @@ understand how to use the AVFoundation API to temporarily halt your video
 capture module, adjust capture settings to use photo-quality resolution,
 capture a picture, then resume video capture.
 
+*Important:* To use this application, follow the instructions in the
+[Quick Start](../README.md/quick-start) section of the main README file
+for this repository.
+
 Configuration Notes
 -------------------
 
