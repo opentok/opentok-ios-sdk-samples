@@ -9,6 +9,35 @@ modify the source code herein for your own projects. Please consider sharing
 your modifications with us, especially if they might benefit other developers
 using the OpenTok iOS SDK. See the [License](LICENSE) for more information.
 
+Quick Start
+-----------
+
+ 1. Get values for your OpenTok **API key**, **session ID**, and **token**.
+    See [Obtaining OpenTok Credentials](#obtaining-opentok-credentials)
+    for important information.
+ 
+ 1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+ 
+ 1. In Terminal, `cd` to your project directory and type `pod install`.
+ 
+ 1. Reopen your project in Xcode using the new `Opentok-iOS-samples.xcworkspace` file.
+ 
+ 1. In the ViewController.swift file, replace the following empty strings
+    with the corresponding API Key, session ID, and token values:
+    
+    ```objc
+    // *** Fill the following variables using your own Project info  ***
+    // ***          https://dashboard.tokbox.com/projects            ***
+    // Replace with your OpenTok API key
+    static NSString* const kApiKey = @"";
+    // Replace with your generated session ID
+    static NSString* const kSessionId = @"";
+    // Replace with your generated token
+    static NSString* const kToken = @"";
+	```
+    
+ 1. Use Xcode to build and run the app on an iOS simulator or device.
+
 What's Inside
 -------------
 
@@ -69,15 +98,14 @@ capture implementations provided herein.
     AVAudioPlayer controller, which will play a short ringtone while waiting for
     the subscriber to connect to the client device.
 
+## Obtaining OpenTok Credentials
 
-Installing OpenTok.framework
------------------------------
-
-We are using CocoaPods to install OpenTok dependency in the sample projects. 
-Just run `pod install` on the root folder of the samples and the dependency will
-be automatically installed.
-
-After running that command, open the generated xcworkspace file to run the samples.
+To use the OpenTok platform you need a session ID, token, and API Key.
+You can get these values by creating a project on your [OpenTok Account
+Page](https://tokbox.com/account/) and scrolling down to the Project Tools
+section of your Project page. For production deployment, you must generate the
+session ID and token values using one of the [OpenTok Server
+SDKs](https://tokbox.com/developer/sdks/server/).
 
 Getting Sample Code Updates
 ---------------------------
