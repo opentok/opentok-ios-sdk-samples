@@ -47,3 +47,8 @@ target '9.Ringtones' do
 	project '9.Ringtones/9.Ringtones.xcodeproj'
 	pod 'OpenTok'
 end
+
+target ‘Archiving’ do
+	project 'Archiving/Archiving.xcodeproj'
+	pod 'OpenTok'
+end
