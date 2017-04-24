@@ -51,6 +51,11 @@
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         if (error){
+            if (error.code == -1003) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Invalid server base URL" message:@"Please check Config.h file." preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
             NSLog(@"Error,%@, URL: %@", [error localizedDescription],urlPath);
         }
         else{
