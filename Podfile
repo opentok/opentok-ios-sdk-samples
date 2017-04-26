@@ -7,48 +7,53 @@ target '1.Hello-World' do
 	pod 'OpenTok'
 end
 
-target '2.Custom-Video-Driver' do
-	project '2.Custom-Video-Driver/2.Custom-Video-Driver.xcodeproj'
+target 'Custom-Video-Driver' do
+	project 'Custom-Video-Driver/Custom-Video-Driver.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '3.Custom-Audio-Driver' do
-	project '3.Custom-Audio-Driver/3.Custom-Audio-Driver.xcodeproj'
+target 'Custom-Audio-Driver' do
+	project 'Custom-Audio-Driver/Custom-Audio-Driver.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '4.Screen-Sharing' do
-	project '4.Screen-Sharing/4.Screen-Sharing.xcodeproj'
+target 'Screen-Sharing' do
+	project 'Screen-Sharing/Screen-Sharing.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '5.Live-Photo-Capture' do
-	project '5.Live-Photo-Capture/5.Live-Photo-Capture.xcodeproj'
+target 'Live-Photo-Capture' do
+	project 'Live-Photo-Capture/Live-Photo-Capture.xcodeproj'
 	pod 'OpenTok'
 end
 
 
-target '6.Simple-Multiparty' do
-	project '6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj'
+target 'Simple-Multiparty' do
+	project 'Simple-Multiparty/Simple-Multiparty.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '7.Overlay-Graphics' do
-	project '7.Overlay-Graphics/7.Overlay-Graphics.xcodeproj'
+target 'Overlay-Graphics' do
+	project 'Overlay-Graphics/Overlay-Graphics.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '8.Audio-Levels' do
-	project '8.Audio-Levels/8.Audio-Levels.xcodeproj'
+target 'Audio-Levels' do
+	project 'Audio-Levels/Audio-Levels.xcodeproj'
 	pod 'OpenTok'
 end
 
-target '9.Ringtones' do
-	project '9.Ringtones/9.Ringtones.xcodeproj'
+target 'Ringtones' do
+	project 'Ringtones/Ringtones.xcodeproj'
 	pod 'OpenTok'
 end
 
-target ‘Archiving’ do
+target 'Archiving' do
 	project 'Archiving/Archiving.xcodeproj'
+	pod 'OpenTok'
+end
+
+target 'Signaling' do
+	project 'Signaling/Signaling.xcodeproj'
 	pod 'OpenTok'
 end
