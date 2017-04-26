@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,71 +19,40 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="YM2-i5-qwZ" userLabel="Subscriber Container">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNU-0U-P9j" userLabel="Publisher Container">
-                                <rect key="frame" x="10" y="500" width="120" height="90"/>
+                                <rect key="frame" x="10" y="567" width="120" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="1Rn-K7-f2t"/>
                                     <constraint firstAttribute="width" secondItem="VNU-0U-P9j" secondAttribute="height" multiplier="4:3" id="Z6m-YP-bNq"/>
                                     <constraint firstAttribute="width" constant="120" id="vX1-aE-mLu"/>
                                 </constraints>
                             </containerView>
-                            <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4Y-or-Dng" userLabel="Swap Camera Button">
-                                <rect key="frame" x="18" y="556" width="33" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="NXB-WY-kvM"/>
-                                    <constraint firstAttribute="width" constant="33" id="WG2-nv-apo"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="camera-switch_black-33.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpr-UX-Ad0" userLabel="Subscriber Audio Button">
-                                <rect key="frame" x="566" y="565" width="24" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="Lx6-KT-gxt"/>
-                                    <constraint firstAttribute="height" constant="25" id="oBl-EW-K3y"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="Subscriber-Speaker-35.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archiving_on-10.png" translatesAutoresizingMaskIntoConstraints="NO" id="wME-Qk-BRs" userLabel="Archiving Indicator Img">
                                 <rect key="frame" x="10" y="10" width="10" height="10"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7S-eq-mJi" userLabel="Archive Control Button">
                                 <rect key="frame" x="30" y="0.0" width="108" height="30"/>
                                 <state key="normal" title="Start Recording">
-                                    <color key="titleColor" red="1" green="0.86088040789999998" blue="0.1764404899" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="0.86088040789999998" blue="0.1764404899" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                            </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAV-RL-4d9" userLabel="Publisher Audio Button">
-                                <rect key="frame" x="91" y="561" width="24" height="24"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="mic-24.png"/>
                             </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="x7S-eq-mJi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="46X-Kb-tue"/>
-                            <constraint firstItem="S4Y-or-Dng" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="2" id="5V9-KD-6VC"/>
-                            <constraint firstItem="sAV-RL-4d9" firstAttribute="leading" secondItem="S4Y-or-Dng" secondAttribute="trailing" constant="40" id="6s4-jA-Lad"/>
                             <constraint firstItem="YM2-i5-qwZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7kd-ny-a0i"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="S4Y-or-Dng" secondAttribute="bottom" constant="10" id="GLE-El-kW2"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sAV-RL-4d9" secondAttribute="bottom" constant="15" id="GaM-FZ-a6I"/>
                             <constraint firstItem="VNU-0U-P9j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Kf8-Bf-qDD"/>
                             <constraint firstItem="YM2-i5-qwZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NqX-eL-Ona"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VNU-0U-P9j" secondAttribute="bottom" constant="10" id="QJg-ZE-4e2"/>
                             <constraint firstAttribute="bottom" secondItem="YM2-i5-qwZ" secondAttribute="bottom" id="V8Q-0P-yrN"/>
-                            <constraint firstAttribute="trailing" secondItem="hpr-UX-Ad0" secondAttribute="trailing" constant="10" id="dUz-Fm-AT0"/>
                             <constraint firstAttribute="trailing" secondItem="YM2-i5-qwZ" secondAttribute="trailing" id="jnF-8I-e5X"/>
                             <constraint firstItem="wME-Qk-BRs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="nkG-UZ-K8t"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="hpr-UX-Ad0" secondAttribute="bottom" constant="10" id="noz-Qu-itD"/>
                             <constraint firstItem="x7S-eq-mJi" firstAttribute="leading" secondItem="wME-Qk-BRs" secondAttribute="trailing" constant="10" id="or4-Wp-afi"/>
                             <constraint firstItem="wME-Qk-BRs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="pDW-4C-N5J"/>
                         </constraints>
@@ -87,11 +60,8 @@
                     <connections>
                         <outlet property="archiveControlBtn" destination="x7S-eq-mJi" id="fVP-Yg-eo5"/>
                         <outlet property="archiveIndicatorImg" destination="wME-Qk-BRs" id="HbK-vN-v1H"/>
-                        <outlet property="publisherAudioBtn" destination="sAV-RL-4d9" id="kXS-ju-VZt"/>
                         <outlet property="publisherView" destination="VNU-0U-P9j" id="MAz-DJ-pJI"/>
-                        <outlet property="subscriberAudioBtn" destination="hpr-UX-Ad0" id="6GE-L4-zCE"/>
                         <outlet property="subscriberView" destination="YM2-i5-qwZ" id="dsw-lc-zre"/>
-                        <outlet property="swapCameraBtn" destination="S4Y-or-Dng" id="9R2-Si-55f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,9 +70,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Subscriber-Speaker-35.png" width="35" height="35"/>
         <image name="archiving_on-10.png" width="10" height="10"/>
-        <image name="camera-switch_black-33.png" width="33" height="33"/>
-        <image name="mic-24.png" width="24" height="24"/>
     </resources>
 </document>

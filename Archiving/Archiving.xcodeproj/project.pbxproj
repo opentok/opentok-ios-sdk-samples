@@ -26,17 +26,9 @@
 		A06E8B5E1EAE5B04003DF42F /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B4A1EAE5B04003DF42F /* archiving_on-10.png */; };
 		A06E8B5F1EAE5B04003DF42F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B4B1EAE5B04003DF42F /* LaunchScreen.xib */; };
 		A06E8B601EAE5B04003DF42F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B4D1EAE5B04003DF42F /* Main.storyboard */; };
-		A06E8B611EAE5B04003DF42F /* camera-switch_black-33.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B4F1EAE5B04003DF42F /* camera-switch_black-33.png */; };
-		A06E8B621EAE5B04003DF42F /* camera_switch-33.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B501EAE5B04003DF42F /* camera_switch-33.png */; };
 		A06E8B631EAE5B04003DF42F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B511EAE5B04003DF42F /* Images.xcassets */; };
 		A06E8B641EAE5B04003DF42F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B521EAE5B04003DF42F /* Info.plist */; };
 		A06E8B651EAE5B04003DF42F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A06E8B531EAE5B04003DF42F /* main.m */; };
-		A06E8B661EAE5B04003DF42F /* mic-24.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B541EAE5B04003DF42F /* mic-24.png */; };
-		A06E8B671EAE5B04003DF42F /* mic_muted-24.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B551EAE5B04003DF42F /* mic_muted-24.png */; };
-		A06E8B681EAE5B04003DF42F /* Subscriber-Speaker-35.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B571EAE5B04003DF42F /* Subscriber-Speaker-35.png */; };
-		A06E8B691EAE5B04003DF42F /* Subscriber-Speaker-35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B581EAE5B04003DF42F /* Subscriber-Speaker-35@2x.png */; };
-		A06E8B6A1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B591EAE5B04003DF42F /* Subscriber-Speaker-Mute-35.png */; };
-		A06E8B6B1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B5A1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35@2x.png */; };
 		A06E8B6C1EAE5B04003DF42F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A06E8B5C1EAE5B04003DF42F /* ViewController.m */; };
 		A07297411EAE5D2C00A2DB1E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A07297401EAE5D2C00A2DB1E /* README.md */; };
 /* End PBXBuildFile section */
@@ -63,17 +55,9 @@
 		A06E8B4A1EAE5B04003DF42F /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
 		A06E8B4C1EAE5B04003DF42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A06E8B4E1EAE5B04003DF42F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A06E8B4F1EAE5B04003DF42F /* camera-switch_black-33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-switch_black-33.png"; sourceTree = "<group>"; };
-		A06E8B501EAE5B04003DF42F /* camera_switch-33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_switch-33.png"; sourceTree = "<group>"; };
 		A06E8B511EAE5B04003DF42F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A06E8B521EAE5B04003DF42F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A06E8B531EAE5B04003DF42F /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A06E8B541EAE5B04003DF42F /* mic-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mic-24.png"; sourceTree = "<group>"; };
-		A06E8B551EAE5B04003DF42F /* mic_muted-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mic_muted-24.png"; sourceTree = "<group>"; };
-		A06E8B571EAE5B04003DF42F /* Subscriber-Speaker-35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-35.png"; sourceTree = "<group>"; };
-		A06E8B581EAE5B04003DF42F /* Subscriber-Speaker-35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-35@2x.png"; sourceTree = "<group>"; };
-		A06E8B591EAE5B04003DF42F /* Subscriber-Speaker-Mute-35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-Mute-35.png"; sourceTree = "<group>"; };
-		A06E8B5A1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Subscriber-Speaker-Mute-35@2x.png"; sourceTree = "<group>"; };
 		A06E8B5B1EAE5B04003DF42F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A06E8B5C1EAE5B04003DF42F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A072973F1EAE5C2900A2DB1E /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -155,17 +139,9 @@
 				A06E8B4B1EAE5B04003DF42F /* LaunchScreen.xib */,
 				A06E8B4D1EAE5B04003DF42F /* Main.storyboard */,
 				A072973F1EAE5C2900A2DB1E /* Config.h */,
-				A06E8B4F1EAE5B04003DF42F /* camera-switch_black-33.png */,
-				A06E8B501EAE5B04003DF42F /* camera_switch-33.png */,
 				A06E8B511EAE5B04003DF42F /* Images.xcassets */,
 				A06E8B521EAE5B04003DF42F /* Info.plist */,
 				A06E8B531EAE5B04003DF42F /* main.m */,
-				A06E8B541EAE5B04003DF42F /* mic-24.png */,
-				A06E8B551EAE5B04003DF42F /* mic_muted-24.png */,
-				A06E8B571EAE5B04003DF42F /* Subscriber-Speaker-35.png */,
-				A06E8B581EAE5B04003DF42F /* Subscriber-Speaker-35@2x.png */,
-				A06E8B591EAE5B04003DF42F /* Subscriber-Speaker-Mute-35.png */,
-				A06E8B5A1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35@2x.png */,
 				A06E8B5B1EAE5B04003DF42F /* ViewController.h */,
 				A06E8B5C1EAE5B04003DF42F /* ViewController.m */,
 			);
@@ -229,17 +205,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A06E8B611EAE5B04003DF42F /* camera-switch_black-33.png in Resources */,
-				A06E8B661EAE5B04003DF42F /* mic-24.png in Resources */,
-				A06E8B6B1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35@2x.png in Resources */,
 				A06E8B601EAE5B04003DF42F /* Main.storyboard in Resources */,
-				A06E8B691EAE5B04003DF42F /* Subscriber-Speaker-35@2x.png in Resources */,
-				A06E8B671EAE5B04003DF42F /* mic_muted-24.png in Resources */,
 				A06E8B5F1EAE5B04003DF42F /* LaunchScreen.xib in Resources */,
-				A06E8B6A1EAE5B04003DF42F /* Subscriber-Speaker-Mute-35.png in Resources */,
 				A06E8B631EAE5B04003DF42F /* Images.xcassets in Resources */,
-				A06E8B621EAE5B04003DF42F /* camera_switch-33.png in Resources */,
-				A06E8B681EAE5B04003DF42F /* Subscriber-Speaker-35.png in Resources */,
 				A06E8B5E1EAE5B04003DF42F /* archiving_on-10.png in Resources */,
 				A06E8B641EAE5B04003DF42F /* Info.plist in Resources */,
 			);
