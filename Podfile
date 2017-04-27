@@ -2,8 +2,8 @@ platform :ios, '9.0'
 use_frameworks!
 workspace 'Opentok-iOS-samples'
 
-target '1.Basics' do
-	project '1.Basics/1.Basics.xcodeproj'
+target 'Basic-Video-Chat' do
+	project 'Basic-Video-Chat/Basic-Video-Chat.xcodeproj'
 	pod 'OpenTok'
 end
 
