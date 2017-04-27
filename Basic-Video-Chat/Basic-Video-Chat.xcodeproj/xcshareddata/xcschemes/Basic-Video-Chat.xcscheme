@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D44260F2185F81D800E23699"
-               BuildableName = "1.Basics.app"
-               BlueprintName = "1.Basics"
-               ReferencedContainer = "container:1.Basics.xcodeproj">
+               BuildableName = "Basic-Video-Chat.app"
+               BlueprintName = "Basic-Video-Chat"
+               ReferencedContainer = "container:Basic-Video-Chat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "1.Basics.app"
-            BlueprintName = "1.Basics"
-            ReferencedContainer = "container:1.Basics.xcodeproj">
+            BuildableName = "Basic-Video-Chat.app"
+            BlueprintName = "Basic-Video-Chat"
+            ReferencedContainer = "container:Basic-Video-Chat.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "1.Basics.app"
-            BlueprintName = "1.Basics"
-            ReferencedContainer = "container:1.Basics.xcodeproj">
+            BuildableName = "Basic-Video-Chat.app"
+            BlueprintName = "Basic-Video-Chat"
+            ReferencedContainer = "container:Basic-Video-Chat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "1.Basics.app"
-            BlueprintName = "1.Basics"
-            ReferencedContainer = "container:1.Basics.xcodeproj">
+            BuildableName = "Basic-Video-Chat.app"
+            BlueprintName = "Basic-Video-Chat"
+            ReferencedContainer = "container:Basic-Video-Chat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
