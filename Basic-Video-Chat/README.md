@@ -1,7 +1,7 @@
-Project 1: Hello World
+Basic Video Chat Sample App
 ======================
 
-The Hello World app is a very simple application meant to get a new developer
+The Basic-Video-Chat app is a very simple application meant to get a new developer
 started using the OpenTok iOS SDK.
 
 Application Notes

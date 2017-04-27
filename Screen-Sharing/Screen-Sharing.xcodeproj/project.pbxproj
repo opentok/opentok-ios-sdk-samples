@@ -49,8 +49,6 @@
 		0C99B7B019AE913A00A60ABA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0CC1C07919B7C23F00BD819F /* TBScreenCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBScreenCapture.h; sourceTree = "<group>"; };
 		0CC1C07A19B7C23F00BD819F /* TBScreenCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBScreenCapture.m; sourceTree = "<group>"; };
-		0CC1C08219B7C6D600BD819F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		D4AF64351A23B5E20026C892 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,9 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				0C1685231A71920900A507E3 /* libc++.dylib */,
-				D4AF64351A23B5E20026C892 /* VideoToolbox.framework */,
 				0C99B7A619AE913A00A60ABA /* libsqlite3.dylib */,
-				0CC1C08219B7C6D600BD819F /* Accelerate.framework */,
 				0C99B7A819AE913A00A60ABA /* GLKit.framework */,
 				0C99B7A919AE913A00A60ABA /* SystemConfiguration.framework */,
 				0C99B7AA19AE913A00A60ABA /* CoreTelephony.framework */,

@@ -10,11 +10,11 @@
 #import <OpenTok/OpenTok.h>
 #import "TBVoiceViewCell.h"
 
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"100";
 //// Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX4xMDB-fjE0OTMyNDgzOTc5MDR-c1hKeXA4bHJIL0Z1QlZadXNxN2RTUWxhfn4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9MGM0YmIzODczMzQ4YzNlNmRiZjVlN2ViNzY1MzkxY2Y5NWQxYzI1ODpzZXNzaW9uX2lkPTJfTVg0eE1EQi1makUwT1RNeU5EZ3pPVGM1TURSLWMxaEtlWEE0YkhKSUwwWjFRbFphZFhOeE4yUlRVV3hoZm40JmNyZWF0ZV90aW1lPTE0OTMyNDgzOTgmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTQ5MzI0ODM5OC4wNDY1MjEwMjM3NDU1MCZleHBpcmVfdGltZT0xNDk1ODQwMzk4";
 
 // Change to NO to subscribe to streams other than your own.
 static bool subscribeToSelf = NO;
