@@ -61,7 +61,7 @@
     // cause problems if a publisher is running.
     if (!self.isCapturing && !self.isRendering) {
         AVAudioSession* audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryPlayback
+        [audioSession setCategory:AVAudioSessionCategoryAmbient
                             error:nil];
         [audioSession setActive:YES error:nil];
     }
