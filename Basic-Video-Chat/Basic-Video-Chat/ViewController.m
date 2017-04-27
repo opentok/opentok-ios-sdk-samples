@@ -8,6 +8,18 @@
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
 
+// *** Fill the following variables using your own Project info  ***
+// ***          https://dashboard.tokbox.com/projects            ***
+// Replace with your OpenTok API key
+static NSString* const kApiKey = @"";
+// Replace with your generated session ID
+static NSString* const kSessionId = @"";
+// Replace with your generated token
+static NSString* const kToken = @"";
+
+// Change to NO to subscribe to streams other than your own.
+static bool subscribeToSelf = NO;
+
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
 
@@ -20,18 +32,6 @@
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
-
-// *** Fill the following variables using your own Project info  ***
-// ***          https://dashboard.tokbox.com/projects            ***
-// Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
-// Replace with your generated session ID
-static NSString* const kSessionId = @"";
-// Replace with your generated token
-static NSString* const kToken = @"";
-
-// Change to NO to subscribe to streams other than your own.
-static bool subscribeToSelf = NO;
 
 #pragma mark - View lifecycle
 

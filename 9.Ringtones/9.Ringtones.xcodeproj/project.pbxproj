@@ -16,20 +16,9 @@
 		D415AB591C7405FA00A070E1 /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */; };
 		D415AB5C1C74083D00A070E1 /* OTAudioDeviceRingtone.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB5B1C74083D00A070E1 /* OTAudioDeviceRingtone.m */; };
 		D415AB5E1C7409AD00A070E1 /* bananaphone.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */; };
-		E0573FB4452A1E85793E66E5 /* Pods_9_Ringtones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D64B7EE8C063D4633C61A84B /* Pods_9_Ringtones.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12985DF2387F03EF524AF949 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DDAE5BEC55D7C74B3467FF4 /* Pods-Ringtones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ringtones.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Ringtones/Pods-Ringtones.debug.xcconfig"; sourceTree = "<group>"; };
-		532AB47470C1524CAA2138D0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		8198FB578FB77E11F7BF876E /* Pods_Ringtones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ringtones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		834B325DAB6AD554F90CFABA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		84E1974152210BA237E76559 /* Pods-Ringtones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ringtones.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Ringtones/Pods-Ringtones.release.xcconfig"; sourceTree = "<group>"; };
-		95B490DA4F7B9AFEC550BBF4 /* Pods-Ringtones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ringtones.release.xcconfig"; path = "Pods/Target Support Files/Pods-Ringtones/Pods-Ringtones.release.xcconfig"; sourceTree = "<group>"; };
-		B9042836B7BA6F4B9E618231 /* libPods-RingtonesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RingtonesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BE8B5B5429B44EF131299801 /* Pods-Ringtones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ringtones.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Ringtones/Pods-Ringtones.debug.xcconfig"; sourceTree = "<group>"; };
-		CBBEFC4193BB5A7764248C8B /* Pods-9.Ringtones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9.Ringtones.release.xcconfig"; path = "../Pods/Target Support Files/Pods-9.Ringtones/Pods-9.Ringtones.release.xcconfig"; sourceTree = "<group>"; };
 		D415AB201C74052800A070E1 /* 9.Ringtones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 9.Ringtones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415AB241C74052800A070E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D415AB261C74052800A070E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -45,8 +34,6 @@
 		D415AB5A1C74083D00A070E1 /* OTAudioDeviceRingtone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAudioDeviceRingtone.h; sourceTree = "<group>"; };
 		D415AB5B1C74083D00A070E1 /* OTAudioDeviceRingtone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAudioDeviceRingtone.m; sourceTree = "<group>"; };
 		D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bananaphone.mp3; sourceTree = "<group>"; };
-		D64B7EE8C063D4633C61A84B /* Pods_9_Ringtones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_9_Ringtones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8086BF1FCD282506146A8DA /* Pods-9.Ringtones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-9.Ringtones.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-9.Ringtones/Pods-9.Ringtones.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0573FB4452A1E85793E66E5 /* Pods_9_Ringtones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +53,6 @@
 				D415AB561C7405E900A070E1 /* Project 3: Custom-Audio-Driver */,
 				D415AB221C74052800A070E1 /* Ringtones */,
 				D415AB211C74052800A070E1 /* Products */,
-				F2BA5AAAC8F047197CA179D3 /* Pods */,
-				FFF526400B8103E282FA1F1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,32 +100,6 @@
 			name = "Project 3: Custom-Audio-Driver";
 			sourceTree = "<group>";
 		};
-		F2BA5AAAC8F047197CA179D3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				532AB47470C1524CAA2138D0 /* Pods.debug.xcconfig */,
-				834B325DAB6AD554F90CFABA /* Pods.release.xcconfig */,
-				BE8B5B5429B44EF131299801 /* Pods-Ringtones.debug.xcconfig */,
-				95B490DA4F7B9AFEC550BBF4 /* Pods-Ringtones.release.xcconfig */,
-				1DDAE5BEC55D7C74B3467FF4 /* Pods-Ringtones.debug.xcconfig */,
-				84E1974152210BA237E76559 /* Pods-Ringtones.release.xcconfig */,
-				F8086BF1FCD282506146A8DA /* Pods-9.Ringtones.debug.xcconfig */,
-				CBBEFC4193BB5A7764248C8B /* Pods-9.Ringtones.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		FFF526400B8103E282FA1F1C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				12985DF2387F03EF524AF949 /* libPods.a */,
-				B9042836B7BA6F4B9E618231 /* libPods-RingtonesTests.a */,
-				8198FB578FB77E11F7BF876E /* Pods_Ringtones.framework */,
-				D64B7EE8C063D4633C61A84B /* Pods_9_Ringtones.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,12 +107,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D415AB4D1C74052800A070E1 /* Build configuration list for PBXNativeTarget "9.Ringtones" */;
 			buildPhases = (
-				E59049AAF532D79D81941E30 /* [CP] Check Pods Manifest.lock */,
 				D415AB1C1C74052800A070E1 /* Sources */,
 				D415AB1D1C74052800A070E1 /* Frameworks */,
 				D415AB1E1C74052800A070E1 /* Resources */,
-				AC4EE45521324EE90FFB31FF /* [CP] Copy Pods Resources */,
-				F6ACFD0B717288B521726E24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,54 +170,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AC4EE45521324EE90FFB31FF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-9.Ringtones/Pods-9.Ringtones-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E59049AAF532D79D81941E30 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F6ACFD0B717288B521726E24 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../Pods/Target Support Files/Pods-9.Ringtones/Pods-9.Ringtones-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D415AB1C1C74052800A070E1 /* Sources */ = {
@@ -383,7 +290,6 @@
 		};
 		D415AB4E1C74052800A070E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8086BF1FCD282506146A8DA /* Pods-9.Ringtones.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = YES;
@@ -396,7 +302,6 @@
 		};
 		D415AB4F1C74052800A070E1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBBEFC4193BB5A7764248C8B /* Pods-9.Ringtones.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = YES;
