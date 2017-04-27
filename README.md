@@ -41,57 +41,57 @@ Quick Start
 What's Inside
 -------------
 
-	**Basics** - This basic application demonstrates a short path to 
-	getting started with the OpenTok iOS SDK.
+**Basics** - This basic application demonstrates a short path to 
+getting started with the OpenTok iOS SDK.
 
-	**Custom Video Driver** - This project provides classes that implement
-	the OTVideoCapture and OTVideoRender interfaces of the core Publisher and
-	Subscriber classes. Using these modules, we can see the basic workflow of
-	sourcing video frames from the device camera in and out of OpenTok, via the
-	OTPublisherKit and OTSubscriberKit interfaces.
+**Custom Video Driver** - This project provides classes that implement
+the OTVideoCapture and OTVideoRender interfaces of the core Publisher and
+Subscriber classes. Using these modules, we can see the basic workflow of
+sourcing video frames from the device camera in and out of OpenTok, via the
+OTPublisherKit and OTSubscriberKit interfaces.
 
-	**Custom Audio Driver** - This project demonstrate how to use an external
-    audio source with the OpenTok SDK. This project utilizes CoreAudio and the
-    AUGraph API to create an audio session suitable for voice and video
-    communications.
+**Custom Audio Driver** - This project demonstrate how to use an external
+audio source with the OpenTok SDK. This project utilizes CoreAudio and the
+AUGraph API to create an audio session suitable for voice and video
+communications.
 
-	**Screen Sharing** - This project demonstrates how to use a custom video
-    capturer to publish a stream that uses a UI view (instead of a camera) as
-    the video source.
+**Screen Sharing** - This project demonstrates how to use a custom video
+capturer to publish a stream that uses a UI view (instead of a camera) as
+the video source.
 
-	**Live Photo Capture** - This project extends the video capture module 
-	implemented in project 2, and demonstrates how the AVFoundation media 
-	capture APIs can be used to simultaneously stream video and capture 
-	high-resolution photos from the same camera.
+**Live Photo Capture** - This project extends the video capture module 
+implemented in project 2, and demonstrates how the AVFoundation media 
+capture APIs can be used to simultaneously stream video and capture 
+high-resolution photos from the same camera.
 
-	**Simple Multiparty** - This project demonstrates how to use the OpenTok iOS
-    SDK for a multi-party call. The application publishes audio/video from an
-    iOS device and can connect to multiple subscribers. However it shows only
-    one subscriber video at a time due to CPU limitations on iOS devices.
+**Simple Multiparty** - This project demonstrates how to use the OpenTok iOS
+SDK for a multi-party call. The application publishes audio/video from an
+iOS device and can connect to multiple subscribers. However it shows only
+one subscriber video at a time due to CPU limitations on iOS devices.
 
-	**Overlay Graphics** - This project shows how to overlay graphics for the following:
+**Overlay Graphics** - This project shows how to overlay graphics for the following:
 
-    * A button for muting the publisher microphone
+* A button for muting the publisher microphone
 
-    * A button for muting the subscriber audio
+* A button for muting the subscriber audio
 
-    * Stream quality notification icons for the subscriber video
+* Stream quality notification icons for the subscriber video
 
-    * Archive recording icons
+* Archive recording icons
 
-	This project barrows publisher and subscribers modules implemented in 
-	project 2.
-	
-	**Audio Levels** - This project demonstrates how to use the OpenTok iOS SDK
-    for audio-only multi party calls. Both publisher and subscribers are
-    audio-based only. This application also shows how to use the audio level API
-    along with an audio meter UI for visualization of publisher and subscriber
-    audio levels.
+This project barrows publisher and subscribers modules implemented in 
+project 2.
 
-	**Ringtones** - This project extends on the work done in Project 3
-    (Custom Audio Driver) by extending the sample audio driver with an
-    AVAudioPlayer controller, which will play a short ringtone while waiting for
-    the subscriber to connect to the client device.
+**Audio Levels** - This project demonstrates how to use the OpenTok iOS SDK
+for audio-only multi party calls. Both publisher and subscribers are
+audio-based only. This application also shows how to use the audio level API
+along with an audio meter UI for visualization of publisher and subscriber
+audio levels.
+
+**Ringtones** - This project extends on the work done in Project 3
+(Custom Audio Driver) by extending the sample audio driver with an
+AVAudioPlayer controller, which will play a short ringtone while waiting for
+the subscriber to connect to the client device.
 
 ## Obtaining OpenTok Credentials
 
