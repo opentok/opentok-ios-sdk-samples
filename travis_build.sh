@@ -1,7 +1,7 @@
 #!/bin/sh
 
 xcodebuild -workspace Opentok-iOS-samples.xcworkspace  -list 
-xcodebuild -workspace Opentok-iOS-samples.xcworkspace  -scheme 1.Basics -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+xcodebuild -workspace Opentok-iOS-samples.xcworkspace  -scheme Basic-Video-Chat -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 xcodebuild -workspace Opentok-iOS-samples.xcworkspace  -scheme 2.Custom-Video-Driver -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 xcodebuild -workspace Opentok-iOS-samples.xcworkspace  -scheme 3.Custom-Audio-Driver -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 xcodebuild -workspace Opentok-iOS-samples.xcworkspace  -scheme 4.Screen-Sharing -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
