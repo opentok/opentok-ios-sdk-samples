@@ -21,7 +21,7 @@ static NSString* const kToken = @"";
 static bool subscribeToSelf = NO;
 
 @interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
+<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
 
 @end
 
