@@ -43,7 +43,7 @@ Quick Start
 What's Inside
 -------------
 
-**Basics** - This basic application demonstrates a short path to 
+**Basic Video Chat** - This basic application demonstrates a short path to 
 getting started with the OpenTok iOS SDK.
 
 **Custom Video Driver** - This project provides classes that implement
