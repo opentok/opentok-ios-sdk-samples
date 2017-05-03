@@ -3,7 +3,7 @@ use_frameworks!
 workspace 'Opentok-iOS-samples'
 
 def shared_pods
-    'OpenTok', '= 2.11.0'
+    pod 'OpenTok', '= 2.11.0'
 end
 
 target 'Basic-Video-Chat' do
