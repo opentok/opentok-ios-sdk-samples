@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TmQ-56-0Ai" userLabel="Video view">
+                                <rect key="frame" x="0.0" y="-12" width="584" height="430"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="YM2-i5-qwZ" userLabel="Subscriber Container">
+                                        <rect key="frame" x="0.0" y="0.0" width="584" height="430"/>
+                                    </containerView>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNU-0U-P9j" userLabel="Publisher Container">
+                                        <rect key="frame" x="10" y="340" width="120" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="VNU-0U-P9j" secondAttribute="height" multiplier="4:3" id="2ot-q5-Qn9"/>
+                                            <constraint firstAttribute="width" constant="120" id="Qrf-hg-dYz"/>
+                                            <constraint firstAttribute="height" constant="80" id="u8C-Qg-guw"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="2ot-q5-Qn9"/>
+                                            </mask>
+                                        </variation>
+                                    </containerView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAV-RL-4d9" userLabel="Publisher Audio Button">
+                                        <rect key="frame" x="100" y="390" width="24" height="24"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" backgroundImage="mic-24.png"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpr-UX-Ad0" userLabel="Subscriber Audio Button">
+                                        <rect key="frame" x="550" y="395" width="24" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="vLu-AH-iyL"/>
+                                            <constraint firstAttribute="width" constant="24" id="yvS-es-HcH"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" backgroundImage="Subscriber-Speaker-35.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4Y-or-Dng" userLabel="Swap Camera Button">
+                                        <rect key="frame" x="15" y="385" width="33" height="33"/>
+                                        <state key="normal" backgroundImage="camera-switch_black-33.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="hpr-UX-Ad0" secondAttribute="bottom" constant="10" id="33Y-h5-97k"/>
+                                    <constraint firstAttribute="bottom" secondItem="YM2-i5-qwZ" secondAttribute="bottom" id="4gq-Kj-gzZ"/>
+                                    <constraint firstItem="S4Y-or-Dng" firstAttribute="leading" secondItem="sAV-RL-4d9" secondAttribute="trailing" constant="-109" id="7hK-X1-6oO"/>
+                                    <constraint firstAttribute="width" secondItem="TmQ-56-0Ai" secondAttribute="height" multiplier="300:221" id="7yf-iK-eTg"/>
+                                    <constraint firstAttribute="height" constant="450" id="Agc-ml-SIf"/>
+                                    <constraint firstItem="sAV-RL-4d9" firstAttribute="leading" secondItem="TmQ-56-0Ai" secondAttribute="leading" constant="100" id="CVa-YY-cbE"/>
+                                    <constraint firstItem="YM2-i5-qwZ" firstAttribute="top" secondItem="TmQ-56-0Ai" secondAttribute="top" id="Fr3-58-M7O"/>
+                                    <constraint firstItem="VNU-0U-P9j" firstAttribute="leading" secondItem="TmQ-56-0Ai" secondAttribute="leading" constant="10" id="KRG-V0-EWe"/>
+                                    <constraint firstAttribute="bottom" secondItem="VNU-0U-P9j" secondAttribute="bottom" constant="10" id="XCe-Gm-8BJ"/>
+                                    <constraint firstItem="YM2-i5-qwZ" firstAttribute="leading" secondItem="TmQ-56-0Ai" secondAttribute="leading" id="dzw-Ar-fBu"/>
+                                    <constraint firstAttribute="trailing" secondItem="hpr-UX-Ad0" secondAttribute="trailing" constant="10" id="eEu-Fj-Mtd"/>
+                                    <constraint firstAttribute="width" secondItem="TmQ-56-0Ai" secondAttribute="height" multiplier="4:3" id="g2P-o7-VSz"/>
+                                    <constraint firstAttribute="bottom" secondItem="sAV-RL-4d9" secondAttribute="bottom" constant="16" id="oXJ-JZ-lRn"/>
+                                    <constraint firstAttribute="bottom" secondItem="S4Y-or-Dng" secondAttribute="bottom" constant="12" id="oga-0r-Ue3"/>
+                                    <constraint firstAttribute="trailing" secondItem="YM2-i5-qwZ" secondAttribute="trailing" id="qLQ-Is-fXB"/>
+                                    <constraint firstAttribute="width" secondItem="TmQ-56-0Ai" secondAttribute="height" multiplier="284:209" id="z3l-ma-SBV"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7yf-iK-eTg"/>
+                                        <exclude reference="Agc-ml-SIf"/>
+                                        <exclude reference="g2P-o7-VSz"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Tap here to send a text message." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d2y-hp-mya">
+                                <rect key="frame" x="0.0" y="418" width="600" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="30" id="J24-dl-ZVh"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="mCn-p5-cC0"/>
+                                    <constraint firstAttribute="height" constant="30" id="qmy-87-MS7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YK-8d-uGo" userLabel="Chat received text view">
+                                <rect key="frame" x="0.0" y="448" width="600" height="152"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="TmQ-56-0Ai" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="3yE-Y8-IDw"/>
+                            <constraint firstItem="3YK-8d-uGo" firstAttribute="top" secondItem="TmQ-56-0Ai" secondAttribute="bottom" constant="30" id="FDY-Rv-22S"/>
+                            <constraint firstItem="TmQ-56-0Ai" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-12" id="GJv-Cn-jwS"/>
+                            <constraint firstAttribute="trailing" secondItem="d2y-hp-mya" secondAttribute="trailing" id="HxK-aj-185"/>
+                            <constraint firstItem="d2y-hp-mya" firstAttribute="top" secondItem="TmQ-56-0Ai" secondAttribute="bottom" id="QSq-lM-ruS"/>
+                            <constraint firstItem="3YK-8d-uGo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Rd1-Ig-9dx"/>
+                            <constraint firstAttribute="trailing" secondItem="3YK-8d-uGo" secondAttribute="trailing" id="c0r-DC-XsI"/>
+                            <constraint firstItem="d2y-hp-mya" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cYr-23-vng"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3YK-8d-uGo" secondAttribute="bottom" id="hXq-ux-0fJ"/>
+                            <constraint firstItem="TmQ-56-0Ai" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="lfC-Af-HTs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chatInputTextField" destination="d2y-hp-mya" id="tY0-nC-9CP"/>
+                        <outlet property="chatReceivedTextView" destination="3YK-8d-uGo" id="Lx7-LI-bAb"/>
+                        <outlet property="publisherAudioBtn" destination="sAV-RL-4d9" id="kXS-ju-VZt"/>
+                        <outlet property="publisherView" destination="VNU-0U-P9j" id="MAz-DJ-pJI"/>
+                        <outlet property="subscriberAudioBtn" destination="hpr-UX-Ad0" id="6GE-L4-zCE"/>
+                        <outlet property="subscriberView" destination="YM2-i5-qwZ" id="dsw-lc-zre"/>
+                        <outlet property="swapCameraBtn" destination="S4Y-or-Dng" id="9R2-Si-55f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="206" y="104"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Subscriber-Speaker-35.png" width="35" height="35"/>
+        <image name="camera-switch_black-33.png" width="33" height="33"/>
+        <image name="mic-24.png" width="24" height="24"/>
+    </resources>
+</document>

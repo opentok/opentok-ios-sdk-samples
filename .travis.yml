@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode8
+before_install:
+  - pod repo update > /dev/null
+script: ./travis_build.sh 

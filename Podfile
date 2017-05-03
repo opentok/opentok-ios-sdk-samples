@@ -2,48 +2,62 @@ platform :ios, '9.0'
 use_frameworks!
 workspace 'Opentok-iOS-samples'
 
-target '1.Hello-World' do
-	project '1.Hello-World/1.Hello-World.xcodeproj'
-	pod 'OpenTok'
+def shared_pods
+    pod 'OpenTok', '= 2.11.0'
 end
 
-target '2.Custom-Video-Driver' do
-	project '2.Custom-Video-Driver/2.Custom-Video-Driver.xcodeproj'
-	pod 'OpenTok'
+target 'Basic-Video-Chat' do
+	project 'Basic-Video-Chat/Basic-Video-Chat.xcodeproj'
+	shared_pods
 end
 
-target '3.Custom-Audio-Driver' do
-	project '3.Custom-Audio-Driver/3.Custom-Audio-Driver.xcodeproj'
-	pod 'OpenTok'
+target 'Custom-Video-Driver' do
+	project 'Custom-Video-Driver/Custom-Video-Driver.xcodeproj'
+	shared_pods
 end
 
-target '4.Screen-Sharing' do
-	project '4.Screen-Sharing/4.Screen-Sharing.xcodeproj'
-	pod 'OpenTok'
+target 'Custom-Audio-Driver' do
+	project 'Custom-Audio-Driver/Custom-Audio-Driver.xcodeproj'
+	shared_pods
 end
 
-target '5.Live-Photo-Capture' do
-	project '5.Live-Photo-Capture/5.Live-Photo-Capture.xcodeproj'
-	pod 'OpenTok'
+target 'Screen-Sharing' do
+	project 'Screen-Sharing/Screen-Sharing.xcodeproj'
+	shared_pods
+end
+
+target 'Live-Photo-Capture' do
+	project 'Live-Photo-Capture/Live-Photo-Capture.xcodeproj'
+	shared_pods
 end
 
 
-target '6.Simple-Multiparty' do
-	project '6.Simple-Multiparty/6.Simple-Multiparty.xcodeproj'
-	pod 'OpenTok'
+target 'Simple-Multiparty' do
+	project 'Simple-Multiparty/Simple-Multiparty.xcodeproj'
+	shared_pods
 end
 
-target '7.Overlay-Graphics' do
-	project '7.Overlay-Graphics/7.Overlay-Graphics.xcodeproj'
-	pod 'OpenTok'
+target 'Overlay-Graphics' do
+	project 'Overlay-Graphics/Overlay-Graphics.xcodeproj'
+	shared_pods
 end
 
-target '8.Audio-Levels' do
-	project '8.Audio-Levels/8.Audio-Levels.xcodeproj'
-	pod 'OpenTok'
+target 'Audio-Levels' do
+	project 'Audio-Levels/Audio-Levels.xcodeproj'
+	shared_pods
 end
 
-target '9.Ringtones' do
-	project '9.Ringtones/9.Ringtones.xcodeproj'
-	pod 'OpenTok'
+target 'Ringtones' do
+	project 'Ringtones/Ringtones.xcodeproj'
+	shared_pods
+end
+
+target 'Archiving' do
+	project 'Archiving/Archiving.xcodeproj'
+	shared_pods
+end
+
+target 'Signaling' do
+	project 'Signaling/Signaling.xcodeproj'
+	shared_pods
 end
