@@ -246,7 +246,7 @@
 					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "1.Basic-Video-Chat/1.Basics-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -302,7 +302,7 @@
 					"${SRCROOT}",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "1.Basic-Video-Chat/1.Basics-Prefix.pch";
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
