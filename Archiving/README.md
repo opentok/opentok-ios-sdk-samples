@@ -8,7 +8,7 @@ If you aren't familiar with how to set up a basic video chat application, you sh
 Note that you will need a valid TokBox account for this and all other TokBox samples and tutorials.
 
 ## Quick Start
------------
+=================
 
 #### 1. Deploy a sample back end web service
 Because the actual archiving is not done on the user's device, but in the OpenTok cloud, you will need to set up a web service that communicates with it to start and stop archiving.
