@@ -1,4 +1,4 @@
-Project 3: Custom Audio Drvier
+Custom Audio Drvier
 ================================
 
 This project implements a controller nearly identical to the hello world sample.

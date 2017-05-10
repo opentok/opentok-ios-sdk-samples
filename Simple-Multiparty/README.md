@@ -1,4 +1,4 @@
-Project 6: Simple Multi Party
+Simple Multi Party
 ==================================
 
 This project shows how to use the OpenTok iOS SDK to develop a multi-party call
