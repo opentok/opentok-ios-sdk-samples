@@ -3,7 +3,7 @@ Archiving
 
 This application provides a completed version of the OpenTok Archiving tutorial for iOS (differing only in some additional validation checks). Upon deploying this sample application, you should be able to start, stop, and play back recordings of your sessions.
 
-If you aren't familiar with how to set up a basic video chat application, you should do that first. Check out the [Basic-Video-Chat project](https://github.com/opentok/opentok-ios-sdk-samples/tree/develop/Basic-Video-Chat), and accompanying tutorial.
+If you aren't familiar with how to set up a basic video chat application, you should do that first. Check out the [Basic-Video-Chat project](https://github.com/opentok/opentok-ios-sdk-samples/tree/develop/Basic-Video-Chat), and [accompanying tutorial](https://tokbox.com/developer/tutorials/ios/basic-video-chat/).
 
 Note that you will need a valid TokBox account for this and all other TokBox samples and tutorials.
 
