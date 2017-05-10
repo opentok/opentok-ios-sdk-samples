@@ -12,9 +12,9 @@ Note that you will need a valid TokBox account for this and all other TokBox sam
 #### 1. Deploy a sample back end web service
 Because the actual archiving is not done on the user's device, but in the OpenTok cloud, you will need to set up a web service that communicates with it to start and stop archiving.
 
-    For the purposes of this tutorial, we'll be using a pre-built sample that we've provided. You can deploy this by going to the [learning-opentok-php](https://github.com/opentok/learning-opentok-php) repository, and clicking on the purple deploy to Heroku button.
+For the purposes of this tutorial, we'll be using a pre-built sample that we've provided. You can deploy this by going to the [learning-opentok-php](https://github.com/opentok/learning-opentok-php) repository, and clicking on the purple deploy to Heroku button.
 
-    You can look through the details of that tutorial at a later point. For now, you just need to know that the sample web service provides a RESTful interface to interact with Archiving controls.
+You can look through the details of that tutorial at a later point. For now, you just need to know that the sample web service provides a RESTful interface to interact with Archiving controls.
 
 #### 2. Configure the app to use your web service
 In `Config.h`, configure the `SAMPLE_SERVER_BASE_URL` string to your web service domain.
