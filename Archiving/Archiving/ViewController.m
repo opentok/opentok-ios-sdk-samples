@@ -136,9 +136,7 @@
 -(void)startArchive
 {
     _archiveControlBtn.hidden = YES;
-    NSString *fullURL = SAMPLE_SERVER_BASE_URL;
-    fullURL = [fullURL stringByAppendingString:@"/start/"];
-    fullURL = [fullURL stringByAppendingString:_sessionId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/session/%@/archive/start", SAMPLE_SERVER_BASE_URL, _sessionId];
     NSURL *url = [NSURL URLWithString: fullURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [request setHTTPMethod: @"POST"];
@@ -158,9 +156,7 @@
 -(void)stopArchive
 {
     _archiveControlBtn.hidden = YES;
-    NSString *fullURL = SAMPLE_SERVER_BASE_URL;
-    fullURL = [fullURL stringByAppendingString:@"/stop/"];
-    fullURL = [fullURL stringByAppendingString:_archiveId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/session/%@/archive/%@/stop", SAMPLE_SERVER_BASE_URL, _sessionId, _archiveId];
     NSURL *url = [NSURL URLWithString: fullURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [request setHTTPMethod: @"POST"];
@@ -178,9 +174,7 @@
 
 -(void)loadArchivePlaybackInBrowser
 {
-    NSString *fullURL = SAMPLE_SERVER_BASE_URL;
-    fullURL = [fullURL stringByAppendingString:@"/view/"];
-    fullURL = [fullURL stringByAppendingString:_archiveId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/session/%@/archive/%@/view", SAMPLE_SERVER_BASE_URL, _sessionId, _archiveId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fullURL]];
 }
 
