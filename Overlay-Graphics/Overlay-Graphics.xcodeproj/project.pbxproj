@@ -103,10 +103,10 @@
 		A5FA8EE31A5DE18A002DC195 /* swapCamera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swapCamera.png; sourceTree = "<group>"; };
 		A5FA8EE41A5DE18A002DC195 /* unmutePublisher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmutePublisher.png; sourceTree = "<group>"; };
 		A5FA8EE51A5DE18A002DC195 /* unmuteSubscriber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unmuteSubscriber.png; sourceTree = "<group>"; };
-		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
-		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
-		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
-		D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../2.Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
+		D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
+		D4F8FDA71941277B00364672 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
+		D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
+		D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
 		D4F8FDAC194129B900364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		D4F8FDAE194129C400364672 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -238,6 +238,7 @@
 				D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */,
 			);
 			name = "Project 2: Custom-Video-Driver";
+			path = "../Custom-Video-Driver";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

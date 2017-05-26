@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 cd Basic-Video-Chat/
 pod install
 xcodebuild -workspace Basic-Video-Chat.xcworkspace  -scheme Basic-Video-Chat -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
