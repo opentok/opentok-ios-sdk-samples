@@ -125,7 +125,7 @@
 		A56B2B9D18C085AD001E082A = {
 			isa = PBXGroup;
 			children = (
-				D4F8FDA11941271300364672 /* Project 2: Custom-Video-Driver */,
+				D4F8FDA11941271300364672 /* Custom-Video-Driver */,
 				A56B2BAF18C085AD001E082A /* Overlay-Graphics */,
 				A56B2BA818C085AD001E082A /* Frameworks */,
 				A56B2BA718C085AD001E082A /* Products */,
@@ -229,7 +229,7 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		D4F8FDA11941271300364672 /* Project 2: Custom-Video-Driver */ = {
+		D4F8FDA11941271300364672 /* Custom-Video-Driver */ = {
 			isa = PBXGroup;
 			children = (
 				D4F8FDA61941277B00364672 /* TBExampleVideoCapture.h */,
@@ -237,7 +237,7 @@
 				D4F8FDA81941277B00364672 /* TBExampleVideoRender.h */,
 				D4F8FDA91941277B00364672 /* TBExampleVideoRender.m */,
 			);
-			name = "Project 2: Custom-Video-Driver";
+			name = "Custom-Video-Driver";
 			path = "../Custom-Video-Driver";
 			sourceTree = "<group>";
 		};
