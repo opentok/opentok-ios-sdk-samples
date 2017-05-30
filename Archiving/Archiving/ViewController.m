@@ -136,10 +136,13 @@
 -(void)startArchive
 {
     _archiveControlBtn.hidden = YES;
-    NSString *fullURL = [NSString stringWithFormat:@"%@/session/%@/archive/start", SAMPLE_SERVER_BASE_URL, _sessionId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/start", SAMPLE_SERVER_BASE_URL];
     NSURL *url = [NSURL URLWithString: fullURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod: @"POST"];
+    NSDictionary *dict = @{@"sessionId": _sessionId};
+    request.HTTPBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
         if (error){
@@ -156,7 +159,7 @@
 -(void)stopArchive
 {
     _archiveControlBtn.hidden = YES;
-    NSString *fullURL = [NSString stringWithFormat:@"%@/session/%@/archive/%@/stop", SAMPLE_SERVER_BASE_URL, _sessionId, _archiveId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/%@/stop", SAMPLE_SERVER_BASE_URL, _archiveId];
     NSURL *url = [NSURL URLWithString: fullURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [request setHTTPMethod: @"POST"];
@@ -244,6 +247,9 @@ archiveStartedWithId:(NSString *)archiveId
         _archiveControlBtn.hidden = NO;
         [_archiveControlBtn setTitle: @"Stop recording" forState:UIControlStateNormal];
         _archiveControlBtn.hidden = NO;
+        [_archiveControlBtn removeTarget:self
+                                  action:NULL
+                        forControlEvents:UIControlEventTouchUpInside];
         [_archiveControlBtn addTarget:self
                                action:@selector(stopArchive)
                      forControlEvents:UIControlEventTouchUpInside];
@@ -258,6 +264,9 @@ archiveStoppedWithId:(NSString *)archiveId
     if (SAMPLE_SERVER_BASE_URL) {
         _archiveControlBtn.hidden = NO;
         [_archiveControlBtn setTitle: @"View recording" forState:UIControlStateNormal];
+        [_archiveControlBtn removeTarget:self
+                                  action:NULL
+                        forControlEvents:UIControlEventTouchUpInside];
         [_archiveControlBtn addTarget:self
                                action:@selector(loadArchivePlaybackInBrowser)
                      forControlEvents:UIControlEventTouchUpInside];
