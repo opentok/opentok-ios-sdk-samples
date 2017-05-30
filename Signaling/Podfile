@@ -2,5 +2,5 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'Signaling' do
-  pod 'OpenTok', '= 2.11.0'
+  pod 'OpenTok', '= 2.11.1'
 end
