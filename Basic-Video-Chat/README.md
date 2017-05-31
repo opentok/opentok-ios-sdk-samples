@@ -83,13 +83,13 @@ Configuration Notes
     application:
     
     ```
-Undefined symbols for architecture armv7:
-  "_OBJC_CLASS_$_OTSubscriber", referenced from:
-      objc-class-ref in ViewController.o
-  "_OBJC_CLASS_$_OTPublisher", referenced from:
-      objc-class-ref in ViewController.o
-  "_OBJC_CLASS_$_OTSession", referenced from:
-      objc-class-ref in ViewController.o
+      Undefined symbols for architecture armv7:
+      "_OBJC_CLASS_$_OTSubscriber", referenced from:
+         objc-class-ref in ViewController.o
+      "_OBJC_CLASS_$_OTPublisher", referenced from:
+         objc-class-ref in ViewController.o
+      "_OBJC_CLASS_$_OTSession", referenced from:
+         objc-class-ref in ViewController.o
     ```
 
 *   OpenTok uses GNU's libstdc++, which differs from the default C++ standard
