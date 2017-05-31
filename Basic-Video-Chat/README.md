@@ -61,24 +61,14 @@ Application Notes
     passing in the OTStream object. This causes the app to subscribe to the
     stream.
 
-*   Use the [browser-demo.html](../browser-demo.html) file (in located in the root directory of this
-    project), to connect to the OpenTok session and publish an audio-video
-    stream from a web browser:
+*   To add a second publisher (which will display as a subscriber in your emulator), either run the app a second time in an iOS device or use the OpenTok Playground to connect to the session in a supported web browser (Chrome, Firefox, or Internet Explorer 10-11) by following the steps below:
 
-    * Edit [browser-demo.html](../browser-demo.html) file and modify the variables `apiKey`,
-      `sessionId`, and `token` with your OpenTok API Key, and with the matching
-      session ID and token. (Note that you would normally use the OpenTok
-      server-side libraries to issue unique tokens to each client in a session.
-      But for testing purposes, you can use the same token on both clients.
-      Also, depending on your app, you may use the OpenTok server-side
-      libraries to generate new sessions.)
-
-    * Add the [browser-demo.html](../browser-demo.html) file to a web server. (You cannot run WebRTC
-      video in web pages loaded from the desktop.)
-
-    * In a browser, load the [browser-demo.html](../browser-demo.html) file from the web server. Click
-      the Connect and Publish buttons. Run the app on your iOS device to send
-      and receive streams between the device and the browser.
+1. Go to [OpenTok Playground](https://tokbox.com/developer/tools/playground) (must be logged into your [Account](https://tokbox.com/account))
+2. Select the **Join existing session** tab
+3. Copy the session ID you used in your project file and paste it in the **Session ID** input field
+4. Click **Join Session**
+5. On the next screen, click **Connect**, then click **Publish Stream**
+6. You can adjust the Publisher options (not required), then click **Continue** to connect and begin publishing and subscribing
 
 
 Configuration Notes
