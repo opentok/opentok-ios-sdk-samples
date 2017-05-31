@@ -177,7 +177,7 @@
 
 -(void)loadArchivePlaybackInBrowser
 {
-    NSString *fullURL = [NSString stringWithFormat:@"%@/session/%@/archive/%@/view", SAMPLE_SERVER_BASE_URL, _sessionId, _archiveId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/%@/view", SAMPLE_SERVER_BASE_URL, _archiveId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fullURL]];
 }
 
