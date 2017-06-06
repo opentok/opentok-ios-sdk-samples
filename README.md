@@ -18,30 +18,46 @@ Quick Start
     See [Obtaining OpenTok Credentials](#obtaining-opentok-credentials)
     for important information.
  
- 1. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
+ 2. Install CocoaPods as described in [CocoaPods Getting Started](https://guides.cocoapods.org/using/getting-started.html#getting-started).
  
- 1. In Terminal, `cd` to your project directory and type `pod install`.
+ 3. In Terminal, `cd` to your project directory and run `pod install`.
  
- 1. Reopen your project in Xcode using the new `Opentok-iOS-samples.xcworkspace` file.
+ 4. Open your project in Xcode using the new `.xcworkspace` file in the project directory.
  
- 1. In the ViewController.swift file, replace the following empty strings
-    with the corresponding API Key, session ID, and token values:
+ 5. Set up some config settings for the app. This varies, depending on the project.
+ 
+   * For the Archiving, Basic-Video-Chat, and Signaling projects, in the Config.h file,
+     replace the following empty strings with the base URL of the server that implements the
+     [learning-opentok-php](https://github.com/opentok/learning-opentok-php) or [learning-opentok-node](https://github.com/opentok/learning-opentok-node) projects:
+ 
+     ```objc
+     #define SAMPLE_SERVER_BASE_URL @"https://YOUR-SERVER-URL"
+     ```
+
+     For more information, see the instructions on setting up these servers in the
+     [OpenTok tutorials](https://tokbox.com/developer/tutorials/ios/basic-video-chat/#server)
+     at the OpenTok developer center
+
+    * For all other projects, in the ViewController.m file, replace the following empty strings
+      with the corresponding API key, session ID, and token values:
     
-    ```objc
-    // *** Fill the following variables using your own Project info  ***
-    // ***          https://dashboard.tokbox.com/projects            ***
-    // Replace with your OpenTok API key
-    static NSString* const kApiKey = @"";
-    // Replace with your generated session ID
-    static NSString* const kSessionId = @"";
-    // Replace with your generated token
-    static NSString* const kToken = @"";
-	```
+      ```objc
+      // *** Fill the following variables using your own Project info  ***
+      // ***          https://dashboard.tokbox.com/projects            ***
+      // Replace with your OpenTok API key
+      static NSString* const kApiKey = @"";
+      // Replace with your generated session ID
+      static NSString* const kSessionId = @"";
+      // Replace with your generated token
+      static NSString* const kToken = @"";
+  	  ```
     
- 1. Use Xcode to build and run the app on an iOS simulator or device.
+ 6. Use Xcode to build and run the app on an iOS simulator or device.
 
 What's Inside
 -------------
+
+**Archiving** - This application shows you how to record an OpenTok session.
 
 **Basic Video Chat** - This basic application demonstrates a short path to 
 getting started with the OpenTok iOS SDK.
@@ -70,6 +86,9 @@ high-resolution photos from the same camera.
 SDK for a multi-party call. The application publishes audio/video from an
 iOS device and can connect to multiple subscribers. However it shows only
 one subscriber video at a time due to CPU limitations on iOS devices.
+
+**Signaling** - This project shows you how to implement text chat using
+the OpenTok signaling API.
 
 **Overlay Graphics** - This project shows how to overlay graphics for the following:
 
