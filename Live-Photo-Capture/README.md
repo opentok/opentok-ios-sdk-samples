@@ -1,4 +1,4 @@
-Project 5: Live Photo Capture
+Live Photo Capture
 =============================
 
 This project extends some of the material we presented in [Project 2][1], by 

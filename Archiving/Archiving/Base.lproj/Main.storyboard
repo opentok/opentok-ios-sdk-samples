@@ -34,10 +34,10 @@
                                 </constraints>
                             </containerView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="archiving_on-10.png" translatesAutoresizingMaskIntoConstraints="NO" id="wME-Qk-BRs" userLabel="Archiving Indicator Img">
-                                <rect key="frame" x="10" y="10" width="10" height="10"/>
+                                <rect key="frame" x="10" y="30" width="10" height="10"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7S-eq-mJi" userLabel="Archive Control Button">
-                                <rect key="frame" x="30" y="0.0" width="108" height="30"/>
+                                <rect key="frame" x="30" y="20" width="108" height="30"/>
                                 <state key="normal" title="Start Recording">
                                     <color key="titleColor" red="1" green="0.86088040789999998" blue="0.1764404899" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,14 +45,14 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="x7S-eq-mJi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="46X-Kb-tue"/>
+                            <constraint firstItem="x7S-eq-mJi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="46X-Kb-tue"/>
                             <constraint firstItem="YM2-i5-qwZ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="7kd-ny-a0i"/>
                             <constraint firstItem="VNU-0U-P9j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Kf8-Bf-qDD"/>
                             <constraint firstItem="YM2-i5-qwZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="NqX-eL-Ona"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="VNU-0U-P9j" secondAttribute="bottom" constant="10" id="QJg-ZE-4e2"/>
                             <constraint firstAttribute="bottom" secondItem="YM2-i5-qwZ" secondAttribute="bottom" id="V8Q-0P-yrN"/>
                             <constraint firstAttribute="trailing" secondItem="YM2-i5-qwZ" secondAttribute="trailing" id="jnF-8I-e5X"/>
-                            <constraint firstItem="wME-Qk-BRs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="nkG-UZ-K8t"/>
+                            <constraint firstItem="wME-Qk-BRs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="30" id="nkG-UZ-K8t"/>
                             <constraint firstItem="x7S-eq-mJi" firstAttribute="leading" secondItem="wME-Qk-BRs" secondAttribute="trailing" constant="10" id="or4-Wp-afi"/>
                             <constraint firstItem="wME-Qk-BRs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="pDW-4C-N5J"/>
                         </constraints>

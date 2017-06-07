@@ -1,4 +1,4 @@
-Project 4: Screen Sharing
+Screen Sharing
 =========================
 
 This project shows how to use OpenTok iOS SDK to publish a stream that uses a

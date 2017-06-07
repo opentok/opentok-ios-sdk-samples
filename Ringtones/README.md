@@ -1,4 +1,4 @@
-Project 9: Play a Ringtone
+Play a Ringtone
 ==========================
 
 This project extends on the work done in Project 3 (Custom-Audio-Driver) by
