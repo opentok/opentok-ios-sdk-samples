@@ -16,6 +16,8 @@
  session IDs and tokens, and for working with archives.
  */
 
-#define SAMPLE_SERVER_BASE_URL @"https://YOUR-SERVER-URL"
+// If you run the app from a device under localhost,
+// the app can connect to your localhost by pointing the url to the localhost's IP address.
+#define SAMPLE_SERVER_BASE_URL @"http://localhost:8080"
 
 #endif

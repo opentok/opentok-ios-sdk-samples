@@ -24,12 +24,12 @@
 
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		A0C851961ED8F49000BBCF9A /* Custom-Video-Driver-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Custom-Video-Driver-Info.plist"; sourceTree = "<group>"; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D442615A185FA27400E23699 /* Custom-Video-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Video-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D442615D185FA27400E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D442615F185FA27400E23699 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D4426161185FA27400E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D4426165185FA27400E23699 /* 2.Custom-Video-Driver-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "2.Custom-Video-Driver-Info.plist"; sourceTree = "<group>"; };
 		D4426167185FA27400E23699 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4426169185FA27400E23699 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D442616B185FA27400E23699 /* Custom-Video-Driver-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Custom-Video-Driver-Prefix.pch"; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		D4426164185FA27400E23699 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D4426165185FA27400E23699 /* 2.Custom-Video-Driver-Info.plist */,
+				A0C851961ED8F49000BBCF9A /* Custom-Video-Driver-Info.plist */,
 				D4426166185FA27400E23699 /* InfoPlist.strings */,
 				D4426169185FA27400E23699 /* main.m */,
 				D442616B185FA27400E23699 /* Custom-Video-Driver-Prefix.pch */,
@@ -344,7 +344,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SRCROOT}/**",
 				);
-				INFOPLIST_FILE = "Lets-Build-OTPublisher/2.Custom-Video-Driver-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Lets-Build-OTPublisher/Custom-Video-Driver-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -364,7 +364,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SRCROOT}/**",
 				);
-				INFOPLIST_FILE = "Lets-Build-OTPublisher/2.Custom-Video-Driver-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Lets-Build-OTPublisher/Custom-Video-Driver-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -1,4 +1,4 @@
-Project 7: Overlay Graphics
+Overlay Graphics
 ===========================
 
 This project shows how to overlay graphics and UI controls onto publisher and 

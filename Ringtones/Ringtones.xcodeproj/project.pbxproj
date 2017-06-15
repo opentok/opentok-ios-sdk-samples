@@ -29,8 +29,8 @@
 		D415AB2F1C74052800A070E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D415AB321C74052800A070E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D415AB341C74052800A070E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D415AB571C7405FA00A070E1 /* OTDefaultAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTDefaultAudioDevice.h; path = "../3.Custom-Audio-Driver/External-Audio-Device/OTDefaultAudioDevice.h"; sourceTree = "<group>"; };
-		D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTDefaultAudioDevice.m; path = "../3.Custom-Audio-Driver/External-Audio-Device/OTDefaultAudioDevice.m"; sourceTree = "<group>"; };
+		D415AB571C7405FA00A070E1 /* OTDefaultAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTDefaultAudioDevice.h; path = "External-Audio-Device/OTDefaultAudioDevice.h"; sourceTree = "<group>"; };
+		D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTDefaultAudioDevice.m; path = "../Custom-Audio-Driver/External-Audio-Device/OTDefaultAudioDevice.m"; sourceTree = "<group>"; };
 		D415AB5A1C74083D00A070E1 /* OTAudioDeviceRingtone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAudioDeviceRingtone.h; sourceTree = "<group>"; };
 		D415AB5B1C74083D00A070E1 /* OTAudioDeviceRingtone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAudioDeviceRingtone.m; sourceTree = "<group>"; };
 		D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bananaphone.mp3; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		D415AB171C74052800A070E1 = {
 			isa = PBXGroup;
 			children = (
-				D415AB561C7405E900A070E1 /* Project 3: Custom-Audio-Driver */,
+				D415AB561C7405E900A070E1 /* Custom-Audio-Driver */,
 				D415AB221C74052800A070E1 /* Ringtones */,
 				D415AB211C74052800A070E1 /* Products */,
 			);
@@ -91,13 +91,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D415AB561C7405E900A070E1 /* Project 3: Custom-Audio-Driver */ = {
+		D415AB561C7405E900A070E1 /* Custom-Audio-Driver */ = {
 			isa = PBXGroup;
 			children = (
 				D415AB571C7405FA00A070E1 /* OTDefaultAudioDevice.h */,
 				D415AB581C7405FA00A070E1 /* OTDefaultAudioDevice.m */,
 			);
-			name = "Project 3: Custom-Audio-Driver";
+			name = "Custom-Audio-Driver";
+			path = "../Custom-Audio-Driver";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
