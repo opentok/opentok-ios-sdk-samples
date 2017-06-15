@@ -1,5 +1,9 @@
-Archiving
-==================================
+Archiving sample app
+====================
+
+This sample app shows how to record an OpenTok session, stop the recording, and view the recording.
+For a full description, see the [archiving tutorial at the OpenTok developer
+center](https://tokbox.com/developer/tutorials/ios/basic-video-chat/).
 
 This application provides a completed version of the OpenTok Archiving tutorial for iOS (differing only in some additional validation checks). Upon deploying this sample application, you should be able to start, stop, and play back recordings of your sessions.
 
