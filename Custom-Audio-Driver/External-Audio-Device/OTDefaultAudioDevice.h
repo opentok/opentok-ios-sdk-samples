@@ -21,19 +21,42 @@
 }
 
 /**
- * Audio device lifecycle should live for the duration of the process, and
- * needs to be set before OTSession is initialized.
- *
- * It is not recommended to initialize unique audio device instances.
+ Returns YES if a wired headset is available.
  */
-+ (instancetype)sharedInstance;
+@property (nonatomic, readonly) BOOL headsetDeviceAvailable;
 
-/** 
- * Override the audio unit preferred component subtype. This can be used to
- * force RemoteIO to be used instead of VPIO (the default). It is recommended
- * to set this prior to instantiating any publisher/subscriber; changes will
- * not take effect until after the next audio unit setup call.
+/**
+ Returns YES if a bluetooth device is available.
  */
-@property (nonatomic) uint32_t preferredAudioComponentSubtype;
+@property (nonatomic, readonly) BOOL bluetoothDeviceAvailable;
+
+- (BOOL)setAudioBus:(id<OTAudioBus>)audioBus;
+
+- (OTAudioFormat*)captureFormat;
+- (OTAudioFormat*)renderFormat;
+
+- (BOOL)renderingIsAvailable;
+- (BOOL)initializeRendering;
+- (BOOL)renderingIsInitialized;
+- (BOOL)captureIsAvailable;
+- (BOOL)initializeCapture;
+- (BOOL)captureIsInitialized;
+
+- (BOOL)startRendering;
+- (BOOL)stopRendering;
+- (BOOL)isRendering;
+- (BOOL)startCapture;
+- (BOOL)stopCapture;
+- (BOOL)isCapturing;
+
+- (uint16_t)estimatedRenderDelay;
+- (uint16_t)estimatedCaptureDelay;
+
+//desired Audio Route can be bluetooth and headset.
+//bluetooth has higher priority of all, next headset, next speaker
+- (BOOL)configureAudioSessionWithDesiredAudioRoute:(NSString*)desiredAudioRoute;
+- (BOOL)detectCurrentRoute;
+
+- (BOOL)setPlayOutRenderCallback:(AudioUnit)unit;
 
 @end
