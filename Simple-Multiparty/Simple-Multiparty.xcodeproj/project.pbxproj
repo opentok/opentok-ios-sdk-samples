@@ -45,7 +45,6 @@
 		A5B6110118F2845100841E6B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */; };
 		A5B6110718F2845100841E6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6110618F2845100841E6B /* ViewController.m */; };
 		A5B6110918F2845100841E6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B6110818F2845100841E6B /* Images.xcassets */; };
-		A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A5B6114018F29B7400841E6B /* ShaderUtilities.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,8 +102,6 @@
 		A5B6113A18F29A9800841E6B /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		A5B6113C18F29A9A00841E6B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A5B6113E18F29AA100841E6B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		A5B6114018F29B7400841E6B /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
-		A5B6114118F29B7400841E6B /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
 		A5D01FB51A3A136E005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D492D19319547ECF00F4F534 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -165,8 +162,6 @@
 				A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */,
 				A5B6110518F2845100841E6B /* ViewController.h */,
 				A5B6110618F2845100841E6B /* ViewController.m */,
-				A5B6114018F29B7400841E6B /* ShaderUtilities.c */,
-				A5B6114118F29B7400841E6B /* ShaderUtilities.h */,
 				A5B6110818F2845100841E6B /* Images.xcassets */,
 				A5B610F418F2845100841E6B /* Supporting Files */,
 			);
@@ -315,7 +310,6 @@
 			files = (
 				A5B6110718F2845100841E6B /* ViewController.m in Sources */,
 				A5B610FE18F2845100841E6B /* AppDelegate.m in Sources */,
-				A5B6114218F29B7400841E6B /* ShaderUtilities.c in Sources */,
 				A5B610FA18F2845100841E6B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

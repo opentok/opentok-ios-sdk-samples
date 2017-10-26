@@ -23,7 +23,6 @@
 		A56B2BC018C085AD001E082A /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BBE18C085AD001E082A /* Main_iPad.storyboard */; };
 		A56B2BC318C085AD001E082A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BC218C085AD001E082A /* ViewController.m */; };
 		A56B2BC518C085AD001E082A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A56B2BC418C085AD001E082A /* Images.xcassets */; };
-		A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = A56B2BE918C08648001E082A /* ShaderUtilities.c */; };
 		A599E6431990F9D1001A8B3A /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */; };
 		A599E6441990F9D1001A8B3A /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */; };
 		A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6080F18C0921800192466 /* TBExampleOverlayButton.m */; };
@@ -70,8 +69,6 @@
 		A56B2BC118C085AD001E082A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A56B2BC218C085AD001E082A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A56B2BC418C085AD001E082A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A56B2BE918C08648001E082A /* ShaderUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ShaderUtilities.c; sourceTree = "<group>"; };
-		A56B2BEA18C08648001E082A /* ShaderUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderUtilities.h; sourceTree = "<group>"; };
 		A599E63F1990F9D1001A8B3A /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
 		A599E6401990F9D1001A8B3A /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
 		A599E6411990F9D1001A8B3A /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
@@ -171,8 +168,6 @@
 				A599E6421990F9D1001A8B3A /* TBExampleSubscriber.m */,
 				A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */,
 				A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */,
-				A56B2BE918C08648001E082A /* ShaderUtilities.c */,
-				A56B2BEA18C08648001E082A /* ShaderUtilities.h */,
 				A56B2BB818C085AD001E082A /* AppDelegate.h */,
 				A56B2BB918C085AD001E082A /* AppDelegate.m */,
 				A56B2BBB18C085AD001E082A /* Main_iPhone.storyboard */,
@@ -334,7 +329,6 @@
 				A56B2BBA18C085AD001E082A /* AppDelegate.m in Sources */,
 				A599E6431990F9D1001A8B3A /* TBExamplePublisher.m in Sources */,
 				D4F8FDAA1941277B00364672 /* TBExampleVideoCapture.m in Sources */,
-				A56B2BEF18C08648001E082A /* ShaderUtilities.c in Sources */,
 				A56B2BB618C085AD001E082A /* main.m in Sources */,
 				A599E6441990F9D1001A8B3A /* TBExampleSubscriber.m in Sources */,
 				A5A6081C18C0921800192466 /* TBExampleOverlayView.m in Sources */,
