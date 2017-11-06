@@ -42,7 +42,7 @@ static bool subscribeToSelf = NO;
     [super viewDidLoad];
     
     OTDefaultAudioDeviceWithVolumeControl* audioDevice =
-    [OTDefaultAudioDeviceWithVolumeControl sharedInstance];
+    [OTDefaultAudioDeviceWithVolumeControl new];
     [OTAudioDeviceManager setAudioDevice:audioDevice];
     
     // Step 1: As the view comes into the foreground, initialize a new instance
