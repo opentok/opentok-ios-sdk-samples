@@ -1,14 +1,14 @@
 //
 //  ViewController.m
-//  Lets-Build-TBExamplePublisher
+//  Lets-Build-Publisher
 //
 //  Copyright (c) 2013 TokBox, Inc. All rights reserved.
 //
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
-#import "TBExamplePublisher.h"
-#import "TBExampleSubscriber.h"
+#import "TBExampleVideoCapture.h"
+#import "TBExampleVideoRender.h"
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
@@ -17,8 +17,14 @@
 
 @implementation ViewController {
     OTSession* _session;
-    TBExamplePublisher* _publisher;
-    TBExampleSubscriber* _subscriber;
+    OTPublisher* _publisher;
+    OTSubscriber* _subscriber;
+    
+    TBExampleVideoCapture* _defaultVideoCapture;
+    
+    TBExampleVideoRender* _subscriberVideoRenderView;
+    TBExampleVideoRender* _publisherVideoRenderView;
+    
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -89,9 +95,21 @@ static bool subscribeToSelf = YES;
  */
 - (void)doPublish
 {
-    _publisher = [[TBExamplePublisher alloc]
-                  initWithDelegate:self
-                  name:[[UIDevice currentDevice] name]];
+    OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
+    pubSettings.name = [[UIDevice currentDevice] name];
+    _publisher = [[OTPublisher alloc]
+                  initWithDelegate:self settings:pubSettings];
+    
+    TBExampleVideoCapture* videoCapture =
+    [[TBExampleVideoCapture alloc] init];
+    [_publisher setVideoCapture:videoCapture];
+    
+    _publisherVideoRenderView =
+    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    // Set mirroring only if the front camera is being used.
+    [_publisherVideoRenderView setMirroring:
+     (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
+    [_publisher setVideoRender:_publisherVideoRenderView];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
@@ -100,8 +118,8 @@ static bool subscribeToSelf = YES;
         [self showAlert:[error localizedDescription]];
     }
 
-    [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisher.view];
+    [_publisherVideoRenderView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:_publisherVideoRenderView];
 }
 
 /**
@@ -109,6 +127,7 @@ static bool subscribeToSelf = YES;
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
+    [_publisherVideoRenderView clearRenderBuffer];
     [_publisher.view removeFromSuperview];
     _publisher = nil;
     // this is a good place to notify the end-user that publishing has stopped.
@@ -122,8 +141,11 @@ static bool subscribeToSelf = YES;
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
-                                                     delegate:self];
+    _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
+    _subscriberVideoRenderView =
+    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0,0,1,1)];
+    [_subscriber setVideoRender:_subscriberVideoRenderView];
+    
     OTError *error = nil;
     [_session subscribe:_subscriber error:&error];
     if (error)
@@ -141,6 +163,7 @@ static bool subscribeToSelf = YES;
  */
 - (void)cleanupSubscriber
 {
+    [_subscriberVideoRenderView clearRenderBuffer];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -217,9 +240,9 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
+    [_subscriberVideoRenderView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                          widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+    [self.view addSubview:_subscriberVideoRenderView];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
