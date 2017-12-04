@@ -1,7 +1,7 @@
 Overlay Graphics
 ===========================
 
-This project shows how to overlay graphics and UI controls onto publisher and 
+This project shows how to overlay graphics and UI controls onto publisher and
 subscriber views. It basically extends [project 2][1], "Let's build
 OTPublisher." By the end of a code review, you should learn how to add
 graphics on top of publisher and subscriber video views.
@@ -15,11 +15,9 @@ Configuration Notes
 
 *   Since we are importing a number of classes implemented in project 2, the
     header search paths in the project build settings must be extended to look
-    in the project 2 directory. Additionally, we must recompile the 
-    implementation files in order to continue using the TBExamplePublisher,
-    created in project 2. You will notice an extra group in this project's 
+    in the project 2 directory. You will notice an extra group in this project's
     navigator space with references to the files we need.
-    
+
 
 Application Notes
 =================
@@ -33,7 +31,7 @@ Application Notes
    publisher switches between using the back and front cameras. Since this
    sample uses a custom video capturer (by extending the OTPublisherKit class),
    the code sets the `videoCapture.cameraPosition` property of the
-   OTExamplePublisher instance to set the camera used by the publisher. In an
+   OTPublisher instance to set the camera used by the publisher. In an
    app that uses the OTPublisher class to define the publisher, you can set the
    `cameraPosition` property of the OTPublisher instance.
 
