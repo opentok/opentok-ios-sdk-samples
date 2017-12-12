@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A0075DB81ED8FCCE008B6D15 /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB11ED8FCCE008B6D15 /* TBExamplePublisher.m */; };
-		A0075DB91ED8FCCE008B6D15 /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB31ED8FCCE008B6D15 /* TBExampleSubscriber.m */; };
 		A0075DBA1ED8FCCE008B6D15 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB51ED8FCCE008B6D15 /* TBExampleVideoCapture.m */; };
 		A0075DBB1ED8FCCE008B6D15 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB71ED8FCCE008B6D15 /* TBExampleVideoRender.m */; };
 		D44261F0185FC8D600E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D44261EE185FC8D600E23699 /* InfoPlist.strings */; };
@@ -24,10 +22,6 @@
 
 /* Begin PBXFileReference section */
 		0C1685331A71930400A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		A0075DB01ED8FCCE008B6D15 /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExamplePublisher.h; path = "Lets-Build-OTPublisher/TBExamplePublisher.h"; sourceTree = "<group>"; };
-		A0075DB11ED8FCCE008B6D15 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExamplePublisher.m; path = "Lets-Build-OTPublisher/TBExamplePublisher.m"; sourceTree = "<group>"; };
-		A0075DB21ED8FCCE008B6D15 /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleSubscriber.h; path = "Lets-Build-OTPublisher/TBExampleSubscriber.h"; sourceTree = "<group>"; };
-		A0075DB31ED8FCCE008B6D15 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleSubscriber.m; path = "Lets-Build-OTPublisher/TBExampleSubscriber.m"; sourceTree = "<group>"; };
 		A0075DB41ED8FCCE008B6D15 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		A0075DB51ED8FCCE008B6D15 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
 		A0075DB61ED8FCCE008B6D15 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
@@ -148,10 +142,6 @@
 		D4426240185FCF0100E23699 /* Custom-Video-Driver */ = {
 			isa = PBXGroup;
 			children = (
-				A0075DB01ED8FCCE008B6D15 /* TBExamplePublisher.h */,
-				A0075DB11ED8FCCE008B6D15 /* TBExamplePublisher.m */,
-				A0075DB21ED8FCCE008B6D15 /* TBExampleSubscriber.h */,
-				A0075DB31ED8FCCE008B6D15 /* TBExampleSubscriber.m */,
 				A0075DB41ED8FCCE008B6D15 /* TBExampleVideoCapture.h */,
 				A0075DB51ED8FCCE008B6D15 /* TBExampleVideoCapture.m */,
 				A0075DB61ED8FCCE008B6D15 /* TBExampleVideoRender.h */,
@@ -235,12 +225,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0075DBA1ED8FCCE008B6D15 /* TBExampleVideoCapture.m in Sources */,
-				A0075DB91ED8FCCE008B6D15 /* TBExampleSubscriber.m in Sources */,
 				A0075DBB1ED8FCCE008B6D15 /* TBExampleVideoRender.m in Sources */,
 				D44261FF185FC8D600E23699 /* ViewController.m in Sources */,
 				D4426223185FCB8F00E23699 /* TBExamplePhotoVideoCapture.m in Sources */,
 				D44261F6185FC8D600E23699 /* AppDelegate.m in Sources */,
-				A0075DB81ED8FCCE008B6D15 /* TBExamplePublisher.m in Sources */,
 				D44261F2185FC8D600E23699 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

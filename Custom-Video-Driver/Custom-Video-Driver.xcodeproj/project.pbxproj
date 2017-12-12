@@ -15,10 +15,8 @@
 		D4426177185FA27400E23699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426176185FA27400E23699 /* ViewController.m */; };
 		D4426179185FA27400E23699 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4426178185FA27400E23699 /* Images.xcassets */; };
 		D44261B2185FA39200E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D44261B1185FA39200E23699 /* README.md */; };
-		D44261B5185FA5C200E23699 /* TBExamplePublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261B4185FA5C200E23699 /* TBExamplePublisher.m */; };
-		D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261B7185FA64100E23699 /* TBExampleVideoRender.m */; };
-		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; };
-		D44261D8185FAED800E23699 /* TBExampleSubscriber.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D7185FAED800E23699 /* TBExampleSubscriber.m */; };
+		D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261B7185FA64100E23699 /* TBExampleVideoRender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,14 +48,10 @@
 		D44261A2185FA37600E23699 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44261A3185FA37600E23699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D44261B1185FA39200E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		D44261B3185FA5C200E23699 /* TBExamplePublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExamplePublisher.h; sourceTree = "<group>"; };
-		D44261B4185FA5C200E23699 /* TBExamplePublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExamplePublisher.m; sourceTree = "<group>"; };
 		D44261B6185FA64100E23699 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoRender.h; sourceTree = "<group>"; };
 		D44261B7185FA64100E23699 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoRender.m; sourceTree = "<group>"; };
 		D44261D3185FADAB00E23699 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoCapture.h; sourceTree = "<group>"; };
 		D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoCapture.m; sourceTree = "<group>"; };
-		D44261D6185FAED800E23699 /* TBExampleSubscriber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleSubscriber.h; sourceTree = "<group>"; };
-		D44261D7185FAED800E23699 /* TBExampleSubscriber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleSubscriber.m; sourceTree = "<group>"; };
 		D4F8FD9E194125E300364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -116,10 +110,6 @@
 		D4426163185FA27400E23699 /* Lets-Build-OTPublisher */ = {
 			isa = PBXGroup;
 			children = (
-				D44261B3185FA5C200E23699 /* TBExamplePublisher.h */,
-				D44261B4185FA5C200E23699 /* TBExamplePublisher.m */,
-				D44261D6185FAED800E23699 /* TBExampleSubscriber.h */,
-				D44261D7185FAED800E23699 /* TBExampleSubscriber.m */,
 				D44261D3185FADAB00E23699 /* TBExampleVideoCapture.h */,
 				D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */,
 				D44261B6185FA64100E23699 /* TBExampleVideoRender.h */,
@@ -214,10 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44261B5185FA5C200E23699 /* TBExamplePublisher.m in Sources */,
 				D4426177185FA27400E23699 /* ViewController.m in Sources */,
 				D442616E185FA27400E23699 /* AppDelegate.m in Sources */,
-				D44261D8185FAED800E23699 /* TBExampleSubscriber.m in Sources */,
 				D442616A185FA27400E23699 /* main.m in Sources */,
 				D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */,
 				D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */,
@@ -329,7 +317,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Custom-Video-Driver-Prefix.pch";
@@ -349,7 +337,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Custom-Video-Driver-Prefix.pch";

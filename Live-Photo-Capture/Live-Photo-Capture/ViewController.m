@@ -7,8 +7,6 @@
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
-#import "TBExamplePublisher.h"
-#import "TBExampleSubscriber.h"
 #import "TBExamplePhotoVideoCapture.h"
 
 @interface ViewController ()
@@ -18,8 +16,8 @@
 
 @implementation ViewController {
     OTSession* _session;
-    TBExamplePublisher* _publisher;
-    TBExampleSubscriber* _subscriber;
+    OTPublisher* _publisher;
+    OTSubscriber* _subscriber;
     TBExamplePhotoVideoCapture* _myPhotoVideoCaptureModule;
     UIImageView* _myImageView;
 }
@@ -126,10 +124,10 @@ static bool subscribeToSelf = YES;
     // In this example, we'll be using our own video capture module that can
     // also support photo-quality image capture.
     _myPhotoVideoCaptureModule = [[TBExamplePhotoVideoCapture alloc] init];
-    _publisher = [[TBExamplePublisher alloc]
-                  initWithDelegate:self
-                  name:[[UIDevice currentDevice] name]
-                  capturer: _myPhotoVideoCaptureModule];
+    OTPublisherSettings* pubSettings = [[OTPublisherSettings alloc] init];
+    pubSettings.name = [[UIDevice currentDevice] name];
+    pubSettings.videoCapture = _myPhotoVideoCaptureModule;
+    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:pubSettings];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
@@ -160,7 +158,7 @@ static bool subscribeToSelf = YES;
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
+    _subscriber = [[OTSubscriber alloc] initWithStream:stream
                                                      delegate:self];
     OTError *error = nil;;
     [_session subscribe:_subscriber error:&error];

@@ -8,20 +8,21 @@
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
-#import "TBExamplePublisher.h"
-#import "TBExampleSubscriber.h"
 #import "TBExampleVideoView.h"
 #import "TBExampleOverlayView.h"
+#import "TBExampleVideoCapture.h"
 
 @interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
+<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBExampleVideoViewDelegate>
 
 @end
 
 @implementation ViewController {
     OTSession* _session;
-    TBExamplePublisher* _publisher;
-    TBExampleSubscriber* _subscriber;
+    OTPublisher* _publisher;
+    OTSubscriber* _subscriber;
+    TBExampleVideoView* _publisherVideoView;
+    TBExampleVideoView* _subscriberVideoView;
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -92,9 +93,26 @@ static bool subscribeToSelf = YES;
  */
 - (void)doPublish
 {
-    _publisher = [[TBExamplePublisher alloc]
+    OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
+    pubSettings.name = [[UIDevice currentDevice] name];
+    _publisher = [[OTPublisher alloc]
                   initWithDelegate:self
-                  name:[[UIDevice currentDevice] name]];
+                  settings:pubSettings];
+    
+    TBExampleVideoCapture* videoCapture =
+    [[[TBExampleVideoCapture alloc] init] autorelease];
+    [_publisher setVideoCapture:videoCapture];
+    
+    _publisherVideoView =
+    [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
+                                     delegate:self
+                                         type:OTVideoViewTypePublisher
+                                  displayName:nil];
+    
+    // Set mirroring only if the front camera is being used.
+    [_publisherVideoView.videoView setMirroring:
+     (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
+    [_publisher setVideoRender:_publisherVideoView];
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];
@@ -103,8 +121,8 @@ static bool subscribeToSelf = YES;
         [self showAlert:[error localizedDescription]];
     }
 
-    [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisher.view];
+    [_publisherVideoView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:_publisherVideoView];
 }
 
 /**
@@ -125,8 +143,16 @@ static bool subscribeToSelf = YES;
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[TBExampleSubscriber alloc] initWithStream:stream
-                                                     delegate:self];
+    _subscriber = [[OTSubscriber alloc] initWithStream:stream
+                                              delegate:self];
+    
+    _subscriberVideoView =
+    [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
+                                     delegate:self
+                                         type:OTVideoViewTypeSubscriber
+                                  displayName:nil];
+    
+    [_subscriber setVideoRender:_subscriberVideoView];
     OTError *error = nil;
     [_session subscribe:_subscriber error:&error];
     if (error)
@@ -220,9 +246,9 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
+    [_subscriberVideoView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                           widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+    [self.view addSubview:_subscriberVideoView];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -344,7 +370,27 @@ archiveStoppedWithId:(NSString *)archiveId
         level = db + abs(floor);
         level /= abs(floor);
     }
-    _subscriber.view.audioLevelMeter.level = level;
+    _subscriberVideoView.audioLevelMeter.level = level;
+}
+
+#pragma mark - OTVideoViewDelegate
+
+- (void)videoViewDidToggleCamera:(TBExampleVideoView*)videoView {
+    if (videoView == _publisherVideoView) {
+        [((TBExampleVideoCapture*)_publisher.videoCapture) toggleCameraPosition];
+    }
+}
+
+- (void)videoView:(TBExampleVideoView*)videoView
+publisherWasMuted:(BOOL)publisherMuted
+{
+    [_publisher setPublishAudio:!publisherMuted];
+}
+
+- (void)videoView:(TBExampleVideoView*)videoView
+subscriberVolumeWasMuted:(BOOL)subscriberMuted
+{
+    [_subscriber setSubscribeToAudio:!subscriberMuted];
 }
 
 @end
