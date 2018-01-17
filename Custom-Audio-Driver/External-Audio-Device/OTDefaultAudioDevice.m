@@ -770,12 +770,6 @@ static OSStatus recording_cb(void *ref_con,
     }
     
     OSStatus status;
-    
-    uint64_t time = time_stamp->mHostTime;
-    /* Convert to nanoseconds */
-    time *= info.numer;
-    time /= info.denom;
-    
     status = AudioUnitRender(dev->recording_voice_unit,
                              action_flags,
                              time_stamp,
