@@ -16,9 +16,6 @@ static NSString* const kSessionId = @"";
 // Replace with your generated token
 static NSString* const kToken = @"";
 
-// Change to NO to subscribe to streams other than your own.
-static bool subscribeToSelf = NO;
-
 #define PUBLISHER_ARCHIVE_CONTAINER_HEIGHT 85.0f
 
 @interface TBViewController ()<OTSessionDelegate, OTSubscriberKitDelegate,
@@ -273,9 +270,7 @@ audioLevelUpdated:(float)audioLevel
 - (void)  publisher:(OTPublisherKit *)publisher
     streamCreated:(OTStream *)stream
 {
-    // subscribe to self
-    if (subscribeToSelf ==  YES)
-        [self subscribeToStream:stream];
+    NSLog(@"Publishing");
 }
 
 - (void)session:(OTSession *)session didFailWithError:(OTError *)error

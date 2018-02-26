@@ -31,10 +31,6 @@ static NSString* const kSessionId = @"";
 // Replace with your generated token
 static NSString* const kToken = @"";
 
-// Change to NO to subscribe to streams other than your own.
-static bool subscribeToSelf = NO;
-
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -175,9 +171,9 @@ static bool subscribeToSelf = NO;
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
     
-    // Step 3a: (if NO == subscribeToSelf): Begin subscribing to a stream we
+    // Step 3a: Begin subscribing to a stream we
     // have seen on the OpenTok session.
-    if (nil == _subscriber && !subscribeToSelf)
+    if (nil == _subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -248,14 +244,7 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit *)publisher
     streamCreated:(OTStream *)stream
 {
-    // Step 3b: (if YES == subscribeToSelf): Our own publisher is now visible to
-    // all participants in the OpenTok session. We will attempt to subscribe to
-    // our own stream. Expect to see a slight delay in the subscriber video and
-    // an echo of the audio coming from the device microphone.
-    if (nil == _subscriber && subscribeToSelf)
-    {
-        [self doSubscribe:stream];
-    }
+    NSLog(@"Publishing");
 }
 
 - (void)publisher:(OTPublisherKit*)publisher

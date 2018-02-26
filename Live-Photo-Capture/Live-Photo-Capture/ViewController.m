@@ -33,9 +33,6 @@ static NSString* const kSessionId = @"";
 // Replace with your generated token
 static NSString* const kToken = @"";
 
-// Change to NO to subscribe to streams other than your own.
-static bool subscribeToSelf = YES;
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -204,7 +201,7 @@ static bool subscribeToSelf = YES;
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
     
-    if (nil == _subscriber && !subscribeToSelf)
+    if (nil == _subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -268,10 +265,7 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit *)publisher
     streamCreated:(OTStream *)stream
 {
-    if (nil == _subscriber && subscribeToSelf)
-    {
-        [self doSubscribe:stream];
-    }
+    NSLog(@"Publishing");
 }
 
 - (void)publisher:(OTPublisherKit*)publisher

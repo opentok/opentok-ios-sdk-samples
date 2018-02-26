@@ -24,7 +24,6 @@ static NSString* const kToken = @"";
 
 static double widgetHeight = 240 / 2;
 static double widgetWidth = 320 / 2;
-static bool subscribeToSelf = NO;
 
 @implementation ViewController {
     OTSession* _session;
@@ -177,9 +176,9 @@ static bool subscribeToSelf = NO;
 - (void)session:(OTSession*)mySession streamCreated:(OTStream *)stream
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
-    // Step 3a: (if NO == subscribeToSelf): Begin subscribing to a stream we
+    // Step 3a: Begin subscribing to a stream we
     // have seen on the OpenTok session.
-    if (nil == _subscriber && !subscribeToSelf)
+    if (nil == _subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -257,14 +256,7 @@ connectionDestroyed:(OTConnection *)connection
 - (void)publisher:(OTPublisherKit *)publisher
     streamCreated:(OTStream *)stream
 {
-    // Step 3b: (if YES == subscribeToSelf): Our own publisher is now visible to
-    // all participants in the OpenTok session. We will attempt to subscribe to
-    // our own stream. Expect to see a slight delay in the subscriber video and
-    // an echo of the audio coming from the device microphone.
-    if (nil == _subscriber && subscribeToSelf)
-    {
-        [self doSubscribe:stream];
-    }
+    NSLog(@"Publishing");
 }
 
 - (void)showAlert:(NSString *)string
