@@ -9,12 +9,8 @@
 #import <Availability.h>
 #import <UIKit/UIKit.h>
 #import <OpenTok/OpenTok.h>
-#import <CoreImage/CoreImage.h>
 #import <CoreVideo/CoreVideo.h>
 #import "TBExampleVideoCapture.h"
-
-#import "Locator.h"
-#import "Counter.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -48,8 +44,6 @@
     dispatch_source_t _blackFrameTimer;
     uint8_t* _blackFrame;
     double _blackFrameTimeStarted;
-    
-    Locator *_locator;
 }
 
 @synthesize captureSession = _captureSession;
@@ -74,9 +68,6 @@
         _videoFrame = [[OTVideoFrame alloc] initWithFormat:
                        [OTVideoFormat videoFormatNV12WithWidth:_captureWidth
                                                         height:_captureHeight]];
-        
-        _locator = [[Locator alloc] init];
-        [_locator startGettingLocation];
     }
     return self;
 }
@@ -97,7 +88,6 @@
         _capture_queue = nil;
     }
     
-    [_locator stopGettingLocation];
     [_videoFrame release];
     
     [super dealloc];
@@ -751,23 +741,11 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         return;
     }
     
-    // attach time stamp to a frame
-    
     CMTime time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    
     CVPixelBufferLockBaseAddress(imageBuffer, 0);
     
-#warning custom method called here
-//    [self setCountToVideoFrame:_videoFrame];
-    
     [self setTimestampToVideoFrame:_videoFrame];
-    
-//    [self setLocationToVideoFrame:_videoFrame];
-    
-//    CIImage *ciImage = [[CIImage alloc] initWithCVPixelBuffer:imageBuffer];
-//    [self setFaceDetectionTo:_videoFrame
-//                   fromImage:ciImage];
     
     _videoFrame.timestamp = time;
     uint32_t height = (uint32_t)CVPixelBufferGetHeight(imageBuffer);
@@ -817,70 +795,19 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     
 }
 
-#warning custom set frame metadata method
-- (void)setFaceDetectionTo:(OTVideoFrame *)videoFrame
-                 fromImage:(CIImage *)image {
-    if (!videoFrame) {
-        return;
-    }
-
-    CIContext *context = [CIContext context];                    // 1
-    NSDictionary *opts = @{ CIDetectorAccuracy : CIDetectorAccuracyHigh };      // 2
-    CIDetector *detector = [CIDetector detectorOfType:CIDetectorTypeFace
-                                              context:context
-                                              options:opts];                    // 3
-
-//    opts = @{ CIDetectorImageOrientation :[[image properties] valueForKey:kCGImagePropertyOrientation] }; // 4
-    NSArray *features = [detector featuresInImage:image options:opts];        // 5
-    
-    NSData *metadata;
-    if (features.count) {
-        metadata = [@"withFace" dataUsingEncoding:NSUTF8StringEncoding];
-    } else {
-        metadata = [@"withoutFace" dataUsingEncoding:NSUTF8StringEncoding];
-    }
-    OTError *error = nil;
-    [_videoFrame setMetadata:metadata
-                       error:&error];
-    if (error) {
-        NSLog(@"Append metadata error: %@", error);
-    }
-}
-
 - (void)setTimestampToVideoFrame:(OTVideoFrame *)videoFrame {
     if (!videoFrame) {
         return;
     }
-    NSString *timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
-    NSData *metadata = [timestamp dataUsingEncoding:NSUTF8StringEncoding];
-    OTError *error = nil;
-    [_videoFrame setMetadata:metadata error:&error];
-    if (error) {
-        NSLog(@"Append metadata error: %@", error);
-    }
-}
-
-- (void)setLocationToVideoFrame:(OTVideoFrame *)videoFrame {
-    if (!videoFrame) {
-        return;
-    }
-    NSString *location = [NSString stringWithFormat:@"(%.2f, %.2f)", [_locator.latestLocation[0] doubleValue], [_locator.latestLocation[1] doubleValue]];
-    NSData *metadata = [location dataUsingEncoding:NSUTF8StringEncoding];
-    OTError *error = nil;
-    [_videoFrame setMetadata:metadata error:&error];
-    if (error) {
-        NSLog(@"Append metadata error: %@", error);
-    }
-}
-
-- (void)setCountToVideoFrame:(OTVideoFrame *)videoFrame {
-    if (!videoFrame) {
-        return;
-    }
     
-    [[Counter sharedManager] increase];
-    NSString *location = [NSString stringWithFormat:@"(%ldth)", (unsigned long)[Counter sharedManager].count];
-    NSData *metadata = [location dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
+    
+//    NSString *timestamp = [NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970] * 1000];
+    
+    NSData *metadata = [timestamp dataUsingEncoding:NSUTF8StringEncoding];
     OTError *error = nil;
     [_videoFrame setMetadata:metadata error:&error];
     if (error) {

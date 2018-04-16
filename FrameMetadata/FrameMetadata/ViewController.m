@@ -25,7 +25,7 @@
     TBExampleVideoRender* _subscriberVideoRenderView;
     TBExampleVideoRender* _publisherVideoRenderView;
     
-    UILabel *locLabel;
+    UILabel *metadataLabel;
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -33,11 +33,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"100";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX4xMDB-fjE1MjM1NTU5OTEwODh-djBZbkh1aThMcXBiMWxhbUEzVGFXWnFmfn4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaHAtdjAuOTEuMjAxMS0wNy0wNSZzaWc9MDM2NzdjNzA0MjAyY2Y5NmIxMmI5ODY2NDU3MmFlNzIwZDFlYWU2OTpzZXNzaW9uX2lkPTJfTVg0eE1EQi1makUxTWpNMU5UVTVPVEV3T0RoLWRqQlpia2gxYVRoTWNYQmlNV3hoYlVFelZHRlhXbkZtZm40JmNyZWF0ZV90aW1lPTE1MjM1NTU5OTEmcm9sZT1tb2RlcmF0b3Imbm9uY2U9MTUyMzU1NTk5MS4yNDAxNjcxODkzMDI2JmV4cGlyZV90aW1lPTE1MjYxNDc5OTE=";
+static NSString* const kToken = @"";
 
 #pragma mark - View lifecycle
 
@@ -51,9 +51,10 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD0xMDAmc2RrX3ZlcnNpb249dGJwaH
                                        sessionId:kSessionId
                                            delegate:self];
     
-    locLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [locLabel setTextColor:[UIColor whiteColor]];
-    [locLabel setFont:[UIFont systemFontOfSize:12]];
+    metadataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    [metadataLabel setTextColor:[UIColor whiteColor]];
+    [metadataLabel setFont:[UIFont systemFontOfSize:12]];
+    
     [self doConnect];
 }
 
@@ -296,23 +297,22 @@ didFailWithError:(OTError*)error
     });
 }
 
-#warning print out metadata here
 - (void)renderer:(TBExampleVideoRender*)renderer
  didReceiveFrame:(OTVideoFrame*)frame {
     if (renderer == _publisher.videoRender) {
         NSData *metadata = frame.metadata;
-        NSString *location = [[NSString alloc] initWithData:metadata encoding:NSUTF8StringEncoding];
+        NSString *timestamp = [[NSString alloc] initWithData:metadata encoding:NSUTF8StringEncoding];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [locLabel setText:location];
-            if (!locLabel.superview) {
-                [_publisherVideoRenderView addSubview:locLabel];
+            [metadataLabel setText:timestamp];
+            if (!metadataLabel.superview) {
+                [_publisherVideoRenderView addSubview:metadataLabel];
             }
-            NSLog(@"renderer timestamp: %@", location);
+            NSLog(@"Receiving publisher metadata: %@", timestamp);
         });
     }
     else if (renderer == _subscriber.videoRender) {
-        NSLog(@"Receving subscriber tiemstamp");
+        NSLog(@"Receiving subscriber metadata");
     }
 }
 
