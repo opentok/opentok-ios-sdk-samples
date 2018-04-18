@@ -191,8 +191,8 @@ audioLevelUpdated:(float)audioLevel
     float floor = -40;
     float level = 0;
     if (db > floor) {
-        level = db + abs(floor);
-        level /= abs(floor);
+        level = db + fabsf(floor);
+        level /= fabsf(floor);
     }
     self.publisherAudioLevelMeter.level = level;
 }
@@ -312,13 +312,11 @@ audioLevelUpdated:(float)audioLevel
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc]
-                               initWithTitle:@"Message from video session"
-                               message:string
-                               delegate:self
-                               cancelButtonTitle:@"OK"
-                               otherButtonTitles:nil] ;
-        [alert show];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Message from video session"
+                                                                         message:string
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertVC animated:YES completion:nil];
+
     });
 }
 

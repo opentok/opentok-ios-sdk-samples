@@ -14,6 +14,7 @@
 {
     // Initialization code
     // audio level meter
+    [super awakeFromNib];
     _audioLevelMeter = [[TBAudioLevelMeter alloc]
                                           initWithFrame:CGRectZero];
     _audioLevelMeter.opaque = false;
@@ -36,8 +37,8 @@
     float floor = -40;
     float level = 0;
     if (db > floor) {
-        level = db + abs(floor);
-        level /= abs(floor);
+        level = db + fabsf(floor);
+        level /= fabsf(floor);
     }
     self.audioLevelMeter.level = level;
 }

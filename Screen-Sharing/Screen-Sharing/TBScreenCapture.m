@@ -136,8 +136,8 @@
     _capturing = NO;
     
     dispatch_sync(_queue, ^{
-        if (_timer) {
-            dispatch_source_cancel(_timer);
+        if (self->_timer) {
+            dispatch_source_cancel(self->_timer);
         }
     });
 

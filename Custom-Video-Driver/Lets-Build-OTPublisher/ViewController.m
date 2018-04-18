@@ -280,12 +280,10 @@ didFailWithError:(OTError*)error
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OTError"
-                                                        message:string
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil] ;
-        [alert show];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"OTError"
+                                                                         message:string
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertVC animated:YES completion:nil];
     });
 }
 

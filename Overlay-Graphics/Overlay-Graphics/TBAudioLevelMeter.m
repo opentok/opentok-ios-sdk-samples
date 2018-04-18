@@ -35,7 +35,7 @@
     self.frame = frame;
 }
 
-- (void)setLevel:(float)level
+- (void)setLevel:(double)level
 {
     _level = level;
     [self setNeedsDisplay];
