@@ -11,7 +11,7 @@
 #import "TBExampleVideoRender.h"
 
 @interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate>
+<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate, TBExampleVideoCaptureDelegate>
 
 @end
 
@@ -66,14 +66,7 @@ static NSString* const kToken = @"";
 - (BOOL)shouldAutorotateToInterfaceOrientation:
 (UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    if (UIUserInterfaceIdiomPhone == [[UIDevice currentDevice]
-                                      userInterfaceIdiom])
-    {
-        return NO;
-    } else {
-        return YES;
-    }
+    return UIUserInterfaceIdiomPhone != [[UIDevice currentDevice] userInterfaceIdiom];
 }
 #pragma mark - OpenTok methods
 
@@ -105,6 +98,9 @@ static NSString* const kToken = @"";
     
     TBExampleVideoCapture* videoCapture =
     [[TBExampleVideoCapture alloc] init];
+    
+    __weak ViewController *weakSelf = self;
+    [videoCapture setDelegate:weakSelf];
     [_publisher setVideoCapture:videoCapture];
     
     _publisherVideoRenderView =
@@ -313,6 +309,27 @@ didFailWithError:(OTError*)error
     }
     else if (renderer == _subscriber.videoRender) {
         NSLog(@"Receiving subscriber metadata");
+    }
+}
+
+- (void)finishPreparingFrame:(OTVideoFrame *)videoFrame {
+    [self setTimestampToVideoFrame:videoFrame];
+}
+
+- (void)setTimestampToVideoFrame:(OTVideoFrame *)videoFrame {
+    if (!videoFrame) {
+        return;
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSData *metadata = [timestamp dataUsingEncoding:NSUTF8StringEncoding];
+    OTError *error = nil;
+    [videoFrame setMetadata:metadata error:&error];
+    if (error) {
+        NSLog(@"Append metadata error: %@", error);
     }
 }
 

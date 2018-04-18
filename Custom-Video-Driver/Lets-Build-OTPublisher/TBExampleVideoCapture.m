@@ -785,6 +785,10 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                            planes:_videoFrame.planes];
     }
     
+    if (self.delegate) {
+        [self.delegate finishPreparingFrame:_videoFrame];
+    }
+    
     [_videoCaptureConsumer consumeFrame:_videoFrame];
     
     free(sanitizedImageBuffer);
