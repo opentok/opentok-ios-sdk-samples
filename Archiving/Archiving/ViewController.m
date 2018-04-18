@@ -55,11 +55,11 @@
         }
         else{
             NSDictionary *roomInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            _apiKey = [roomInfo objectForKey:@"apiKey"];
-            _token = [roomInfo objectForKey:@"token"];
-            _sessionId = [roomInfo objectForKey:@"sessionId"];
+            self->_apiKey = [roomInfo objectForKey:@"apiKey"];
+            self->_token = [roomInfo objectForKey:@"token"];
+            self->_sessionId = [roomInfo objectForKey:@"sessionId"];
             
-            if(!_apiKey || !_token || !_sessionId) {
+            if(!self->_apiKey || !self->_token || !self->_sessionId) {
                 NSLog(@"Error invalid response from server, URL: %@",urlPath);
             } else {
                 [self doConnect];
