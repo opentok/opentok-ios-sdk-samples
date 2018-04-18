@@ -57,11 +57,11 @@
         }
         else{
             NSDictionary *roomInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            _apiKey = [roomInfo objectForKey:@"apiKey"];
-            _token = [roomInfo objectForKey:@"token"];
-            _sessionId = [roomInfo objectForKey:@"sessionId"];
+            self->_apiKey = [roomInfo objectForKey:@"apiKey"];
+            self->_token = [roomInfo objectForKey:@"token"];
+            self->_sessionId = [roomInfo objectForKey:@"sessionId"];
             
-            if(!_apiKey || !_token || !_sessionId) {
+            if(!self->_apiKey || !self->_token || !self->_sessionId) {
                 NSLog(@"Error invalid response from server, URL: %@",urlPath);
             } else {
                 [self doConnect];
@@ -75,17 +75,8 @@
     return YES;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    if (UIUserInterfaceIdiomPhone == [[UIDevice currentDevice]
-                                      userInterfaceIdiom])
-    {
-        return NO;
-    } else {
-        return YES;
-    }
+- (BOOL)shouldAutorotate {
+    return UIUserInterfaceIdiomPhone != [[UIDevice currentDevice] userInterfaceIdiom];
 }
 #pragma mark - OpenTok methods
 
@@ -204,7 +195,7 @@
 }
 
 - (void)logSignalString:(NSString*)string fromSelf:(Boolean)fromSelf {
-    int prevLength = _chatReceivedTextView.text.length - 1;
+    unsigned long prevLength = _chatReceivedTextView.text.length - 1;
     [_chatReceivedTextView insertText:string];
     [_chatReceivedTextView insertText:@"\n"];
     
