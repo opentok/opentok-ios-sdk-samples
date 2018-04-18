@@ -336,7 +336,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/FrameMetadata/FrameMetadata.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.FrameMetadata;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -362,7 +362,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/FrameMetadata/FrameMetadata.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.FrameMetadata;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

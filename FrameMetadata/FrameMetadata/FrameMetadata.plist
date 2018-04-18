@@ -30,6 +30,8 @@
 	<string>Location is required to find out where you are.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Opentok needs access to the microphone to stream your audio</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>

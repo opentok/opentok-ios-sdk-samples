@@ -12,7 +12,7 @@
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate, TBExampleVideoCaptureDelegate>
-
+@property (weak, nonatomic) IBOutlet UILabel *metadataLabel;
 @end
 
 @implementation ViewController {
@@ -24,8 +24,6 @@
     
     TBExampleVideoRender* _subscriberVideoRenderView;
     TBExampleVideoRender* _publisherVideoRenderView;
-    
-    UILabel *metadataLabel;
 }
 static double widgetHeight = 240;
 static double widgetWidth = 320;
@@ -50,10 +48,6 @@ static NSString* const kToken = @"";
     _session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                            delegate:self];
-    
-    metadataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-    [metadataLabel setTextColor:[UIColor whiteColor]];
-    [metadataLabel setFont:[UIFont systemFontOfSize:12]];
     
     [self doConnect];
 }
@@ -284,12 +278,10 @@ didFailWithError:(OTError*)error
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OTError"
-                                                        message:string
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil] ;
-        [alert show];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"OTError"
+                                                                         message:string
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertVC animated:YES completion:nil];
     });
 }
 
@@ -300,10 +292,7 @@ didFailWithError:(OTError*)error
         NSString *timestamp = [[NSString alloc] initWithData:metadata encoding:NSUTF8StringEncoding];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [metadataLabel setText:timestamp];
-            if (!metadataLabel.superview) {
-                [_publisherVideoRenderView addSubview:metadataLabel];
-            }
+            [self.metadataLabel setText:timestamp];
             NSLog(@"Receiving publisher metadata: %@", timestamp);
         });
     }
