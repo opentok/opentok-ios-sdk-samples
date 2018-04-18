@@ -71,8 +71,8 @@ static double widgetWidth = 320 / 2;
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAll;
+- (BOOL)shouldAutorotate {
+    return UIUserInterfaceIdiomPhone != [[UIDevice currentDevice] userInterfaceIdiom];
 }
 
 #pragma mark - OpenTok methods
@@ -262,12 +262,10 @@ connectionDestroyed:(OTConnection *)connection
 - (void)showAlert:(NSString *)string
 {
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OTError"
-                                                        message:string
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil] ;
-        [alert show];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"OTError"
+                                                                         message:string
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertVC animated:YES completion:nil];
     });
 }
 

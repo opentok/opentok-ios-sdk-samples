@@ -26,7 +26,7 @@
     return self;
 }
 
-- (void)setLevel:(float)level
+- (void)setLevel:(double)level
 {
     _level = level;
     [self setNeedsDisplay];

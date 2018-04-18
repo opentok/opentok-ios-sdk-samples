@@ -55,17 +55,8 @@ static NSString *const kToken = @"";
     return YES;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    if (UIUserInterfaceIdiomPhone == [[UIDevice currentDevice]
-                                      userInterfaceIdiom])
-    {
-        return NO;
-    } else {
-        return YES;
-    }
+- (BOOL)shouldAutorotate {
+    return UIUserInterfaceIdiomPhone != [[UIDevice currentDevice] userInterfaceIdiom];
 }
 #pragma mark - OpenTok methods
 
@@ -286,13 +277,10 @@ didFailWithError:(OTError*)error
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert =
-        [[[UIAlertView alloc] initWithTitle:@"Message from video session"
-                                    message:string
-                                   delegate:self
-                          cancelButtonTitle:@"OK"
-                          otherButtonTitles:nil] autorelease];
-        [alert show];
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Message from video session"
+                                                                         message:string
+                                                                  preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alertVC animated:YES completion:nil];
     });
 }
 
@@ -357,8 +345,8 @@ archiveStoppedWithId:(NSString *)archiveId
     float floor = -40;
     float level = 0;
     if (db > floor) {
-        level = db + abs(floor);
-        level /= abs(floor);
+        level = db + fabsf(floor);
+        level /= fabsf(floor);
     }
     _subscriberVideoView.audioLevelMeter.level = level;
 }
