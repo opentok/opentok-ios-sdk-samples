@@ -11,7 +11,7 @@
 #import "TBExampleVideoRender.h"
 
 @interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate, TBExampleVideoCaptureDelegate>
+<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate, TBFrameCapturerMetadataDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *metadataLabel;
 @end
 
