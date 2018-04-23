@@ -13,6 +13,7 @@
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate, TBFrameCapturerMetadataDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *metadataLabel;
+@property (nonatomic) NSDateFormatter *dateFormatter;
 @end
 
 @implementation ViewController {
@@ -38,6 +39,14 @@ static NSString* const kSessionId = @"";
 static NSString* const kToken = @"";
 
 #pragma mark - View lifecycle
+
+- (NSDateFormatter *)dateFormatter {
+    if (!_dateFormatter) {
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        [_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+    }
+    return _dateFormatter;
+}
 
 - (void)viewDidLoad
 {
@@ -113,7 +122,7 @@ static NSString* const kToken = @"";
     }
 
     [_publisherVideoRenderView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisherVideoRenderView];
+    [self.view insertSubview:_publisherVideoRenderView atIndex:0];
 }
 
 /**
@@ -301,6 +310,10 @@ didFailWithError:(OTError*)error
     }
 }
 
+/*
+ * This piece is optional: we demonstrate how to attach a metadata to a video frame before transitmmiting to the OpenTok platform.
+ * You don't have to attach a metadata to make the transmission work
+ */
 - (void)finishPreparingFrame:(OTVideoFrame *)videoFrame {
     [self setTimestampToVideoFrame:videoFrame];
 }
@@ -310,9 +323,8 @@ didFailWithError:(OTError*)error
         return;
     }
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-    NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *timestamp = [self.dateFormatter stringFromDate:[NSDate date]];
     
     NSData *metadata = [timestamp dataUsingEncoding:NSUTF8StringEncoding];
     OTError *error = nil;
