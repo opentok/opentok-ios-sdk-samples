@@ -12,20 +12,17 @@
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBRendererDelegate, TBFrameCapturerMetadataDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) TBExampleVideoCapture *defaultVideoCapture;
+@property (nonatomic) TBExampleVideoRender *subscriberVideoRenderView;
+@property (nonatomic) TBExampleVideoRender *publisherVideoRenderView;
 @property (weak, nonatomic) IBOutlet UILabel *metadataLabel;
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    
-    TBExampleVideoCapture* _defaultVideoCapture;
-    
-    TBExampleVideoRender* _subscriberVideoRenderView;
-    TBExampleVideoRender* _publisherVideoRenderView;
-}
+@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 
