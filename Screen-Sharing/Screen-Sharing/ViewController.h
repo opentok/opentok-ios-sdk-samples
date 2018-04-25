@@ -9,6 +9,4 @@
 
 @interface ViewController : UIViewController
 
-@property (nonatomic, strong) IBOutlet UITextField* timeDisplay;
-
 @end

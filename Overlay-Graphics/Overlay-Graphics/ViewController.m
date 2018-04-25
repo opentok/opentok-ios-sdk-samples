@@ -12,18 +12,15 @@
 #import "TBExampleOverlayView.h"
 #import "TBExampleVideoCapture.h"
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBExampleVideoViewDelegate>
-
+@interface ViewController () <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBExampleVideoViewDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) TBExampleVideoView *publisherVideoView;
+@property (nonatomic) TBExampleVideoView *subscriberVideoView;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    TBExampleVideoView* _publisherVideoView;
-    TBExampleVideoView* _subscriberVideoView;
-}
+@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 
