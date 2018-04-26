@@ -48,8 +48,8 @@ static NSString* const kToken = @"";
     self.tableView.hidden = YES;
     self.publisherView.hidden = YES;
     
-	_allSubscribers = [[NSMutableDictionary alloc] init];
-	_allConnectionsIds = [[NSMutableArray alloc] init];
+	self.allSubscribers = [[NSMutableDictionary alloc] init];
+	self.allConnectionsIds = [[NSMutableArray alloc] init];
     
 	// set up look of the page
 	[self.navigationController setNavigationBarHidden:NO];
@@ -195,8 +195,8 @@ audioLevelUpdated:(float)audioLevel
     [self.publisherAudioLevelMeter removeFromSuperview];
     self.publisherView.hidden = YES;
     
-	[_allSubscribers removeAllObjects];
-	[_allConnectionsIds removeAllObjects];
+	[self.allSubscribers removeAllObjects];
+	[self.allConnectionsIds removeAllObjects];
     
     if (self.archiveStatusImgView.isAnimating)
     {
@@ -210,12 +210,11 @@ audioLevelUpdated:(float)audioLevel
 {
 	NSLog(@"streamDestroyed %@", stream.connection.connectionId);
 	   
-    OTSubscriber *subscriber = [_allSubscribers
-                                valueForKey:stream.connection.connectionId];
+    OTSubscriber *subscriber = [self.allSubscribers 22valueForKey:stream.connection.connectionId];
     subscriber.audioLevelDelegate = nil;
     
-	[_allSubscribers removeObjectForKey:stream.connection.connectionId];
-	[_allConnectionsIds removeObject:stream.connection.connectionId];
+	[self.allSubscribers removeObjectForKey:stream.connection.connectionId];
+	[self.allConnectionsIds removeObject:stream.connection.connectionId];
     
     [self.tableView reloadData];
 }
@@ -245,8 +244,8 @@ audioLevelUpdated:(float)audioLevel
 	NSLog(@"subscriberDidConnectToStream %@, connection id %@",
           subscriber.stream.streamId,subscriber.stream.connection.connectionId);
     
-    [_allConnectionsIds addObject:subscriber.stream.connection.connectionId];
-    [_allSubscribers setObject:subscriber forKey:subscriber.stream.connection.connectionId];
+    [self.allConnectionsIds addObject:subscriber.stream.connection.connectionId];
+    [self.allSubscribers setObject:subscriber forKey:subscriber.stream.connection.connectionId];
     
     [self.tableView reloadData];
 }
@@ -395,7 +394,7 @@ archiveStoppedWithId:(NSString*)archiveId
  numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [_allConnectionsIds count];
+    return [self.allConnectionsIds count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
@@ -422,8 +421,7 @@ archiveStoppedWithId:(NSString*)archiveId
                                        alpha:1.0];
     cell.contentView.backgroundColor = bgColor;
 
-    OTSubscriber *subscriber = [_allSubscribers valueForKey:
-                                [_allConnectionsIds objectAtIndex:indexPath.row]];
+    OTSubscriber *subscriber = [self.allSubscribers valueForKey:[self.allConnectionsIds objectAtIndex:indexPath.row]];
     cell.name.text = subscriber.stream.name;
     cell.subscriber = subscriber;
     subscriber.audioLevelDelegate = cell;
