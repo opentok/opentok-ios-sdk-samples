@@ -210,7 +210,7 @@ audioLevelUpdated:(float)audioLevel
 {
 	NSLog(@"streamDestroyed %@", stream.connection.connectionId);
 	   
-    OTSubscriber *subscriber = [self.allSubscribers 22valueForKey:stream.connection.connectionId];
+    OTSubscriber *subscriber = [self.allSubscribers valueForKey:stream.connection.connectionId];
     subscriber.audioLevelDelegate = nil;
     
 	[self.allSubscribers removeObjectForKey:stream.connection.connectionId];
