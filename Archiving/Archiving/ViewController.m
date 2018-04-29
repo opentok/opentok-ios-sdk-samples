@@ -15,18 +15,16 @@
 @property (weak, nonatomic) IBOutlet UIView *publisherView;
 @property (weak, nonatomic) IBOutlet UIImageView *archiveIndicatorImg;
 @property (weak, nonatomic) IBOutlet UIButton *archiveControlBtn;
-
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) NSString *archiveId;
+@property (nonatomic) NSString *apiKey;
+@property (nonatomic) NSString *sessionId;
+@property (nonatomic) NSString *token;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    NSString* _archiveId;
-    NSString* _apiKey;
-    NSString* _sessionId;
-    NSString* _token;
-}
+@implementation ViewController
 
 #pragma mark - View lifecycle
 
@@ -72,11 +70,11 @@
 - (void)doConnect
 {
     // Initialize a new instance of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:_apiKey
-                                       sessionId:_sessionId
+    self.session = [[OTSession alloc] initWithApiKey:self.apiKey
+                                       sessionId:self.sessionId
                                         delegate:self];
     OTError *error = nil;
-    [_session connectWithToken:_token error:&error];
+    [self.session connectWithToken:self.token error:&error];
     if (error)
     {
         NSLog(@"Unable to connect to session (%@)",
@@ -86,40 +84,40 @@
 
 - (void)doPublish
 {
-    _publisher = [[OTPublisher alloc]
+    self.publisher = [[OTPublisher alloc]
                   initWithDelegate:self];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error)
     {
         NSLog(@"Unable to publish (%@)",
               error.localizedDescription);
     }
     
-    [_publisher.view setFrame:CGRectMake(0, 0, _publisherView.bounds.size.width,
-                                         _publisherView.bounds.size.height)];
-    [_publisherView addSubview:_publisher.view];
+    [self.publisher.view setFrame:CGRectMake(0, 0, self.publisherView.bounds.size.width,
+                                         self.publisherView.bounds.size.height)];
+    [self.publisherView addSubview:self.publisher.view];
 
     if (SAMPLE_SERVER_BASE_URL) {
-        _archiveControlBtn.hidden = NO;
-        [_archiveControlBtn addTarget:self
+        self.archiveControlBtn.hidden = NO;
+        [self.archiveControlBtn addTarget:self
                                action:@selector(startArchive)
                      forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
 - (void)cleanupPublisher {
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [self.publisher.view removeFromSuperview];
+    self.publisher = nil;
 }
 
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream
                                               delegate:self];
     OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         NSLog(@"Unable to publish (%@)",
@@ -129,19 +127,19 @@
 
 - (void)cleanupSubscriber
 {
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 -(void)startArchive
 {
-    _archiveControlBtn.hidden = YES;
+    self.archiveControlBtn.hidden = YES;
     NSString *fullURL = [NSString stringWithFormat:@"%@/archive/start", SAMPLE_SERVER_BASE_URL];
     NSURL *url = [NSURL URLWithString: fullURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod: @"POST"];
-    NSDictionary *dict = @{@"sessionId": _sessionId};
+    NSDictionary *dict = @{@"sessionId": self.sessionId};
     request.HTTPBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
@@ -158,8 +156,8 @@
 
 -(void)stopArchive
 {
-    _archiveControlBtn.hidden = YES;
-    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/%@/stop", SAMPLE_SERVER_BASE_URL, _archiveId];
+    self.archiveControlBtn.hidden = YES;
+    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/%@/stop", SAMPLE_SERVER_BASE_URL, self.archiveId];
     NSURL *url = [NSURL URLWithString: fullURL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [request setHTTPMethod: @"POST"];
@@ -177,7 +175,7 @@
 
 -(void)loadArchivePlaybackInBrowser
 {
-    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/%@/view", SAMPLE_SERVER_BASE_URL, _archiveId];
+    NSString *fullURL = [NSString stringWithFormat:@"%@/archive/%@/view", SAMPLE_SERVER_BASE_URL, self.archiveId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:fullURL]];
 }
 
@@ -201,7 +199,7 @@ streamCreated:(OTStream *)stream
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
     
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -212,7 +210,7 @@ streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -241,16 +239,16 @@ archiveStartedWithId:(NSString *)archiveId
                 name:(NSString *)name
 {
     NSLog(@"session archiving started with id:%@ name:%@", archiveId, name);
-    _archiveId = archiveId;
-    _archiveIndicatorImg.hidden = NO;
+    self.archiveId = archiveId;
+    self.archiveIndicatorImg.hidden = NO;
     if (SAMPLE_SERVER_BASE_URL) {
-        _archiveControlBtn.hidden = NO;
-        [_archiveControlBtn setTitle: @"Stop recording" forState:UIControlStateNormal];
-        _archiveControlBtn.hidden = NO;
-        [_archiveControlBtn removeTarget:self
+        self.archiveControlBtn.hidden = NO;
+        [self.archiveControlBtn setTitle: @"Stop recording" forState:UIControlStateNormal];
+        self.archiveControlBtn.hidden = NO;
+        [self.archiveControlBtn removeTarget:self
                                   action:NULL
                         forControlEvents:UIControlEventTouchUpInside];
-        [_archiveControlBtn addTarget:self
+        [self.archiveControlBtn addTarget:self
                                action:@selector(stopArchive)
                      forControlEvents:UIControlEventTouchUpInside];
     }
@@ -260,14 +258,14 @@ archiveStartedWithId:(NSString *)archiveId
 archiveStoppedWithId:(NSString *)archiveId
 {
     NSLog(@"session archiving stopped with id:%@", archiveId);
-    _archiveIndicatorImg.hidden = YES;
+    self.archiveIndicatorImg.hidden = YES;
     if (SAMPLE_SERVER_BASE_URL) {
-        _archiveControlBtn.hidden = NO;
-        [_archiveControlBtn setTitle: @"View recording" forState:UIControlStateNormal];
-        [_archiveControlBtn removeTarget:self
+        self.archiveControlBtn.hidden = NO;
+        [self.archiveControlBtn setTitle: @"View recording" forState:UIControlStateNormal];
+        [self.archiveControlBtn removeTarget:self
                                   action:NULL
                         forControlEvents:UIControlEventTouchUpInside];
-        [_archiveControlBtn addTarget:self
+        [self.archiveControlBtn addTarget:self
                                action:@selector(loadArchivePlaybackInBrowser)
                      forControlEvents:UIControlEventTouchUpInside];
     }
@@ -301,9 +299,9 @@ didFailWithError:(OTError*) error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriber.view setFrame:CGRectMake(0, 0, _subscriberView.bounds.size.width,
-                                          _subscriberView.bounds.size.height)];
-    [_subscriberView addSubview:_subscriber.view];
+    [self.subscriber.view setFrame:CGRectMake(0, 0, self.subscriberView.bounds.size.width,
+                                          self.subscriberView.bounds.size.height)];
+    [self.subscriberView addSubview:self.subscriber.view];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber

@@ -115,10 +115,10 @@ static NSString* const kToken = @"";
 - (void)setupSession
 {
     //setup one time session
-	_session = [[OTSession alloc] initWithApiKey:kApiKey
+	self.session = [[OTSession alloc] initWithApiKey:kApiKey
 									   sessionId:kSessionId
 										delegate:self];
-    [_session connectWithToken:kToken error:nil];
+    [self.session connectWithToken:kToken error:nil];
     [self setupPublisher];
     
 }
@@ -128,8 +128,8 @@ static NSString* const kToken = @"";
     // create one time publisher and style publisher
     OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
     settings.name = self.publisherName;
-    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
-    _publisher.publishVideo = NO;
+    self.publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
+    self.publisher.publishVideo = NO;
 }
 
 #pragma mark - OpenTok Session
@@ -149,7 +149,7 @@ static NSString* const kToken = @"";
 {
     // now publish
     OTError *error = nil;
-	[_session publish:_publisher error:&error];
+	[self.session publish:self.publisher error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -169,8 +169,8 @@ static NSString* const kToken = @"";
 
     self.publisherAudioLevelMeter.opaque = false;
     CGRect frame = self.publisherMicButton.frame;
-    _publisherAudioLevelMeter.frame = frame;
-    _publisher.audioLevelDelegate = self;
+    self.publisherAudioLevelMeter.frame = frame;
+    self.publisher.audioLevelDelegate = self;
     [self.publisherMicContainerView insertSubview:self.publisherAudioLevelMeter
                                      aboveSubview:self.publisherMicButton];
 }
@@ -191,7 +191,7 @@ audioLevelUpdated:(float)audioLevel
 - (void)sessionDidDisconnect:(OTSession *)session
 {
     session.delegate = nil;
-    _publisher.audioLevelDelegate = nil;
+    self.publisher.audioLevelDelegate = nil;
     [self.publisherAudioLevelMeter removeFromSuperview];
     self.publisherView.hidden = YES;
     
@@ -231,7 +231,7 @@ audioLevelUpdated:(float)audioLevel
     
     // subscribe now
     OTError *error = nil;
-	[_session subscribe:subscriber error:&error];
+	[self.session subscribe:subscriber error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -289,11 +289,11 @@ audioLevelUpdated:(float)audioLevel
 - (IBAction)endCallAction:(UIButton *)button
 {
     
-	if (_session && _session.sessionConnectionStatus ==
+	if (self.session && self.session.sessionConnectionStatus ==
         OTSessionConnectionStatusConnected) {
         // disconnect session
 		NSLog(@"disconnecting....");
-		[_session disconnect:nil];
+		[self.session disconnect:nil];
 		return;
 	}
 }
@@ -320,14 +320,14 @@ audioLevelUpdated:(float)audioLevel
 
 - (IBAction)toggleAudioPublish:(id)sender
 {
-	if (_publisher.publishAudio == YES) {
-        _publisher.audioLevelDelegate = nil;
+	if (self.publisher.publishAudio == YES) {
+        self.publisher.audioLevelDelegate = nil;
         self.publisherAudioLevelMeter.level = 0.0f;
-		_publisher.publishAudio = NO;
+		self.publisher.publishAudio = NO;
 		self.publisherMicButton.selected = YES;
 	} else {
-        _publisher.audioLevelDelegate = self;
-		_publisher.publishAudio = YES;
+        self.publisher.audioLevelDelegate = self;
+		self.publisher.publishAudio = YES;
 		self.publisherMicButton.selected = NO;
 	}
 }

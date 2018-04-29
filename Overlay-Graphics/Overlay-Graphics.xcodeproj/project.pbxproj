@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A01464362096801200E9E94A /* TBAudioLevelMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = A01464352096801200E9E94A /* TBAudioLevelMeter.m */; };
 		A535047718FD469B00E68BD9 /* archiving_off-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047118FD469B00E68BD9 /* archiving_off-Small.png */; };
 		A535047818FD469B00E68BD9 /* archiving_off-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */; };
 		A535047918FD469B00E68BD9 /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A535047318FD469B00E68BD9 /* archiving_on-10.png */; };
@@ -27,7 +28,6 @@
 		A5A6081C18C0921800192466 /* TBExampleOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081118C0921800192466 /* TBExampleOverlayView.m */; };
 		A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081518C0921800192466 /* TBExampleUnderlayView.m */; };
 		A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5A6081718C0921800192466 /* TBExampleVideoView.m */; };
-		A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */; };
 		A5FA8EE61A5DE18A002DC195 /* audioOnlyActive.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */; };
 		A5FA8EE71A5DE18A002DC195 /* audioOnlyInactive.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */; };
 		A5FA8EE81A5DE18A002DC195 /* highCongestion.png in Resources */ = {isa = PBXBuildFile; fileRef = A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */; };
@@ -43,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		0C16852F1A71927700A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		A01464352096801200E9E94A /* TBAudioLevelMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBAudioLevelMeter.m; path = "../../Audio-Levels/Audio-Levels/TBAudioLevelMeter.m"; sourceTree = "<group>"; };
+		A01464372096801700E9E94A /* TBAudioLevelMeter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TBAudioLevelMeter.h; path = "../../Audio-Levels/Audio-Levels/TBAudioLevelMeter.h"; sourceTree = "<group>"; };
 		A535047118FD469B00E68BD9 /* archiving_off-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small.png"; sourceTree = "<group>"; };
 		A535047218FD469B00E68BD9 /* archiving_off-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_off-Small@2x.png"; sourceTree = "<group>"; };
 		A535047318FD469B00E68BD9 /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
@@ -83,8 +85,6 @@
 		A5A6081618C0921800192466 /* TBExampleVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoView.h; sourceTree = "<group>"; };
 		A5A6081718C0921800192466 /* TBExampleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoView.m; sourceTree = "<group>"; };
 		A5D01FAC1A3A1311005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
-		A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBAudioLevelMeter.h; sourceTree = "<group>"; };
-		A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBAudioLevelMeter.m; sourceTree = "<group>"; };
 		A5FA8EDD1A5DE18A002DC195 /* audioOnlyActive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioOnlyActive.png; sourceTree = "<group>"; };
 		A5FA8EDE1A5DE18A002DC195 /* audioOnlyInactive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = audioOnlyInactive.png; sourceTree = "<group>"; };
 		A5FA8EDF1A5DE18A002DC195 /* highCongestion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highCongestion.png; sourceTree = "<group>"; };
@@ -155,9 +155,9 @@
 		A56B2BAF18C085AD001E082A /* Overlay-Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				A01464372096801700E9E94A /* TBAudioLevelMeter.h */,
+				A01464352096801200E9E94A /* TBAudioLevelMeter.m */,
 				A5A6080B18C0920600192466 /* Views */,
-				A5E9B9F619C1CBDA007A9100 /* TBAudioLevelMeter.h */,
-				A5E9B9F719C1CBDA007A9100 /* TBAudioLevelMeter.m */,
 				A56B2BB818C085AD001E082A /* AppDelegate.h */,
 				A56B2BB918C085AD001E082A /* AppDelegate.m */,
 				A56B2BBB18C085AD001E082A /* Main_iPhone.storyboard */,
@@ -316,9 +316,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F8FDAB1941277B00364672 /* TBExampleVideoRender.m in Sources */,
-				A5E9B9F819C1CBDA007A9100 /* TBAudioLevelMeter.m in Sources */,
 				A5A6081F18C0921800192466 /* TBExampleVideoView.m in Sources */,
 				A56B2BC318C085AD001E082A /* ViewController.m in Sources */,
+				A01464362096801200E9E94A /* TBAudioLevelMeter.m in Sources */,
 				A5A6081E18C0921800192466 /* TBExampleUnderlayView.m in Sources */,
 				A5A6081B18C0921800192466 /* TBExampleOverlayButton.m in Sources */,
 				A56B2BBA18C085AD001E082A /* AppDelegate.m in Sources */,
