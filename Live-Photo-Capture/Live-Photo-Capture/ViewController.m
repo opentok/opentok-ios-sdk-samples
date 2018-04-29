@@ -9,18 +9,15 @@
 #import <OpenTok/OpenTok.h>
 #import "TBExamplePhotoVideoCapture.h"
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
-
+@interface ViewController() <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) UIImageView *myImageView;
+@property (nonatomic) TBExamplePhotoVideoCapture *myPhotoVideoCaptureModule;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    TBExamplePhotoVideoCapture* _myPhotoVideoCaptureModule;
-    UIImageView* _myImageView;
-}
+@implementation ViewController
 static double widgetHeight = 120;
 static double widgetWidth = 160;
 

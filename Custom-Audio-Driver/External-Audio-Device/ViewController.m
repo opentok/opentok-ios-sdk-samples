@@ -9,16 +9,13 @@
 #import <OpenTok/OpenTok.h>
 #import "OTDefaultAudioDeviceWithVolumeControl.h"
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
-
+@interface ViewController() <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-}
+@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 

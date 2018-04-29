@@ -17,16 +17,13 @@ static NSString* const kSessionId = @"";
 // Replace with your generated token
 static NSString* const kToken = @"";
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
-
+@interface ViewController ()<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-}
+@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 

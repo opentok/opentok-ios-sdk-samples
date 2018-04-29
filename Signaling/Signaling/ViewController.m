@@ -20,17 +20,16 @@
 @property (weak, nonatomic) IBOutlet UIButton *subscriberAudioBtn;
 @property (weak, nonatomic) IBOutlet UITextField *chatInputTextField;
 
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) NSString *archiveId;
+@property (nonatomic) NSString *apiKey;
+@property (nonatomic) NSString *sessionId;
+@property (nonatomic) NSString *token;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    NSString* _archiveId;
-    NSString* _apiKey;
-    NSString* _sessionId;
-    NSString* _token;
-}
+@implementation ViewController
 
 #pragma mark - View lifecycle
 

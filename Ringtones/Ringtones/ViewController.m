@@ -10,18 +10,15 @@
 #import <OpenTok/OpenTok.h>
 #import "OTAudioDeviceRingtone.h"
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
-
+@interface ViewController() <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) OTAudioDeviceRingtone *myAudioDevice;
+@property (nonatomic) BOOL reconnectPlease;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    OTAudioDeviceRingtone* _myAudioDevice;
-    BOOL _reconnectPlease;
-}
+@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 

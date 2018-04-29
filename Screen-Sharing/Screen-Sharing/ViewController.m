@@ -19,20 +19,18 @@ static NSString* const kSessionId = @"";
 static NSString* const kToken = @"";
 
 @interface ViewController () <OTSessionDelegate, OTPublisherDelegate, OTSubscriberDelegate>
-
+@property (nonatomic) IBOutlet UITextField *timeDisplay;
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) dispatch_queue_t queue;
+@property (nonatomic) dispatch_source_t timer;
 @end
 
 static double widgetHeight = 240 / 2;
 static double widgetWidth = 320 / 2;
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisherKit* _publisher;
-    OTSubscriber* _subscriber;
-    dispatch_queue_t  _queue;
-    dispatch_source_t _timer;
-}
-@synthesize timeDisplay;
+@implementation ViewController
 
 #pragma mark - View lifecycle
 
