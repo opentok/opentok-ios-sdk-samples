@@ -7,9 +7,9 @@
 
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
+#import "Config.h"
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, UITextFieldDelegate, UIScrollViewDelegate>
+@interface ViewController() <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *controlsView;
 @property (weak, nonatomic) IBOutlet UIView *videoContainerView;
 @property (weak, nonatomic) IBOutlet UIView *subscriberView;
@@ -37,7 +37,7 @@
 {
     [super viewDidLoad];
 
-    _chatInputTextField.delegate = self;
+    self.chatInputTextField.delegate = self;
 
     [self getSessionCredentials];
 }
@@ -82,11 +82,11 @@
 - (void)doConnect
 {
     // Initialize a new instance of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:_apiKey
-                                       sessionId:_sessionId
+    self.session = [[OTSession alloc] initWithApiKey:self.apiKey
+                                       sessionId:self.sessionId
                                         delegate:self];
     OTError *error = nil;
-    [_session connectWithToken:_token error:&error];
+    [self.session connectWithToken:self.token error:&error];
     if (error)
     {
         NSLog(@"Unable to connect to session (%@)",
@@ -96,29 +96,29 @@
 
 - (void)doPublish
 {
-    _publisher = [[OTPublisher alloc]
+    self.publisher = [[OTPublisher alloc]
                   initWithDelegate:self];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error)
     {
         NSLog(@"Unable to publish (%@)",
               error.localizedDescription);
     }
     
-    [_publisher.view setFrame:CGRectMake(0, 0, _publisherView.bounds.size.width,
-                                         _publisherView.bounds.size.height)];
-    [_publisherView addSubview:_publisher.view];
+    [self.publisher.view setFrame:CGRectMake(0, 0, self.publisherView.bounds.size.width,
+                                         self.publisherView.bounds.size.height)];
+    [self.publisherView addSubview:self.publisher.view];
 
     
-    _publisherAudioBtn.hidden = NO;
-    [_publisherAudioBtn addTarget:self
+    self.publisherAudioBtn.hidden = NO;
+    [self.publisherAudioBtn addTarget:self
                           action:@selector(togglePublisherMic)
                 forControlEvents:UIControlEventTouchUpInside];
     
-    _swapCameraBtn.hidden = NO;
-    [_swapCameraBtn addTarget:self
+    self.swapCameraBtn.hidden = NO;
+    [self.swapCameraBtn addTarget:self
                action:@selector(swapCamera)
      forControlEvents:UIControlEventTouchUpInside];
 }
@@ -126,48 +126,48 @@
 
 -(void)togglePublisherMic
 {
-    _publisher.publishAudio = !_publisher.publishAudio;
+    self.publisher.publishAudio = !self.publisher.publishAudio;
     UIImage *buttonImage;
-    if (_publisher.publishAudio) {
+    if (self.publisher.publishAudio) {
         buttonImage = [UIImage imageNamed: @"mic-24.png"];
     } else {
         buttonImage = [UIImage imageNamed: @"mic_muted-24.png"];
     }
-    [_publisherAudioBtn setImage:buttonImage forState:UIControlStateNormal];
+    [self.publisherAudioBtn setImage:buttonImage forState:UIControlStateNormal];
 }
 
 -(void)toggleSubscriberAudio
 {
-    _subscriber.subscribeToAudio = !_subscriber.subscribeToAudio;
+    self.subscriber.subscribeToAudio = !self.subscriber.subscribeToAudio;
     UIImage *buttonImage;
-    if (_subscriber.subscribeToAudio) {
+    if (self.subscriber.subscribeToAudio) {
         buttonImage = [UIImage imageNamed: @"Subscriber-Speaker-35.png"];
     } else {
         buttonImage = [UIImage imageNamed: @"Subscriber-Speaker-Mute-35.png"];
     }
-    [_subscriberAudioBtn setImage:buttonImage forState:UIControlStateNormal];
+    [self.subscriberAudioBtn setImage:buttonImage forState:UIControlStateNormal];
 }
 
 -(void)swapCamera
 {
-    if (_publisher.cameraPosition == AVCaptureDevicePositionFront) {
-        _publisher.cameraPosition = AVCaptureDevicePositionBack;
+    if (self.publisher.cameraPosition == AVCaptureDevicePositionFront) {
+        self.publisher.cameraPosition = AVCaptureDevicePositionBack;
     } else {
-        _publisher.cameraPosition = AVCaptureDevicePositionFront;
+        self.publisher.cameraPosition = AVCaptureDevicePositionFront;
     }
 }
 
 - (void)cleanupPublisher {
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [self.publisher.view removeFromSuperview];
+    self.publisher = nil;
 }
 
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream
                                               delegate:self];
     OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         NSLog(@"Unable to publish (%@)",
@@ -177,34 +177,34 @@
 
 - (void)cleanupSubscriber
 {
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 - (void) sendChatMessage
 {
     OTError* error = nil;
-    [_session signalWithType:@"chat" string:_chatInputTextField.text connection:nil error:&error];
+    [self.session signalWithType:@"chat" string:self.chatInputTextField.text connection:nil error:&error];
     if (error) {
         NSLog(@"Signal error: %@", error);
     } else {
-        NSLog(@"Signal sent: %@", _chatInputTextField.text);
+        NSLog(@"Signal sent: %@", self.chatInputTextField.text);
     }
-    _chatInputTextField.text = @"";
+    self.chatInputTextField.text = @"";
 }
 
 - (void)logSignalString:(NSString*)string fromSelf:(Boolean)fromSelf {
-    unsigned long prevLength = _chatReceivedTextView.text.length - 1;
-    [_chatReceivedTextView insertText:string];
-    [_chatReceivedTextView insertText:@"\n"];
+    unsigned long prevLength = self.chatReceivedTextView.text.length - 1;
+    [self.chatReceivedTextView insertText:string];
+    [self.chatReceivedTextView insertText:@"\n"];
     
     if (fromSelf) {
         NSDictionary* formatDict = @{NSForegroundColorAttributeName: [UIColor blueColor]};
         NSRange textRange = NSMakeRange(prevLength + 1, string.length);
-        [_chatReceivedTextView.textStorage setAttributes:formatDict range:textRange];
+        [self.chatReceivedTextView.textStorage setAttributes:formatDict range:textRange];
     }
-    [_chatReceivedTextView setContentOffset:_chatReceivedTextView.contentOffset animated:NO];
-    [_chatReceivedTextView scrollRangeToVisible:NSMakeRange([_chatReceivedTextView.text length], 0)];
+    [self.chatReceivedTextView setContentOffset:self.chatReceivedTextView.contentOffset animated:NO];
+    [self.chatReceivedTextView scrollRangeToVisible:NSMakeRange([self.chatReceivedTextView.text length], 0)];
 }
 
 # pragma mark - OTSession delegate callbacks
@@ -227,7 +227,7 @@ streamCreated:(OTStream *)stream
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
     
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -238,7 +238,7 @@ streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -298,12 +298,12 @@ didFailWithError:(OTError*) error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriber.view setFrame:CGRectMake(0, 0, _subscriberView.bounds.size.width,
-                                          _subscriberView.bounds.size.height)];
-    [_subscriberView addSubview:_subscriber.view];
+    [self.subscriber.view setFrame:CGRectMake(0, 0, self.subscriberView.bounds.size.width,
+                                          self.subscriberView.bounds.size.height)];
+    [self.subscriberView addSubview:self.subscriber.view];
     
-    _subscriberAudioBtn.hidden = NO;
-    [_subscriberAudioBtn addTarget:self
+    self.subscriberAudioBtn.hidden = NO;
+    [self.subscriberAudioBtn addTarget:self
                            action:@selector(toggleSubscriberAudio)
                  forControlEvents:UIControlEventTouchUpInside];
 
@@ -321,7 +321,7 @@ didFailWithError:(OTError*) error
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    _chatInputTextField.text = @"";
+    self.chatInputTextField.text = @"";
     return YES;
 }
 

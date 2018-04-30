@@ -13,22 +13,15 @@
 #define VIBRATE_FREQUENCY_SECONDS 1.0f
 
 @interface OTAudioDeviceRingtone() <AVAudioPlayerDelegate>
-
+@property (nonatomic) AVAudioPlayer *audioPlayer;
+@property (nonatomic) NSMutableArray *deferredCallbacks;
+@property (nonatomic) NSTimer *vibrateTimer;
 @end
 
-@implementation OTAudioDeviceRingtone {
-    AVAudioPlayer* _audioPlayer;
-    NSMutableArray* _deferredCallbacks;
-    BOOL _vibratesWithRingtone;
-    NSTimer* _vibrateTimer;
-}
+@implementation OTAudioDeviceRingtone
 
-@synthesize vibratesWithRingtone = _vibratesWithRingtone;
-
--(instancetype)init
-{
-    self = [super init];
-    if (self) {
+- (instancetype)init {
+    if (self = [super init]) {
         _deferredCallbacks = [NSMutableArray new];
     }
     return self;
@@ -37,23 +30,23 @@
 - (void)playRingtoneFromURL:(NSURL*)url
 {
     // Stop & replace existing audio player
-    if (_audioPlayer) {
-        [_audioPlayer stop];
-        _audioPlayer = nil;
+    if (self.audioPlayer) {
+        [self.audioPlayer stop];
+        self.audioPlayer = nil;
     }
     
     NSError* error = nil;
-    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url
                                                           error:&error];
     if (error) {
         NSLog(@"Ringtone audio player initialization failure %@", error);
-        _audioPlayer = nil;
+        self.audioPlayer = nil;
         return;
     }
-    [_audioPlayer setDelegate:self];
+    [self.audioPlayer setDelegate:self];
     
     // Tell player to loop indefinitely
-    [_audioPlayer setNumberOfLoops:-1];
+    [self.audioPlayer setNumberOfLoops:-1];
     
     // Allow background playback, only if the default driver hasn't already
     // started running. Setting the category while the audio session is
@@ -67,8 +60,8 @@
     }
     
     // setup timer to vibrate device with some frequency
-    if (_vibratesWithRingtone) {
-        _vibrateTimer =
+    if (self.vibratesWithRingtone) {
+        self.vibrateTimer =
         [NSTimer scheduledTimerWithTimeInterval:VIBRATE_FREQUENCY_SECONDS
                                          target:self
                                        selector:@selector(buzz:)
@@ -77,24 +70,24 @@
     }
     
     // finally, begin playback
-    [_audioPlayer play];
+    [self.audioPlayer play];
 }
 
 - (void)stopRingtone {
     // Stop Audio
-    [_audioPlayer stop];
-    _audioPlayer = nil;
+    [self.audioPlayer stop];
+    self.audioPlayer = nil;
     
     // Stop vibration
-    [_vibrateTimer invalidate];
-    _vibrateTimer = nil;
+    [self.vibrateTimer invalidate];
+    self.vibrateTimer = nil;
     
     // Allow deferred audio callback calls to flow
     [self flushDeferredCallbacks];
 }
 
 - (void)buzz:(NSTimer*)timer {
-    if (_vibratesWithRingtone) {
+    if (self.vibratesWithRingtone) {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
 }
@@ -107,20 +100,20 @@
 {
     @synchronized(self) {
         NSString* selectorString = NSStringFromSelector(callback);
-        [_deferredCallbacks addObject:selectorString];
+        [self.deferredCallbacks addObject:selectorString];
     }
 }
 
 - (void)flushDeferredCallbacks {
-    while (_deferredCallbacks.count > 0) {
-        NSString* selectorString = [_deferredCallbacks objectAtIndex:0];
+    while (self.deferredCallbacks.count > 0) {
+        NSString* selectorString = [self.deferredCallbacks objectAtIndex:0];
         NSLog(@"performing deferred callback %@", selectorString);
         SEL callback = NSSelectorFromString(selectorString);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [self performSelector:callback];
 #pragma clang diagnostic pop
-        [_deferredCallbacks removeObjectAtIndex:0];
+        [self.deferredCallbacks removeObjectAtIndex:0];
     }
 }
 
@@ -128,7 +121,7 @@
 
 - (BOOL)startRendering
 {
-    if (_audioPlayer) {
+    if (self.audioPlayer) {
         [self enqueueDeferredCallback:_cmd];
         return YES;
     } else {
@@ -138,7 +131,7 @@
 
 - (BOOL)stopRendering
 {
-    if (_audioPlayer) {
+    if (self.audioPlayer) {
         [self enqueueDeferredCallback:_cmd];
         return YES;
     } else {
@@ -148,7 +141,7 @@
 
 - (BOOL)startCapture
 {
-    if (_audioPlayer) {
+    if (self.audioPlayer) {
         [self enqueueDeferredCallback:_cmd];
         return YES;
     } else {
@@ -158,7 +151,7 @@
 
 - (BOOL)stopCapture
 {
-    if (_audioPlayer) {
+    if (self.audioPlayer) {
         [self enqueueDeferredCallback:_cmd];
         return YES;
     } else {
