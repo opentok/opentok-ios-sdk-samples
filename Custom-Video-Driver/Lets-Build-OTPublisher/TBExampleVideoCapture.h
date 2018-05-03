@@ -11,6 +11,10 @@
 
 @protocol OTVideoCapture;
 
+@protocol TBFrameCapturerMetadataDelegate
+- (void)finishPreparingFrame:(OTVideoFrame *)videoFrame;
+@end
+
 @interface TBExampleVideoCapture : NSObject
     <AVCaptureVideoDataOutputSampleBufferDelegate, OTVideoCapture>
 {
@@ -31,5 +35,7 @@
 @property (nonatomic, assign) AVCaptureDevicePosition cameraPosition;
 @property (readonly) NSArray* availableCameraPositions;
 - (BOOL)toggleCameraPosition;
+
+@property (nonatomic, retain) id<TBFrameCapturerMetadataDelegate> delegate;
 
 @end

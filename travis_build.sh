@@ -45,3 +45,7 @@ xcodebuild -workspace Archiving.xcworkspace  -scheme Archiving -sdk iphonesimula
 cd ../Signaling/
 pod install
 xcodebuild -workspace Signaling.xcworkspace  -scheme Signaling -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+
+cd ../FrameMetadata/
+pod install
+xcodebuild -workspace FrameMetadata.xcworkspace  -scheme FrameMetadata -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
