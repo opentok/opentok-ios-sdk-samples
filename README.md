@@ -114,6 +114,8 @@ audio levels.
 AVAudioPlayer controller, which will play a short ringtone while waiting for
 the subscriber to connect to the client device.
 
+**FrameMetadata** -- This project shows how to set metadata (limited to 32 bytes) to a video frame, as well as how to read metadata from a video frame.
+
 ## Obtaining OpenTok Credentials
 
 To use the OpenTok platform you need a session ID, token, and API Key.
