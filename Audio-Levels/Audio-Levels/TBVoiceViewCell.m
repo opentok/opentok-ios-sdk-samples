@@ -15,20 +15,13 @@
     // Initialization code
     // audio level meter
     [super awakeFromNib];
-    _audioLevelMeter = [[TBAudioLevelMeter alloc]
+    self.audioLevelMeter = [[TBAudioLevelMeter alloc]
                                           initWithFrame:CGRectZero];
-    _audioLevelMeter.opaque = false;
-    _audioLevelMeter.userInteractionEnabled = NO;
-    CGRect frame = _spkrButtonView.frame;
-    _audioLevelMeter.frame = frame;
-    [_spkrContainerView addSubview:_audioLevelMeter];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.audioLevelMeter.opaque = false;
+    self.audioLevelMeter.userInteractionEnabled = NO;
+    CGRect frame = self.spkrButtonView.frame;
+    self.audioLevelMeter.frame = frame;
+    [self.spkrContainerView addSubview:self.audioLevelMeter];
 }
 
 - (void)subscriber:(OTSubscriberKit *)subscriber

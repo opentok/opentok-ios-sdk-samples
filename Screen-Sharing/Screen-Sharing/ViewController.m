@@ -40,12 +40,12 @@ static double widgetWidth = 320 / 2;
     
     // Setup a timer to periodically update the UI. This gives us something
     // dynamic that we can see on the receiver's end to verify everything works.
-    _queue = dispatch_queue_create("ticker-timer", 0);
-    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _queue);
-    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0),
+    self.queue = dispatch_queue_create("ticker-timer", 0);
+    self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, self.queue);
+    dispatch_source_set_timer(self.timer, dispatch_walltime(NULL, 0),
                               10ull * NSEC_PER_MSEC, 1ull * NSEC_PER_SEC);
     
-    dispatch_source_set_event_handler(_timer, ^{
+    dispatch_source_set_event_handler(self.timer, ^{
         double timestamp = [[NSDate date] timeIntervalSince1970];
         int64_t timeInMilisInt64 = (int64_t)(timestamp*1000);
         
@@ -56,9 +56,9 @@ static double widgetWidth = 320 / 2;
         });
     });
     
-    dispatch_resume(_timer);
+    dispatch_resume(self.timer);
     
-    _session = [[OTSession alloc] initWithApiKey:kApiKey
+    self.session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                         delegate:self];
     [self doConnect];
@@ -79,7 +79,7 @@ static double widgetWidth = 320 / 2;
 {
     OTError *error = nil;
     
-    [_session connectWithToken:kToken error:&error];
+    [self.session connectWithToken:kToken error:&error];
     if (error) {
         [self showAlert:[error localizedDescription]];
     }
@@ -97,31 +97,31 @@ static double widgetWidth = 320 / 2;
     settings.name = [UIDevice currentDevice].name;
     settings.audioTrack = YES;
     settings.videoTrack = YES;
-    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
+    self.publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     
     // Additionally, the publisher video type can be updated to signal to
     // receivers that the video is from a screencast. This value also disables
     // some downsample scaling that is used to adapt to changing network
     // conditions. We will send at a lower framerate to compensate for this.
-    [_publisher setVideoType:OTPublisherKitVideoTypeScreen];
+    [self.publisher setVideoType:OTPublisherKitVideoTypeScreen];
     
     // This disables the audio fallback feature when using routed sessions.
-    _publisher.audioFallbackEnabled = NO;
+    self.publisher.audioFallbackEnabled = NO;
 
     // Finally, wire up the video source.
     TBScreenCapture* videoCapture =
     [[TBScreenCapture alloc] initWithView:self.view];
-    [_publisher setVideoCapture:videoCapture];
+    [self.publisher setVideoCapture:videoCapture];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error) {
         [self showAlert:[error localizedDescription]];
     }
 }
 
 - (void)cleanupPublisher {
-    _publisher = nil;
+    self.publisher = nil;
 }
 
 /**
@@ -132,10 +132,10 @@ static double widgetWidth = 320 / 2;
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
     
     OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -150,8 +150,8 @@ static double widgetWidth = 320 / 2;
  */
 - (void)cleanupSubscriber
 {
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 # pragma mark - OTSession delegate callbacks
@@ -176,7 +176,7 @@ static double widgetWidth = 320 / 2;
     NSLog(@"session streamCreated (%@)", stream.streamId);
     // Step 3a: Begin subscribing to a stream we
     // have seen on the OpenTok session.
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -185,7 +185,7 @@ static double widgetWidth = 320 / 2;
 - (void)session:(OTSession*)session streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -201,7 +201,7 @@ connectionCreated:(OTConnection *)connection
 connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"session connectionDestroyed (%@)", connection.connectionId);
-    if ([_subscriber.stream.connection.connectionId
+    if ([self.subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
         [self cleanupSubscriber];
@@ -219,10 +219,10 @@ connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    assert(_subscriber == subscriber);
-    [_subscriber.view setFrame:CGRectMake(0, 0, widgetWidth,
+    assert(self.subscriber == subscriber);
+    [self.subscriber.view setFrame:CGRectMake(0, 0, widgetWidth,
                                           widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+    [self.view addSubview:self.subscriber.view];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber

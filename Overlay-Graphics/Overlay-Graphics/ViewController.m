@@ -12,7 +12,7 @@
 #import "TBExampleOverlayView.h"
 #import "TBExampleVideoCapture.h"
 
-@interface ViewController () <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBExampleVideoViewDelegate>
+@interface ViewController () <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate, TBExampleVideoViewDelegate, OTSubscriberKitAudioLevelDelegate>
 @property (nonatomic) OTSession *session;
 @property (nonatomic) OTPublisher *publisher;
 @property (nonatomic) OTSubscriber *subscriber;
@@ -41,7 +41,7 @@ static NSString *const kToken = @"";
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:kApiKey
+    self.session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                         delegate:self];
     [self doConnect];
@@ -64,7 +64,7 @@ static NSString *const kToken = @"";
 - (void)doConnect
 {
     OTError *error = nil;
-    [_session connectWithToken:kToken error:&error];
+    [self.session connectWithToken:kToken error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -80,34 +80,34 @@ static NSString *const kToken = @"";
 {
     OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
     pubSettings.name = [[UIDevice currentDevice] name];
-    _publisher = [[OTPublisher alloc]
+    self.publisher = [[OTPublisher alloc]
                   initWithDelegate:self
                   settings:pubSettings];
     
     TBExampleVideoCapture* videoCapture =
     [[[TBExampleVideoCapture alloc] init] autorelease];
-    [_publisher setVideoCapture:videoCapture];
+    [self.publisher setVideoCapture:videoCapture];
     
-    _publisherVideoView =
+    self.publisherVideoView =
     [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
                                      delegate:self
                                          type:OTVideoViewTypePublisher
                                   displayName:nil];
     
     // Set mirroring only if the front camera is being used.
-    [_publisherVideoView.videoView setMirroring:
+    [self.publisherVideoView.videoView setMirroring:
      (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
-    [_publisher setVideoRender:_publisherVideoView];
+    [self.publisher setVideoRender:self.publisherVideoView];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
     }
 
-    [_publisherVideoView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisherVideoView];
+    [self.publisherVideoView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:self.publisherVideoView];
 }
 
 /**
@@ -115,8 +115,8 @@ static NSString *const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [self.publisher.view removeFromSuperview];
+    self.publisher = nil;
     // this is a good place to notify the end-user that publishing has stopped.
 }
 
@@ -128,23 +128,23 @@ static NSString *const kToken = @"";
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream
                                               delegate:self];
     
-    _subscriberVideoView =
+    self.subscriberVideoView =
     [[TBExampleVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)
                                      delegate:self
                                          type:OTVideoViewTypeSubscriber
                                   displayName:nil];
     
-    [_subscriber setVideoRender:_subscriberVideoView];
+    [self.subscriber setVideoRender:self.subscriberVideoView];
     OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
     }
-    _subscriber.audioLevelDelegate = self;
+    self.subscriber.audioLevelDelegate = self;
 }
 
 /**
@@ -155,8 +155,8 @@ static NSString *const kToken = @"";
  */
 - (void)cleanupSubscriber
 {
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 # pragma mark - OTSession delegate callbacks
@@ -185,7 +185,7 @@ static NSString *const kToken = @"";
     
     // Step 3a: Begin subscribing to a stream we
     // have seen on the OpenTok session.
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -196,7 +196,7 @@ streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -212,7 +212,7 @@ connectionCreated:(OTConnection *)connection
 connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"session connectionDestroyed (%@)", connection.connectionId);
-    if ([_subscriber.stream.connection.connectionId
+    if ([self.subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
         [self cleanupSubscriber];
@@ -231,9 +231,9 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriberVideoView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
+    [self.subscriberVideoView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                           widgetHeight)];
-    [self.view addSubview:_subscriberVideoView];
+    [self.view addSubview:self.subscriberVideoView];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -255,7 +255,7 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit*)publisher
   streamDestroyed:(OTStream *)stream
 {
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -287,7 +287,7 @@ archiveStartedWithId:(NSString *)archiveId
 {
     NSLog(@"session archiving started with id:%@ name:%@", archiveId, name);
     TBExampleOverlayView *overlayView =
-    [(TBExampleVideoView *)[_publisher view] overlayView];
+    [(TBExampleVideoView *)[self.publisher view] overlayView];
     [overlayView startArchiveAnimation];
 }
 
@@ -296,7 +296,7 @@ archiveStoppedWithId:(NSString *)archiveId
 {
     NSLog(@"session archiving stopped with id:%@", archiveId);
     TBExampleOverlayView *overlayView =
-    [(TBExampleVideoView *)[_publisher view] overlayView];
+    [(TBExampleVideoView *)[self.publisher view] overlayView];
     [overlayView stopArchiveAnimation];
 }
 
@@ -309,7 +309,7 @@ archiveStoppedWithId:(NSString *)archiveId
         [[(TBExampleVideoView*)subscriber.videoRender overlayView]
          showVideoDisabled];
     
-    _subscriber.audioLevelDelegate = self;
+    self.subscriber.audioLevelDelegate = self;
 }
 
 - (void)subscriberVideoEnabled:(OTSubscriberKit*)subscriber
@@ -320,7 +320,7 @@ archiveStoppedWithId:(NSString *)archiveId
     if (reason == OTSubscriberVideoEventQualityChanged)
         [[(TBExampleVideoView*)subscriber.videoRender overlayView] resetView];
     
-    _subscriber.audioLevelDelegate = nil;
+    self.subscriber.audioLevelDelegate = nil;
 }
 
 - (void)subscriberVideoDisableWarning:(OTSubscriberKit*)subscriber
@@ -345,27 +345,27 @@ archiveStoppedWithId:(NSString *)archiveId
         level = db + fabsf(floor);
         level /= fabsf(floor);
     }
-    _subscriberVideoView.audioLevelMeter.level = level;
+    self.subscriberVideoView.audioLevelMeter.level = level;
 }
 
 #pragma mark - OTVideoViewDelegate
 
 - (void)videoViewDidToggleCamera:(TBExampleVideoView*)videoView {
-    if (videoView == _publisherVideoView) {
-        [((TBExampleVideoCapture*)_publisher.videoCapture) toggleCameraPosition];
+    if (videoView == self.publisherVideoView) {
+        [((TBExampleVideoCapture*)self.publisher.videoCapture) toggleCameraPosition];
     }
 }
 
 - (void)videoView:(TBExampleVideoView*)videoView
 publisherWasMuted:(BOOL)publisherMuted
 {
-    [_publisher setPublishAudio:!publisherMuted];
+    [self.publisher setPublishAudio:!publisherMuted];
 }
 
 - (void)videoView:(TBExampleVideoView*)videoView
 subscriberVolumeWasMuted:(BOOL)subscriberMuted
 {
-    [_subscriber setSubscribeToAudio:!subscriberMuted];
+    [self.subscriber setSubscribeToAudio:!subscriberMuted];
 }
 
 @end

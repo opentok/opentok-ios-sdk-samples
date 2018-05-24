@@ -37,10 +37,10 @@ static NSString* const kToken = @"";
     [super viewDidLoad];
     
     // Make a UIImageView to hold the output of the photo snapshot
-    _myImageView = [[UIImageView alloc]
+    self.myImageView = [[UIImageView alloc]
                     initWithFrame:CGRectMake(widgetWidth, 0, widgetHeight,
                                              widgetWidth)];
-    [self.view addSubview:_myImageView];
+    [self.view addSubview:self.myImageView];
     
     // Bind the whole screen to a gesture recognizer - tap on the screen and
     //  we'll take a picture!
@@ -50,7 +50,7 @@ static NSString* const kToken = @"";
     [self.view addGestureRecognizer:singleFingerTap];
     [singleFingerTap release];
     
-    _session = [[OTSession alloc] initWithApiKey:kApiKey
+    self.session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                            delegate:self];
     [self doConnect];
@@ -72,13 +72,13 @@ static NSString* const kToken = @"";
  * to take a picture, then display the results.
  */
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    if (_myPhotoVideoCaptureModule.isTakingPhoto) {
+    if (self.myPhotoVideoCaptureModule.isTakingPhoto) {
         return;
     }
-    [_myPhotoVideoCaptureModule takePhotoWithCompletionHandler:
+    [self.myPhotoVideoCaptureModule takePhotoWithCompletionHandler:
      ^(UIImage* image) {
-        [_myImageView setImage:image];
-        [_myImageView setNeedsDisplay];
+        [self.myImageView setImage:image];
+        [self.myImageView setNeedsDisplay];
     }];
 }
 
@@ -91,7 +91,7 @@ static NSString* const kToken = @"";
 - (void)doConnect
 {
     OTError *error = nil;
-    [_session connectWithToken:kToken error:&error];
+    [self.session connectWithToken:kToken error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -107,21 +107,21 @@ static NSString* const kToken = @"";
 {
     // In this example, we'll be using our own video capture module that can
     // also support photo-quality image capture.
-    _myPhotoVideoCaptureModule = [[TBExamplePhotoVideoCapture alloc] init];
+    self.myPhotoVideoCaptureModule = [[TBExamplePhotoVideoCapture alloc] init];
     OTPublisherSettings* pubSettings = [[OTPublisherSettings alloc] init];
     pubSettings.name = [[UIDevice currentDevice] name];
-    pubSettings.videoCapture = _myPhotoVideoCaptureModule;
-    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:pubSettings];
+    pubSettings.videoCapture = self.myPhotoVideoCaptureModule;
+    self.publisher = [[OTPublisher alloc] initWithDelegate:self settings:pubSettings];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
     }
 
-    [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisher.view];
+    [self.publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:self.publisher.view];
 }
 
 /**
@@ -129,8 +129,8 @@ static NSString* const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [self.publisher.view removeFromSuperview];
+    self.publisher = nil;
     // this is a good place to notify the end-user that publishing has stopped.
 }
 
@@ -142,10 +142,10 @@ static NSString* const kToken = @"";
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream
                                                      delegate:self];
     OTError *error = nil;;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -161,8 +161,8 @@ static NSString* const kToken = @"";
  */
 - (void)cleanupSubscriber
 {
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 # pragma mark - OTSession delegate callbacks
@@ -188,7 +188,7 @@ static NSString* const kToken = @"";
 {
     NSLog(@"session streamCreated (%@)", stream.streamId);
     
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -199,7 +199,7 @@ streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -215,7 +215,7 @@ connectionCreated:(OTConnection *)connection
 connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"session connectionDestroyed (%@)", connection.connectionId);
-    if ([_subscriber.stream.connection.connectionId
+    if ([self.subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
         [self cleanupSubscriber];
@@ -234,9 +234,9 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
+    [self.subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                           widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+    [self.view addSubview:self.subscriber.view];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -258,7 +258,7 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit*)publisher
   streamDestroyed:(OTStream *)stream
 {
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
