@@ -37,8 +37,8 @@ static NSString* const kToken = @"";
 {
     [super viewDidLoad];
     
-    _myAudioDevice = [[OTAudioDeviceRingtone alloc] init];
-    [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
+    self.myAudioDevice = [[OTAudioDeviceRingtone alloc] init];
+    [OTAudioDeviceManager setAudioDevice:self.myAudioDevice];
     
     UITapGestureRecognizer* tap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -48,20 +48,20 @@ static NSString* const kToken = @"";
 }
 
 - (void)resetSession {
-    if (_session) {
-        [_session disconnect:nil];
-        _reconnectPlease = YES;
+    if (self.session) {
+        [self.session disconnect:nil];
+        self.reconnectPlease = YES;
         return;
     }
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
                                                      ofType:@"mp3"];
     NSURL* url = [NSURL URLWithString:path];
-    [_myAudioDevice playRingtoneFromURL:url];
+    [self.myAudioDevice playRingtoneFromURL:url];
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:kApiKey
+    self.session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                         delegate:self];
     
@@ -87,7 +87,7 @@ static NSString* const kToken = @"";
 {
     OTError *error = nil;
     
-    [_session connectWithToken:token error:&error];
+    [self.session connectWithToken:token error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -103,17 +103,17 @@ static NSString* const kToken = @"";
 {
     OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
     settings.name = [UIDevice currentDevice].name;
-    _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
+    self.publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
     }
     
-    [self.view addSubview:_publisher.view];
-    [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:self.publisher.view];
+    [self.publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
 }
 
 /**
@@ -121,8 +121,8 @@ static NSString* const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [self.publisher.view removeFromSuperview];
+    self.publisher = nil;
     // this is a good place to notify the end-user that publishing has stopped.
 }
 
@@ -134,10 +134,10 @@ static NSString* const kToken = @"";
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
     
     OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -152,8 +152,8 @@ static NSString* const kToken = @"";
  */
 - (void)cleanupSubscriber
 {
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 # pragma mark - OTSession delegate callbacks
@@ -173,12 +173,12 @@ static NSString* const kToken = @"";
     [NSString stringWithFormat:@"Session disconnected: (%@)",
      session.sessionId];
     NSLog(@"sessionDidDisconnect (%@)", alertMessage);
-    _session = nil;
-    if (_subscriber) {
+    self.session = nil;
+    if (self.subscriber) {
         [self cleanupSubscriber];
     }
-    if (_reconnectPlease) {
-        _reconnectPlease = NO;
+    if (self.reconnectPlease) {
+        self.reconnectPlease = NO;
         [self resetSession];
     }
 }
@@ -191,7 +191,7 @@ static NSString* const kToken = @"";
     
     // Step 3a: Begin subscribing to a stream we
     // have seen on the OpenTok session.
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -202,7 +202,7 @@ streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -218,7 +218,7 @@ connectionCreated:(OTConnection *)connection
 connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"session connectionDestroyed (%@)", connection.connectionId);
-    if ([_subscriber.stream.connection.connectionId
+    if ([self.subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
         [self cleanupSubscriber];
@@ -239,12 +239,12 @@ didFailWithError:(OTError*)error
           subscriber.stream.connection.connectionId);
     
     // Stop ringtone from playing, as the subscriber will connect shortly
-    [_myAudioDevice stopRingtone];
+    [self.myAudioDevice stopRingtone];
     
-    assert(_subscriber == subscriber);
-    [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
+    assert(self.subscriber == subscriber);
+    [self.subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                           widgetHeight)];
-    [self.view addSubview:_subscriber.view];
+    [self.view addSubview:self.subscriber.view];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -274,7 +274,7 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"publisher %@ streamDestroyed %@", publisher, stream);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }

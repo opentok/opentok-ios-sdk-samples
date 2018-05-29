@@ -10,22 +10,16 @@
 #import "TBExampleVideoCapture.h"
 #import "TBExampleVideoRender.h"
 
-@interface ViewController ()
-<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
-
+@interface ViewController ()<OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
+@property (nonatomic) OTSession *session;
+@property (nonatomic) OTPublisher *publisher;
+@property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic) TBExampleVideoCapture *defaultVideoCapture;
+@property (nonatomic) TBExampleVideoRender *subscriberVideoRenderView;
+@property (nonatomic) TBExampleVideoRender *publisherVideoRenderView;
 @end
 
-@implementation ViewController {
-    OTSession* _session;
-    OTPublisher* _publisher;
-    OTSubscriber* _subscriber;
-    
-    TBExampleVideoCapture* _defaultVideoCapture;
-    
-    TBExampleVideoRender* _subscriberVideoRenderView;
-    TBExampleVideoRender* _publisherVideoRenderView;
-    
-}
+@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 
@@ -46,7 +40,7 @@ static NSString* const kToken = @"";
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
-    _session = [[OTSession alloc] initWithApiKey:kApiKey
+    self.session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                            delegate:self];
     [self doConnect];
@@ -57,17 +51,8 @@ static NSString* const kToken = @"";
     return YES;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    if (UIUserInterfaceIdiomPhone == [[UIDevice currentDevice]
-                                      userInterfaceIdiom])
-    {
-        return NO;
-    } else {
-        return YES;
-    }
+- (BOOL)shouldAutorotate {
+    return UIUserInterfaceIdiomPhone != [[UIDevice currentDevice] userInterfaceIdiom];
 }
 #pragma mark - OpenTok methods
 
@@ -78,7 +63,7 @@ static NSString* const kToken = @"";
 - (void)doConnect
 {
     OTError *error = nil;
-    [_session connectWithToken:kToken error:&error];
+    [self.session connectWithToken:kToken error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -94,29 +79,29 @@ static NSString* const kToken = @"";
 {
     OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
     pubSettings.name = [[UIDevice currentDevice] name];
-    _publisher = [[OTPublisher alloc]
+    self.publisher = [[OTPublisher alloc]
                   initWithDelegate:self settings:pubSettings];
     
     TBExampleVideoCapture* videoCapture =
     [[TBExampleVideoCapture alloc] init];
-    [_publisher setVideoCapture:videoCapture];
+    [self.publisher setVideoCapture:videoCapture];
     
-    _publisherVideoRenderView =
+    self.publisherVideoRenderView =
     [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     // Set mirroring only if the front camera is being used.
-    [_publisherVideoRenderView setMirroring:
+    [self.publisherVideoRenderView setMirroring:
      (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
-    [_publisher setVideoRender:_publisherVideoRenderView];
+    [self.publisher setVideoRender:self.publisherVideoRenderView];
     
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [self.session publish:self.publisher error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
     }
 
-    [_publisherVideoRenderView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisherVideoRenderView];
+    [self.publisherVideoRenderView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:self.publisherVideoRenderView];
 }
 
 /**
@@ -124,9 +109,9 @@ static NSString* const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_publisherVideoRenderView clearRenderBuffer];
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [self.publisherVideoRenderView clearRenderBuffer];
+    [self.publisher.view removeFromSuperview];
+    self.publisher = nil;
     // this is a good place to notify the end-user that publishing has stopped.
 }
 
@@ -138,13 +123,13 @@ static NSString* const kToken = @"";
  */
 - (void)doSubscribe:(OTStream*)stream
 {
-    _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
-    _subscriberVideoRenderView =
+    self.subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
+    self.subscriberVideoRenderView =
     [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0,0,1,1)];
-    [_subscriber setVideoRender:_subscriberVideoRenderView];
+    [self.subscriber setVideoRender:self.subscriberVideoRenderView];
     
     OTError *error = nil;
-    [_session subscribe:_subscriber error:&error];
+    [self.session subscribe:self.subscriber error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
@@ -160,9 +145,9 @@ static NSString* const kToken = @"";
  */
 - (void)cleanupSubscriber
 {
-    [_subscriberVideoRenderView clearRenderBuffer];
-    [_subscriber.view removeFromSuperview];
-    _subscriber = nil;
+    [self.subscriberVideoRenderView clearRenderBuffer];
+    [self.subscriber.view removeFromSuperview];
+    self.subscriber = nil;
 }
 
 # pragma mark - OTSession delegate callbacks
@@ -191,7 +176,7 @@ static NSString* const kToken = @"";
     
     // Step 3a: Begin subscribing to a stream we
     // have seen on the OpenTok session.
-    if (nil == _subscriber)
+    if (nil == self.subscriber)
     {
         [self doSubscribe:stream];
     }
@@ -202,7 +187,7 @@ streamDestroyed:(OTStream *)stream
 {
     NSLog(@"session streamDestroyed (%@)", stream.streamId);
     
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
@@ -218,7 +203,7 @@ connectionCreated:(OTConnection *)connection
 connectionDestroyed:(OTConnection *)connection
 {
     NSLog(@"session connectionDestroyed (%@)", connection.connectionId);
-    if ([_subscriber.stream.connection.connectionId
+    if ([self.subscriber.stream.connection.connectionId
          isEqualToString:connection.connectionId])
     {
         [self cleanupSubscriber];
@@ -237,9 +222,9 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriberVideoRenderView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
+    [self.subscriberVideoRenderView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
                                          widgetHeight)];
-    [self.view addSubview:_subscriberVideoRenderView];
+    [self.view addSubview:self.subscriberVideoRenderView];
 }
 
 - (void)subscriber:(OTSubscriberKit*)subscriber
@@ -261,7 +246,7 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit*)publisher
   streamDestroyed:(OTStream *)stream
 {
-    if ([_subscriber.stream.streamId isEqualToString:stream.streamId])
+    if ([self.subscriber.stream.streamId isEqualToString:stream.streamId])
     {
         [self cleanupSubscriber];
     }
