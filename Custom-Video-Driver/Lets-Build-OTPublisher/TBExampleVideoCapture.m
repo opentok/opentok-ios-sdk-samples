@@ -573,44 +573,42 @@
     return 0;
 }
 
-- (void)currentDeviceOrientation: (void (^)(OTVideoOrientation result))callback
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
-        // transforms are different for
-        if (AVCaptureDevicePositionFront == self.cameraPosition)
-        {
-            switch (orientation) {
-                case UIInterfaceOrientationLandscapeLeft:
-                    callback(OTVideoOrientationUp);
-                case UIInterfaceOrientationLandscapeRight:
-                    callback(OTVideoOrientationDown);
-                case UIInterfaceOrientationPortrait:
-                    callback(OTVideoOrientationLeft);
-                case UIInterfaceOrientationPortraitUpsideDown:
-                    callback(OTVideoOrientationRight);
-                case UIInterfaceOrientationUnknown:
-                    callback(OTVideoOrientationUp);
-            }
+- (OTVideoOrientation)currentDeviceOrientation {
+    UIInterfaceOrientation orientation =
+    [[UIApplication sharedApplication] statusBarOrientation];
+    // transforms are different for
+    if (AVCaptureDevicePositionFront == self.cameraPosition)
+    {
+        switch (orientation) {
+            case UIInterfaceOrientationLandscapeLeft:
+                return OTVideoOrientationUp;
+            case UIInterfaceOrientationLandscapeRight:
+                return OTVideoOrientationDown;
+            case UIInterfaceOrientationPortrait:
+                return OTVideoOrientationLeft;
+            case UIInterfaceOrientationPortraitUpsideDown:
+                return OTVideoOrientationRight;
+            case UIInterfaceOrientationUnknown:
+                return OTVideoOrientationUp;
         }
-        else
-        {
-            switch (orientation) {
-                case UIInterfaceOrientationLandscapeLeft:
-                    callback(OTVideoOrientationDown);
-                case UIInterfaceOrientationLandscapeRight:
-                    callback(OTVideoOrientationUp);
-                case UIInterfaceOrientationPortrait:
-                    callback(OTVideoOrientationLeft);
-                case UIInterfaceOrientationPortraitUpsideDown:
-                    callback(OTVideoOrientationRight);
-                case UIInterfaceOrientationUnknown:
-                    callback(OTVideoOrientationUp);
-            }
+    }
+    else
+    {
+        switch (orientation) {
+            case UIInterfaceOrientationLandscapeLeft:
+                return OTVideoOrientationDown;
+            case UIInterfaceOrientationLandscapeRight:
+                return OTVideoOrientationUp;
+            case UIInterfaceOrientationPortrait:
+                return OTVideoOrientationLeft;
+            case UIInterfaceOrientationPortraitUpsideDown:
+                return OTVideoOrientationRight;
+            case UIInterfaceOrientationUnknown:
+                return OTVideoOrientationUp;
         }
-        callback(OTVideoOrientationUp);
-        
-    });
+    }
+    
+    return OTVideoOrientationUp;
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
@@ -767,9 +765,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     minFrameDuration.timescale / minFrameDuration.value;
     // TODO: how do we measure this from AVFoundation?
     _videoFrame.format.estimatedCaptureDelay = 100;
-    [self currentDeviceOrientation: ^(OTVideoOrientation result) {
-         _videoFrame.orientation = result;
-    }];
+    _videoFrame.orientation = [self currentDeviceOrientation];
     
     [_videoFrame clearPlanes];
     uint8_t* sanitizedImageBuffer = NULL;
