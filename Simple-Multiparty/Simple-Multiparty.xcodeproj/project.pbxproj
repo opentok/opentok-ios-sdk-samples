@@ -45,10 +45,14 @@
 		A5B6110118F2845100841E6B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5B610FF18F2845100841E6B /* Main_iPhone.storyboard */; };
 		A5B6110718F2845100841E6B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5B6110618F2845100841E6B /* ViewController.m */; };
 		A5B6110918F2845100841E6B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5B6110818F2845100841E6B /* Images.xcassets */; };
+		DD45CF2EEEE4F85AB6458443 /* Pods_Simple_Multiparty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0815547DA99205528B2EF8F7 /* Pods_Simple_Multiparty.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0815547DA99205528B2EF8F7 /* Pods_Simple_Multiparty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simple_Multiparty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C16852D1A71925600A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		478E4C36DC816A9ED77D5F51 /* Pods-Simple-Multiparty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.release.xcconfig"; path = "Pods/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.release.xcconfig"; sourceTree = "<group>"; };
+		61D94E6C164668A018DE95D3 /* Pods-Simple-Multiparty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simple-Multiparty.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simple-Multiparty/Pods-Simple-Multiparty.debug.xcconfig"; sourceTree = "<group>"; };
 		A554AF90190A9B3100A6910E /* archiving_on-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-5.png"; sourceTree = "<group>"; };
 		A554AF91190A9B3100A6910E /* archiving_on-5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-5@2x.png"; sourceTree = "<group>"; };
 		A554AF92190A9B3100A6910E /* archiving_pulse-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_pulse-15.png"; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD45CF2EEEE4F85AB6458443 /* Pods_Simple_Multiparty.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +128,7 @@
 				A5B610F318F2845100841E6B /* Multi-Party-Call */,
 				A5B610EC18F2845100841E6B /* Frameworks */,
 				A5B610EB18F2845100841E6B /* Products */,
+				ADE59528F800A7BC052D16B5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,6 +156,7 @@
 				A5B610ED18F2845100841E6B /* Foundation.framework */,
 				A5B610EF18F2845100841E6B /* CoreGraphics.framework */,
 				A5B610F118F2845100841E6B /* UIKit.framework */,
+				0815547DA99205528B2EF8F7 /* Pods_Simple_Multiparty.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,6 +218,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		ADE59528F800A7BC052D16B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61D94E6C164668A018DE95D3 /* Pods-Simple-Multiparty.debug.xcconfig */,
+				478E4C36DC816A9ED77D5F51 /* Pods-Simple-Multiparty.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -218,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5B6111F18F2845100841E6B /* Build configuration list for PBXNativeTarget "Simple-Multiparty" */;
 			buildPhases = (
+				0929BF609BFFDD7C99635E5B /* [CP] Check Pods Manifest.lock */,
 				A5B610E618F2845100841E6B /* Sources */,
 				A5B610E718F2845100841E6B /* Frameworks */,
 				A5B610E818F2845100841E6B /* Resources */,
@@ -302,6 +319,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0929BF609BFFDD7C99635E5B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Simple-Multiparty-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5B610E618F2845100841E6B /* Sources */ = {
@@ -410,6 +448,7 @@
 		};
 		A5B6112018F2845100841E6B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61D94E6C164668A018DE95D3 /* Pods-Simple-Multiparty.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -436,6 +475,7 @@
 		};
 		A5B6112118F2845100841E6B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 478E4C36DC816A9ED77D5F51 /* Pods-Simple-Multiparty.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
