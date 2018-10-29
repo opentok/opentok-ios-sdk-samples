@@ -1,1 +1,1 @@
-OpenTokSDKVersion = '2.14.2'
+OpenTokSDKVersion = '2.15'
