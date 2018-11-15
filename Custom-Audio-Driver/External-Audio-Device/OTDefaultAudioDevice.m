@@ -404,7 +404,12 @@ static bool CheckError(OSStatus error, NSString* function) {
                                 error: nil];
     [mySession setPreferredInputNumberOfChannels:avAudioSessionChannels
                                            error:nil];
-    
+
+    AVAudioSessionSetActiveOptions audioOptions = AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation;
+    [mySession setActive:NO
+             withOptions:audioOptions
+                   error:nil];
+
     isAudioSessionSetup = NO;
 }
 
@@ -435,7 +440,7 @@ static bool CheckError(OSStatus error, NSString* function) {
                                       error:nil];
     
     NSError *error = nil;
-    NSUInteger audioOptions = AVAudioSessionCategoryOptionMixWithOthers;
+    NSUInteger audioOptions = 0;
 #if !(TARGET_OS_TV)
     audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth ;
     audioOptions |= AVAudioSessionCategoryOptionDefaultToSpeaker;
