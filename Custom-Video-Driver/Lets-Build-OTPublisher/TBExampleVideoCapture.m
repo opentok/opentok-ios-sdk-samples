@@ -28,7 +28,7 @@
 
 
 @implementation TBExampleVideoCapture {
-    id<OTVideoCaptureConsumer> _videoCaptureConsumer;
+    __weak id<OTVideoCaptureConsumer> _videoCaptureConsumer;
     OTVideoFrame* _videoFrame;
     
     uint32_t _captureWidth;
