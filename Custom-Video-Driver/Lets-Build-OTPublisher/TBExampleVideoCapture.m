@@ -11,6 +11,7 @@
 #import <OpenTok/OpenTok.h>
 #import <CoreVideo/CoreVideo.h>
 #import "TBExampleVideoCapture.h"
+#import <sys/utsname.h>
 
 #define SYSTEM_VERSION_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -23,9 +24,16 @@
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v) \
 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
 
-@class OTDeviceInfo;
-#define RUNTIME_IPHONE_4S [@"iPhone4,1" isEqualToString:[[OTDeviceInfo class] performSelector:@selector(machineName)]]
+NSString* deviceName()
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    
+    return [NSString stringWithCString:systemInfo.machine
+                              encoding:NSUTF8StringEncoding];
+}
 
+#define RUNTIME_IPHONE_4S [deviceName() isEqualToString:@"iPhone4,1"]
 
 @implementation TBExampleVideoCapture {
     __weak id<OTVideoCaptureConsumer> _videoCaptureConsumer;
@@ -84,13 +92,10 @@
     [self releaseCapture];
     
     if (_capture_queue) {
-        dispatch_release(_capture_queue);
         _capture_queue = nil;
     }
     
-    [_videoFrame release];
-    
-    [super dealloc];
+    _videoFrame = nil;
 }
 
 - (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition) position {
@@ -393,8 +398,7 @@
         [session removeInput:_videoInput];
         if ([session canAddInput:newVideoInput]) {
             [session addInput:newVideoInput];
-            [_videoInput release];
-            _videoInput = [newVideoInput retain];
+            _videoInput = newVideoInput;
             success = YES;
         } else {
             success = NO;
@@ -415,16 +419,13 @@
     dispatch_sync(_capture_queue, ^() {
         [_captureSession stopRunning];
     });
-    [_captureSession release];
+
     _captureSession = nil;
-    [_videoOutput release];
     _videoOutput = nil;
     
-    [_videoInput release];
     _videoInput = nil;
     
     if (_blackFrameTimer) {
-        dispatch_release(_blackFrameTimer);
         _blackFrameTimer = nil;
     }
     
@@ -456,12 +457,11 @@
     
     //-- Add the device to the session.
     NSError *error;
-    _videoInput = [[AVCaptureDeviceInput deviceInputWithDevice:videoDevice
-                                                         error:&error] retain];
+    _videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice
+                                                         error:&error];
     
     if (AVErrorApplicationIsNotAuthorizedToUseDevice == error.code) {
         [self initBlackFrameSender];
-        [_captureSession release];
         _captureSession = nil;
         return;
     }

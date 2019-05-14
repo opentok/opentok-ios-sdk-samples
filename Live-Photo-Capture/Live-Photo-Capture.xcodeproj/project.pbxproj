@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A0075DBA1ED8FCCE008B6D15 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB51ED8FCCE008B6D15 /* TBExampleVideoCapture.m */; };
+		A0075DBA1ED8FCCE008B6D15 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB51ED8FCCE008B6D15 /* TBExampleVideoCapture.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		A0075DBB1ED8FCCE008B6D15 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = A0075DB71ED8FCCE008B6D15 /* TBExampleVideoRender.m */; };
 		D44261F0185FC8D600E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D44261EE185FC8D600E23699 /* InfoPlist.strings */; };
 		D44261F2185FC8D600E23699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261F1185FC8D600E23699 /* main.m */; };
@@ -190,6 +190,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
