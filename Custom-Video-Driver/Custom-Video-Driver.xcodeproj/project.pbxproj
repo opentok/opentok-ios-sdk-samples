@@ -16,7 +16,7 @@
 		D4426179185FA27400E23699 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4426178185FA27400E23699 /* Images.xcassets */; };
 		D44261B2185FA39200E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D44261B1185FA39200E23699 /* README.md */; };
 		D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261B7185FA64100E23699 /* TBExampleVideoRender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +171,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
