@@ -2,11 +2,7 @@ Broadcast Extension sample app
 ===========================
 
 The Broadcast Extension app shows how to implement the iOS Broadcast Upload extension
-using the OpenTok iOS SDK. The publisher's audio track is turned off by default. 
-You can enable the audio track by setting the `audioTrack` parameter in the `doPublish:` method
-in OTBroadcastExtHelper.m. When you enable the publisher's audio track, be sure to turn on
-the microphone in the Broadcast UI dialog box. Otherwise the publisher will fail because
-it is not sending audio data.
+using the OpenTok iOS SDK. 
 
 Before running the app, set the OpenTok session ID and token in the `setupInfo` object
 passed into the `broadcastStartedWithSetupInfo:` method (in SampleHandler.m).

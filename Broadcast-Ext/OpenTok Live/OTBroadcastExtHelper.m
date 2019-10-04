@@ -97,12 +97,19 @@
 {
     OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
     settings.videoCapture = _videoCapturer;
-    settings.audioTrack = false; // set this to true if you want to test with audio
+    
     settings.name = [[UIDevice currentDevice] name];
     _publisher =
     [[OTPublisher alloc] initWithDelegate:self
                                  settings:settings];
     
+    // We need to set publishAudio to false
+    // since we don't know the broadcast session is
+    // started with audio or without audio. This is mainly for
+    // routed sessions as they require audio packets at start
+    // when publishAudio is set to true.
+    // We set this to true in publisher:streamCreated
+    _publisher.publishAudio = false;
     _publisher.videoType = OTPublisherKitVideoTypeScreen;
     
     OTError *error = nil;
@@ -238,7 +245,9 @@ receivedSignalType:(NSString*)type
 
 - (void)publisher:(OTPublisherKit *)publisher streamCreated:(OTStream *)stream
 {
-    
+    // This is safe since ReplayKit doesn't send any audio samples, if mic is disabled.
+    _publisher.publishAudio = true;
+     NSLog(@"publisher streamCreated: %@", stream);
 }
 
 - (void)publisher:(OTPublisherKit*)publisher streamDestroyed:(OTStream *)stream

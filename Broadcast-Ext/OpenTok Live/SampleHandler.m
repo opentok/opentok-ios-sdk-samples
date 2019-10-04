@@ -10,11 +10,24 @@
 #import "SampleHandler.h"
 #import "OTBroadcastExtHelper.h"
 
+// *** Fill the following variables using your own Project info  ***
+// ***          https://dashboard.tokbox.com/projects            ***
+// Replace with your OpenTok API key
+static NSString* const kApiKey = @"";
+// Replace with your generated session ID
+static NSString* const kSessionId = @"";
+// Replace with your generated token
+static NSString* const kToken = @"";
+
+#define kVideoFrameScaleFactor 0.50
+#define kVideoFrameProcessEvery3rdFrame 3
+
 @implementation SampleHandler
 {
     CVPixelBufferPoolRef _pixelBufferPool;
     CVPixelBufferRef _pixelBuffer;
     int64_t _num_frames;
+    bool skip_frame;
     CIContext * _ciContext;
     CIFilter* _scaleFilter;
     bool _capturing;
@@ -30,14 +43,15 @@
     // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
     
     // Provide session id and token
-    _broadcastHelper = [[OTBroadcastExtHelper alloc] initWithPartnerId:@""
-                                                             sessionId: @""
-                                                              andToken:@""
+    _broadcastHelper = [[OTBroadcastExtHelper alloc] initWithPartnerId:kApiKey
+                                                             sessionId:kSessionId
+                                                              andToken:kToken
                                                          videoCapturer:self];
     _capture_queue = dispatch_queue_create("com.tokbox.OTBroadcastVideoCapture",
                                            DISPATCH_QUEUE_SERIAL);
     
     _num_frames = 0;
+    skip_frame = true;
     [self destroyPixelBuffers];
     [_broadcastHelper connect];
 }
@@ -59,12 +73,9 @@
 {
     CIImage *ciImage = [CIImage imageWithCVPixelBuffer:pixelBuffer
                                                options:nil];
-    //CGFloat imageWidth = CVPixelBufferGetWidth(pixelBuffer);
-    //CGFloat imageHeight = CVPixelBufferGetHeight(pixelBuffer);
-    CGFloat aspectRatio = 1;//imageHeight / imageWidth;
     
     ciImage = [self scaleFilterImage:ciImage
-                     withAspectRatio:aspectRatio scale:0.60];
+                     withAspectRatio:1.0 scale:kVideoFrameScaleFactor];
     
     if(_pixelBufferPool == nil ||
        CVPixelBufferGetWidth(pixelBuffer) != CVPixelBufferGetWidth(_pixelBuffer) ||
@@ -84,6 +95,18 @@
                                          metadata:nil];
 }
 
+- (bool)shouldSkipFrame
+{
+    if(_num_frames == kVideoFrameProcessEvery3rdFrame)
+    {
+        _num_frames = 0;
+        return NO;
+    } else
+    {
+        return YES;
+    }
+}
+
 - (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:(RPSampleBufferType)sampleBufferType {
     
     switch (sampleBufferType) {
@@ -96,18 +119,14 @@
             // VP8  : Height = 800, Width = 450, fps = 10
             // H264 : Height = 1068, Width = 600, fps = 15 or more
             _num_frames++;
-            if (_num_frames % 3 != 0)
+            if([self shouldSkipFrame])
                 return;
-            
-            //            CFRetain(sampleBuffer);
-            //dispatch_async(_capture_queue, ^{
+               
             if([self->_broadcastHelper isConnected] && self->_capturing)
             {
                 [self processPixelBuffer:CMSampleBufferGetImageBuffer(sampleBuffer)
                                timeStamp:CMSampleBufferGetPresentationTimeStamp(sampleBuffer)];
-                //CFRelease(sampleBuffer);
             }
-            //});
         }
             break;
         case RPSampleBufferTypeAudioApp:
