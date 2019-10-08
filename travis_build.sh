@@ -49,3 +49,7 @@ xcodebuild -workspace Signaling.xcworkspace  -scheme Signaling -sdk iphonesimula
 cd ../FrameMetadata/
 pod install
 xcodebuild -workspace FrameMetadata.xcworkspace  -scheme FrameMetadata -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+
+cd ../Broadcast-Ext/
+pod install
+xcodebuild -workspace Broadcast-Ext.xcworkspace  -scheme Broadcast-Ext -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
