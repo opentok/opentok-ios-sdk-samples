@@ -9,13 +9,17 @@
 #import <OpenTok/OpenTok.h>
 
 @implementation ViewController
+#if !(TARGET_OS_SIMULATOR)
+API_AVAILABLE(ios(12.0))
 RPSystemBroadcastPickerView *_broadcastPickerView;
+#endif
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    #if !(TARGET_OS_SIMULATOR)
     if (@available(iOS 12.0, *)) {
         _broadcastPickerView = [[RPSystemBroadcastPickerView alloc] initWithFrame:
                                 CGRectMake(0, 0, 50, 50)];
@@ -24,9 +28,11 @@ RPSystemBroadcastPickerView *_broadcastPickerView;
     } else {
         // Fallback on earlier versions
     }
-    
-    
-    [self.view addSubview:_broadcastPickerView];
+
+    if (@available(iOS 12.0, *)) {
+        [self.view addSubview:_broadcastPickerView];
+    }
+    #endif
     
 }
 

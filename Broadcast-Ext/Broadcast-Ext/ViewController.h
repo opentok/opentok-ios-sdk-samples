@@ -8,6 +8,6 @@
 #import <UIKit/UIKit.h>
 #import <ReplayKit/ReplayKit.h>
 
-@interface ViewController : UIViewController <RPBroadcastActivityViewControllerDelegate>
+@interface ViewController : UIViewController
 
 @end
