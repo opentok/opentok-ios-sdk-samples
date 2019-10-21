@@ -470,7 +470,9 @@ static bool CheckError(OSStatus error, NSString* function) {
     
     if (error)
         OT_AUDIO_DEBUG(@"Audiosession setActive %@",error);
-
+    
+    [self setBluetoothAsPrefferedInputDevice];
+    isAudioSessionSetup = YES;
 }
 
 - (void)setBluetoothAsPrefferedInputDevice
@@ -535,9 +537,6 @@ static bool CheckError(OSStatus error, NSString* function) {
             case AVAudioSessionInterruptionTypeEnded:
             {
                 OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
-                // Reconfigure audio session with highest priority device
-                [self configureAudioSessionWithDesiredAudioRoute:
-                 AUDIO_DEVICE_BLUETOOTH];
                 if(isRecorderInterrupted)
                 {
                     if([self startCapture] == YES)
@@ -976,7 +975,6 @@ static OSStatus playout_cb(void *ref_con,
     if (!isAudioSessionSetup)
     {
         [self setupAudioSession];
-        isAudioSessionSetup = YES;
     }
     
     UInt32 bytesPerSample = sizeof(SInt16);
@@ -1076,8 +1074,7 @@ static OSStatus playout_cb(void *ref_con,
     if (CheckError(result, @"setupAudioUnit.AudioUnitInitialize")) {
         return NO;
     }
-    
-    [self setBluetoothAsPrefferedInputDevice];
+
     return YES;
 }
 
