@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C62ECDC23C4084C00F18341 /* TBExampleMultiCamCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */; };
+		3C62ECDD23C4084C00F18341 /* OTAVMultiCamSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C62ECDB23C4084C00F18341 /* OTAVMultiCamSession.m */; };
 		D4426168185FA27400E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426166185FA27400E23699 /* InfoPlist.strings */; };
 		D442616A185FA27400E23699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426169185FA27400E23699 /* main.m */; };
 		D442616E185FA27400E23699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D442616D185FA27400E23699 /* AppDelegate.m */; };
@@ -21,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		3C62ECD823C4084C00F18341 /* OTAVMultiCamSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAVMultiCamSession.h; sourceTree = "<group>"; };
+		3C62ECD923C4084C00F18341 /* TBExampleMultiCamCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleMultiCamCapture.h; sourceTree = "<group>"; };
+		3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleMultiCamCapture.m; sourceTree = "<group>"; };
+		3C62ECDB23C4084C00F18341 /* OTAVMultiCamSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAVMultiCamSession.m; sourceTree = "<group>"; };
 		A0C851961ED8F49000BBCF9A /* Custom-Video-Driver-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Custom-Video-Driver-Info.plist"; sourceTree = "<group>"; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D442615A185FA27400E23699 /* Custom-Video-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Video-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +118,10 @@
 			children = (
 				D44261D3185FADAB00E23699 /* TBExampleVideoCapture.h */,
 				D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */,
+				3C62ECD823C4084C00F18341 /* OTAVMultiCamSession.h */,
+				3C62ECDB23C4084C00F18341 /* OTAVMultiCamSession.m */,
+				3C62ECD923C4084C00F18341 /* TBExampleMultiCamCapture.h */,
+				3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */,
 				D44261B6185FA64100E23699 /* TBExampleVideoRender.h */,
 				D44261B7185FA64100E23699 /* TBExampleVideoRender.m */,
 				D442616C185FA27400E23699 /* AppDelegate.h */,
@@ -206,10 +216,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4426177185FA27400E23699 /* ViewController.m in Sources */,
+				3C62ECDD23C4084C00F18341 /* OTAVMultiCamSession.m in Sources */,
 				D442616E185FA27400E23699 /* AppDelegate.m in Sources */,
 				D442616A185FA27400E23699 /* main.m in Sources */,
 				D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */,
 				D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */,
+				3C62ECDC23C4084C00F18341 /* TBExampleMultiCamCapture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
