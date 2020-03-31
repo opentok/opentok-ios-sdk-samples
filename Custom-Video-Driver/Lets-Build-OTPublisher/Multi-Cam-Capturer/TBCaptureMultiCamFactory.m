@@ -6,16 +6,16 @@
 //  Copyright © 2019 TokBox, Inc. All rights reserved.
 //
 
-#import "OTAVMultiCamSession.h"
+#import "TBCaptureMultiCamFactory.h"
 
 
-@implementation OTAVMultiCamSession
-static OTAVMultiCamSession* _otMultiCamAudioSession = nil;
+@implementation TBCaptureMultiCamFactory
+static TBCaptureMultiCamFactory* _otMultiCamAudioSession = nil;
 
 + (void)initialize {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _otMultiCamAudioSession = [[OTAVMultiCamSession alloc] init];
+        _otMultiCamAudioSession = [[TBCaptureMultiCamFactory alloc] init];
         _otMultiCamAudioSession.capturer_queue = dispatch_queue_create("ot-multicam-capturer", DISPATCH_QUEUE_SERIAL);
         if (@available(iOS 13.0, *))
             _otMultiCamAudioSession.avCaptureMultiCamSession = [[AVCaptureMultiCamSession alloc] init];
@@ -27,12 +27,25 @@ static OTAVMultiCamSession* _otMultiCamAudioSession = nil;
     return _otMultiCamAudioSession;
 }
 
+- (TBExampleMultiCamCapture *)createCapturerForCameraPosition:(AVCaptureDevicePosition)camPosition
+{
+    TBExampleMultiCamCapture *multiCamCapture = [[TBExampleMultiCamCapture alloc]
+                                                 initWithCameraPosition:camPosition
+                                                 andAVMultiCamSession:self.avCaptureMultiCamSession
+                                                 useQueue:self.capturer_queue];
+    dispatch_async(self.capturer_queue, ^{
+        // Adjust camera resolution and/or framerate based on system cost
+        [_otMultiCamAudioSession checkSystemCost];
+    });
+    return multiCamCapture;
+}
+
 - (void)checkSystemCost
 {
-    if([[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession].outputs.count < 2)
+    if([[TBCaptureMultiCamFactory sharedInstance] avCaptureMultiCamSession].outputs.count < 2)
         return;
-    BOOL exceededPressureCost = ([[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession].systemPressureCost > 1);
-    BOOL exceededHardwareCost = ([[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession].hardwareCost > 1);
+    BOOL exceededPressureCost = ([[TBCaptureMultiCamFactory sharedInstance] avCaptureMultiCamSession].systemPressureCost > 1);
+    BOOL exceededHardwareCost = ([[TBCaptureMultiCamFactory sharedInstance] avCaptureMultiCamSession].hardwareCost > 1);
     if(exceededPressureCost || exceededHardwareCost)
     {
         if ([self reduceResolutionForCamera:AVCaptureDevicePositionFront]) {
@@ -54,7 +67,7 @@ static OTAVMultiCamSession* _otMultiCamAudioSession = nil;
 {
     if (@available(iOS 13.0, *))
     {
-        for(AVCaptureConnection *connection in [[[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession] connections])
+        for(AVCaptureConnection *connection in [[[TBCaptureMultiCamFactory sharedInstance] avCaptureMultiCamSession] connections])
         {
             for(AVCaptureInputPort *inputPort in connection.inputPorts)
             {
@@ -117,7 +130,7 @@ static OTAVMultiCamSession* _otMultiCamAudioSession = nil;
 {
     if (@available(iOS 13.0, *))
     {
-        for(AVCaptureConnection *connection in [[[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession] connections])
+        for(AVCaptureConnection *connection in [[[TBCaptureMultiCamFactory sharedInstance] avCaptureMultiCamSession] connections])
         {
             for(AVCaptureInputPort *inputPort in connection.inputPorts)
             {

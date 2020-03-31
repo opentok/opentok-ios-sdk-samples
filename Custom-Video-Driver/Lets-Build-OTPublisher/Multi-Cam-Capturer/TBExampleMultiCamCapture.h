@@ -21,7 +21,9 @@
     
 }
 
--(id)initWithCameraPosition:(AVCaptureDevicePosition)camPosition;
+-(id)initWithCameraPosition:(AVCaptureDevicePosition)camPosition
+       andAVMultiCamSession:(AVCaptureMultiCamSession *)multiCamSession
+                   useQueue:(dispatch_queue_t)capture_queue;
 
 @property (nonatomic, weak) AVCaptureSession *captureSession;
 @property (nonatomic, retain) AVCaptureVideoDataOutput *videoOutput;

@@ -10,6 +10,7 @@
 #import "TBExampleVideoCapture.h"
 #import "TBExampleVideoRender.h"
 #import "TBExampleMultiCamCapture.h"
+#import "TBCaptureMultiCamFactory.h"
 
 // Set 1 for multi camera session, which uses
 // two publishers publishing from front and rear cameras at the same time
@@ -109,25 +110,26 @@ static NSString* const kToken = @"";
     // Front Camera Publisher
     OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
     pubSettings.name = [[UIDevice currentDevice] name];
-    
+
     TBExampleVideoCapture *videoCapture = nil;
     if(USE_MULTICAM_SESSION == 1)
-        videoCapture = (TBExampleVideoCapture *)[[TBExampleMultiCamCapture alloc]
-                                                 initWithCameraPosition:AVCaptureDevicePositionFront];
+        videoCapture = (TBExampleVideoCapture *) [[TBCaptureMultiCamFactory sharedInstance]
+                                                  createCapturerForCameraPosition:AVCaptureDevicePositionFront];
+
     else
         videoCapture = [[TBExampleVideoCapture alloc] init];
-    
+
     pubSettings.videoCapture = videoCapture;
     _frontCamPublisher = [[OTPublisher alloc]
                           initWithDelegate:self settings:pubSettings];
-    
+
    _frontCamPublisherVideoRenderView =
     [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-    
+
     // Set mirroring only if the front camera is being used.
     [_frontCamPublisherVideoRenderView setMirroring:YES];
     [_frontCamPublisher setVideoRender:_frontCamPublisherVideoRenderView];
-    
+
     OTError *error = nil;
     [_session publish:_frontCamPublisher error:&error];
     if (error)
@@ -144,8 +146,8 @@ static NSString* const kToken = @"";
     // Back Camera Publisher
     OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
     pubSettings.name = [[UIDevice currentDevice] name];
-    TBExampleMultiCamCapture* videoCapture =
-    [[TBExampleMultiCamCapture alloc] initWithCameraPosition:AVCaptureDevicePositionBack];
+    TBExampleMultiCamCapture* videoCapture = [[TBCaptureMultiCamFactory sharedInstance]
+                                              createCapturerForCameraPosition:AVCaptureDevicePositionBack];
 
     pubSettings.videoCapture = videoCapture;
     _rearCamPublisher = [[OTPublisher alloc]

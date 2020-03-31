@@ -11,7 +11,6 @@
 #import "TBExampleMultiCamCapture.h"
 #import <CoreVideo/CoreVideo.h>
 #import "AppDelegate.h"
-#import "OTAVMultiCamSession.h"
 
 #define kTimespanWithNoFramesBeforeRaisingAnError 20.0 // NSTimeInterval(secs)
 
@@ -42,8 +41,9 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     uint32_t _captureWidth;
     uint32_t _captureHeight;;
     
+    dispatch_queue_t _capture_queue;
     // OTAVMultiCamSession holds capture session
-    __weak AVCaptureSession *_captureSession;
+    __weak AVCaptureMultiCamSession *_captureSession;
      AVCaptureDeviceInput *_videoInput;
     AVCaptureVideoDataOutput *_videoOutput;
     AVCaptureDevicePosition _camPosition;
@@ -62,11 +62,15 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 @synthesize videoCaptureConsumer = _videoCaptureConsumer;
 
 -(id)initWithCameraPosition:(AVCaptureDevicePosition)camPosition
+         andAVMultiCamSession:(AVCaptureMultiCamSession *)multiCamSession
+                   useQueue:(dispatch_queue_t)capture_queue
 {
     self = [super init];
     if (self) {
 
         _camPosition = camPosition;
+        _captureSession = multiCamSession;
+        _capture_queue = capture_queue;
         
         _captureWidth = 1280;
         _captureHeight = 720;
@@ -136,7 +140,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 
 - (void) setCaptureFormatWidth:(int)width height:(int)height {
     
-    dispatch_async([[OTAVMultiCamSession sharedInstance] capturer_queue], ^{
+    dispatch_async(_capture_queue, ^{
         for (int i = (int)self->_videoInput.device.formats.count - 1; i >= 0; i--) {
             CMVideoDimensions dimensions = CMVideoFormatDescriptionGetDimensions(self->_videoInput.device.formats[i].formatDescription);
             if(dimensions.width <= width ||
@@ -167,9 +171,9 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     AVCaptureDevicePosition camPosition = _camPosition;
     AVCaptureDeviceInput *videoInput = _videoInput;
     AVCaptureVideoDataOutput *videoOutput = _videoOutput;
-    AVCaptureMultiCamSession *captureSession = [[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession];
+    AVCaptureMultiCamSession *captureSession = _captureSession;
     
-    dispatch_async([[OTAVMultiCamSession sharedInstance] capturer_queue], ^{
+    dispatch_async(_capture_queue, ^{
         
         [captureSession beginConfiguration];
         
@@ -199,7 +203,6 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     //-- Setup Capture Session.
     _captureErrorCode = OTCapturerSuccess;
     
-    _captureSession = [[OTAVMultiCamSession sharedInstance] avCaptureMultiCamSession];
     if(_captureSession == nil)
     {
         NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : @"Device won't support multiple cameras!"};
@@ -314,9 +317,6 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
                                                object:nil];
 
     [self setCaptureFormatWidth:_captureWidth height:_captureHeight];
-
-    // Adjust camera resolution and/or framerate based on system cost
-    [[OTAVMultiCamSession sharedInstance] checkSystemCost];
     
     if(!_captureSession.running)
         [_captureSession startRunning];
@@ -333,14 +333,14 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (void)initCapture {
-    dispatch_async([[OTAVMultiCamSession sharedInstance] capturer_queue], ^{
+    dispatch_async(_capture_queue, ^{
         [self setupAudioVideoSession];
     });
 }
 
 - (void)initBlackFrameSender {
     _blackFrameTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
-                                                     0, 0, [[OTAVMultiCamSession sharedInstance] capturer_queue]);
+                                                     0, 0, _capture_queue);
     int blackFrameWidth = 320;
     int blackFrameHeight = 240;
     [self updateCaptureFormatWithWidth:blackFrameWidth height:blackFrameHeight];
@@ -490,7 +490,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     {
         isFirstFrame = true;
         _currentStatusBarOrientation = [[UIApplication sharedApplication] statusBarOrientation];;
-        [_videoOutput setSampleBufferDelegate:self queue:[[OTAVMultiCamSession sharedInstance] capturer_queue]];
+        [_videoOutput setSampleBufferDelegate:self queue:_capture_queue];
     }
 
     if (self.noFramesCapturedTimer)
