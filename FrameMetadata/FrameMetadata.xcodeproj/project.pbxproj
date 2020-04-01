@@ -21,8 +21,8 @@
 
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		A0DAF8542086C87800223C9A /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
-		A0DAF8552086C87800223C9A /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
+		A0DAF8542086C87800223C9A /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/Single-Cam-Capturer/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
+		A0DAF8552086C87800223C9A /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/Single-Cam-Capturer/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		A0FF8CAA20854BEA00F1DB33 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
 		A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
 		A0FF8CB020855B0A00F1DB33 /* FrameMetadata.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FrameMetadata.plist; sourceTree = "<group>"; };
