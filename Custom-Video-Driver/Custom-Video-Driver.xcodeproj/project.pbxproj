@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C62ECDC23C4084C00F18341 /* TBExampleMultiCamCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */; };
+		3C62ECDD23C4084C00F18341 /* TBCaptureMultiCamFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C62ECDB23C4084C00F18341 /* TBCaptureMultiCamFactory.m */; };
 		D4426168185FA27400E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426166185FA27400E23699 /* InfoPlist.strings */; };
 		D442616A185FA27400E23699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426169185FA27400E23699 /* main.m */; };
 		D442616E185FA27400E23699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D442616D185FA27400E23699 /* AppDelegate.m */; };
@@ -21,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		3C62ECD823C4084C00F18341 /* TBCaptureMultiCamFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCaptureMultiCamFactory.h; sourceTree = "<group>"; };
+		3C62ECD923C4084C00F18341 /* TBExampleMultiCamCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleMultiCamCapture.h; sourceTree = "<group>"; };
+		3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleMultiCamCapture.m; sourceTree = "<group>"; };
+		3C62ECDB23C4084C00F18341 /* TBCaptureMultiCamFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCaptureMultiCamFactory.m; sourceTree = "<group>"; };
 		A0C851961ED8F49000BBCF9A /* Custom-Video-Driver-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Custom-Video-Driver-Info.plist"; sourceTree = "<group>"; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D442615A185FA27400E23699 /* Custom-Video-Driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Custom-Video-Driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +72,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C4D8A822433C733003E2F10 /* Single-Cam-Capturer */ = {
+			isa = PBXGroup;
+			children = (
+				D44261D3185FADAB00E23699 /* TBExampleVideoCapture.h */,
+				D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */,
+			);
+			path = "Single-Cam-Capturer";
+			sourceTree = "<group>";
+		};
+		3C4D8A832433C7D8003E2F10 /* Multi-Cam-Capturer */ = {
+			isa = PBXGroup;
+			children = (
+				3C62ECD823C4084C00F18341 /* TBCaptureMultiCamFactory.h */,
+				3C62ECDB23C4084C00F18341 /* TBCaptureMultiCamFactory.m */,
+				3C62ECD923C4084C00F18341 /* TBExampleMultiCamCapture.h */,
+				3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */,
+			);
+			path = "Multi-Cam-Capturer";
+			sourceTree = "<group>";
+		};
 		D4426151185FA27400E23699 = {
 			isa = PBXGroup;
 			children = (
@@ -110,8 +136,8 @@
 		D4426163185FA27400E23699 /* Lets-Build-OTPublisher */ = {
 			isa = PBXGroup;
 			children = (
-				D44261D3185FADAB00E23699 /* TBExampleVideoCapture.h */,
-				D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */,
+				3C4D8A832433C7D8003E2F10 /* Multi-Cam-Capturer */,
+				3C4D8A822433C733003E2F10 /* Single-Cam-Capturer */,
 				D44261B6185FA64100E23699 /* TBExampleVideoRender.h */,
 				D44261B7185FA64100E23699 /* TBExampleVideoRender.m */,
 				D442616C185FA27400E23699 /* AppDelegate.h */,
@@ -165,6 +191,11 @@
 			attributes = {
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "TokBox, Inc.";
+				TargetAttributes = {
+					D4426159185FA27400E23699 = {
+						ProvisioningStyle = Manual;
+					};
+				};
 			};
 			buildConfigurationList = D4426155185FA27400E23699 /* Build configuration list for PBXProject "Custom-Video-Driver" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -206,10 +237,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4426177185FA27400E23699 /* ViewController.m in Sources */,
+				3C62ECDD23C4084C00F18341 /* TBCaptureMultiCamFactory.m in Sources */,
 				D442616E185FA27400E23699 /* AppDelegate.m in Sources */,
 				D442616A185FA27400E23699 /* main.m in Sources */,
 				D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */,
 				D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */,
+				3C62ECDC23C4084C00F18341 /* TBExampleMultiCamCapture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +379,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Custom-Video-Driver-Prefix.pch";
@@ -355,8 +390,10 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Lets-Build-OTPublisher/Custom-Video-Driver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Video-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -367,6 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Custom-Video-Driver-Prefix.pch";
@@ -376,6 +414,7 @@
 					"${SRCROOT}/**",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Lets-Build-OTPublisher/Custom-Video-Driver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Video-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

@@ -9,6 +9,20 @@
 #import <OpenTok/OpenTok.h>
 #import "TBExampleVideoCapture.h"
 #import "TBExampleVideoRender.h"
+#import "TBExampleMultiCamCapture.h"
+#import "TBCaptureMultiCamFactory.h"
+
+// Set 1 for multi camera session, which uses
+// two publishers publishing from front and rear cameras at the same time
+// iOS supports multi cam only on higher end devices (e.g, >= A12 CPU)
+// The capturer will return nil if you try to run multi cam samples on an unsupported device!
+#define USE_MULTICAM_SESSION 0
+
+@interface OTSession ()
+    
+- (void)setApiRootURL:(NSURL *)aURL;
+    
+@end
 
 @interface ViewController ()
 <OTSessionDelegate, OTSubscriberKitDelegate, OTPublisherDelegate>
@@ -17,13 +31,13 @@
 
 @implementation ViewController {
     OTSession* _session;
-    OTPublisher* _publisher;
+    OTPublisher* _frontCamPublisher;
+    OTPublisher* _rearCamPublisher;
     OTSubscriber* _subscriber;
     
-    TBExampleVideoCapture* _defaultVideoCapture;
-    
     TBExampleVideoRender* _subscriberVideoRenderView;
-    TBExampleVideoRender* _publisherVideoRenderView;
+    TBExampleVideoRender* _frontCamPublisherVideoRenderView;
+    TBExampleVideoRender* _rearCamPublisherVideoRenderView;
     
 }
 static double widgetHeight = 240;
@@ -49,6 +63,7 @@ static NSString* const kToken = @"";
     _session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                            delegate:self];
+
     [self doConnect];
 }
 
@@ -90,33 +105,70 @@ static NSString* const kToken = @"";
  * binds to the device camera and microphone, and will provide A/V streams
  * to the OpenTok session.
  */
-- (void)doPublish
+- (void)doPublishWithFrontCam
 {
+    // Front Camera Publisher
     OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
     pubSettings.name = [[UIDevice currentDevice] name];
-    _publisher = [[OTPublisher alloc]
-                  initWithDelegate:self settings:pubSettings];
-    
-    TBExampleVideoCapture* videoCapture =
-    [[TBExampleVideoCapture alloc] init];
-    [_publisher setVideoCapture:videoCapture];
-    
-    _publisherVideoRenderView =
+
+    TBExampleVideoCapture *videoCapture = nil;
+    if(USE_MULTICAM_SESSION == 1)
+        videoCapture = (TBExampleVideoCapture *) [[TBCaptureMultiCamFactory sharedInstance]
+                                                  createCapturerForCameraPosition:AVCaptureDevicePositionFront];
+
+    else
+        videoCapture = [[TBExampleVideoCapture alloc] init];
+
+    pubSettings.videoCapture = videoCapture;
+    _frontCamPublisher = [[OTPublisher alloc]
+                          initWithDelegate:self settings:pubSettings];
+
+   _frontCamPublisherVideoRenderView =
     [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+
     // Set mirroring only if the front camera is being used.
-    [_publisherVideoRenderView setMirroring:
-     (AVCaptureDevicePositionFront == videoCapture.cameraPosition)];
-    [_publisher setVideoRender:_publisherVideoRenderView];
-    
+    [_frontCamPublisherVideoRenderView setMirroring:YES];
+    [_frontCamPublisher setVideoRender:_frontCamPublisherVideoRenderView];
+
     OTError *error = nil;
-    [_session publish:_publisher error:&error];
+    [_session publish:_frontCamPublisher error:&error];
     if (error)
     {
         [self showAlert:[error localizedDescription]];
     }
 
-    [_publisherVideoRenderView setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
-    [self.view addSubview:_publisherVideoRenderView];
+    [_frontCamPublisherVideoRenderView setFrame:CGRectMake(0, (_rearCamPublisher) ? widgetHeight : 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:_frontCamPublisherVideoRenderView];
+}
+
+- (void)doPublishWithRearCam
+{
+    // Back Camera Publisher
+    OTPublisherSettings *pubSettings = [[OTPublisherSettings alloc] init];
+    pubSettings.name = [[UIDevice currentDevice] name];
+    TBExampleMultiCamCapture* videoCapture = [[TBCaptureMultiCamFactory sharedInstance]
+                                              createCapturerForCameraPosition:AVCaptureDevicePositionBack];
+
+    pubSettings.videoCapture = videoCapture;
+    _rearCamPublisher = [[OTPublisher alloc]
+                          initWithDelegate:self settings:pubSettings];
+    
+   _rearCamPublisherVideoRenderView =
+    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    // Set mirroring only if the front camera is being used.
+    [_rearCamPublisherVideoRenderView setMirroring:false];
+     
+    [_rearCamPublisher setVideoRender:_rearCamPublisherVideoRenderView];
+    
+    OTError *error = nil;
+    [_session publish:_rearCamPublisher error:&error];
+    if (error)
+    {
+        [self showAlert:[error localizedDescription]];
+    }
+
+    [_rearCamPublisherVideoRenderView setFrame:CGRectMake(0, (_frontCamPublisher) ? widgetHeight : 0, widgetWidth, widgetHeight)];
+    [self.view addSubview:_rearCamPublisherVideoRenderView];
 }
 
 /**
@@ -124,9 +176,14 @@ static NSString* const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_publisherVideoRenderView clearRenderBuffer];
-    [_publisher.view removeFromSuperview];
-    _publisher = nil;
+    [_frontCamPublisherVideoRenderView clearRenderBuffer];
+    [_frontCamPublisher.view removeFromSuperview];
+    _frontCamPublisher = nil;
+
+    [_rearCamPublisherVideoRenderView clearRenderBuffer];
+    [_rearCamPublisher.view removeFromSuperview];
+    _rearCamPublisher = nil;
+
     // this is a good place to notify the end-user that publishing has stopped.
 }
 
@@ -173,7 +230,9 @@ static NSString* const kToken = @"";
     
     // Step 2: We have successfully connected, now instantiate a publisher and
     // begin pushing A/V streams into OpenTok.
-    [self doPublish];
+    [self doPublishWithFrontCam];
+    if(USE_MULTICAM_SESSION == 1)
+        [self doPublishWithRearCam];
 }
 
 - (void)sessionDidDisconnect:(OTSession*)session
