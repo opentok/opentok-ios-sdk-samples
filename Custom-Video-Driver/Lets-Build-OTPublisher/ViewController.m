@@ -40,7 +40,7 @@
     TBExampleVideoRender* _rearCamPublisherVideoRenderView;
     
 }
-static double widgetHeight = 190;
+static double widgetHeight = 180;
 static double widgetWidth = 320;
 
 // *** Fill the following variables using your own Project info  ***
