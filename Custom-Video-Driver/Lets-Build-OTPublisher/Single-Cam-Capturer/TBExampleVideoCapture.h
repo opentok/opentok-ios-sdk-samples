@@ -11,7 +11,7 @@
 
 @protocol OTVideoCapture;
 
-@protocol TBFrameCapturerMetadataDelegate
+@protocol TBFrameCapturerMetadataDelegate <NSObject>
 - (void)finishPreparingFrame:(OTVideoFrame *)videoFrame;
 @end
 

@@ -711,12 +711,16 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if (self.noFramesCapturedTimer)
         [self invalidateNoFramesTimerSettingItUpAgain:NO];
 
+    if ([self.delegate respondsToSelector:@selector(finishPreparingFrame:)]) {
+          [self.delegate finishPreparingFrame:_videoFrame];
+      }
+    
     CMTime time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     [_videoCaptureConsumer consumeImageBuffer:imageBuffer
                                   orientation:[self currentDeviceOrientation]
                                     timestamp:time
-                                     metadata:nil];
+                                     metadata:_videoFrame.metadata];
     
 }
 

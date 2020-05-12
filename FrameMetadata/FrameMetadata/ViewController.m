@@ -19,6 +19,7 @@
 @property (nonatomic) TBExampleVideoRender *subscriberVideoRenderView;
 @property (nonatomic) TBExampleVideoRender *publisherVideoRenderView;
 @property (weak, nonatomic) IBOutlet UILabel *metadataLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subMetadataLabel;
 @property (nonatomic) NSDateFormatter *dateFormatter;
 @end
 
@@ -260,6 +261,7 @@ didFailWithError:(OTError*)error
     streamCreated:(OTStream *)stream
 {
     NSLog(@"Publishing");
+    [self doSubscribe:stream];
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
@@ -293,17 +295,19 @@ didFailWithError:(OTError*)error
 
 - (void)renderer:(TBExampleVideoRender*)renderer
  didReceiveFrame:(OTVideoFrame*)frame {
+    NSData *metadata = frame.metadata;
+    NSString *timestamp = [[NSString alloc] initWithData:metadata encoding:NSUTF8StringEncoding];
     if (renderer == _publisher.videoRender) {
-        NSData *metadata = frame.metadata;
-        NSString *timestamp = [[NSString alloc] initWithData:metadata encoding:NSUTF8StringEncoding];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.metadataLabel setText:timestamp];
             NSLog(@"Receiving publisher metadata: %@", timestamp);
         });
     }
     else if (renderer == _subscriber.videoRender) {
-        NSLog(@"Receiving subscriber metadata");
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.subMetadataLabel setText:timestamp];
+            NSLog(@"Receiving subscriber metadata: %@", timestamp);
+        });
     }
 }
 

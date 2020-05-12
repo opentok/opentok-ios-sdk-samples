@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,25 +20,35 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gq-3y-jpT">
-                                <rect key="frame" x="8" y="28" width="42" height="21"/>
+                                <rect key="frame" x="8" y="8" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscriber Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTW-ja-oxO">
+                                <rect key="frame" x="0.0" y="605" width="129" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="5Gq-3y-jpT" firstAttribute="top" secondItem="TRi-rd-NMC" secondAttribute="bottom" constant="8" id="3ud-yA-d6V"/>
+                            <constraint firstItem="pKN-mG-ifB" firstAttribute="top" secondItem="JTW-ja-oxO" secondAttribute="bottom" constant="41" id="8Gu-h9-RqS"/>
+                            <constraint firstItem="JTW-ja-oxO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="P95-cp-RdM"/>
                             <constraint firstItem="5Gq-3y-jpT" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="8" id="ZkS-ih-ZI0"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Gq-3y-jpT" secondAttribute="trailing" constant="8" id="oSi-ZB-SmK"/>
-                            <constraint firstItem="5Gq-3y-jpT" firstAttribute="top" secondItem="TRi-rd-NMC" secondAttribute="bottom" constant="8" id="rYW-vc-Cbg"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="metadataLabel" destination="5Gq-3y-jpT" id="m8w-h1-GC8"/>
+                        <outlet property="subMetadataLabel" destination="JTW-ja-oxO" id="rbX-yM-CsE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="121.88905547226388"/>
         </scene>
     </scenes>
 </document>
