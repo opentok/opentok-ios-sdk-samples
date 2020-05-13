@@ -40,7 +40,7 @@
     TBExampleVideoRender* _rearCamPublisherVideoRenderView;
     
 }
-static double widgetHeight = 240;
+static double widgetHeight = 180;
 static double widgetWidth = 320;
 
 // *** Fill the following variables using your own Project info  ***
@@ -296,8 +296,7 @@ didFailWithError:(OTError*)error
 {
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
-    [_subscriberVideoRenderView setFrame:CGRectMake(0, widgetHeight, widgetWidth,
-                                         widgetHeight)];
+    [_subscriberVideoRenderView setFrame:CGRectMake(0, (_rearCamPublisher ? widgetHeight * 2: widgetHeight), widgetWidth, widgetHeight)];
     [self.view addSubview:_subscriberVideoRenderView];
 }
 
