@@ -15,6 +15,8 @@
 		0CBBA409196B5192005F55D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA408196B5192005F55D4 /* ViewController.m */; };
 		0CBBA40B196B5192005F55D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CBBA40A196B5192005F55D4 /* Images.xcassets */; };
 		0CBBA42B196B5314005F55D4 /* OTDefaultAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CBBA42A196B5314005F55D4 /* OTDefaultAudioDevice.m */; };
+		12173DD42535F6C10088EFC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12173DD32535F6C10088EFC4 /* LaunchScreen.storyboard */; };
+		5E222ADAC38CA9B212624DF3 /* Pods_Custom_Audio_Driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59D1632DE48B60FAABA77A61 /* Pods_Custom_Audio_Driver.framework */; };
 		A5E74EB01C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */; };
 /* End PBXBuildFile section */
 
@@ -47,11 +49,15 @@
 		0CBBA433196B5482005F55D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0CBBA434196B5482005F55D4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0CBBA442196B55EA005F55D4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		12173DD32535F6C10088EFC4 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23C8176F1978929E00A35EAB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
+		59D1632DE48B60FAABA77A61 /* Pods_Custom_Audio_Driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Custom_Audio_Driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4570379B2E2EA92DF516C5 /* Pods-Custom-Audio-Driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Audio-Driver.release.xcconfig"; path = "Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver.release.xcconfig"; sourceTree = "<group>"; };
 		A5D01FB71A3A1397005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		A5E74EAE1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTDefaultAudioDeviceWithVolumeControl.m; sourceTree = "<group>"; };
 		A5E74EAF1C90D054002CBE09 /* OTDefaultAudioDeviceWithVolumeControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTDefaultAudioDeviceWithVolumeControl.h; sourceTree = "<group>"; };
 		D4D55F6D1D5E1D6E008DC3AD /* libPods-External-Audio-Device.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-External-Audio-Device.a"; path = "Pods/../build/Debug-iphoneos/libPods-External-Audio-Device.a"; sourceTree = "<group>"; };
+		FFAADCA8D4B67BFA933D6CDB /* Pods-Custom-Audio-Driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Custom-Audio-Driver.debug.xcconfig"; path = "Target Support Files/Pods-Custom-Audio-Driver/Pods-Custom-Audio-Driver.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E222ADAC38CA9B212624DF3 /* Pods_Custom_Audio_Driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +78,7 @@
 				0CBBA3F5196B5192005F55D4 /* External-Audio-Device */,
 				0CBBA3EE196B5192005F55D4 /* Frameworks */,
 				0CBBA3ED196B5192005F55D4 /* Products */,
+				63691214A057F25AEF40DAA3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +110,7 @@
 				0CBBA3EF196B5192005F55D4 /* Foundation.framework */,
 				0CBBA3F1196B5192005F55D4 /* CoreGraphics.framework */,
 				0CBBA3F3196B5192005F55D4 /* UIKit.framework */,
+				59D1632DE48B60FAABA77A61 /* Pods_Custom_Audio_Driver.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -121,6 +130,7 @@
 				0CBBA408196B5192005F55D4 /* ViewController.m */,
 				0CBBA40A196B5192005F55D4 /* Images.xcassets */,
 				0CBBA3F6196B5192005F55D4 /* Supporting Files */,
+				12173DD32535F6C10088EFC4 /* LaunchScreen.storyboard */,
 			);
 			path = "External-Audio-Device";
 			sourceTree = "<group>";
@@ -136,6 +146,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		63691214A057F25AEF40DAA3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FFAADCA8D4B67BFA933D6CDB /* Pods-Custom-Audio-Driver.debug.xcconfig */,
+				9A4570379B2E2EA92DF516C5 /* Pods-Custom-Audio-Driver.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +162,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0CBBA421196B5192005F55D4 /* Build configuration list for PBXNativeTarget "Custom-Audio-Driver" */;
 			buildPhases = (
+				9EF9920B1327810D15F93163 /* [CP] Check Pods Manifest.lock */,
 				0CBBA3E8196B5192005F55D4 /* Sources */,
 				0CBBA3E9196B5192005F55D4 /* Frameworks */,
 				0CBBA3EA196B5192005F55D4 /* Resources */,
@@ -162,7 +182,7 @@
 		0CBBA3E4196B5192005F55D4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "TokBox Inc.";
 				TargetAttributes = {
 					0CBBA3EB196B5192005F55D4 = {
@@ -172,10 +192,9 @@
 			};
 			buildConfigurationList = 0CBBA3E7196B5192005F55D4 /* Build configuration list for PBXProject "Custom-Audio-Driver" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -197,11 +216,37 @@
 				0CBBA406196B5192005F55D4 /* Main_iPad.storyboard in Resources */,
 				0CBBA40B196B5192005F55D4 /* Images.xcassets in Resources */,
 				0CBBA403196B5192005F55D4 /* Main_iPhone.storyboard in Resources */,
+				12173DD42535F6C10088EFC4 /* LaunchScreen.storyboard in Resources */,
 				0CBBA3FA196B5192005F55D4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9EF9920B1327810D15F93163 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Custom-Audio-Driver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0CBBA3E8196B5192005F55D4 /* Sources */ = {
@@ -250,6 +295,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -268,6 +314,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -292,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -314,6 +362,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -325,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -334,9 +383,9 @@
 		};
 		0CBBA422196B5192005F55D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFAADCA8D4B67BFA933D6CDB /* Pods-Custom-Audio-Driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -355,6 +404,7 @@
 					"${SRCROOT}/External-Audio-Device",
 				);
 				INFOPLIST_FILE = "External-Audio-Device/Custom-Audio-Driver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Audio-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -365,9 +415,9 @@
 		};
 		0CBBA423196B5192005F55D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A4570379B2E2EA92DF516C5 /* Pods-Custom-Audio-Driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -386,6 +436,7 @@
 					"${SRCROOT}/External-Audio-Device",
 				);
 				INFOPLIST_FILE = "External-Audio-Device/Custom-Audio-Driver-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Audio-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
