@@ -24,11 +24,11 @@ static double widgetWidth = 160;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"46951484";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX40Njk1MTQ4NH5-MTYwMjU5NjI5OTQzMX5hYWtkV1JEWU9rcHcxZXd6ai9DT3IwUjV-fg";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD00Njk1MTQ4NCZzaWc9ZjQ3MzJiN2UwZjg0ODRiY2QwODBmNmM5YjMyY2Q4ODU2ZjQyN2I4OTpzZXNzaW9uX2lkPTJfTVg0ME5qazFNVFE0Tkg1LU1UWXdNalU1TmpJNU9UUXpNWDVoWVd0a1YxSkVXVTlyY0hjeFpYZDZhaTlEVDNJd1VqVi1mZyZjcmVhdGVfdGltZT0xNjAyNTk2MzI3Jm5vbmNlPTAuNjE2NTMwODg2MTk3MDY0JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE2MDI2ODI3MjYmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
 
 #pragma mark - View lifecycle
 
