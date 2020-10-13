@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E2653DE0CE913F92E798261 /* Pods_Ringtones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50F4DA1DDCAC2961AA22C77 /* Pods_Ringtones.framework */; };
 		D415AB251C74052800A070E1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB241C74052800A070E1 /* main.m */; };
 		D415AB281C74052800A070E1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB271C74052800A070E1 /* AppDelegate.m */; };
 		D415AB2B1C74052800A070E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D415AB2A1C74052800A070E1 /* ViewController.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		321EA0744AA16568E291397C /* Pods-Ringtones.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ringtones.debug.xcconfig"; path = "Target Support Files/Pods-Ringtones/Pods-Ringtones.debug.xcconfig"; sourceTree = "<group>"; };
+		944523F79B32A307345597D5 /* Pods-Ringtones.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ringtones.release.xcconfig"; path = "Target Support Files/Pods-Ringtones/Pods-Ringtones.release.xcconfig"; sourceTree = "<group>"; };
 		D415AB201C74052800A070E1 /* Ringtones.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ringtones.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D415AB241C74052800A070E1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D415AB261C74052800A070E1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -34,6 +37,7 @@
 		D415AB5A1C74083D00A070E1 /* OTAudioDeviceRingtone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAudioDeviceRingtone.h; sourceTree = "<group>"; };
 		D415AB5B1C74083D00A070E1 /* OTAudioDeviceRingtone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTAudioDeviceRingtone.m; sourceTree = "<group>"; };
 		D415AB5D1C7409AD00A070E1 /* bananaphone.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bananaphone.mp3; sourceTree = "<group>"; };
+		D50F4DA1DDCAC2961AA22C77 /* Pods_Ringtones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ringtones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,18 +45,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E2653DE0CE913F92E798261 /* Pods_Ringtones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90085687AB1D0587534C9FB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				321EA0744AA16568E291397C /* Pods-Ringtones.debug.xcconfig */,
+				944523F79B32A307345597D5 /* Pods-Ringtones.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C07C6BD9C214E99757819578 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D50F4DA1DDCAC2961AA22C77 /* Pods_Ringtones.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D415AB171C74052800A070E1 = {
 			isa = PBXGroup;
 			children = (
 				D415AB561C7405E900A070E1 /* Custom-Audio-Driver */,
 				D415AB221C74052800A070E1 /* Ringtones */,
 				D415AB211C74052800A070E1 /* Products */,
+				90085687AB1D0587534C9FB7 /* Pods */,
+				C07C6BD9C214E99757819578 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +132,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D415AB4D1C74052800A070E1 /* Build configuration list for PBXNativeTarget "Ringtones" */;
 			buildPhases = (
+				A5B9282CDAAB33B70DD13257 /* [CP] Check Pods Manifest.lock */,
 				D415AB1C1C74052800A070E1 /* Sources */,
 				D415AB1D1C74052800A070E1 /* Frameworks */,
 				D415AB1E1C74052800A070E1 /* Resources */,
@@ -127,7 +152,7 @@
 		D415AB181C74052800A070E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
 					D415AB1F1C74052800A070E1 = {
@@ -143,7 +168,7 @@
 			};
 			buildConfigurationList = D415AB1B1C74052800A070E1 /* Build configuration list for PBXProject "Ringtones" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -172,6 +197,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A5B9282CDAAB33B70DD13257 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ringtones-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D415AB1C1C74052800A070E1 /* Sources */ = {
@@ -212,6 +262,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -230,6 +281,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -254,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -266,6 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -284,6 +337,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -302,7 +356,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -312,12 +366,14 @@
 		};
 		D415AB4E1C74052800A070E1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 321EA0744AA16568E291397C /* Pods-Ringtones.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Ringtones/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.Ringtones;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -327,12 +383,14 @@
 		};
 		D415AB4F1C74052800A070E1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 944523F79B32A307345597D5 /* Pods-Ringtones.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Ringtones/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.Ringtones;
 				PRODUCT_NAME = "$(TARGET_NAME)";
