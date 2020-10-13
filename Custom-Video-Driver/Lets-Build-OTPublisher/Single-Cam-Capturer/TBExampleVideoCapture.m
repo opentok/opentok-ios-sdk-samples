@@ -107,6 +107,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (void)dealloc {
+    [super dealloc];
     [[NSNotificationCenter defaultCenter]
      removeObserver:self
      name:UIApplicationWillChangeStatusBarOrientationNotification
