@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -14,19 +16,31 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo_opentok_registered.png" translatesAutoresizingMaskIntoConstraints="NO" id="nTm-Ex-Hmu">
-                                <rect key="frame" x="12" y="160" width="296" height="101"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_opentok_registered.png" translatesAutoresizingMaskIntoConstraints="NO" id="nTm-Ex-Hmu">
+                                <rect key="frame" x="59" y="159" width="296" height="101"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQl-9A-yjJ">
-                                <rect key="frame" x="94" y="271" width="132" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQl-9A-yjJ">
+                                <rect key="frame" x="141" y="281" width="132" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="5ba-NT-98v"/>
+                                    <constraint firstAttribute="width" constant="132" id="SKC-RF-csv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="nTm-Ex-Hmu" firstAttribute="centerX" secondItem="jQl-9A-yjJ" secondAttribute="centerX" id="39L-vg-TJM"/>
+                            <constraint firstItem="nTm-Ex-Hmu" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="8vg-C9-94B"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="jQl-9A-yjJ" secondAttribute="bottom" constant="551" id="HSn-8q-0sB"/>
+                            <constraint firstItem="nTm-Ex-Hmu" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="39" id="Nk0-qy-KxP"/>
+                            <constraint firstItem="nTm-Ex-Hmu" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="115" id="Tfa-wC-Wby"/>
+                            <constraint firstItem="jQl-9A-yjJ" firstAttribute="top" secondItem="nTm-Ex-Hmu" secondAttribute="bottom" constant="21" id="Y88-g4-8tA"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="timeDisplay" destination="jQl-9A-yjJ" id="YGW-dX-o9T"/>
@@ -34,6 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-36" y="78"/>
         </scene>
     </scenes>
     <resources>
