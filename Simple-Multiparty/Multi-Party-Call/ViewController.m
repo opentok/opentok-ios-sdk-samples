@@ -1221,13 +1221,8 @@ OTPublisherDelegate>{
 {
     // show alertview on main UI
 	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[[UIAlertView alloc]
-                               initWithTitle:@"Message from video session"
-                               message:string
-                               delegate:self
-                               cancelButtonTitle:@"OK"
-                               otherButtonTitles:nil] autorelease];
-        [alert show];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Message from video session" message:string preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
     });
 }
 
