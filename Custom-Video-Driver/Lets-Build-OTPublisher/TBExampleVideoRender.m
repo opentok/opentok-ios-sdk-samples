@@ -134,7 +134,7 @@
         
         _displayLink.paused = YES;
         // Set to half of screen refresh, which should be 30fps.
-        [_displayLink setFrameInterval:2];
+        [_displayLink setPreferredFramesPerSecond:30];
         [_displayLink addToRunLoop:[NSRunLoop mainRunLoop]
                            forMode:NSRunLoopCommonModes];
         [self setupGL];
