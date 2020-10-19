@@ -80,8 +80,6 @@ static double widgetWidth = 320;
     OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
     settings.name = [UIDevice currentDevice].name;
     _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
-    _publisher.videoCapture = [[OTKBasicVideoCapturer alloc] init];
-//    _publisher.videoCapture = [[OTKBasicVideoCapturerCamera alloc] initWithPreset:AVCaptureSessionPreset352x288 andDesiredFrameRate:30];
    
     OTError *error = nil;
     [_session publish:_publisher error:&error];
@@ -92,6 +90,9 @@ static double widgetWidth = 320;
     
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    
+    _publisher.videoCapture = [[OTKBasicVideoCapturer alloc] init];
+//    _publisher.videoCapture = [[OTKBasicVideoCapturerCamera alloc] initWithPreset:AVCaptureSessionPreset352x288 andDesiredFrameRate:30];
 }
 
 /**
