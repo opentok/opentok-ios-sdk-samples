@@ -77,9 +77,9 @@ static double widgetWidth = 320;
 {
     OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
     settings.name = [UIDevice currentDevice].name;
-    _renderer = [[OTKBasicVideoRender alloc] init];
     
     _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
+    _renderer = [[OTKBasicVideoRender alloc] init];
     _publisher.videoRender = _renderer;
    
     OTError *error = nil;
