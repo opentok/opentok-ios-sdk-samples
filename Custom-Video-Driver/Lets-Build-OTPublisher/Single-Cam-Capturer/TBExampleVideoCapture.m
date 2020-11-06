@@ -121,7 +121,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition) position {
-    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    NSArray *devices = [[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:position] devices];
     for (AVCaptureDevice *device in devices) {
         if ([device position] == position) {
             return device;
@@ -139,7 +139,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (BOOL) hasMultipleCameras {
-    return [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] > 1;
+    return [[[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified] devices] count] > 1;
 }
 
 - (BOOL) hasTorch {
@@ -231,25 +231,18 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     
     if(lockConfiguration) [_captureSession beginConfiguration];
     
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
-        NSError* error;
-        if ([_videoInput.device lockForConfiguration:&error]) {
-            [_videoInput.device
-             setActiveVideoMinFrameDuration:desiredMinFrameDuration];
-            [_videoInput.device
-             setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
-            [_videoInput.device unlockForConfiguration];
-        } else {
-            NSLog(@"%@", error);
-        }
+    
+    NSError* error;
+    if ([_videoInput.device lockForConfiguration:&error]) {
+        [_videoInput.device
+         setActiveVideoMinFrameDuration:desiredMinFrameDuration];
+        [_videoInput.device
+         setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
+        [_videoInput.device unlockForConfiguration];
     } else {
-        AVCaptureConnection *conn =
-        [_videoOutput connectionWithMediaType:AVMediaTypeVideo];
-        if (conn.supportsVideoMinFrameDuration)
-            conn.videoMinFrameDuration = desiredMinFrameDuration;
-        if (conn.supportsVideoMaxFrameDuration)
-            conn.videoMaxFrameDuration = desiredMaxFrameDuration;
+        NSLog(@"%@", error);
     }
+
     if(lockConfiguration) [_captureSession commitConfiguration];
 }
 
@@ -345,18 +338,18 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
         if ([session canSetSessionPreset:preset] &&
             ![preset isEqualToString:session.sessionPreset]) {
             
-            [_captureSession beginConfiguration];
-            _captureSession.sessionPreset = preset;
-            _capturePreset = preset;
+            [self.captureSession beginConfiguration];
+            self.captureSession.sessionPreset = preset;
+            self->_capturePreset = preset;
             
-            [_videoOutput setVideoSettings:
+            [self->_videoOutput setVideoSettings:
              [NSDictionary dictionaryWithObjectsAndKeys:
               [NSNumber numberWithInt:
                kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange],
               kCVPixelBufferPixelFormatTypeKey,
               nil]];
             
-            [_captureSession commitConfiguration];
+            [self.captureSession commitConfiguration];
         }
     });
 }
@@ -374,7 +367,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (NSArray*)availableCameraPositions {
-    NSArray* devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    NSArray* devices = [[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified] devices];
     NSMutableSet* result = [NSMutableSet setWithCapacity:devices.count];
     for (AVCaptureDevice* device in devices) {
         [result addObject:[NSNumber numberWithInt:device.position]];
@@ -412,14 +405,14 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     dispatch_async(_capture_queue, ^() {
         AVCaptureSession *session = [self captureSession];
         [session beginConfiguration];
-        [session removeInput:_videoInput];
+        [session removeInput:self.videoInput];
         BOOL success = YES;
         if ([session canAddInput:newVideoInput]) {
             [session addInput:newVideoInput];
-            _videoInput = newVideoInput;
+            self.videoInput = newVideoInput;
         } else {
             success = NO;
-            [session addInput:_videoInput];
+            [session addInput:self.videoInput];
         }
         [session commitConfiguration];
         
