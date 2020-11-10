@@ -50,23 +50,25 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData timeoutInterval:10];
     [request setHTTPMethod: @"GET"];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-        if (error){
-            NSLog(@"Error,%@, URL: %@", [error localizedDescription],urlPath);
-        }
-        else{
-            NSDictionary *roomInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            self->_apiKey = [roomInfo objectForKey:@"apiKey"];
-            self->_token = [roomInfo objectForKey:@"token"];
-            self->_sessionId = [roomInfo objectForKey:@"sessionId"];
-            
-            if(!self->_apiKey || !self->_token || !self->_sessionId) {
-                NSLog(@"Error invalid response from server, URL: %@",urlPath);
-            } else {
-                [self doConnect];
+    NSURLSessionTask *task = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            if (error){
+                NSLog(@"Error,%@, URL: %@", [error localizedDescription],urlPath);
             }
-        }
+            else{
+                NSDictionary *roomInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+                self->_apiKey = [roomInfo objectForKey:@"apiKey"];
+                self->_token = [roomInfo objectForKey:@"token"];
+                self->_sessionId = [roomInfo objectForKey:@"sessionId"];
+                
+                if(!self->_apiKey || !self->_token || !self->_sessionId) {
+                    NSLog(@"Error invalid response from server, URL: %@",urlPath);
+                } else {
+                    [self doConnect];
+                }
+            }
     }];
+    
+    [task resume];
 }
 
 - (BOOL)prefersStatusBarHidden
