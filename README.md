@@ -124,3 +124,21 @@ Page](https://tokbox.com/account/) and scrolling down to the Project Tools
 section of your Project page. For production deployment, you must generate the
 session ID and token values using one of the [OpenTok Server
 SDKs](https://tokbox.com/developer/sdks/server/).
+
+## Development and Contributing
+
+Interested in contributing? We :heart: pull requests! See the 
+[Contribution](CONTRIBUTING.md) guidelines.
+
+## Getting Help
+
+We love to hear from you so if you have questions, comments or find a bug in the project, let us know! You can either:
+
+- Open an issue on this repository
+- See <https://support.tokbox.com/> for support options
+- Tweet at us! We're [@VonageDev](https://twitter.com/VonageDev) on Twitter
+- Or [join the Vonage Developer Community Slack](https://developer.nexmo.com/community/slack)
+
+## Further Reading
+
+- Check out the Developer Documentation at <https://tokbox.com/developer/>
