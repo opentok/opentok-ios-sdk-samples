@@ -123,7 +123,7 @@ static double widgetWidth = 320;
 
 /**
  * Cleans the subscriber from the view hierarchy, if any.
- * NB: You do *not* have to call unsubscribe in your controller in response to
+ * Note: You do *not* have to call unsubscribe in your controller in response to
  * a streamDestroyed event. Any subscribers (or the publisher) for a stream will
  * be automatically removed from the session during cleanup of the stream.
  */
