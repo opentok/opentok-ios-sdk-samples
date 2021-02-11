@@ -38,8 +38,8 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define kSampleRate 48000
 #endif
 
-#define OT_ENABLE_AUDIO_DEBUG 0
-
+#define OT_ENABLE_AUDIO_DEBUG 1
+#define RETRY_COUNT 5
 #if OT_ENABLE_AUDIO_DEBUG
 #define OT_AUDIO_DEBUG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
 #else
@@ -203,7 +203,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)startRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"startRendering %d", playing);
+        OT_AUDIO_DEBUG(@"startRendering started with playing flag = %d", playing);
         
         if (playing) {
             return YES;
@@ -223,7 +223,7 @@ static OSStatus playout_cb(void *ref_con,
         if (CheckError(result, @"startRendering.AudioOutputUnitStart")) {
             playing = NO;
         }
-        
+        OT_AUDIO_DEBUG(@"startRendering ended with playing flag = %d", playing);
         return playing;
     }
 }
@@ -231,7 +231,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)stopRendering
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopRendering %d", playing);
+        OT_AUDIO_DEBUG(@"stopRendering started with playing flag = %d", playing);
         
         if (!playing) {
             return YES;
@@ -250,7 +250,7 @@ static OSStatus playout_cb(void *ref_con,
             OT_AUDIO_DEBUG(@"teardownAudio from stopRendering");
             [self teardownAudio];
         }
-        
+        OT_AUDIO_DEBUG(@"stopRendering finshed properly");
         return YES;
     }
 }
@@ -263,7 +263,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)startCapture
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"startCapture %d", recording);
+        OT_AUDIO_DEBUG(@"startCapture started with recording flag = %d", recording);
         
         if (recording) {
             return YES;
@@ -283,7 +283,7 @@ static OSStatus playout_cb(void *ref_con,
         if (CheckError(result, @"startCapture.AudioOutputUnitStart")) {
             recording = NO;
         }
-        
+        OT_AUDIO_DEBUG(@"startCapture finished with recording flag = %d", recording);
         return recording;
     }
 }
@@ -291,7 +291,7 @@ static OSStatus playout_cb(void *ref_con,
 - (BOOL)stopCapture
 {
     @synchronized(self) {
-        OT_AUDIO_DEBUG(@"stopCapture %d", recording);
+        OT_AUDIO_DEBUG(@"stopCapture started with recording flag = %d", recording);
         
         if (!recording) {
             return YES;
@@ -313,7 +313,7 @@ static OSStatus playout_cb(void *ref_con,
             OT_AUDIO_DEBUG(@"teardownAudio from stopCapture");
             [self teardownAudio];
         }
-        
+        OT_AUDIO_DEBUG(@"stopCapture finshed properly");
         return YES;
     }
 }
@@ -546,7 +546,7 @@ static bool CheckError(OSStatus error, NSString* function) {
                     } else
                     {
                         _restartRetryCount++;
-                        if(_restartRetryCount < 3)
+                        if(_restartRetryCount < RETRY_COUNT)
                         {
                             dispatch_after(
                                            dispatch_time(
@@ -554,6 +554,7 @@ static bool CheckError(OSStatus error, NSString* function) {
                                            _safetyQueue, ^{
                                                [self handleInterruptionEvent:
                                                 AVAudioSessionInterruptionTypeEnded];
+                                            OT_AUDIO_DEBUG(@"Recorder retry");
                                            });
                         } else
                         {
@@ -561,7 +562,7 @@ static bool CheckError(OSStatus error, NSString* function) {
                             isRecorderInterrupted = NO;
                             isPlayerInterrupted = NO;
                             _restartRetryCount = 0;
-                            NSLog(@"ERROR[OpenTok]:Unable to acquire audio session");
+                            OT_AUDIO_DEBUG(@"Unable to acquire audio session");
                         }
                         return;
                     }
@@ -569,8 +570,32 @@ static bool CheckError(OSStatus error, NSString* function) {
                 
                 if(isPlayerInterrupted)
                 {
-                    isPlayerInterrupted = NO;
-                    [self startRendering];
+                    if([self startRendering] == YES)
+                    {
+                        isPlayerInterrupted = NO;
+                        _restartRetryCount = 0;
+                    } else
+                    {
+                        _restartRetryCount++;
+                        if(_restartRetryCount < RETRY_COUNT)
+                        {
+                            dispatch_after(
+                                           dispatch_time(
+                                                         DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC),
+                                           _safetyQueue, ^{
+                                               [self handleInterruptionEvent:
+                                                AVAudioSessionInterruptionTypeEnded];
+                                            OT_AUDIO_DEBUG(@"Player restart");
+                                           });
+                        } else
+                        {
+                            isRecorderInterrupted = NO;
+                            isPlayerInterrupted = NO;
+                            _restartRetryCount = 0;
+                            OT_AUDIO_DEBUG(@"Unable to acquire audio session");
+                        }
+                        return;
+                    }
                 }
 
             }
