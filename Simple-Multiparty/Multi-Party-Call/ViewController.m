@@ -559,7 +559,7 @@ OTPublisherDelegate>{
         
         //adjust border layer
 		CALayer *borderLayer = [[self.cameraToggleButton.layer sublayers]
-                                objectAtIndex:1];
+                                objectAtIndex:0];
 		borderLayer.frame =
         CGRectMake(-1,
                    -1,
@@ -581,7 +581,7 @@ OTPublisherDelegate>{
                    PUBLISHER_BAR_HEIGHT);
         
 		borderLayer = [[self.audioPubUnpubButton.layer sublayers]
-                       objectAtIndex:1];
+                       objectAtIndex:0];
 		borderLayer.frame =
         CGRectMake(-1,
                    -1,
