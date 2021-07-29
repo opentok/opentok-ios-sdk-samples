@@ -112,6 +112,7 @@ static double widgetWidth = 320 / 2;
     TBScreenCapture* videoCapture =
     [[TBScreenCapture alloc] initWithView:self.view];
     [_publisher setVideoCapture:videoCapture];
+    _publisher.videoCapture.videoContentHint = OTVideoContentHintText;
     
     OTError *error = nil;
     [_session publish:_publisher error:&error];

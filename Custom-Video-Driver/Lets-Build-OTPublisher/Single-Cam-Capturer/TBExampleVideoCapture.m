@@ -73,6 +73,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 @synthesize delegate = _delegate;
 @synthesize videoInput = _videoInput, videoOutput = _videoOutput;
 @synthesize videoCaptureConsumer = _videoCaptureConsumer;
+@synthesize videoContentHint;
 
 #define OTK_VIDEO_CAPTURE_IOS_DEFAULT_INITIAL_FRAMERATE 20
 
