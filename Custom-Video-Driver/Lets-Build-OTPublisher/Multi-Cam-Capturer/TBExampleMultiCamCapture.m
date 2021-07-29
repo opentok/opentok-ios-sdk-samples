@@ -60,6 +60,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 @synthesize videoCaptureConsumer = _videoCaptureConsumer;
+@synthesize videoContentHint;
 
 -(id)initWithCameraPosition:(AVCaptureDevicePosition)camPosition
          andAVMultiCamSession:(AVCaptureMultiCamSession *)multiCamSession
