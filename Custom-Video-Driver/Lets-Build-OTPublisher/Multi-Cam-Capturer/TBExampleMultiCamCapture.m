@@ -509,7 +509,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Custom-Video-Driver"
                                                                                  message:[NSString stringWithFormat:
-                                                                                          @"Capurer failed with error : %@", error.description]
+                                                                                          @"Capturer failed with error : %@", error.description]
                                                                           preferredStyle:UIAlertControllerStyleAlert];
         //We add buttons to the alert controller by creating UIAlertActions:
         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
