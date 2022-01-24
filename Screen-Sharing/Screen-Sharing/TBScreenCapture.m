@@ -26,6 +26,7 @@
 }
 
 @synthesize videoCaptureConsumer;
+@synthesize videoContentHint;
 
 #pragma mark - Class Lifecycle.
 
