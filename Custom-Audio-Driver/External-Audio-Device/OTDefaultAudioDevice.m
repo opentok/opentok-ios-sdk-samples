@@ -127,6 +127,7 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)setAudioBus:(id<OTAudioBus>)audioBus
 {
+    OT_AUDIO_DEBUG(@"%s", __PRETTY_FUNCTION__);
     _audioBus = audioBus;
     _audioFormat = [[OTAudioFormat alloc] init];
     _audioFormat.sampleRate = kSampleRate;
@@ -161,6 +162,7 @@ static OSStatus playout_cb(void *ref_con,
 // to do here.
 - (BOOL)initializeRendering
 {
+    OT_AUDIO_DEBUG(@"%s", __PRETTY_FUNCTION__);
     if (playing) {
         return NO;
     }
@@ -173,11 +175,13 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)renderingIsInitialized
 {
+    OT_AUDIO_DEBUG(@"%s %d", __PRETTY_FUNCTION__, playout_initialized);
     return playout_initialized;
 }
 
 - (BOOL)captureIsAvailable
 {
+    OT_AUDIO_DEBUG(@"%s", __PRETTY_FUNCTION__);
     return YES;
 }
 
@@ -185,6 +189,7 @@ static OSStatus playout_cb(void *ref_con,
 // to do here.
 - (BOOL)initializeCapture
 {
+    OT_AUDIO_DEBUG(@"%s", __PRETTY_FUNCTION__);
     if (recording) {
         return NO;
     }
@@ -197,6 +202,7 @@ static OSStatus playout_cb(void *ref_con,
 
 - (BOOL)captureIsInitialized
 {
+    OT_AUDIO_DEBUG(@"%s %d", __PRETTY_FUNCTION__, recording_initialized);
     return recording_initialized;
 }
 
