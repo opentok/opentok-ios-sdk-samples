@@ -20,7 +20,7 @@
     
     // OT vars
     OTSession* _session;
-    OTPublisher* _publisher;
+    OTPublisherKit* _publisher;
     OTSubscriber* _subscriber;
     OTBroadcastExtAudioDevice* _audioDevice;
     
@@ -100,8 +100,8 @@
     
     settings.name = [[UIDevice currentDevice] name];
     _publisher =
-    [[OTPublisher alloc] initWithDelegate:self
-                                 settings:settings];
+    [[OTPublisherKit alloc] initWithDelegate:self
+                                    settings:settings];
     
     // We need to set publishAudio to false
     // since we don't know the broadcast session is
