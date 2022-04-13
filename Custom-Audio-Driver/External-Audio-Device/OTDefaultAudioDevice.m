@@ -478,7 +478,12 @@ static bool CheckError(OSStatus error, NSString* function) {
     
     if (error)
         OT_AUDIO_DEBUG(@"Audiosession setActive %@",error);
-    
+
+    if (@available(iOS 15, *)) {
+        // do nothing refer comments for self.setBluetoothAsPrefferedInputDevice method.
+    } else {
+        [self setBluetoothAsPrefferedInputDevice];
+    }
     isAudioSessionSetup = YES;
 }
 
@@ -547,7 +552,11 @@ static bool CheckError(OSStatus error, NSString* function) {
             case AVAudioSessionInterruptionTypeEnded:
             {
                 OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
-                [self setBluetoothAsPrefferedInputDevice];
+                if (@available(iOS 15, *)) {
+                    [self setBluetoothAsPrefferedInputDevice];
+                } else {
+                    // do nothing refer comments for self.setBluetoothAsPrefferedInputDevice method.
+                }
                 if(isRecorderInterrupted)
                 {
                     if([self startCapture] == YES)
