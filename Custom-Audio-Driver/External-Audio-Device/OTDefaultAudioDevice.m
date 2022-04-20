@@ -434,7 +434,7 @@ static bool CheckError(OSStatus error, NSString* function) {
 }
 - (void) setupAudioSession
 {
-    if(isAudioSessionSetup) return;
+    if (isAudioSessionSetup) return;
     
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     _previousAVAudioSessionCategory = mySession.category;
@@ -489,12 +489,12 @@ static bool CheckError(OSStatus error, NSString* function) {
 
 - (void)setBluetoothAsPrefferedInputDevice {
   // Apple's Bug(???) : Before iOS 15 AVAudioSessionInterruptionTypeEnded notification would
-  // not be called for bluetooth if we dont set bluetooth as preffered input as
+  // not be called for bluetooth if we dont set bluetooth as preferred input as
   // in setupAudioSession. In iOS 15 starting a session with BT and then disconnecting it
   // would cause the camera to freeze for some reason (an Apple Bug again ??)
   //
   // This method is also called on AVAudioSessionInterruptionTypeEnded, because BT audio
-  // routing would be lost, if you recieved a phone call and ended it, while
+  // routing would be lost, if you received a phone call and ended it, while
   // using BT with OT
   //
   // Should work for non bluetooth routes/ports too. This makes both input
@@ -1118,7 +1118,7 @@ static OSStatus playout_cb(void *ref_con,
     // Initialize the Voice-Processing I/O unit instance.
     result = AudioUnitInitialize(*voice_unit);
 
-    // This patch is pickedup from WebRTC audio implementation and
+    // This patch is picked up from WebRTC audio implementation and
     // is kind of a workaround. We encountered AudioUnitInitialize
     // failure in iOS 13 with Callkit while switching calls.
     int failed_initalize_attempts = 0;
