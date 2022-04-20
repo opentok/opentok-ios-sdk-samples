@@ -434,6 +434,8 @@ static bool CheckError(OSStatus error, NSString* function) {
 }
 - (void) setupAudioSession
 {
+    if (isAudioSessionSetup) return;
+    
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     _previousAVAudioSessionCategory = mySession.category;
     avAudioSessionMode = mySession.mode;
@@ -476,31 +478,38 @@ static bool CheckError(OSStatus error, NSString* function) {
     
     if (error)
         OT_AUDIO_DEBUG(@"Audiosession setActive %@",error);
-    
-    [self setBluetoothAsPrefferedInputDevice];
+
+    if (@available(iOS 15, *)) {
+        // do nothing refer comments for self.setBluetoothAsPrefferedInputDevice method.
+    } else {
+        [self setBluetoothAsPrefferedInputDevice];
+    }
     isAudioSessionSetup = YES;
 }
 
-- (void)setBluetoothAsPrefferedInputDevice
-{
-    // Apple's Bug(???) : Audio Interruption Ended notification won't be called
-    // for bluetooth devices if we dont set preffered input as bluetooth.
-    // Should work for non bluetooth routes/ports too. This makes both input
-    // and output to bluetooth device if available.
-    NSArray* bluetoothRoutes = @[AVAudioSessionPortBluetoothA2DP,
-                                 AVAudioSessionPortBluetoothLE,
-                                 AVAudioSessionPortBluetoothHFP];
-    NSArray* routes = [[AVAudioSession sharedInstance] availableInputs];
-    for (AVAudioSessionPortDescription* route in routes)
-    {
-        if ([bluetoothRoutes containsObject:route.portType])
-        {
-            [[AVAudioSession sharedInstance] setPreferredInput:route
-                                                         error:nil];
-            break;
-        }
+- (void)setBluetoothAsPrefferedInputDevice {
+  // Apple's Bug(???) : Before iOS 15 AVAudioSessionInterruptionTypeEnded notification would
+  // not be called for bluetooth if we dont set bluetooth as preferred input as
+  // in setupAudioSession. In iOS 15 starting a session with BT and then disconnecting it
+  // would cause the camera to freeze for some reason (an Apple Bug again ??)
+  //
+  // This method is also called on AVAudioSessionInterruptionTypeEnded, because BT audio
+  // routing would be lost, if you received a phone call and ended it, while
+  // using BT with OT
+  //
+  // Should work for non bluetooth routes/ports too. This makes both input
+  // and output to bluetooth device if available.
+  NSArray *bluetoothRoutes = @[
+    AVAudioSessionPortBluetoothA2DP, AVAudioSessionPortBluetoothLE,
+    AVAudioSessionPortBluetoothHFP
+  ];
+  NSArray *routes = [[AVAudioSession sharedInstance] availableInputs];
+  for (AVAudioSessionPortDescription *route in routes) {
+    if ([bluetoothRoutes containsObject:route.portType]) {
+      [[AVAudioSession sharedInstance] setPreferredInput:route error:nil];
+      break;
     }
-    
+  }
 }
 
 #pragma mark - System interruptions and audio route changes
@@ -543,6 +552,11 @@ static bool CheckError(OSStatus error, NSString* function) {
             case AVAudioSessionInterruptionTypeEnded:
             {
                 OT_AUDIO_DEBUG(@"AVAudioSessionInterruptionTypeEnded");
+                if (@available(iOS 15, *)) {
+                    [self setBluetoothAsPrefferedInputDevice];
+                } else {
+                    // do nothing refer comments for self.setBluetoothAsPrefferedInputDevice method.
+                }
                 if(isRecorderInterrupted)
                 {
                     if([self startCapture] == YES)
@@ -629,15 +643,16 @@ static bool CheckError(OSStatus error, NSString* function) {
     NSInteger routeChangeReason =
     [[interruptionDict valueForKey:AVAudioSessionRouteChangeReasonKey]
      integerValue];
-    
+
     // We'll receive a routeChangedEvent when the audio unit starts; don't
-    // process events we caused internally.
+    // process events we caused internally. And when switching calls using
+    // CallKit, iOS system generates a category change which we should Ignore!
     if (AVAudioSessionRouteChangeReasonRouteConfigurationChange ==
-        routeChangeReason)
-    {
-        return;
+            routeChangeReason ||
+        AVAudioSessionRouteChangeReasonCategoryChange == routeChangeReason) {
+      return;
     }
-    
+
     if(routeChangeReason == AVAudioSessionRouteChangeReasonOverride ||
        routeChangeReason == AVAudioSessionRouteChangeReasonCategoryChange)
     {
@@ -1102,6 +1117,22 @@ static OSStatus playout_cb(void *ref_con,
     
     // Initialize the Voice-Processing I/O unit instance.
     result = AudioUnitInitialize(*voice_unit);
+
+    // This patch is picked up from WebRTC audio implementation and
+    // is kind of a workaround. We encountered AudioUnitInitialize
+    // failure in iOS 13 with Callkit while switching calls.
+    int failed_initalize_attempts = 0;
+    int kMaxInitalizeAttempts = 5;
+    while (result != noErr) {
+      ++failed_initalize_attempts;
+      if (failed_initalize_attempts == kMaxInitalizeAttempts) {
+        // Max number of initialization attempts exceeded, hence abort.
+        return false;
+      }
+      [NSThread sleepForTimeInterval:0.1f];
+      result = AudioUnitInitialize(*voice_unit);
+    }
+
     if (CheckError(result, @"setupAudioUnit.AudioUnitInitialize")) {
         return NO;
     }
