@@ -54,11 +54,6 @@ static NSString* const kToken = @"";
         return;
     }
     
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
-                                                     ofType:@"mp3"];
-    NSURL* url = [NSURL URLWithString:path];
-    [_myAudioDevice playRingtoneFromURL:url];
-    
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
     _session = [[OTSession alloc] initWithApiKey:kApiKey
@@ -267,6 +262,10 @@ didFailWithError:(OTError*)error
     streamCreated:(OTStream *)stream
 {
     NSLog(@"Publishing");
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
+                                                     ofType:@"mp3"];
+    NSURL* url = [NSURL URLWithString:path];
+    [_myAudioDevice playRingtoneFromURL:url];
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
