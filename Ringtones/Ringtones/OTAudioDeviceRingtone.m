@@ -21,6 +21,7 @@
     NSMutableArray* _deferredCallbacks;
     BOOL _vibratesWithRingtone;
     NSTimer* _vibrateTimer;
+    BOOL otCaptureStarted;
 }
 
 @synthesize vibratesWithRingtone = _vibratesWithRingtone;
@@ -31,11 +32,16 @@
     if (self) {
         _deferredCallbacks = [NSMutableArray new];
     }
+   
     return self;
 }
 
 - (void)playRingtoneFromURL:(NSURL*)url
 {
+
+    if (otCaptureStarted == NO) {
+        return;
+    }
     // Stop & replace existing audio player
     if (_audioPlayer) {
         [_audioPlayer stop];
@@ -63,6 +69,14 @@
         AVAudioSession* audioSession = [AVAudioSession sharedInstance];
         [audioSession setCategory:AVAudioSessionCategoryPlayback
                             error:nil];
+        AVAudioSessionPortDescription *routePort = audioSession.currentRoute.outputs.firstObject;
+        NSString *portType = routePort.portType;
+        if ([portType isEqualToString:@"Receiver"]) {
+               [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+        } else {
+               [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&error];
+        }
+
         [audioSession setActive:YES error:nil];
     }
     
@@ -148,11 +162,14 @@
 
 - (BOOL)startCapture
 {
+    otCaptureStarted = YES;
     if (_audioPlayer) {
         [self enqueueDeferredCallback:_cmd];
         return YES;
     } else {
-        return [super startCapture];
+        BOOL ret = [super startCapture];
+        [self playRingtoneFromURL:self.ringtoneURL];
+        return ret;
     }
 }
 

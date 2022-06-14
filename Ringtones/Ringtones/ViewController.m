@@ -21,6 +21,7 @@
 @implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
+NSURL* ringtoneUrl;
 
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
@@ -39,6 +40,10 @@ static NSString* const kToken = @"";
     
     _myAudioDevice = [[OTAudioDeviceRingtone alloc] init];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
+ 
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
+                                                     ofType:@"mp3"];
+    _myAudioDevice.ringtoneURL = [NSURL URLWithString:path];
     
     UITapGestureRecognizer* tap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -53,12 +58,7 @@ static NSString* const kToken = @"";
         _reconnectPlease = YES;
         return;
     }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
-                                                     ofType:@"mp3"];
-    NSURL* url = [NSURL URLWithString:path];
-    [_myAudioDevice playRingtoneFromURL:url];
-    
+
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
     _session = [[OTSession alloc] initWithApiKey:kApiKey

@@ -450,11 +450,15 @@ static bool CheckError(OSStatus error, NSString* function) {
     NSError *error = nil;
     NSUInteger audioOptions = 0;
 #if !(TARGET_OS_TV)
-    audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth ;
-    audioOptions |= AVAudioSessionCategoryOptionDefaultToSpeaker;
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
-               withOptions:audioOptions
-                     error:&error];
+                        error:nil];
+    AVAudioSessionPortDescription *routePort = mySession.currentRoute.outputs.firstObject;
+    NSString *portType = routePort.portType;
+    if ([portType isEqualToString:@"Receiver"]) {
+           [mySession  overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+    } else {
+           [mySession  overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&error];
+    }
 #else
     [mySession setCategory:AVAudioSessionCategoryPlayback
                withOptions:audioOptions
