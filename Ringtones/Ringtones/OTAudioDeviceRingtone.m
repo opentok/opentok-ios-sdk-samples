@@ -21,6 +21,7 @@
     NSMutableArray* _deferredCallbacks;
     BOOL _vibratesWithRingtone;
     NSTimer* _vibrateTimer;
+    BOOL ringTonePlayed;
 }
 
 @synthesize vibratesWithRingtone = _vibratesWithRingtone;
@@ -38,6 +39,8 @@
 // Only called from [self startCapture] where  acquiring audio is serialized for pub and ringtone
 - (void)playRingtoneFromURL:(NSURL*)url
 {
+    [self stopCapture];
+    [self stopRendering];
     // Stop & replace existing audio player
     if (_audioPlayer) {
         [_audioPlayer stop];
@@ -61,20 +64,21 @@
     // started running. Setting the category while the audio session is
     // configured for voice chat (PlayAndRecord) will interrupt recording and
     // cause problems if a publisher is running.
-    if (!self.isCapturing && !self.isRendering) {
-        AVAudioSession* audioSession = [AVAudioSession sharedInstance];
-        [audioSession setCategory:AVAudioSessionCategoryPlayback
-                            error:nil];
-        AVAudioSessionPortDescription *routePort = audioSession.currentRoute.outputs.firstObject;
-        NSString *portType = routePort.portType;
-        if ([portType isEqualToString:@"Receiver"]) {
-               [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
-        } else {
-               [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&error];
-        }
+    
 
-        [audioSession setActive:YES error:nil];
+    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayback
+                        error:nil];
+    AVAudioSessionPortDescription *routePort = audioSession.currentRoute.outputs.firstObject;
+    NSString *portType = routePort.portType;
+    if ([portType isEqualToString:@"Receiver"]) {
+           [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
+    } else {
+           [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&error];
     }
+
+    [audioSession setActive:YES error:nil];
+    
     
     // setup timer to vibrate device with some frequency
     if (_vibratesWithRingtone) {
@@ -99,6 +103,8 @@
     [_vibrateTimer invalidate];
     _vibrateTimer = nil;
     
+    [self startCapture];
+    [self startRendering];
     // Allow deferred audio callback calls to flow
     [self flushDeferredCallbacks];
 }
@@ -163,7 +169,14 @@
         return YES;
     } else {
         BOOL ret = [super startCapture];
-        [self playRingtoneFromURL:self.ringtoneURL];
+       
+        if (! ringTonePlayed) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self playRingtoneFromURL:self.ringtoneURL];
+                self->ringTonePlayed = YES;
+        });
+        }
+       
         return ret;
     }
 }
