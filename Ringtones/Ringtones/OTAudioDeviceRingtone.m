@@ -21,7 +21,6 @@
     NSMutableArray* _deferredCallbacks;
     BOOL _vibratesWithRingtone;
     NSTimer* _vibrateTimer;
-    BOOL otCaptureStarted;
 }
 
 @synthesize vibratesWithRingtone = _vibratesWithRingtone;
@@ -36,12 +35,9 @@
     return self;
 }
 
+// Only called from [self startCapture] where  acquiring audio is serialized for pub and ringtone
 - (void)playRingtoneFromURL:(NSURL*)url
 {
-
-    if (otCaptureStarted == NO) {
-        return;
-    }
     // Stop & replace existing audio player
     if (_audioPlayer) {
         [_audioPlayer stop];
@@ -162,7 +158,6 @@
 
 - (BOOL)startCapture
 {
-    otCaptureStarted = YES;
     if (_audioPlayer) {
         [self enqueueDeferredCallback:_cmd];
         return YES;

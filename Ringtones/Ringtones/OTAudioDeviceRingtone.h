@@ -13,9 +13,6 @@
 
 @property (nonatomic) BOOL vibratesWithRingtone;
 @property (nonatomic)  NSURL * ringtoneURL;
-// Initializes an audio player and immediately starts playback.
-// As long as the ringtone is playing, OpenTok audio calls will be deferred.
-- (void)playRingtoneFromURL:(NSURL*)url;
 
 // Immediately stops the ringtone and allows OpenTok audio calls to flow
 - (void)stopRingtone;
