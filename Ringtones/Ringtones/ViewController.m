@@ -21,7 +21,6 @@
 @implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
-NSURL* ringtoneUrl;
 
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
