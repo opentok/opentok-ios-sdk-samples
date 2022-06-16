@@ -21,22 +21,22 @@
     NSMutableArray* _deferredCallbacks;
     BOOL _vibratesWithRingtone;
     NSTimer* _vibrateTimer;
-    BOOL ringTonePlayed;
+    NSURL * ringtoneURL;
 }
 
 @synthesize vibratesWithRingtone = _vibratesWithRingtone;
 
--(instancetype)init
-{
+- (instancetype)initWithRingtone:(NSURL *)url {
     self = [super init];
     if (self) {
         _deferredCallbacks = [NSMutableArray new];
+        ringtoneURL = url;
     }
    
     return self;
 }
-
-// Only called from [self startCapture] where  acquiring audio is serialized for pub and ringtone
+// Make sure OT audio is initilaized before you call this method.
+// Else publisher's will timeout with error.
 - (void)playRingtoneFromURL:(NSURL*)url
 {
     [self stopCapture];
@@ -59,27 +59,7 @@
     
     // Tell player to loop indefinitely
     [_audioPlayer setNumberOfLoops:-1];
-    
-    // Allow background playback, only if the default driver hasn't already
-    // started running. Setting the category while the audio session is
-    // configured for voice chat (PlayAndRecord) will interrupt recording and
-    // cause problems if a publisher is running.
-    
 
-    AVAudioSession* audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayback
-                        error:nil];
-    AVAudioSessionPortDescription *routePort = audioSession.currentRoute.outputs.firstObject;
-    NSString *portType = routePort.portType;
-    if ([portType isEqualToString:@"Receiver"]) {
-           [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
-    } else {
-           [audioSession  overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&error];
-    }
-
-    [audioSession setActive:YES error:nil];
-    
-    
     // setup timer to vibrate device with some frequency
     if (_vibratesWithRingtone) {
         _vibrateTimer =
@@ -168,15 +148,13 @@
         [self enqueueDeferredCallback:_cmd];
         return YES;
     } else {
+        static dispatch_once_t once;
         BOOL ret = [super startCapture];
-       
-        if (! ringTonePlayed) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [self playRingtoneFromURL:self.ringtoneURL];
-                self->ringTonePlayed = YES;
+        dispatch_once(&once, ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self playRingtoneFromURL:self->ringtoneURL];
+            });
         });
-        }
-       
         return ret;
     }
 }

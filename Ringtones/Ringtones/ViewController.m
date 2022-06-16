@@ -37,14 +37,12 @@ static NSString* const kToken = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _myAudioDevice = [[OTAudioDeviceRingtone alloc] init];
-    [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
- 
+
     NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
                                                      ofType:@"mp3"];
-    _myAudioDevice.ringtoneURL = [NSURL URLWithString:path];
-    
+    _myAudioDevice = [[OTAudioDeviceRingtone alloc] initWithRingtone:[NSURL URLWithString:path]];
+    [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
+ 
     UITapGestureRecognizer* tap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(resetSession)];
@@ -267,6 +265,11 @@ didFailWithError:(OTError*)error
     streamCreated:(OTStream *)stream
 {
     NSLog(@"Publishing");
+    // play the ringtone for 10 seconds , it is fun...
+    // doSubscribe method will stop it later
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self doSubscribe:stream];
+    });
 }
 
 - (void)publisher:(OTPublisherKit*)publisher

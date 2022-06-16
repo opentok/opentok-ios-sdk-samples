@@ -12,7 +12,9 @@
 @interface OTAudioDeviceRingtone : OTDefaultAudioDevice
 
 @property (nonatomic) BOOL vibratesWithRingtone;
-@property (nonatomic)  NSURL * ringtoneURL;
+
+- (instancetype) init __attribute__((unavailable("init not available, useinitWithRingtone:")));
+- (instancetype)initWithRingtone:(NSURL *)url;
 
 // Immediately stops the ringtone and allows OpenTok audio calls to flow
 - (void)stopRingtone;
