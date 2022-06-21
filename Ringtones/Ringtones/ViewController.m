@@ -36,10 +36,12 @@ static NSString* const kToken = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    _myAudioDevice = [[OTAudioDeviceRingtone alloc] init];
+
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
+                                                     ofType:@"mp3"];
+    _myAudioDevice = [[OTAudioDeviceRingtone alloc] initWithRingtone:[NSURL URLWithString:path]];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
-    
+ 
     UITapGestureRecognizer* tap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
                                             action:@selector(resetSession)];
@@ -53,12 +55,7 @@ static NSString* const kToken = @"";
         _reconnectPlease = YES;
         return;
     }
-    
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
-                                                     ofType:@"mp3"];
-    NSURL* url = [NSURL URLWithString:path];
-    [_myAudioDevice playRingtoneFromURL:url];
-    
+
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
     _session = [[OTSession alloc] initWithApiKey:kApiKey
@@ -267,6 +264,11 @@ didFailWithError:(OTError*)error
     streamCreated:(OTStream *)stream
 {
     NSLog(@"Publishing");
+    // play the ringtone for 10 seconds , it is fun...
+    // doSubscribe method will stop it later
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self doSubscribe:stream];
+    });
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
