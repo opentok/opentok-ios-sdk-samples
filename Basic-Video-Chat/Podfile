@@ -4,5 +4,5 @@ platform :ios, MinSdkVersion
 use_frameworks!
 
 target 'Basic-Video-Chat' do
-  pod 'OpenTok', OpenTokSDKVersionLatest
+  pod 'OpenTok', OpenTokSDKVersion
 end
