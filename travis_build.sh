@@ -40,6 +40,8 @@ xcodebuild -workspace Ringtones.xcworkspace  -scheme Ringtones -sdk iphonesimula
 
 cd ../Archiving/
 pod install
+pod deintegrate
+pod update
 xcodebuild -workspace Archiving.xcworkspace  -scheme Archiving -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
 
 cd ../Signaling/
