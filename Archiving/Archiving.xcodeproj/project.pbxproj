@@ -22,6 +22,7 @@
 		1F1C01201AE1E3AD005B4396 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F1C01121AE1E3AD005B4396 /* CoreGraphics.framework */; };
 		1F1C01211AE1E3AD005B4396 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F1C01131AE1E3AD005B4396 /* UIKit.framework */; };
 		1F1C01271AE1E5F0005B4396 /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F1C01261AE1E5F0005B4396 /* OpenTok.framework */; };
+		4FF1947232FFA5AEA0687859 /* Pods_Archiving.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AE61EAEA7E32C8C10EF0C9 /* Pods_Archiving.framework */; };
 		A06E8B5D1EAE5B04003DF42F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A06E8B491EAE5B04003DF42F /* AppDelegate.m */; };
 		A06E8B5E1EAE5B04003DF42F /* archiving_on-10.png in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B4A1EAE5B04003DF42F /* archiving_on-10.png */; };
 		A06E8B5F1EAE5B04003DF42F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A06E8B4B1EAE5B04003DF42F /* LaunchScreen.xib */; };
@@ -48,6 +49,8 @@
 		1F1C01131AE1E3AD005B4396 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1F1C01261AE1E5F0005B4396 /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenTok.framework; sourceTree = "<group>"; };
 		1F3FEE601AE19ECA002E2CF8 /* Archiving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Archiving.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		749AFA94F73FBC5FD27684CF /* Pods-Archiving.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archiving.release.xcconfig"; path = "Target Support Files/Pods-Archiving/Pods-Archiving.release.xcconfig"; sourceTree = "<group>"; };
+		85AE61EAEA7E32C8C10EF0C9 /* Pods_Archiving.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Archiving.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A06E8B481EAE5B04003DF42F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A06E8B491EAE5B04003DF42F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		A06E8B4A1EAE5B04003DF42F /* archiving_on-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "archiving_on-10.png"; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		A06E8B5C1EAE5B04003DF42F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A072973F1EAE5C2900A2DB1E /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		A07297401EAE5D2C00A2DB1E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C28E98648C2A3599531DD748 /* Pods-Archiving.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Archiving.debug.xcconfig"; path = "Target Support Files/Pods-Archiving/Pods-Archiving.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 				1F1C011B1AE1E3AD005B4396 /* SystemConfiguration.framework in Frameworks */,
 				1F1C01151AE1E3AD005B4396 /* libxml2.dylib in Frameworks */,
 				1F1C011D1AE1E3AD005B4396 /* CoreVideo.framework in Frameworks */,
+				4FF1947232FFA5AEA0687859 /* Pods_Archiving.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +111,7 @@
 				1F1C01111AE1E3AD005B4396 /* Foundation.framework */,
 				1F1C01121AE1E3AD005B4396 /* CoreGraphics.framework */,
 				1F1C01131AE1E3AD005B4396 /* UIKit.framework */,
+				85AE61EAEA7E32C8C10EF0C9 /* Pods_Archiving.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +123,7 @@
 				A06E8B471EAE5B04003DF42F /* Archiving */,
 				1F1C01051AE1E399005B4396 /* Frameworks */,
 				1F3FEE611AE19ECA002E2CF8 /* Products */,
+				DDCD9B90DDB444A26BF28AC7 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +153,15 @@
 			path = Archiving;
 			sourceTree = "<group>";
 		};
+		DDCD9B90DDB444A26BF28AC7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C28E98648C2A3599531DD748 /* Pods-Archiving.debug.xcconfig */,
+				749AFA94F73FBC5FD27684CF /* Pods-Archiving.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,6 +169,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1F3FEE831AE19ECA002E2CF8 /* Build configuration list for PBXNativeTarget "Archiving" */;
 			buildPhases = (
+				6EB2644BD0AEFCED2D1F9D28 /* [CP] Check Pods Manifest.lock */,
 				1F3FEE5C1AE19ECA002E2CF8 /* Sources */,
 				1F3FEE5D1AE19ECA002E2CF8 /* Frameworks */,
 				1F3FEE5E1AE19ECA002E2CF8 /* Resources */,
@@ -213,6 +230,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6EB2644BD0AEFCED2D1F9D28 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Archiving-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1F3FEE5C1AE19ECA002E2CF8 /* Sources */ = {
@@ -278,7 +320,6 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -333,7 +374,6 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -352,16 +392,19 @@
 		};
 		1F3FEE841AE19ECA002E2CF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C28E98648C2A3599531DD748 /* Pods-Archiving.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Archiving/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -370,10 +413,12 @@
 		};
 		1F3FEE851AE19ECA002E2CF8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 749AFA94F73FBC5FD27684CF /* Pods-Archiving.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "i386 arm64";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
