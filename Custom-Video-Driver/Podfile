@@ -1,6 +1,6 @@
 require_relative '../OpenTokSDKVersion'
 
-platform :ios, MinSdkVersion
+platform :ios, MinIosSdkVersion
 use_frameworks!
 
 target 'Custom-Video-Driver' do
