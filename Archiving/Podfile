@@ -1,8 +1,8 @@
-platform :ios, '9.0'
-use_frameworks!
-
 require_relative '../OpenTokSDKVersion'
 
+platform :ios, '12.0'
+use_frameworks!
+
 target 'Archiving' do
-  pod 'OpenTok', OpenTokSDKVersion
+  pod 'OpenTok', '2.23.0'
 end

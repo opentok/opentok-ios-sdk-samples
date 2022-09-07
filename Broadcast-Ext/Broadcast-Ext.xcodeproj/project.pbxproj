@@ -20,6 +20,7 @@
 		3CC0877322F8FF0000E5BADB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC0877022F8FE3D00E5BADB /* OpenTok.framework */; };
 		3CC0877422F8FF0000E5BADB /* OpenTok.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC0877022F8FE3D00E5BADB /* OpenTok.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3CC0877622F901A000E5BADB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC0877022F8FE3D00E5BADB /* OpenTok.framework */; };
+		4B7E71BA491D0FCE70F8302E /* Pods_Broadcast_Ext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39BE56CE5476E600F6BED63 /* Pods_Broadcast_Ext.framework */; };
 		A05376311EB173CC00645696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A05376251EB173CC00645696 /* AppDelegate.m */; };
 		A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376261EB173CC00645696 /* Main_iPad.storyboard */; };
 		A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376281EB173CC00645696 /* Main_iPhone.storyboard */; };
@@ -28,6 +29,7 @@
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
+		F6AA0082E73359CCCD319509 /* Pods_Broadcast_Ext_OpenTok_Live.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D64A04D5FE689D380E005B /* Pods_Broadcast_Ext_OpenTok_Live.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		24D64A04D5FE689D380E005B /* Pods_Broadcast_Ext_OpenTok_Live.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Broadcast_Ext_OpenTok_Live.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C10BA1823329F6B008814C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Broadcast-Ext/Base.lproj/Main_Broadcast_iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
 		3C25B7FB22F7C7BF00AEBC7C /* OpenTok Live.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "OpenTok Live.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C25B7FC22F7C7BF00AEBC7C /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
@@ -91,6 +94,8 @@
 		3CC0876D22F8CEE700E5BADB /* OTBroadcastExtAudioDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTBroadcastExtAudioDevice.m; sourceTree = "<group>"; };
 		3CC0876E22F8CEE700E5BADB /* OTBroadcastExtAudioDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTBroadcastExtAudioDevice.h; sourceTree = "<group>"; };
 		3CC0877022F8FE3D00E5BADB /* OpenTok.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenTok.framework; path = Pods/OpenTok/OpenTok.framework; sourceTree = "<group>"; };
+		44BD9C60A4EFC73599B43638 /* Pods-Broadcast-Ext.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broadcast-Ext.release.xcconfig"; path = "Target Support Files/Pods-Broadcast-Ext/Pods-Broadcast-Ext.release.xcconfig"; sourceTree = "<group>"; };
+		9E201764D07547C67D9EFC0E /* Pods-Broadcast-Ext-OpenTok Live.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broadcast-Ext-OpenTok Live.release.xcconfig"; path = "Target Support Files/Pods-Broadcast-Ext-OpenTok Live/Pods-Broadcast-Ext-OpenTok Live.release.xcconfig"; sourceTree = "<group>"; };
 		A05376221EB173CC00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376241EB173CC00645696 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A05376251EB173CC00645696 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,10 +106,13 @@
 		A053762D1EB173CC00645696 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B022D623F40F1494D12CEBAE /* Pods-Broadcast-Ext.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broadcast-Ext.debug.xcconfig"; path = "Target Support Files/Pods-Broadcast-Ext/Pods-Broadcast-Ext.debug.xcconfig"; sourceTree = "<group>"; };
+		C656E422A43FB8DC335D3C8D /* Pods-Broadcast-Ext-OpenTok Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Broadcast-Ext-OpenTok Live.debug.xcconfig"; path = "Target Support Files/Pods-Broadcast-Ext-OpenTok Live/Pods-Broadcast-Ext-OpenTok Live.debug.xcconfig"; sourceTree = "<group>"; };
 		D44260F3185F81D800E23699 /* Broadcast-Ext.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Broadcast-Ext.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F39BE56CE5476E600F6BED63 /* Pods_Broadcast_Ext.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Broadcast_Ext.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +122,7 @@
 			files = (
 				3C25B7FD22F7C7BF00AEBC7C /* ReplayKit.framework in Frameworks */,
 				3CC0877622F901A000E5BADB /* OpenTok.framework in Frameworks */,
+				F6AA0082E73359CCCD319509 /* Pods_Broadcast_Ext_OpenTok_Live.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CC0877322F8FF0000E5BADB /* OpenTok.framework in Frameworks */,
+				4B7E71BA491D0FCE70F8302E /* Pods_Broadcast_Ext.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +191,17 @@
 			path = "Broadcast-Ext";
 			sourceTree = "<group>";
 		};
+		B5A5D2CB417F1673E7FD1269 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				44BD9C60A4EFC73599B43638 /* Pods-Broadcast-Ext.release.xcconfig */,
+				B022D623F40F1494D12CEBAE /* Pods-Broadcast-Ext.debug.xcconfig */,
+				9E201764D07547C67D9EFC0E /* Pods-Broadcast-Ext-OpenTok Live.release.xcconfig */,
+				C656E422A43FB8DC335D3C8D /* Pods-Broadcast-Ext-OpenTok Live.debug.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +211,7 @@
 				3C25B80A22F7C7C000AEBC7C /* OpenTok LiveSetupUI */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
+				B5A5D2CB417F1673E7FD1269 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +232,8 @@
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
 				3C25B7FC22F7C7BF00AEBC7C /* ReplayKit.framework */,
+				F39BE56CE5476E600F6BED63 /* Pods_Broadcast_Ext.framework */,
+				24D64A04D5FE689D380E005B /* Pods_Broadcast_Ext_OpenTok_Live.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -490,6 +514,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "OpenTok LiveSetupUI/Info.plist";
@@ -521,6 +546,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -544,6 +570,7 @@
 		};
 		3C25B81922F7C7C000AEBC7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E201764D07547C67D9EFC0E /* Pods-Broadcast-Ext-OpenTok Live.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -559,6 +586,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenTok",
@@ -580,6 +608,7 @@
 		};
 		3C25B81A22F7C7C000AEBC7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C656E422A43FB8DC335D3C8D /* Pods-Broadcast-Ext-OpenTok Live.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -595,6 +624,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/OpenTok",
@@ -660,12 +690,15 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Release;
 		};
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44BD9C60A4EFC73599B43638 /* Pods-Broadcast-Ext.release.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Broadcast-Ext/Broadcast-Ext.entitlements";
@@ -673,6 +706,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -731,12 +765,15 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALIDATE_WORKSPACE = YES;
 			};
 			name = Debug;
 		};
 		F8DE15D21D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B022D623F40F1494D12CEBAE /* Pods-Broadcast-Ext.debug.xcconfig */;
 			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Broadcast-Ext/Broadcast-Ext.entitlements";
@@ -744,6 +781,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
