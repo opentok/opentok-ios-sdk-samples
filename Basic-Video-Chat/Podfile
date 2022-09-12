@@ -4,5 +4,5 @@ use_frameworks!
 require_relative '../OpenTokSDKVersion'
 
 target 'Basic-Video-Chat' do
-  pod 'OpenTok', OpenTokSDKVersion
+  pod 'VonageVideoSDK', '0.0.1'
 end
