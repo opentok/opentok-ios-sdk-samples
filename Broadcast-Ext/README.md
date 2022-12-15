@@ -1,6 +1,9 @@
 Broadcast Extension sample app
 ===========================
 
+** The sample app will only work with H264 video codec. Make sure that your API key is enabled for it.** Please contact
+support if you want it to be enabled.
+
 The Broadcast Extension app shows how to implement the iOS Broadcast Upload extension
 using the OpenTok iOS SDK. 
 
