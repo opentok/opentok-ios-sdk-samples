@@ -14,10 +14,13 @@
 		A05376351EB173CC00645696 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A053762C1EB173CC00645696 /* Images.xcassets */; };
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
+		A276FCED0CFBB5C7A892462F /* Pods_Basic_Video_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A08CDC1664483DB66C4B442 /* Pods_Basic_Video_Chat.framework */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A08CDC1664483DB66C4B442 /* Pods_Basic_Video_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Basic_Video_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A63BB53CA42108D28FDF182 /* Pods-Basic-Video-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.debug.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		A05376221EB173CC00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376241EB173CC00645696 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A05376251EB173CC00645696 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		A053762D1EB173CC00645696 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AA7ACA93485820B9ECEC8028 /* Pods-Basic-Video-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Basic-Video-Chat.release.xcconfig"; path = "Target Support Files/Pods-Basic-Video-Chat/Pods-Basic-Video-Chat.release.xcconfig"; sourceTree = "<group>"; };
 		D44260F3185F81D800E23699 /* Basic-Video-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A276FCED0CFBB5C7A892462F /* Pods_Basic_Video_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +67,16 @@
 			path = "Basic-Video-Chat";
 			sourceTree = "<group>";
 		};
+		B2F31A95BF3D102B8B199890 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA7ACA93485820B9ECEC8028 /* Pods-Basic-Video-Chat.release.xcconfig */,
+				6A63BB53CA42108D28FDF182 /* Pods-Basic-Video-Chat.debug.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +84,7 @@
 				A05376211EB173CC00645696 /* Basic-Video-Chat */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
+				B2F31A95BF3D102B8B199890 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +101,7 @@
 			children = (
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
+				0A08CDC1664483DB66C4B442 /* Pods_Basic_Video_Chat.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -96,6 +113,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */;
 			buildPhases = (
+				B57F583DF3AD01DE1F371489 /* [CP] Check Pods Manifest.lock */,
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
 				D44260F1185F81D800E23699 /* Resources */,
@@ -156,6 +174,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B57F583DF3AD01DE1F371489 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Basic-Video-Chat-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D44260EF185F81D800E23699 /* Sources */ = {
@@ -244,6 +287,7 @@
 		};
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA7ACA93485820B9ECEC8028 /* Pods-Basic-Video-Chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
@@ -310,6 +354,7 @@
 		};
 		F8DE15D21D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A63BB53CA42108D28FDF182 /* Pods-Basic-Video-Chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
