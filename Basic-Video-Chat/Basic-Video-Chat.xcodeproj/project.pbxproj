@@ -14,6 +14,10 @@
 		A05376351EB173CC00645696 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A053762C1EB173CC00645696 /* Images.xcassets */; };
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
+		CABAEBD029930A3F000B1B63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F6185F81D800E23699 /* Foundation.framework */; };
+		CABAEBD229930A5F000B1B63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABAEBD129930A5F000B1B63 /* CoreGraphics.framework */; };
+		CABAEBD429930A65000B1B63 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABAEBD329930A65000B1B63 /* GLKit.framework */; };
+		CABAEBD629930A6B000B1B63 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABAEBD529930A6B000B1B63 /* Metal.framework */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +32,9 @@
 		A053762D1EB173CC00645696 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CABAEBD129930A5F000B1B63 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CABAEBD329930A65000B1B63 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		CABAEBD529930A6B000B1B63 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 		D44260F3185F81D800E23699 /* Basic-Video-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -39,6 +46,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CABAEBD229930A5F000B1B63 /* CoreGraphics.framework in Frameworks */,
+				CABAEBD629930A6B000B1B63 /* Metal.framework in Frameworks */,
+				CABAEBD429930A65000B1B63 /* GLKit.framework in Frameworks */,
+				CABAEBD029930A3F000B1B63 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +73,13 @@
 			path = "Basic-Video-Chat";
 			sourceTree = "<group>";
 		};
+		CC1806F816B40EE75C3B6340 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +87,7 @@
 				A05376211EB173CC00645696 /* Basic-Video-Chat */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
+				CC1806F816B40EE75C3B6340 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,6 +102,9 @@
 		D44260F5185F81D800E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CABAEBD529930A6B000B1B63 /* Metal.framework */,
+				CABAEBD329930A65000B1B63 /* GLKit.framework */,
+				CABAEBD129930A5F000B1B63 /* CoreGraphics.framework */,
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
 			);
@@ -119,8 +141,9 @@
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
 					D44260F2185F81D800E23699 = {
-						DevelopmentTeam = E69WFXMSE9;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = PR6C39UQ38;
+						LastSwiftMigration = 1420;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -237,6 +260,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -246,8 +270,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -255,9 +284,17 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -303,6 +340,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -312,8 +350,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_BITCODE = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				ENABLE_BITCODE = NO;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -321,9 +364,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SDKROOT)/usr/lib/swift",
+					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
+				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_COMPILATION_MODE = Incremental;
+				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
