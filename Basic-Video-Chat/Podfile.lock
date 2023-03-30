@@ -1,0 +1,20 @@
+PODS:
+  - OpenTok (2.24.2):
+    - VonageWebRTC (= 99.2.39)
+  - VonageWebRTC (99.2.39)
+
+DEPENDENCIES:
+  - OpenTok (= 2.24.2)
+
+SPEC REPOS:
+  trunk:
+    - OpenTok
+    - VonageWebRTC
+
+SPEC CHECKSUMS:
+  OpenTok: 5ad2a334e5456890f8761fc845c5e3cce1b9725f
+  VonageWebRTC: 4b57187170ef4ea435006e932600646a0521d6b0
+
+PODFILE CHECKSUM: 2fa09e0515761565475a67d77a248944bad45d41
+
+COCOAPODS: 1.12.0
