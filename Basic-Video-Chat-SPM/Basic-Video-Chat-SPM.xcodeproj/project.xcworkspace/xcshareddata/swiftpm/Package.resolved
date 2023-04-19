@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "sdk-ios-spm",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/opentok/sdk-ios-spm.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "df9c054611e19c24bee033220cfec1eb9a5f253f"
+      }
+    }
+  ],
+  "version" : 2
+}

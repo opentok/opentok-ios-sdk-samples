@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CA27FC6529EF0B8E0057B98B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27FC6429EF0B8E0057B98B /* AppDelegate.m */; };
+		CA27FC6829EF0B8E0057B98B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27FC6729EF0B8E0057B98B /* SceneDelegate.m */; };
+		CA27FC6B29EF0B8E0057B98B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27FC6A29EF0B8E0057B98B /* ViewController.m */; };
+		CA27FC6E29EF0B8E0057B98B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC6C29EF0B8E0057B98B /* Main.storyboard */; };
+		CA27FC7029EF0B8F0057B98B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC6F29EF0B8F0057B98B /* Assets.xcassets */; };
+		CA27FC7329EF0B8F0057B98B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC7129EF0B8F0057B98B /* LaunchScreen.storyboard */; };
+		CA27FC7629EF0B8F0057B98B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27FC7529EF0B8F0057B98B /* main.m */; };
+		CA27FC8429EF5DF80057B98B /* OpenTok in Frameworks */ = {isa = PBXBuildFile; productRef = CA27FC8329EF5DF80057B98B /* OpenTok */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CA27FC6029EF0B8E0057B98B /* Basic-Video-Chat-SPM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Chat-SPM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA27FC6329EF0B8E0057B98B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CA27FC6429EF0B8E0057B98B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CA27FC6629EF0B8E0057B98B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		CA27FC6729EF0B8E0057B98B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		CA27FC6929EF0B8E0057B98B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		CA27FC6A29EF0B8E0057B98B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		CA27FC6D29EF0B8E0057B98B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CA27FC6F29EF0B8F0057B98B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CA27FC7229EF0B8F0057B98B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CA27FC7429EF0B8F0057B98B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA27FC7529EF0B8F0057B98B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA27FC5D29EF0B8E0057B98B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA27FC8429EF5DF80057B98B /* OpenTok in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CA27FC5729EF0B8E0057B98B = {
+			isa = PBXGroup;
+			children = (
+				CA27FC6229EF0B8E0057B98B /* Basic-Video-Chat-SPM */,
+				CA27FC6129EF0B8E0057B98B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CA27FC6129EF0B8E0057B98B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CA27FC6029EF0B8E0057B98B /* Basic-Video-Chat-SPM.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CA27FC6229EF0B8E0057B98B /* Basic-Video-Chat-SPM */ = {
+			isa = PBXGroup;
+			children = (
+				CA27FC6329EF0B8E0057B98B /* AppDelegate.h */,
+				CA27FC6429EF0B8E0057B98B /* AppDelegate.m */,
+				CA27FC6629EF0B8E0057B98B /* SceneDelegate.h */,
+				CA27FC6729EF0B8E0057B98B /* SceneDelegate.m */,
+				CA27FC6929EF0B8E0057B98B /* ViewController.h */,
+				CA27FC6A29EF0B8E0057B98B /* ViewController.m */,
+				CA27FC6C29EF0B8E0057B98B /* Main.storyboard */,
+				CA27FC6F29EF0B8F0057B98B /* Assets.xcassets */,
+				CA27FC7129EF0B8F0057B98B /* LaunchScreen.storyboard */,
+				CA27FC7429EF0B8F0057B98B /* Info.plist */,
+				CA27FC7529EF0B8F0057B98B /* main.m */,
+			);
+			path = "Basic-Video-Chat-SPM";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CA27FC5F29EF0B8E0057B98B /* Basic-Video-Chat-SPM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA27FC7929EF0B8F0057B98B /* Build configuration list for PBXNativeTarget "Basic-Video-Chat-SPM" */;
+			buildPhases = (
+				CA27FC5C29EF0B8E0057B98B /* Sources */,
+				CA27FC5D29EF0B8E0057B98B /* Frameworks */,
+				CA27FC5E29EF0B8E0057B98B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Basic-Video-Chat-SPM";
+			packageProductDependencies = (
+				CA27FC8329EF5DF80057B98B /* OpenTok */,
+			);
+			productName = "Basic-Video-Chat-SPM";
+			productReference = CA27FC6029EF0B8E0057B98B /* Basic-Video-Chat-SPM.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CA27FC5829EF0B8E0057B98B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					CA27FC5F29EF0B8E0057B98B = {
+						CreatedOnToolsVersion = 14.2;
+					};
+				};
+			};
+			buildConfigurationList = CA27FC5B29EF0B8E0057B98B /* Build configuration list for PBXProject "Basic-Video-Chat-SPM" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CA27FC5729EF0B8E0057B98B;
+			packageReferences = (
+				CA27FC8229EF5DF80057B98B /* XCRemoteSwiftPackageReference "sdk-ios-spm" */,
+			);
+			productRefGroup = CA27FC6129EF0B8E0057B98B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA27FC5F29EF0B8E0057B98B /* Basic-Video-Chat-SPM */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CA27FC5E29EF0B8E0057B98B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA27FC7329EF0B8F0057B98B /* LaunchScreen.storyboard in Resources */,
+				CA27FC7029EF0B8F0057B98B /* Assets.xcassets in Resources */,
+				CA27FC6E29EF0B8E0057B98B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CA27FC5C29EF0B8E0057B98B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA27FC6B29EF0B8E0057B98B /* ViewController.m in Sources */,
+				CA27FC6529EF0B8E0057B98B /* AppDelegate.m in Sources */,
+				CA27FC7629EF0B8F0057B98B /* main.m in Sources */,
+				CA27FC6829EF0B8E0057B98B /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CA27FC6C29EF0B8E0057B98B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA27FC6D29EF0B8E0057B98B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		CA27FC7129EF0B8F0057B98B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA27FC7229EF0B8F0057B98B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CA27FC7729EF0B8F0057B98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		CA27FC7829EF0B8F0057B98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CA27FC7A29EF0B8F0057B98B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Basic-Video-Chat-SPM/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.ios.Basic-Video-Chat-SPM";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CA27FC7B29EF0B8F0057B98B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Basic-Video-Chat-SPM/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.ios.Basic-Video-Chat-SPM";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CA27FC5B29EF0B8E0057B98B /* Build configuration list for PBXProject "Basic-Video-Chat-SPM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA27FC7729EF0B8F0057B98B /* Debug */,
+				CA27FC7829EF0B8F0057B98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA27FC7929EF0B8F0057B98B /* Build configuration list for PBXNativeTarget "Basic-Video-Chat-SPM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA27FC7A29EF0B8F0057B98B /* Debug */,
+				CA27FC7B29EF0B8F0057B98B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA27FC8229EF5DF80057B98B /* XCRemoteSwiftPackageReference "sdk-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/opentok/sdk-ios-spm.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA27FC8329EF5DF80057B98B /* OpenTok */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA27FC8229EF5DF80057B98B /* XCRemoteSwiftPackageReference "sdk-ios-spm" */;
+			productName = OpenTok;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CA27FC5829EF0B8E0057B98B /* Project object */;
+}
