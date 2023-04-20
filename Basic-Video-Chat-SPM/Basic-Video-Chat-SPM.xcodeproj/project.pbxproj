@@ -14,7 +14,7 @@
 		CA27FC7029EF0B8F0057B98B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC6F29EF0B8F0057B98B /* Assets.xcassets */; };
 		CA27FC7329EF0B8F0057B98B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC7129EF0B8F0057B98B /* LaunchScreen.storyboard */; };
 		CA27FC7629EF0B8F0057B98B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27FC7529EF0B8F0057B98B /* main.m */; };
-		CA27FC8429EF5DF80057B98B /* OpenTok in Frameworks */ = {isa = PBXBuildFile; productRef = CA27FC8329EF5DF80057B98B /* OpenTok */; };
+		CAB2672829F1439E000CA878 /* VonageVideoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CAB2672729F1439E000CA878 /* VonageVideoSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA27FC8429EF5DF80057B98B /* OpenTok in Frameworks */,
+				CAB2672829F1439E000CA878 /* VonageVideoSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -49,6 +49,7 @@
 			children = (
 				CA27FC6229EF0B8E0057B98B /* Basic-Video-Chat-SPM */,
 				CA27FC6129EF0B8E0057B98B /* Products */,
+				CAB5EE7429F13EAA00D57C5C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,6 +79,13 @@
 			path = "Basic-Video-Chat-SPM";
 			sourceTree = "<group>";
 		};
+		CAB5EE7429F13EAA00D57C5C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -95,7 +103,7 @@
 			);
 			name = "Basic-Video-Chat-SPM";
 			packageProductDependencies = (
-				CA27FC8329EF5DF80057B98B /* OpenTok */,
+				CAB2672729F1439E000CA878 /* VonageVideoSDK */,
 			);
 			productName = "Basic-Video-Chat-SPM";
 			productReference = CA27FC6029EF0B8E0057B98B /* Basic-Video-Chat-SPM.app */;
@@ -125,7 +133,7 @@
 			);
 			mainGroup = CA27FC5729EF0B8E0057B98B;
 			packageReferences = (
-				CA27FC8229EF5DF80057B98B /* XCRemoteSwiftPackageReference "sdk-ios-spm" */,
+				CAB5EE7729F13F5A00D57C5C /* XCRemoteSwiftPackageReference "vonage-sdk-ios-spm" */,
 			);
 			productRefGroup = CA27FC6129EF0B8E0057B98B /* Products */;
 			projectDirPath = "";
@@ -371,9 +379,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CA27FC8229EF5DF80057B98B /* XCRemoteSwiftPackageReference "sdk-ios-spm" */ = {
+		CAB5EE7729F13F5A00D57C5C /* XCRemoteSwiftPackageReference "vonage-sdk-ios-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/opentok/sdk-ios-spm.git";
+			repositoryURL = "https://github.com/opentok/vonage-sdk-ios-spm.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -382,10 +390,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CA27FC8329EF5DF80057B98B /* OpenTok */ = {
+		CAB2672729F1439E000CA878 /* VonageVideoSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CA27FC8229EF5DF80057B98B /* XCRemoteSwiftPackageReference "sdk-ios-spm" */;
-			productName = OpenTok;
+			package = CAB5EE7729F13F5A00D57C5C /* XCRemoteSwiftPackageReference "vonage-sdk-ios-spm" */;
+			productName = VonageVideoSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
