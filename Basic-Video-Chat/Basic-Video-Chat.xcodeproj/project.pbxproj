@@ -276,7 +276,6 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
@@ -356,7 +355,6 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"${SRCROOT}",
