@@ -14,7 +14,7 @@
 		CA27FC7029EF0B8F0057B98B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC6F29EF0B8F0057B98B /* Assets.xcassets */; };
 		CA27FC7329EF0B8F0057B98B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA27FC7129EF0B8F0057B98B /* LaunchScreen.storyboard */; };
 		CA27FC7629EF0B8F0057B98B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CA27FC7529EF0B8F0057B98B /* main.m */; };
-		CACADF2D2A03957900B32568 /* VonageVideoSDK in Frameworks */ = {isa = PBXBuildFile; productRef = CACADF2C2A03957900B32568 /* VonageVideoSDK */; };
+		CACADF302A04164400B32568 /* VonageClientSDKVideo in Frameworks */ = {isa = PBXBuildFile; productRef = CACADF2F2A04164400B32568 /* VonageClientSDKVideo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CACADF2D2A03957900B32568 /* VonageVideoSDK in Frameworks */,
+				CACADF302A04164400B32568 /* VonageClientSDKVideo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,7 +103,7 @@
 			);
 			name = "Basic-Video-Chat-SPM";
 			packageProductDependencies = (
-				CACADF2C2A03957900B32568 /* VonageVideoSDK */,
+				CACADF2F2A04164400B32568 /* VonageClientSDKVideo */,
 			);
 			productName = "Basic-Video-Chat-SPM";
 			productReference = CA27FC6029EF0B8E0057B98B /* Basic-Video-Chat-SPM.app */;
@@ -133,7 +133,7 @@
 			);
 			mainGroup = CA27FC5729EF0B8E0057B98B;
 			packageReferences = (
-				CACADF2B2A03957900B32568 /* XCRemoteSwiftPackageReference "vonage-video-sdk" */,
+				CACADF2E2A04164400B32568 /* XCRemoteSwiftPackageReference "vonage-client-sdk-video" */,
 			);
 			productRefGroup = CA27FC6129EF0B8E0057B98B /* Products */;
 			projectDirPath = "";
@@ -379,21 +379,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CACADF2B2A03957900B32568 /* XCRemoteSwiftPackageReference "vonage-video-sdk" */ = {
+		CACADF2E2A04164400B32568 /* XCRemoteSwiftPackageReference "vonage-client-sdk-video" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/opentok/vonage-video-sdk.git";
+			repositoryURL = "https://github.com/opentok/vonage-client-sdk-video.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CACADF2C2A03957900B32568 /* VonageVideoSDK */ = {
+		CACADF2F2A04164400B32568 /* VonageClientSDKVideo */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CACADF2B2A03957900B32568 /* XCRemoteSwiftPackageReference "vonage-video-sdk" */;
-			productName = VonageVideoSDK;
+			package = CACADF2E2A04164400B32568 /* XCRemoteSwiftPackageReference "vonage-client-sdk-video" */;
+			productName = VonageClientSDKVideo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
