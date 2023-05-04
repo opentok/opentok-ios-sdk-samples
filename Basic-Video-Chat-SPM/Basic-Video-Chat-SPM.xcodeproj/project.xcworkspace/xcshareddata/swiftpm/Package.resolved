@@ -1,12 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "vonage-sdk-ios-spm",
+      "identity" : "vonage-video-sdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/opentok/vonage-sdk-ios-spm.git",
+      "location" : "https://github.com/opentok/vonage-video-sdk.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "dc68582ed5431614187a0be41348babf882b93e0"
+        "revision" : "e2da3dfad45dd3b6d88570704c20b82c69ee36a3",
+        "version" : "0.0.1"
       }
     }
   ],
