@@ -21,9 +21,5 @@ To add a package dependency to your Xcode project, you should select
 
 Cocoapods
 ---------
-To use CocoaPods to add the OpenTok library and its dependencies to your app
-- In the Terminal, navigate to the root directory of your project and enter the following: `pod init`.
-  This creates a Podfile at the root of your project directory.
-- Open your Podfile and add the following line to specify the dependency: `pod 'OpenTok'`.
-- Save changes to the Podfile.
-- Finaly from Termianl run: `pod install`.
+To use CocoaPods to add the OpenTok library and its dependencies into this sample app
+simply open Terminal, navigate to the root directory of the project and run: `pod install`.
