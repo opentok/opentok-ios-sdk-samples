@@ -4,5 +4,5 @@ platform :ios, MinIosSdkVersion
 use_frameworks!
 
 target 'Live-Photo-Capture' do
-  pod 'OpenTok', OpenTokSDKVersion
+  pod 'OTXCFramework', OpenTokSDKVersion
 end
