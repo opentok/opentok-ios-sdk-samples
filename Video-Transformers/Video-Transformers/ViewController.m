@@ -29,21 +29,40 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NzUyMTM1MSZzaWc9YjVmY2QxM2
 
 
 @implementation custom_border
+
+uint32_t pwidth = 0;
+uint32_t pheight = 0;
+
 - (void)transform:(nonnull OTVideoFrame *)videoFrame {
-    OTPixelFormat pixelFormat = videoFrame.format.pixelFormat;
-    int strides[] =
-    {
-        [videoFrame getPlaneStride:0],
-        [videoFrame getPlaneStride:2],
-        [videoFrame getPlaneStride:1]
-    };
-    uint8_t* planes[] =
-    {
-        [videoFrame getPlaneBinaryData:0],
-        [videoFrame getPlaneBinaryData:2],
-        [videoFrame getPlaneBinaryData:1]
-    };
-    [videoFrame convertInPlace:pixelFormat planes:planes strides:strides];
+    // Load the image from a file
+    UIImage* image = [UIImage imageNamed:@"Vonage_Logo.png"];
+
+    uint32_t width = videoFrame.format.imageWidth;
+    uint32_t height = videoFrame.format.imageHeight;
+    
+    if((width != pwidth) || (height != pheight)) {
+        NSLog(@"Video frame width: %d height: %d", width, height);
+        pwidth = width;
+        pheight = height;
+    }
+    // Calculate the size of the Y plane 4:2:0 format
+    size_t ySize = width * height;
+
+    // Get pointers to the Y plane
+    uint8_t* yPlane = [videoFrame getPlaneBinaryData:0];
+
+    // Create a CGContext from the Y plane
+    CGContextRef context = CGBitmapContextCreate(yPlane, width, height, 8, width, CGColorSpaceCreateDeviceGray(), kCGImageAlphaNone);
+
+    // Location of the image (in this case set to middle)
+    CGFloat x = (width - image.size.width) / 2.0;
+    CGFloat y = (height - image.size.height) / 2.0;
+    
+    // Draw the image on top of the Y plane
+    CGRect rect = CGRectMake(x, y, image.size.width, image.size.height);
+    CGContextDrawImage(context, rect, image.CGImage);
+
+    CGContextRelease(context);
 }
 @end
 
@@ -113,22 +132,21 @@ static double widgetWidth = 320;
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
 
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-            
-            NSError *error1 = nil;
-            NSArray *bundleContents = [fileManager contentsOfDirectoryAtPath:bundlePath error:&error1];
-            
-            if (error1) {
-                NSLog(@"Error reading bundle contents: %@", error);
-                return;
-            }
-            
-            for (NSString *filename in bundleContents) {
-                if ([[filename pathExtension] isEqualToString:@"tflite"]) {
-                    NSLog(@"%@", filename);
-                }
-            }
+    
+    NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"selfie_segmentation" ofType:@"tflite" inDirectory:@"OpenTok.bundle"];
+    if (resourcePath) {
+        // File found, use it as needed
+        // For example, you can read the contents of the file:
+        NSError *error = nil;
+        NSString *contents = [NSString stringWithContentsOfFile:resourcePath encoding:NSUTF8StringEncoding error:&error];
+        if (contents) {
+            NSLog(@"%@", contents);
+        } else {
+            NSLog(@"Error reading file: %@", error);
+        }
+    } else {
+        NSLog(@"File not found.");
+    }
     OTVideoTransformer *BackgroundBlur = [[OTVideoTransformer alloc] initWithName:@"BackgroundBlur" properties:@"{\"radius\":\"High\"}"];
         
     // Custom transformers

@@ -15,6 +15,7 @@
 		A05376351EB173CC00645696 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A053762C1EB173CC00645696 /* Images.xcassets */; };
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
+		AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -31,7 +32,7 @@
 		A053762D1EB173CC00645696 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		ADE60F0B2A2626CF00041E41 /* selfie_segmentation.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = selfie_segmentation.tflite; path = "Pods/VonageClientSDKVideo/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite"; sourceTree = "<group>"; };
+		AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vonage_Logo.png; sourceTree = "<group>"; };
 		D44260F3185F81D800E23699 /* Video-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Video-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -64,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				A05376221EB173CC00645696 /* Info.plist */,
+				AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */,
 				A05376241EB173CC00645696 /* AppDelegate.h */,
 				A05376251EB173CC00645696 /* AppDelegate.m */,
 				A05376261EB173CC00645696 /* Main_iPad.storyboard */,
@@ -80,7 +82,6 @@
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
-				ADE60F0B2A2626CF00041E41 /* selfie_segmentation.tflite */,
 				D442614B185F92BF00E23699 /* README.md */,
 				A05376211EB173CC00645696 /* Video-Transformers */,
 				D44260F5185F81D800E23699 /* Frameworks */,
@@ -118,6 +119,7 @@
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
 				D44260F1185F81D800E23699 /* Resources */,
+				FFD2ECECEC49BD629DFA6CD8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -166,6 +168,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */,
 				A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */,
 				A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */,
 				A05376351EB173CC00645696 /* Images.xcassets in Resources */,
@@ -197,6 +200,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFD2ECECEC49BD629DFA6CD8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Video-Transformers/Pods-Video-Transformers-resources.sh",
+				"${PODS_ROOT}/OpenTok/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/selfie_segmentation.tflite",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Video-Transformers/Pods-Video-Transformers-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
