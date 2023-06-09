@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B1074283B4FDD4537903024 /* Pods_Video_Transformers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F567B150B303CC48F83BCD8 /* Pods_Video_Transformers.framework */; };
 		A05376311EB173CC00645696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A05376251EB173CC00645696 /* AppDelegate.m */; };
 		A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376261EB173CC00645696 /* Main_iPad.storyboard */; };
 		A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376281EB173CC00645696 /* Main_iPhone.storyboard */; };
@@ -16,12 +15,11 @@
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
 		AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */; };
+		AD534BB82A335ED8007D996A /* selfie_segmentation.tflite in Resources */ = {isa = PBXBuildFile; fileRef = AD534BB72A335ED8007D996A /* selfie_segmentation.tflite */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2F567B150B303CC48F83BCD8 /* Pods_Video_Transformers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Video_Transformers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CEAE4E2198C4E4DCE832BAD /* Pods-Video-Transformers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Video-Transformers.release.xcconfig"; path = "Target Support Files/Pods-Video-Transformers/Pods-Video-Transformers.release.xcconfig"; sourceTree = "<group>"; };
 		A05376221EB173CC00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376241EB173CC00645696 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A05376251EB173CC00645696 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -33,11 +31,11 @@
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vonage_Logo.png; sourceTree = "<group>"; };
+		AD534BB72A335ED8007D996A /* selfie_segmentation.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = selfie_segmentation.tflite; path = "Pods/VonageClientSDKVideo/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite"; sourceTree = "<group>"; };
 		D44260F3185F81D800E23699 /* Video-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Video-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		D9E430B44AAC82991A79FE87 /* Pods-Video-Transformers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Video-Transformers.debug.xcconfig"; path = "Target Support Files/Pods-Video-Transformers/Pods-Video-Transformers.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +43,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B1074283B4FDD4537903024 /* Pods_Video_Transformers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +52,6 @@
 		82EBC85A29B2215464A49FD9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3CEAE4E2198C4E4DCE832BAD /* Pods-Video-Transformers.release.xcconfig */,
-				D9E430B44AAC82991A79FE87 /* Pods-Video-Transformers.debug.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -82,6 +77,7 @@
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
+				AD534BB72A335ED8007D996A /* selfie_segmentation.tflite */,
 				D442614B185F92BF00E23699 /* README.md */,
 				A05376211EB173CC00645696 /* Video-Transformers */,
 				D44260F5185F81D800E23699 /* Frameworks */,
@@ -103,7 +99,6 @@
 			children = (
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
-				2F567B150B303CC48F83BCD8 /* Pods_Video_Transformers.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -115,11 +110,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */;
 			buildPhases = (
-				AEB5E3891ABFEBFE716BD0B2 /* [CP] Check Pods Manifest.lock */,
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
 				D44260F1185F81D800E23699 /* Resources */,
-				FFD2ECECEC49BD629DFA6CD8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD534BB82A335ED8007D996A /* selfie_segmentation.tflite in Resources */,
 				AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */,
 				A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */,
 				A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */,
@@ -178,49 +172,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AEB5E3891ABFEBFE716BD0B2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Video-Transformers-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FFD2ECECEC49BD629DFA6CD8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Video-Transformers/Pods-Video-Transformers-resources.sh",
-				"${PODS_ROOT}/OpenTok/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/selfie_segmentation.tflite",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Video-Transformers/Pods-Video-Transformers-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D44260EF185F81D800E23699 /* Sources */ = {
@@ -310,7 +261,6 @@
 		};
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CEAE4E2198C4E4DCE832BAD /* Pods-Video-Transformers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -381,7 +331,6 @@
 		};
 		F8DE15D21D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9E430B44AAC82991A79FE87 /* Pods-Video-Transformers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";

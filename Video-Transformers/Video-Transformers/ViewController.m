@@ -11,11 +11,11 @@
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"47521351";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX40NzUyMTM1MX5-MTY4NTM2NjAyNTQwMn4rY0xNQjVUcENIWWd1UUVhazBjSDA4WWd-fn4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NzUyMTM1MSZzaWc9YjVmY2QxM2Q5NjJmYmRlMmQ2Y2JlMjczYzUwN2FhYzRmYjVhOWM2YzpzZXNzaW9uX2lkPTJfTVg0ME56VXlNVE0xTVg1LU1UWTROVE0yTmpBeU5UUXdNbjRyWTB4TlFqVlVjRU5JV1dkMVVVVmhhekJqU0RBNFdXZC1mbjQmY3JlYXRlX3RpbWU9MTY4NTM2NjA3MiZub25jZT0wLjQyMDk3NTY1OTEwNjE2Mzc1JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE2ODc5NTgwNzEmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
+static NSString* const kToken = @"";
 
 @interface ViewController ()<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
 @property (nonatomic) OTSession *session;
@@ -23,54 +23,62 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NzUyMTM1MSZzaWc9YjVmY2QxM2
 @property (nonatomic) OTSubscriber *subscriber;
 @end
 
-@interface custom_border : NSObject <OTCustomVideoTransformer>
-
-@end
-
-
-@implementation custom_border
-
-uint32_t pwidth = 0;
-uint32_t pheight = 0;
-
-- (void)transform:(nonnull OTVideoFrame *)videoFrame {
-    // Load the image from a file
-    UIImage* image = [UIImage imageNamed:@"Vonage_Logo.png"];
-
-    uint32_t width = videoFrame.format.imageWidth;
-    uint32_t height = videoFrame.format.imageHeight;
-    
-    if((width != pwidth) || (height != pheight)) {
-        NSLog(@"Video frame width: %d height: %d", width, height);
-        pwidth = width;
-        pheight = height;
-    }
-    // Calculate the size of the Y plane 4:2:0 format
-    size_t ySize = width * height;
-
-    // Get pointers to the Y plane
-    uint8_t* yPlane = [videoFrame getPlaneBinaryData:0];
-
-    // Create a CGContext from the Y plane
-    CGContextRef context = CGBitmapContextCreate(yPlane, width, height, 8, width, CGColorSpaceCreateDeviceGray(), kCGImageAlphaNone);
-
-    // Location of the image (in this case set to middle)
-    CGFloat x = (width - image.size.width) / 2.0;
-    CGFloat y = (height - image.size.height) / 2.0;
-    
-    // Draw the image on top of the Y plane
-    CGRect rect = CGRectMake(x, y, image.size.width, image.size.height);
-    CGContextDrawImage(context, rect, image.CGImage);
-
-    CGContextRelease(context);
-}
-@end
-
-custom_border* border;
-
-@implementation ViewController
 static double widgetHeight = 240;
 static double widgetWidth = 320;
+
+@interface customTransformer : NSObject <OTCustomVideoTransformer>
+
+- (UIImage *)resizeImage:(UIImage *)image toSize:(CGSize)size;
+
+@end
+
+
+@implementation customTransformer
+
+- (UIImage *)resizeImage:(UIImage *)image toSize:(CGSize)size {
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *resizedImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return resizedImage;
+}
+
+- (void)transform:(nonnull OTVideoFrame *)videoFrame {
+    
+    UIImage* image = [UIImage imageNamed:@"Vonage_Logo.png"];
+
+    uint32_t videoWidth = videoFrame.format.imageWidth;
+    uint32_t videoHeight = videoFrame.format.imageHeight;
+
+    // Calculate the desired size of the image
+    CGFloat desiredWidth = videoWidth / 8;  // Adjust this value as needed
+    CGFloat desiredHeight = image.size.height * (desiredWidth / image.size.width);
+
+    // Resize the image to the desired size
+    UIImage *resizedImage = [self resizeImage:image toSize:CGSizeMake(desiredWidth, desiredHeight)];
+
+    // Get pointer to the Y plane
+    uint8_t* yPlane = [videoFrame getPlaneBinaryData:0];
+    
+    // Create a CGContext from the Y plane
+    CGContextRef context = CGBitmapContextCreate(yPlane, videoWidth, videoHeight, 8, videoWidth, CGColorSpaceCreateDeviceGray(), kCGImageAlphaNone);
+    
+    // Location of the image (in this case right bottom corner)
+    CGFloat x = videoWidth * 4/5;
+    CGFloat y = videoHeight * 1/5;
+    
+    // Draw the resized image on top of the Y plane
+    CGRect rect = CGRectMake(x, y, desiredWidth, desiredHeight);
+    CGContextDrawImage(context, rect, resizedImage.CGImage);
+    
+    CGContextRelease(context);
+}
+
+@end
+
+customTransformer* logoTransformer;
+
+@implementation ViewController
 
 #pragma mark - View lifecycle
 
@@ -147,19 +155,24 @@ static double widgetWidth = 320;
     } else {
         NSLog(@"File not found.");
     }
+    
+    // Create background blur Vonage transformer
     OTVideoTransformer *BackgroundBlur = [[OTVideoTransformer alloc] initWithName:@"BackgroundBlur" properties:@"{\"radius\":\"High\"}"];
         
-    // Custom transformers
-    border = [custom_border alloc];
-    OTVideoTransformer *border_transformer = [[OTVideoTransformer alloc] initWithName:@"border" transformer:border];
+    // Create custom transformer
+    logoTransformer = [customTransformer alloc];
+    OTVideoTransformer *myCustomTransformer = [[OTVideoTransformer alloc] initWithName:@"border" transformer:logoTransformer];
 
     NSMutableArray * myVideoTransformers = [[NSMutableArray alloc] init];
 
     [myVideoTransformers addObject:BackgroundBlur];
-    [myVideoTransformers addObject:border_transformer];
+    [myVideoTransformers addObject:myCustomTransformer];
 
+    // Set video transformers to publisher video stream
     _publisher.videoTransformers = [[NSMutableArray alloc] initWithArray:myVideoTransformers];
-
+    
+    // Remove transformers from publisher stream
+    //_publisher.videoTransformers = [[NSMutableArray alloc] init];
 }
 
 /**
