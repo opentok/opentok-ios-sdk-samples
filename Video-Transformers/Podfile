@@ -1,0 +1,8 @@
+require_relative '../OpenTokSDKVersion'
+
+platform :ios, '13'
+use_frameworks!
+
+target 'Video-Transformers' do
+  pod 'VonageClientSDKVideo', '2.25.2'
+end
