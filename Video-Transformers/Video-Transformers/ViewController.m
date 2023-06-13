@@ -154,9 +154,6 @@ customTransformer* logoTransformer;
 
     // Set video transformers to publisher video stream
     _publisher.videoTransformers = [[NSMutableArray alloc] initWithArray:myVideoTransformers];
-    
-    // Remove transformers from publisher stream
-    //_publisher.videoTransformers = [[NSMutableArray alloc] init];
 }
 
 /**
