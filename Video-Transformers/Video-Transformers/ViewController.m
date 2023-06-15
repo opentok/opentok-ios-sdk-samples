@@ -80,6 +80,8 @@ customTransformer* logoTransformer;
 
 @implementation ViewController
 
+UIButton *buttonVideoTransformerToggle;
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -140,20 +142,20 @@ customTransformer* logoTransformer;
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     
-    // Create background blur Vonage transformer
-    OTVideoTransformer *BackgroundBlur = [[OTVideoTransformer alloc] initWithName:@"BackgroundBlur" properties:@"{\"radius\":\"High\"}"];
-        
-    // Create custom transformer
-    logoTransformer = [customTransformer alloc];
-    OTVideoTransformer *myCustomTransformer = [[OTVideoTransformer alloc] initWithName:@"logo" transformer:logoTransformer];
+    // Configure toogle button
+    buttonVideoTransformerToggle = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonVideoTransformerToggle.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
+    buttonVideoTransformerToggle.layer.cornerRadius = 5.0;
+    [self.view addSubview:buttonVideoTransformerToggle];
+    [self.view bringSubviewToFront:buttonVideoTransformerToggle];
+    [buttonVideoTransformerToggle setTitle:@"set" forState:UIControlStateNormal];
+    buttonVideoTransformerToggle.titleLabel.font = [UIFont systemFontOfSize:12];
+    [buttonVideoTransformerToggle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    buttonVideoTransformerToggle.backgroundColor = [UIColor whiteColor];
+    buttonVideoTransformerToggle.layer.borderWidth = 1.0;  // Adjust the width as desired
+    buttonVideoTransformerToggle.layer.borderColor = [UIColor grayColor].CGColor;
+    [buttonVideoTransformerToggle addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
-    NSMutableArray * myVideoTransformers = [[NSMutableArray alloc] init];
-
-    [myVideoTransformers addObject:BackgroundBlur];
-    [myVideoTransformers addObject:myCustomTransformer];
-
-    // Set video transformers to publisher video stream
-    _publisher.videoTransformers = [[NSMutableArray alloc] initWithArray:myVideoTransformers];
 }
 
 /**
@@ -317,5 +319,38 @@ didFailWithError:(OTError*)error
         [self presentViewController:alertVC animated:YES completion:nil];
     });
 }
+
+bool isSet = false;
+
+- (void)buttonTapped:(UIButton *)sender {
+    
+    if(!isSet) {
+        // Create background blur Vonage transformer
+        OTVideoTransformer *BackgroundBlur = [[OTVideoTransformer alloc] initWithName:@"BackgroundBlur" properties:@"{\"radius\":\"High\"}"];
+        
+        // Create custom transformer
+        logoTransformer = [customTransformer alloc];
+        OTVideoTransformer *myCustomTransformer = [[OTVideoTransformer alloc] initWithName:@"logo" transformer:logoTransformer];
+        
+        NSMutableArray * myVideoTransformers = [[NSMutableArray alloc] init];
+        
+        [myVideoTransformers addObject:BackgroundBlur];
+        [myVideoTransformers addObject:myCustomTransformer];
+        
+        // Set video transformers to publisher video stream
+        _publisher.videoTransformers = [[NSMutableArray alloc] initWithArray:myVideoTransformers];
+        
+        [buttonVideoTransformerToggle setTitle:@"reset" forState:UIControlStateNormal];
+        isSet = true;
+    } else {
+        // Clear all transformers from video stream
+        _publisher.videoTransformers = [[NSArray alloc] init];
+        
+        [buttonVideoTransformerToggle setTitle:@"set" forState:UIControlStateNormal];
+        isSet = false;
+    }
+    
+}
+
 
 @end
