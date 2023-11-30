@@ -17,9 +17,6 @@
 		3C25B81422F7C7C000AEBC7C /* OpenTok Live.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3C25B7FB22F7C7BF00AEBC7C /* OpenTok Live.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3CC0876922F8CBD500E5BADB /* OTBroadcastExtHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0876822F8CBD500E5BADB /* OTBroadcastExtHelper.m */; };
 		3CC0876F22F8CEE700E5BADB /* OTBroadcastExtAudioDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CC0876D22F8CEE700E5BADB /* OTBroadcastExtAudioDevice.m */; };
-		3CC0877322F8FF0000E5BADB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC0877022F8FE3D00E5BADB /* OpenTok.framework */; };
-		3CC0877422F8FF0000E5BADB /* OpenTok.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC0877022F8FE3D00E5BADB /* OpenTok.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3CC0877622F901A000E5BADB /* OpenTok.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC0877022F8FE3D00E5BADB /* OpenTok.framework */; };
 		4B7E71BA491D0FCE70F8302E /* Pods_Broadcast_Ext.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F39BE56CE5476E600F6BED63 /* Pods_Broadcast_Ext.framework */; };
 		A05376311EB173CC00645696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A05376251EB173CC00645696 /* AppDelegate.m */; };
 		A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376261EB173CC00645696 /* Main_iPad.storyboard */; };
@@ -68,7 +65,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3CC0877422F8FF0000E5BADB /* OpenTok.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,7 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C25B7FD22F7C7BF00AEBC7C /* ReplayKit.framework in Frameworks */,
-				3CC0877622F901A000E5BADB /* OpenTok.framework in Frameworks */,
 				F6AA0082E73359CCCD319509 /* Pods_Broadcast_Ext_OpenTok_Live.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,7 +134,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CC0877322F8FF0000E5BADB /* OpenTok.framework in Frameworks */,
 				4B7E71BA491D0FCE70F8302E /* Pods_Broadcast_Ext.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +243,7 @@
 				3C25B7F722F7C7BF00AEBC7C /* Sources */,
 				3C25B7F822F7C7BF00AEBC7C /* Frameworks */,
 				3C25B7F922F7C7BF00AEBC7C /* Resources */,
+				18659A54F8313049202ABFF2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -286,6 +281,7 @@
 				D44260F1185F81D800E23699 /* Resources */,
 				3C25B81B22F7C7C000AEBC7C /* Embed App Extensions */,
 				3CC0877522F8FF0000E5BADB /* Embed Frameworks */,
+				0004ED64C9F04BC1E1F30796 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,14 +305,17 @@
 				TargetAttributes = {
 					3C25B7FA22F7C7BF00AEBC7C = {
 						CreatedOnToolsVersion = 10.2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = PR6C39UQ38;
+						ProvisioningStyle = Automatic;
 					};
 					3C25B80622F7C7BF00AEBC7C = {
 						CreatedOnToolsVersion = 10.2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = PR6C39UQ38;
+						ProvisioningStyle = Automatic;
 					};
 					D44260F2185F81D800E23699 = {
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = PR6C39UQ38;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -372,6 +371,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0004ED64C9F04BC1E1F30796 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Broadcast-Ext/Pods-Broadcast-Ext-resources.sh",
+				"${PODS_ROOT}/OTXCFramework/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/selfie_segmentation.tflite",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Broadcast-Ext/Pods-Broadcast-Ext-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		18659A54F8313049202ABFF2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Broadcast-Ext-OpenTok Live/Pods-Broadcast-Ext-OpenTok Live-resources.sh",
+				"${PODS_ROOT}/OTXCFramework/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/selfie_segmentation.tflite",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Broadcast-Ext-OpenTok Live/Pods-Broadcast-Ext-OpenTok Live-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		1AA2A91924F26997BEAAF1EB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -508,11 +543,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -522,7 +557,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Broadcast-Ext-Sample.OpenTok-LiveSetupUI";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.Opentok-Meet.VonageMeetAppBroadcastExtSetupUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -540,11 +575,11 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -560,7 +595,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Broadcast-Ext-Sample.OpenTok-LiveSetupUI";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.Opentok-Meet.VonageMeetAppBroadcastExtSetupUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -580,11 +615,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "OpenTok Live/OpenTokLive.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -598,7 +633,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Broadcast-Ext-Sample.OpenTok-Live";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.Opentok-Meet.VonageMeetAppBroadcastExt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -618,11 +653,11 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "OpenTok Live/OpenTokLive.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -642,7 +677,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Broadcast-Ext-Sample.OpenTok-Live";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.Opentok-Meet.VonageMeetAppBroadcastExt";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -702,9 +737,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Broadcast-Ext/Broadcast-Ext.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -716,7 +751,7 @@
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Broadcast-Ext/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Broadcast-Ext-Sample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.Opentok-Meet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -777,9 +812,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Broadcast-Ext/Broadcast-Ext.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = PR6C39UQ38;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "arm64 i386";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -791,7 +826,7 @@
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Broadcast-Ext/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Broadcast-Ext-Sample";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vonage.Opentok-Meet";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
