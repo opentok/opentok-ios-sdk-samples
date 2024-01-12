@@ -1,5 +1,6 @@
+os: osx
+osx_image: xcode13.0
 language: objective-c
-osx_image: xcode11.7
 
 cache:
   directories:
