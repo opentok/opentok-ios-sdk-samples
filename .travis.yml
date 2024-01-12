@@ -1,5 +1,6 @@
 language: objective-c
 osx_image: xcode11.7
 before_install:
+  - set -x
   - pod repo update > /dev/null
 script: ./travis_build.sh 
