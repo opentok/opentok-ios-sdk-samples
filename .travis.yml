@@ -1,5 +1,15 @@
+os: osx
+osx_image: xcode13.0
 language: objective-c
-osx_image: xcode11.7
+
+cache:
+  directories:
+    - $HOME/.cocoapods
+
 before_install:
+  - set -x
+  - gem install cocoapods
   - pod repo update > /dev/null
-script: ./travis_build.sh 
+
+script: 
+  - ./travis_build.sh
