@@ -54,6 +54,6 @@ cd ../Broadcast-Ext/
 pod install
 xcodebuild -workspace Broadcast-Ext.xcworkspace  -scheme Broadcast-Ext -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
 
-cd Video-Transformers/
+cd ../Video-Transformers/
 pod install
 xcodebuild -workspace Video-Transformers.xcworkspace  -scheme Video-Transformers -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -UseModernBuildSystem=NO
