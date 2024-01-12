@@ -5,6 +5,6 @@ use_frameworks!
 
 target 'Broadcast-Ext' do
     target 'OpenTok Live' do
-        pod 'OpenTok', OpenTokSDKVersion
+        pod 'OTXCFramework', OpenTokSDKVersion
     end
 end

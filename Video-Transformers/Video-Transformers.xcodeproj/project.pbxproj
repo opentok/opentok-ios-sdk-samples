@@ -14,10 +14,8 @@
 		A05376351EB173CC00645696 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A053762C1EB173CC00645696 /* Images.xcassets */; };
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
-		CABAEBD029930A3F000B1B63 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D44260F6185F81D800E23699 /* Foundation.framework */; };
-		CABAEBD229930A5F000B1B63 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABAEBD129930A5F000B1B63 /* CoreGraphics.framework */; };
-		CABAEBD429930A65000B1B63 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABAEBD329930A65000B1B63 /* GLKit.framework */; };
-		CABAEBD629930A6B000B1B63 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CABAEBD529930A6B000B1B63 /* Metal.framework */; };
+		AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */; };
+		AD534BB82A335ED8007D996A /* selfie_segmentation.tflite in Resources */ = {isa = PBXBuildFile; fileRef = AD534BB72A335ED8007D996A /* selfie_segmentation.tflite */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -32,10 +30,9 @@
 		A053762D1EB173CC00645696 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		CABAEBD129930A5F000B1B63 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CABAEBD329930A65000B1B63 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		CABAEBD529930A6B000B1B63 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
-		D44260F3185F81D800E23699 /* Basic-Video-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Basic-Video-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vonage_Logo.png; sourceTree = "<group>"; };
+		AD534BB72A335ED8007D996A /* selfie_segmentation.tflite */ = {isa = PBXFileReference; lastKnownFileType = file; name = selfie_segmentation.tflite; path = "Pods/VonageClientSDKVideo/OpenTok.xcframework/ios-arm64/OpenTok.framework/selfie_segmentation.tflite"; sourceTree = "<group>"; };
+		D44260F3185F81D800E23699 /* Video-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Video-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -46,20 +43,24 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CABAEBD229930A5F000B1B63 /* CoreGraphics.framework in Frameworks */,
-				CABAEBD629930A6B000B1B63 /* Metal.framework in Frameworks */,
-				CABAEBD429930A65000B1B63 /* GLKit.framework in Frameworks */,
-				CABAEBD029930A3F000B1B63 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A05376211EB173CC00645696 /* Basic-Video-Chat */ = {
+		82EBC85A29B2215464A49FD9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A05376211EB173CC00645696 /* Video-Transformers */ = {
 			isa = PBXGroup;
 			children = (
 				A05376221EB173CC00645696 /* Info.plist */,
+				AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */,
 				A05376241EB173CC00645696 /* AppDelegate.h */,
 				A05376251EB173CC00645696 /* AppDelegate.m */,
 				A05376261EB173CC00645696 /* Main_iPad.storyboard */,
@@ -70,31 +71,25 @@
 				A053762E1EB173CC00645696 /* ViewController.h */,
 				A053762F1EB173CC00645696 /* ViewController.m */,
 			);
-			path = "Basic-Video-Chat";
-			sourceTree = "<group>";
-		};
-		CC1806F816B40EE75C3B6340 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
+			path = "Video-Transformers";
 			sourceTree = "<group>";
 		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
+				AD534BB72A335ED8007D996A /* selfie_segmentation.tflite */,
 				D442614B185F92BF00E23699 /* README.md */,
-				A05376211EB173CC00645696 /* Basic-Video-Chat */,
+				A05376211EB173CC00645696 /* Video-Transformers */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
-				CC1806F816B40EE75C3B6340 /* Pods */,
+				82EBC85A29B2215464A49FD9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		D44260F4185F81D800E23699 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D44260F3185F81D800E23699 /* Basic-Video-Chat.app */,
+				D44260F3185F81D800E23699 /* Video-Transformers.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,9 +97,6 @@
 		D44260F5185F81D800E23699 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CABAEBD529930A6B000B1B63 /* Metal.framework */,
-				CABAEBD329930A65000B1B63 /* GLKit.framework */,
-				CABAEBD129930A5F000B1B63 /* CoreGraphics.framework */,
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
 			);
@@ -114,9 +106,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D44260F2185F81D800E23699 /* Basic-Video-Chat */ = {
+		D44260F2185F81D800E23699 /* Video-Transformers */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */;
+			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */;
 			buildPhases = (
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
@@ -126,9 +118,9 @@
 			);
 			dependencies = (
 			);
-			name = "Basic-Video-Chat";
+			name = "Video-Transformers";
 			productName = "Hello-World";
-			productReference = D44260F3185F81D800E23699 /* Basic-Video-Chat.app */;
+			productReference = D44260F3185F81D800E23699 /* Video-Transformers.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -141,13 +133,12 @@
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
 					D44260F2185F81D800E23699 = {
-						DevelopmentTeam = PR6C39UQ38;
-						LastSwiftMigration = 1420;
+						DevelopmentTeam = 2A784Y2X3Q;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Basic-Video-Chat" */;
+			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Video-Transformers" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -160,7 +151,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D44260F2185F81D800E23699 /* Basic-Video-Chat */,
+				D44260F2185F81D800E23699 /* Video-Transformers */,
 			);
 		};
 /* End PBXProject section */
@@ -170,6 +161,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD534BB82A335ED8007D996A /* selfie_segmentation.tflite in Resources */,
+				AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */,
 				A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */,
 				A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */,
 				A05376351EB173CC00645696 /* Images.xcassets in Resources */,
@@ -248,6 +241,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -260,7 +254,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -270,11 +263,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PR6C39UQ38;
+				DEVELOPMENT_TEAM = 2A784Y2X3Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -282,18 +273,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/lib/swift",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
+				INFOPLIST_FILE = "$(SRCROOT)/Video-Transformers/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Video-Transformers543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -325,6 +309,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -339,7 +324,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -349,11 +333,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = PR6C39UQ38;
+				DEVELOPMENT_TEAM = 2A784Y2X3Q;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -361,20 +343,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Basic-Video-Chat/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/lib/swift",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Basic-Video-Chat";
+				INFOPLIST_FILE = "$(SRCROOT)/Video-Transformers/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Video-Transformers543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_COMPILATION_MODE = Incremental;
-				SWIFT_OBJC_BRIDGING_HEADER = "Basic-Video-Chat/Basic-Video-Chat-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -382,7 +355,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Basic-Video-Chat" */ = {
+		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Video-Transformers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4426127185F81D800E23699 /* Release */,
@@ -391,7 +364,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Basic-Video-Chat" */ = {
+		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D442612A185F81D800E23699 /* Release */,
