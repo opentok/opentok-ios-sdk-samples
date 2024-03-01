@@ -54,7 +54,6 @@ static dispatch_queue_t _captureQueue;
 
 + (void)initialize {
     if (self == [TBExampleVideoCaptureShared class]) {
-    //    _captureQueue = dispatch_get_main_queue();
         _captureQueue = dispatch_queue_create("com.tokbox.OTVideoCapture", DISPATCH_QUEUE_SERIAL);
     }
 }
