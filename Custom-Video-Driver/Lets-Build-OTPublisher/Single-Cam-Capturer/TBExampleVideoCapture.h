@@ -16,11 +16,7 @@
 @end
 
 @interface TBExampleVideoCapture : NSObject
-    <AVCaptureVideoDataOutputSampleBufferDelegate, OTVideoCapture>
-{
-    @protected
-    dispatch_queue_t _capture_queue;
-}
+    <AVCaptureVideoDataOutputSampleBufferDelegate, OTVideoCapture> { }
 
 @property (nonatomic, retain) AVCaptureSession *captureSession;
 @property (nonatomic, retain) AVCaptureVideoDataOutput *videoOutput;

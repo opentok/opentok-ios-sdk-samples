@@ -40,10 +40,36 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     OTCapturerAuthorizationDenied = 1670,
 };
 
+@interface TBExampleVideoCaptureShared : NSObject
+
+// Declare class methods for accessing the queue
++ (dispatch_queue_t)captureQueue;
+
+@end
+
+@implementation TBExampleVideoCaptureShared
+
+// Static variable for the dispatch queue
+static dispatch_queue_t _captureQueue;
+
++ (void)initialize {
+    if (self == [TBExampleVideoCaptureShared class]) {
+    //    _captureQueue = dispatch_get_main_queue();
+        _captureQueue = dispatch_queue_create("com.tokbox.OTVideoCapture", DISPATCH_QUEUE_SERIAL);
+    }
+}
+
+// Class method to access the queue
++ (dispatch_queue_t)captureQueue {
+    return _captureQueue;
+}
+
+@end
 
 @interface TBExampleVideoCapture()
 @property (nonatomic, strong) NSTimer *noFramesCapturedTimer;
 @property (nonatomic) UIInterfaceOrientation currentStatusBarOrientation;
+- (void) setupListenerBlocks;
 @end
 
 @implementation TBExampleVideoCapture {
@@ -66,7 +92,8 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     
     enum OTCapturerErrorCode _captureErrorCode;
     
-    BOOL isFirstFrame;
+    BOOL _isFirstFrame;
+    BOOL _areListenerBlocksSetup;
 }
 
 @synthesize captureSession = _captureSession;
@@ -85,19 +112,50 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
         [[self class] dimensionsForCapturePreset:_capturePreset
                                            width:&_captureWidth
                                           height:&_captureHeight];
-        _capture_queue = dispatch_queue_create("com.tokbox.OTVideoCapture",
-                                               DISPATCH_QUEUE_SERIAL);
         _videoFrame = [[OTVideoFrame alloc] initWithFormat:
                       [OTVideoFormat videoFormatNV12WithWidth:_captureWidth
                                                        height:_captureHeight]];
         _currentStatusBarOrientation = UIInterfaceOrientationUnknown;
-        isFirstFrame = false;
-        [[NSNotificationCenter defaultCenter]
-         addObserver:self
-         selector:@selector(statusBarOrientationChange:)
-         name:UIApplicationWillChangeStatusBarOrientationNotification object:nil];
+        _isFirstFrame = false;
+        videoContentHint = OTVideoContentHintNone;
+
+        [self setupListenerBlocks];
     }
     return self;
+}
+
+- (void) setupListenerBlocks
+{
+    if(!_areListenerBlocksSetup)
+    {        
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self
+                selector:@selector(statusBarOrientationChange:)
+                name:UIApplicationWillChangeStatusBarOrientationNotification
+                object:nil];
+        [center addObserver:self
+                selector:@selector(handleCaptureSessionRuntimeError:)
+                name:AVCaptureSessionRuntimeErrorNotification
+                object:_captureSession];
+
+        _areListenerBlocksSetup = YES;
+    }
+}
+
+- (void) removeObservers
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self];
+    _areListenerBlocksSetup = NO;
+}
+
+- (void)handleCaptureSessionRuntimeError:(NSNotification *)notification {
+    NSError *error = [notification.userInfo objectForKey:AVCaptureSessionErrorKey];
+    NSLog(@"Capture session runtime error: %@", error);
+
+    if (error.code == AVErrorMediaServicesWereReset) {
+        [self initCapture];
+    }
 }
 
 - (int32_t)captureSettings:(OTVideoFormat*)videoFormat {
@@ -112,17 +170,15 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
      removeObserver:self
      name:UIApplicationWillChangeStatusBarOrientationNotification
      object:nil];
+    [self removeObservers];
     [self stopCapture];
     [self releaseCapture];
-    
-    if (_capture_queue) {
-        _capture_queue = nil;
-    }
+ 
     _videoFrame = nil;
 }
 
 - (AVCaptureDevice *) cameraWithPosition:(AVCaptureDevicePosition) position {
-    NSArray *devices = [[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:position] devices];
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices) {
         if ([device position] == position) {
             return device;
@@ -140,7 +196,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (BOOL) hasMultipleCameras {
-    return [[[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified] devices] count] > 1;
+    return [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count] > 1;
 }
 
 - (BOOL) hasTorch {
@@ -196,10 +252,10 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 
 - (double) activeFrameRate {
     CMTime minFrameDuration = _videoInput.device.activeVideoMinFrameDuration;
-    double framesPerSecond =
+	double framesPerSecond =
     minFrameDuration.timescale / minFrameDuration.value;
     
-    return framesPerSecond;
+	return framesPerSecond;
 }
 
 - (AVFrameRateRange*)frameRateRangeForFrameRate:(double)frameRate {
@@ -215,13 +271,13 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (void)setActiveFrameRateImpl:(double)frameRate : (BOOL) lockConfiguration {
-    
+	
     if (!_videoOutput || !_videoInput) {
         return;
     }
     
     AVFrameRateRange* frameRateRange =
-    [self frameRateRangeForFrameRate:frameRate];
+        [self frameRateRangeForFrameRate:frameRate];
     if (nil == frameRateRange) {
         NSLog(@"unsupported frameRate %f", frameRate);
         return;
@@ -232,23 +288,30 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     
     if(lockConfiguration) [_captureSession beginConfiguration];
     
-    
-    NSError* error;
-    if ([_videoInput.device lockForConfiguration:&error]) {
-        [_videoInput.device
-         setActiveVideoMinFrameDuration:desiredMinFrameDuration];
-        [_videoInput.device
-         setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
-        [_videoInput.device unlockForConfiguration];
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        NSError* error;
+        if ([_videoInput.device lockForConfiguration:&error]) {
+            [_videoInput.device
+             setActiveVideoMinFrameDuration:desiredMinFrameDuration];
+            [_videoInput.device
+             setActiveVideoMaxFrameDuration:desiredMaxFrameDuration];
+            [_videoInput.device unlockForConfiguration];
+        } else {
+            NSLog(@"%@", error);
+        }
     } else {
-        NSLog(@"%@", error);
+        AVCaptureConnection *conn =
+        [_videoOutput connectionWithMediaType:AVMediaTypeVideo];
+        if (conn.supportsVideoMinFrameDuration)
+            conn.videoMinFrameDuration = desiredMinFrameDuration;
+        if (conn.supportsVideoMaxFrameDuration)
+            conn.videoMaxFrameDuration = desiredMaxFrameDuration;
     }
-
     if(lockConfiguration) [_captureSession commitConfiguration];
 }
 
 - (void)setActiveFrameRate:(double)frameRate {
-    dispatch_async(_capture_queue, ^{
+    dispatch_async([TBExampleVideoCaptureShared captureQueue], ^{
         return [self setActiveFrameRateImpl : frameRate : TRUE];
     });
 }
@@ -333,24 +396,24 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (void) setCaptureSessionPreset:(NSString*)preset {
-    dispatch_async(_capture_queue, ^{
+    dispatch_async([TBExampleVideoCaptureShared captureQueue], ^{
         AVCaptureSession *session = [self captureSession];
         
         if ([session canSetSessionPreset:preset] &&
             ![preset isEqualToString:session.sessionPreset]) {
             
-            [self.captureSession beginConfiguration];
-            self.captureSession.sessionPreset = preset;
-            self->_capturePreset = preset;
+            [_captureSession beginConfiguration];
+            _captureSession.sessionPreset = preset;
+            _capturePreset = preset;
             
-            [self->_videoOutput setVideoSettings:
+            [_videoOutput setVideoSettings:
              [NSDictionary dictionaryWithObjectsAndKeys:
               [NSNumber numberWithInt:
                kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange],
               kCVPixelBufferPixelFormatTypeKey,
               nil]];
             
-            [self.captureSession commitConfiguration];
+            [_captureSession commitConfiguration];
         }
     });
 }
@@ -368,7 +431,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (NSArray*)availableCameraPositions {
-    NSArray* devices = [[AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionUnspecified] devices];
+    NSArray* devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     NSMutableSet* result = [NSMutableSet setWithCapacity:devices.count];
     for (AVCaptureDevice* device in devices) {
         [result addObject:[NSNumber numberWithInt:device.position]];
@@ -381,6 +444,8 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (void)setCameraPosition:(AVCaptureDevicePosition) position {
+    __block BOOL success = NO;
+    
     NSString* preset = self.captureSession.sessionPreset;
     
     if (![self hasMultipleCameras]) {
@@ -403,24 +468,23 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
         return;
     }
     
-    dispatch_async(_capture_queue, ^() {
+    dispatch_async([TBExampleVideoCaptureShared captureQueue], ^() {
         AVCaptureSession *session = [self captureSession];
         [session beginConfiguration];
-        [session removeInput:self.videoInput];
-        BOOL success = YES;
+        [session removeInput:_videoInput];
+        success = YES;
         if ([session canAddInput:newVideoInput]) {
             [session addInput:newVideoInput];
-            self.videoInput = newVideoInput;
+            _videoInput = newVideoInput;
         } else {
             success = NO;
-            [session addInput:self.videoInput];
+            [session addInput:_videoInput];
         }
         [session commitConfiguration];
-        
-        if (success) {
-            [self setCaptureSessionPreset:preset];
-        }
     });
+    if (success) {
+        [self setCaptureSessionPreset:preset];
+    }
     return;
 }
 
@@ -428,12 +492,8 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:AVCaptureSessionRuntimeErrorNotification
                                                   object:nil];
+    
     [self stopCapture];
-    [_videoOutput setSampleBufferDelegate:nil queue:NULL];
-    AVCaptureSession *session = _captureSession;
-    dispatch_async(_capture_queue, ^() {
-        [session stopRunning];
-    });
     
     _captureSession = nil;
     _videoOutput = nil;
@@ -470,7 +530,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
         OTError *err = [OTError errorWithDomain:OT_PUBLISHER_ERROR_DOMAIN
                                            code:OTCapturerError
                                        userInfo:nil];
-        [self showCapturerError:err];
+        [self callDelegateOnError:err captureError:nil];
         [_captureSession commitConfiguration];
         _captureSession = nil;
         return;
@@ -494,7 +554,8 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
                                                  == error.code) ? OTCapturerAuthorizationDenied :
                                                  OTCapturerError
                                        userInfo:nil];
-        [self showCapturerError:err];
+        [self callDelegateOnError:err captureError:error];
+        NSLog(@"[OpenTok] AVCaptureSession error : %@", error);
         _videoInput = nil;
         [_captureSession commitConfiguration];
         _captureSession = nil;
@@ -512,7 +573,7 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
       [NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange]
                                  forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
     // The initial queue will be the main queue and then after receiving first frame,
-    // we switch to _capture_queue. The reason for this is to detect initial
+    // we switch to [TBExampleVideoCaptureShared captureQueue]. The reason for this is to detect initial
     // device orientation
     [_videoOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
     
@@ -528,7 +589,9 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
                                                  name:AVCaptureSessionRuntimeErrorNotification
                                                object:nil];
 
-    [_captureSession startRunning];
+    dispatch_async([TBExampleVideoCaptureShared captureQueue], ^{
+        [_captureSession startRunning];
+    });
 }
 
 - (void)captureSessionError:(NSNotification *)notification {
@@ -542,14 +605,14 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (void)initCapture {
-    dispatch_async(_capture_queue, ^{
+    dispatch_async([TBExampleVideoCaptureShared captureQueue], ^{
         [self setupAudioVideoSession];
     });
 }
 
 - (void)initBlackFrameSender {
     _blackFrameTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER,
-                                                     0, 0, _capture_queue);
+                                                     0, 0, [TBExampleVideoCaptureShared captureQueue]);
     int blackFrameWidth = 320;
     int blackFrameHeight = 240;
     [self updateCaptureFormatWithWidth:blackFrameWidth height:blackFrameHeight];
@@ -564,35 +627,32 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     memset(yPlane, 0x00, blackFrameWidth * blackFrameHeight);
     memset(uvPlane, 0x7F, blackFrameWidth * blackFrameHeight / 2);
     
-    __weak TBExampleVideoCapture *weakSelf = self;
     if (_blackFrameTimer)
     {
         dispatch_source_set_timer(_blackFrameTimer, dispatch_walltime(NULL, 0),
                                   250ull * NSEC_PER_MSEC,
                                   1ull * NSEC_PER_MSEC);
         dispatch_source_set_event_handler(_blackFrameTimer, ^{
-            
-            TBExampleVideoCapture *strongSelf = weakSelf;
-            if (!strongSelf->_capturing) {
+            if (!_capturing) {
                 return;
             }
             
             double now = CACurrentMediaTime();
-            strongSelf->_videoFrame.timestamp =
-            CMTimeMake((now - strongSelf->_blackFrameTimeStarted) * 90000, 90000);
-            strongSelf->_videoFrame.format.imageWidth = blackFrameWidth;
-            strongSelf->_videoFrame.format.imageHeight = blackFrameHeight;
+            _videoFrame.timestamp =
+            CMTimeMake((now - _blackFrameTimeStarted) * 90000, 90000);
+            _videoFrame.format.imageWidth = blackFrameWidth;
+            _videoFrame.format.imageHeight = blackFrameHeight;
             
-            strongSelf->_videoFrame.format.estimatedFramesPerSecond = 4;
-            strongSelf->_videoFrame.format.estimatedCaptureDelay = 0;
-            strongSelf->_videoFrame.orientation = OTVideoOrientationUp;
+            _videoFrame.format.estimatedFramesPerSecond = 4;
+            _videoFrame.format.estimatedCaptureDelay = 0;
+            _videoFrame.orientation = OTVideoOrientationUp;
             
-            [strongSelf->_videoFrame clearPlanes];
+            [_videoFrame clearPlanes];
             
-            [strongSelf->_videoFrame.planes addPointer:yPlane];
-            [strongSelf->_videoFrame.planes addPointer:uvPlane];
+            [_videoFrame.planes addPointer:yPlane];
+            [_videoFrame.planes addPointer:uvPlane];
             
-            [strongSelf->_videoCaptureConsumer consumeFrame:strongSelf->_videoFrame];
+            [_videoCaptureConsumer consumeFrame:_videoFrame];
         });
         
         dispatch_resume(_blackFrameTimer);
@@ -605,17 +665,42 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
 }
 
 - (int32_t) startCapture {
-    _capturing = YES;
+	_capturing = YES;
     if (!_blackFrameTimer) {
         // Do no set timer if blackframe is being sent
         [self invalidateNoFramesTimerSettingItUpAgain:YES];
     }
+    dispatch_async([TBExampleVideoCaptureShared captureQueue], ^{
+        [_captureSession startRunning];
+    });
     return 0;
 }
 
+void stopRunningAVCaptureSession(AVCaptureSession *captureSession) {
+    if(captureSession) {
+        @try {
+            [captureSession commitConfiguration];
+            [captureSession stopRunning];
+        }
+        @catch (NSException *exception) {
+            NSDictionary *errorDictionary = @{ NSLocalizedDescriptionKey : exception.reason};
+            OTError *err = [OTError errorWithDomain:OT_PUBLISHER_ERROR_DOMAIN
+                                               code:OTCapturerError
+                                           userInfo:errorDictionary];
+            NSLog(@"[OpenTok] stopRunningAVCaptureSession error");
+        }
+    }
+}
+
 - (int32_t) stopCapture {
-    _capturing = NO;
-    [self invalidateNoFramesTimerSettingItUpAgain:NO];
+    if(_capturing) {
+        _capturing = NO;
+        [self invalidateNoFramesTimerSettingItUpAgain:NO];
+        AVCaptureSession * captureSession = _captureSession;
+        dispatch_async([TBExampleVideoCaptureShared captureQueue], ^(void){
+                stopRunningAVCaptureSession(captureSession);
+        });
+    }
     return 0;
 }
 
@@ -695,27 +780,32 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         return;
     }
     
-    if (isFirstFrame == false)
+    if (_isFirstFrame == false)
     {
-        isFirstFrame = true;
+        _isFirstFrame = true;
         _currentStatusBarOrientation = [[UIApplication sharedApplication] statusBarOrientation];;
-        [_videoOutput setSampleBufferDelegate:self queue:_capture_queue];
+        [_videoOutput setSampleBufferDelegate:self queue:[TBExampleVideoCaptureShared captureQueue]];
     }
 
     if (self.noFramesCapturedTimer)
         [self invalidateNoFramesTimerSettingItUpAgain:NO];
 
-    if ([self.delegate respondsToSelector:@selector(finishPreparingFrame:)]) {
-          [self.delegate finishPreparingFrame:_videoFrame];
-      }
-    
     CMTime time = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
     CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
     [_videoCaptureConsumer consumeImageBuffer:imageBuffer
                                   orientation:[self currentDeviceOrientation]
                                     timestamp:time
-                                     metadata:_videoFrame.metadata];
+                                     metadata:nil];
     
+}
+
+-(void)callDelegateOnError:(OTError*)error captureError:(NSError *)captureError {
+    _captureErrorCode = (enum OTCapturerErrorCode)error.code;
+}
+
+-(enum OTCapturerErrorCode)captureError
+{
+    return _captureErrorCode;
 }
 
 -(void)showCapturerError:(OTError*)error {
