@@ -17,7 +17,6 @@
 // iOS supports multi cam only on higher end devices (e.g, >= A12 CPU)
 // The capturer will return nil if you try to run multi cam samples on an unsupported device!
 #define USE_MULTICAM_SESSION 0
-#define TAP_TO_UNPUBLISHPUBLISH_ 1
 
 @interface OTSession ()
     
@@ -71,28 +70,6 @@ static NSString* const kToken = @"";
                                            delegate:self];
 
     [self doConnect];
-    if(TAP_TO_UNPUBLISHPUBLISH_) {
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-        [self.view addGestureRecognizer:tapGesture];
-    }
-}
-
-- (void)handleTap:(UITapGestureRecognizer *)sender {
-    if(TAP_TO_UNPUBLISHPUBLISH_) {
-        [_session unpublish:_frontCamPublisher error:nil];
-        // We need to wait for unpublisher delegate to be triggered
-        // - (void):(OTPublisherKit*)publisher:(OTStream *)stream
-    }
-}
-
-- (void)publishAfterTap{
-    if(TAP_TO_UNPUBLISHPUBLISH_) {
-        _frontCamPublisher = nil;
-        NSLog(@"Do publisher");
-        [self doPublishWithFrontCam];
-        if(USE_MULTICAM_SESSION == 1)
-            [self doPublishWithRearCam];
-    }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -355,9 +332,6 @@ didFailWithError:(OTError*)error
     [self cleanupPublisher];
     
     NSLog(@"publisher destroyed");
-    if(TAP_TO_UNPUBLISHPUBLISH_) {
-        [self publishAfterTap];
-    }
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
