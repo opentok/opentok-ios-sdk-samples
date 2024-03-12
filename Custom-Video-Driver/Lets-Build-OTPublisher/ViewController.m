@@ -57,11 +57,6 @@ static NSString* const kToken = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    if ([kApiKey isEqualToString:@""] || [kSessionId isEqualToString:@""] || [kToken isEqualToString:@""]) {
-        NSLog(@"Session credentials not set");
-        return;
-    }
     
     // Step 1: As the view comes into the foreground, initialize a new instance
     // of OTSession and begin the connection process.
@@ -330,8 +325,6 @@ didFailWithError:(OTError*)error
     }
     
     [self cleanupPublisher];
-    
-    NSLog(@"publisher destroyed");
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
