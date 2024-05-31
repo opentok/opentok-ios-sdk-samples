@@ -12,4 +12,10 @@
 
 // value range - 0 (min) and 1 (max)
 -(void)setPlayoutVolume:(float)value;
+
+/**
+ * Initializes an audio device with options to enable AGC and bypassing other default audio processing.
+ */
+- (instancetype)initWithAGC:(BOOL)agc disableAudioProcessing:(BOOL) disbaleAudioProcessing;
+
 @end
