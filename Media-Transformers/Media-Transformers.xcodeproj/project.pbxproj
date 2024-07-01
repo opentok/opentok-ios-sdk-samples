@@ -30,7 +30,7 @@
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vonage_Logo.png; sourceTree = "<group>"; };
-		D44260F3185F81D800E23699 /* Video-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Video-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D44260F3185F81D800E23699 /* Media-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Media-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A05376211EB173CC00645696 /* Video-Transformers */ = {
+		A05376211EB173CC00645696 /* Media-Transformers */ = {
 			isa = PBXGroup;
 			children = (
 				A05376221EB173CC00645696 /* Info.plist */,
@@ -69,14 +69,14 @@
 				A053762E1EB173CC00645696 /* ViewController.h */,
 				A053762F1EB173CC00645696 /* ViewController.m */,
 			);
-			path = "Video-Transformers";
+			path = "Media-Transformers";
 			sourceTree = "<group>";
 		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
 				D442614B185F92BF00E23699 /* README.md */,
-				A05376211EB173CC00645696 /* Video-Transformers */,
+				A05376211EB173CC00645696 /* Media-Transformers */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
 				82EBC85A29B2215464A49FD9 /* Pods */,
@@ -86,7 +86,7 @@
 		D44260F4185F81D800E23699 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D44260F3185F81D800E23699 /* Video-Transformers.app */,
+				D44260F3185F81D800E23699 /* Media-Transformers.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D44260F2185F81D800E23699 /* Video-Transformers */ = {
+		D44260F2185F81D800E23699 /* Media-Transformers */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */;
+			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Media-Transformers" */;
 			buildPhases = (
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
@@ -115,9 +115,9 @@
 			);
 			dependencies = (
 			);
-			name = "Video-Transformers";
+			name = "Media-Transformers";
 			productName = "Hello-World";
-			productReference = D44260F3185F81D800E23699 /* Video-Transformers.app */;
+			productReference = D44260F3185F81D800E23699 /* Media-Transformers.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +135,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Video-Transformers" */;
+			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Media-Transformers" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,7 +148,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D44260F2185F81D800E23699 /* Video-Transformers */,
+				D44260F2185F81D800E23699 /* Media-Transformers */,
 			);
 		};
 /* End PBXProject section */
@@ -269,9 +269,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Video-Transformers/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Media-Transformers/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Video-Transformers543e";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Media-Transformers543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -339,9 +339,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Video-Transformers/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Media-Transformers/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Video-Transformers543e";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Media-Transformers543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -351,7 +351,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Video-Transformers" */ = {
+		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Media-Transformers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4426127185F81D800E23699 /* Release */,
@@ -360,7 +360,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */ = {
+		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Media-Transformers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D442612A185F81D800E23699 /* Release */,

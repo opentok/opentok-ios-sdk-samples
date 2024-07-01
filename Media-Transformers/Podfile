@@ -3,7 +3,7 @@ require_relative '../OpenTokSDKVersion'
 platform :ios, '13'
 use_frameworks!
 
-target 'Video-Transformers' do
+target 'Media-Transformers' do
  pod 'OTXCFramework', OpenTokSDKVersion
  pod 'VonageClientSDKVideoTransformers', OpenTokSDKVersion
 end

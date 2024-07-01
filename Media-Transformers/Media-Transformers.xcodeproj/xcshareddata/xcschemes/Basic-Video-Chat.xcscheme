@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D44260F2185F81D800E23699"
-               BuildableName = "Video-Transformers.app"
-               BlueprintName = "Video-Transformers"
-               ReferencedContainer = "container:Video-Transformers.xcodeproj">
+               BuildableName = "Media-Transformers.app"
+               BlueprintName = "Media-Transformers"
+               ReferencedContainer = "container:Media-Transformers.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "Video-Transformers.app"
-            BlueprintName = "Video-Transformers"
-            ReferencedContainer = "container:Video-Transformers.xcodeproj">
+            BuildableName = "Media-Transformers.app"
+            BlueprintName = "Media-Transformers"
+            ReferencedContainer = "container:Media-Transformers.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "Video-Transformers.app"
-            BlueprintName = "Video-Transformers"
-            ReferencedContainer = "container:Video-Transformers.xcodeproj">
+            BuildableName = "Media-Transformers.app"
+            BlueprintName = "Media-Transformers"
+            ReferencedContainer = "container:Media-Transformers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "Video-Transformers.app"
-            BlueprintName = "Video-Transformers"
-            ReferencedContainer = "container:Video-Transformers.xcodeproj">
+            BuildableName = "Media-Transformers.app"
+            BlueprintName = "Media-Transformers"
+            ReferencedContainer = "container:Media-Transformers.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
