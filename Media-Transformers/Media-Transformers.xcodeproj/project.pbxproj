@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CD3115B802DB67C2E44405D /* Pods_Media_Transformers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F87265477B2363E993EC6F8 /* Pods_Media_Transformers.framework */; };
 		A05376311EB173CC00645696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A05376251EB173CC00645696 /* AppDelegate.m */; };
 		A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376261EB173CC00645696 /* Main_iPad.storyboard */; };
 		A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376281EB173CC00645696 /* Main_iPhone.storyboard */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		130DAB1C9405AB58874E2582 /* Pods-Media-Transformers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media-Transformers.debug.xcconfig"; path = "Target Support Files/Pods-Media-Transformers/Pods-Media-Transformers.debug.xcconfig"; sourceTree = "<group>"; };
+		5F87265477B2363E993EC6F8 /* Pods_Media_Transformers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Media_Transformers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A05376221EB173CC00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376241EB173CC00645696 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A05376251EB173CC00645696 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,7 +33,8 @@
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vonage_Logo.png; sourceTree = "<group>"; };
-		D44260F3185F81D800E23699 /* Video-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Video-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7F15528F8E55CECB422899E /* Pods-Media-Transformers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Media-Transformers.release.xcconfig"; path = "Target Support Files/Pods-Media-Transformers/Pods-Media-Transformers.release.xcconfig"; sourceTree = "<group>"; };
+		D44260F3185F81D800E23699 /* Media-Transformers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Media-Transformers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -41,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD3115B802DB67C2E44405D /* Pods_Media_Transformers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,11 +55,13 @@
 		82EBC85A29B2215464A49FD9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				C7F15528F8E55CECB422899E /* Pods-Media-Transformers.release.xcconfig */,
+				130DAB1C9405AB58874E2582 /* Pods-Media-Transformers.debug.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A05376211EB173CC00645696 /* Video-Transformers */ = {
+		A05376211EB173CC00645696 /* Media-Transformers */ = {
 			isa = PBXGroup;
 			children = (
 				A05376221EB173CC00645696 /* Info.plist */,
@@ -69,14 +76,14 @@
 				A053762E1EB173CC00645696 /* ViewController.h */,
 				A053762F1EB173CC00645696 /* ViewController.m */,
 			);
-			path = "Video-Transformers";
+			path = "Media-Transformers";
 			sourceTree = "<group>";
 		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
 				D442614B185F92BF00E23699 /* README.md */,
-				A05376211EB173CC00645696 /* Video-Transformers */,
+				A05376211EB173CC00645696 /* Media-Transformers */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
 				82EBC85A29B2215464A49FD9 /* Pods */,
@@ -86,7 +93,7 @@
 		D44260F4185F81D800E23699 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D44260F3185F81D800E23699 /* Video-Transformers.app */,
+				D44260F3185F81D800E23699 /* Media-Transformers.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 			children = (
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
+				5F87265477B2363E993EC6F8 /* Pods_Media_Transformers.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,21 +111,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D44260F2185F81D800E23699 /* Video-Transformers */ = {
+		D44260F2185F81D800E23699 /* Media-Transformers */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */;
+			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Media-Transformers" */;
 			buildPhases = (
+				7904CDF5927C288768990563 /* [CP] Check Pods Manifest.lock */,
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
 				D44260F1185F81D800E23699 /* Resources */,
+				4D6D78B3CBFDB8059070E4ED /* [CP] Embed Pods Frameworks */,
+				D8BDA3C01CE9C0E467175B70 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Video-Transformers";
+			name = "Media-Transformers";
 			productName = "Hello-World";
-			productReference = D44260F3185F81D800E23699 /* Video-Transformers.app */;
+			productReference = D44260F3185F81D800E23699 /* Media-Transformers.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +146,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Video-Transformers" */;
+			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Media-Transformers" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,7 +159,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D44260F2185F81D800E23699 /* Video-Transformers */,
+				D44260F2185F81D800E23699 /* Media-Transformers */,
 			);
 		};
 /* End PBXProject section */
@@ -168,6 +179,73 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D6D78B3CBFDB8059070E4ED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Media-Transformers/Pods-Media-Transformers-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/VonageClientSDKVideoTransformers/OpenTokTransformers.framework/OpenTokTransformers",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenTokTransformers.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Media-Transformers/Pods-Media-Transformers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7904CDF5927C288768990563 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Media-Transformers-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8BDA3C01CE9C0E467175B70 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Media-Transformers/Pods-Media-Transformers-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTXCFramework/OTPrivacyResources.bundle",
+				"${PODS_ROOT}/VonageClientSDKVideoTransformers/OpenTokTransformers.xcframework/ios-arm64/OpenTokTransformers.framework/ns_model_1.tflite",
+				"${PODS_ROOT}/VonageClientSDKVideoTransformers/OpenTokTransformers.xcframework/ios-arm64/OpenTokTransformers.framework/ns_model_2.tflite",
+				"${PODS_ROOT}/VonageClientSDKVideoTransformers/OpenTokTransformers.xcframework/ios-arm64/OpenTokTransformers.framework/selfie_segmentation.tflite",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTPrivacyResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ns_model_1.tflite",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ns_model_2.tflite",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/selfie_segmentation.tflite",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Media-Transformers/Pods-Media-Transformers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D44260EF185F81D800E23699 /* Sources */ = {
@@ -257,6 +335,7 @@
 		};
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7F15528F8E55CECB422899E /* Pods-Media-Transformers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -269,9 +348,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Video-Transformers/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Media-Transformers/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Video-Transformers543e";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Media-Transformers543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -327,6 +406,7 @@
 		};
 		F8DE15D21D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 130DAB1C9405AB58874E2582 /* Pods-Media-Transformers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -339,9 +419,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Video-Transformers/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Media-Transformers/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Video-Transformers543e";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Media-Transformers543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -351,7 +431,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Video-Transformers" */ = {
+		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Media-Transformers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4426127185F81D800E23699 /* Release */,
@@ -360,7 +440,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Video-Transformers" */ = {
+		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Media-Transformers" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D442612A185F81D800E23699 /* Release */,

@@ -80,7 +80,7 @@ customTransformer* logoTransformer;
 
 @implementation ViewController
 
-UIButton *buttonVideoTransformerToggle;
+UIButton *buttonMediaTransformerToggle;
 
 #pragma mark - View lifecycle
 
@@ -143,18 +143,18 @@ UIButton *buttonVideoTransformerToggle;
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     
     // Configure toogle button
-    buttonVideoTransformerToggle = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonVideoTransformerToggle.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
-    buttonVideoTransformerToggle.layer.cornerRadius = 5.0;
-    [self.view addSubview:buttonVideoTransformerToggle];
-    [self.view bringSubviewToFront:buttonVideoTransformerToggle];
-    [buttonVideoTransformerToggle setTitle:@"set" forState:UIControlStateNormal];
-    buttonVideoTransformerToggle.titleLabel.font = [UIFont systemFontOfSize:12];
-    [buttonVideoTransformerToggle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    buttonVideoTransformerToggle.backgroundColor = [UIColor whiteColor];
-    buttonVideoTransformerToggle.layer.borderWidth = 1.0;  // Adjust the width as desired
-    buttonVideoTransformerToggle.layer.borderColor = [UIColor grayColor].CGColor;
-    [buttonVideoTransformerToggle addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    buttonMediaTransformerToggle = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonMediaTransformerToggle.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
+    buttonMediaTransformerToggle.layer.cornerRadius = 5.0;
+    [self.view addSubview:buttonMediaTransformerToggle];
+    [self.view bringSubviewToFront:buttonMediaTransformerToggle];
+    [buttonMediaTransformerToggle setTitle:@"set" forState:UIControlStateNormal];
+    buttonMediaTransformerToggle.titleLabel.font = [UIFont systemFontOfSize:12];
+    [buttonMediaTransformerToggle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    buttonMediaTransformerToggle.backgroundColor = [UIColor whiteColor];
+    buttonMediaTransformerToggle.layer.borderWidth = 1.0;  // Adjust the width as desired
+    buttonMediaTransformerToggle.layer.borderColor = [UIColor grayColor].CGColor;
+    [buttonMediaTransformerToggle addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -336,17 +336,28 @@ bool isSet = false;
         
         [myVideoTransformers addObject:BackgroundBlur];
         [myVideoTransformers addObject:myCustomTransformer];
+
+        // Create Noise Suppression Vonage transformer
+        OTAudioTransformer *ns = [[OTAudioTransformer alloc] initWithName:@"NoiseSuppression" properties:@""];
+
+        NSMutableArray * myAudioTransformers = [[NSMutableArray alloc] init];
+        
+        [myAudioTransformers addObject:ns];
         
         // Set video transformers to publisher video stream
         _publisher.videoTransformers = [[NSMutableArray alloc] initWithArray:myVideoTransformers];
+
+        // Set audio transformers to publisher audio stream
+        _publisher.audioTransformers = [[NSMutableArray alloc] initWithArray:myAudioTransformers];
         
-        [buttonVideoTransformerToggle setTitle:@"reset" forState:UIControlStateNormal];
+        [buttonMediaTransformerToggle setTitle:@"reset" forState:UIControlStateNormal];
         isSet = true;
     } else {
         // Clear all transformers from video stream
         _publisher.videoTransformers = [[NSArray alloc] init];
+        _publisher.audioTransformers = [[NSArray alloc] init];
         
-        [buttonVideoTransformerToggle setTitle:@"set" forState:UIControlStateNormal];
+        [buttonMediaTransformerToggle setTitle:@"set" forState:UIControlStateNormal];
         isSet = false;
     }
     
