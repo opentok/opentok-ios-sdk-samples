@@ -11,16 +11,18 @@
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"46499862";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX40NjQ5OTg2Mn5-MTcyNDIzMTY1NDE0Nn56YmJRVzBhQi93WmEyb3VFU2dWQ2c5Y2N-UH5-";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NjQ5OTg2MiZzaWc9YzJmOTBhMGQxODU5NDE2YjIyNjVjYTk0YTFhNGE3ZDMyMjZkMzk2MzpzZXNzaW9uX2lkPTJfTVg0ME5qUTVPVGcyTW41LU1UY3lOREl6TVRZMU5ERTBObjU2WW1KUlZ6QmhRaTkzV21FeWIzVkZVMmRXUTJjNVkyTi1VSDUtJmNyZWF0ZV90aW1lPTE3MjQyMzE2Njcmbm9uY2U9MC44NTc5NzU3ODg3OTE3NTI3JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE3MjQyMzUyNjYmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
 
 @interface ViewController ()<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
 @property (nonatomic) OTSession *session;
 @property (nonatomic) OTPublisher *publisher;
 @property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+
 @end
 
 @implementation ViewController
@@ -39,6 +41,31 @@ static double widgetWidth = 320;
                                        sessionId:kSessionId
                                         delegate:self];
     [self doConnect];
+
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+      [self.view addGestureRecognizer:self.tapGestureRecognizer];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)recognizer {
+    NSLog(@"View controller was tapped!");
+    [self enableTorch:YES];
+}
+
+- (void)enableTorch:(BOOL)enabled {
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (!device || !device.hasTorch) {
+        return;
+    }
+
+    NSError *error = nil;
+    [device lockForConfiguration:&error];
+    if (error) {
+        NSLog(@"Error locking device for configuration: %@", error);
+        return;
+    }
+
+    device.torchMode = enabled ? AVCaptureTorchModeOn : AVCaptureTorchModeOff;
+    [device unlockForConfiguration];
 }
 
 - (BOOL)prefersStatusBarHidden
