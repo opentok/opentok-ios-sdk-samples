@@ -432,6 +432,23 @@ typedef NS_ENUM(int32_t, OTCapturerErrorCode) {
     }
 }
 
+- (void) setTorchMode:(AVCaptureTorchMode) torchMode {
+    
+    AVCaptureDevice *device = [[self videoInput] device];
+    if ([device isTorchModeSupported:torchMode] &&
+        [device torchMode] != torchMode)
+    {
+        NSError *error;
+        if ([device lockForConfiguration:&error]) {
+            [device setTorchMode:torchMode];
+            [device unlockForConfiguration];
+        } else {
+            //Handle Error
+        }
+    }
+}
+
+
 - (void)statusBarOrientationChange:(NSNotification *)notification {
     self.currentStatusBarOrientation = [notification.userInfo[UIApplicationStatusBarOrientationUserInfoKey] integerValue];
 }
