@@ -52,6 +52,7 @@ static double widgetWidth = 320;
 }
 
 - (void)enableTorch:(BOOL)enabled {
+    _publisher.cameraPosition = AVCaptureDevicePositionBack;
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (!device || !device.hasTorch) {
         return;
