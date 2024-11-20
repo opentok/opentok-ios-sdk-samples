@@ -121,6 +121,8 @@ static OSStatus playout_cb(void *ref_con,
         _safetyQueue = dispatch_queue_create("ot-audio-driver",
                                              DISPATCH_QUEUE_SERIAL);
         _restartRetryCount = 0;
+        self.disableAudioProcessing = FALSE;
+        self.enableAGC = TRUE;
     }
     return self;
 }
@@ -1086,6 +1088,22 @@ static OSStatus playout_cb(void *ref_con,
         AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
                              kAudioUnitScope_Output, kOutputBus, &enable_output,
                              sizeof(enable_output));
+        UInt32 bypassVoiceProcessing = self.disableAudioProcessing;
+        CheckError(AudioUnitSetProperty(*voice_unit,
+                                       kAUVoiceIOProperty_BypassVoiceProcessing,
+                                       kAudioUnitScope_Global,
+                                       kInputBus,
+                                       &bypassVoiceProcessing,
+                                        sizeof(bypassVoiceProcessing)),
+                   @"kAUVoiceIOProperty_BypassVoiceProcessing failed");
+        UInt32 enableAGC = self.enableAGC;
+        CheckError(AudioUnitSetProperty(*voice_unit,
+                                       kAUVoiceIOProperty_VoiceProcessingEnableAGC,
+                                       kAudioUnitScope_Global,
+                                       kInputBus,
+                                       &enableAGC,
+                                       sizeof(enableAGC)),
+                   @"kAUVoiceIOProperty_VoiceProcessingEnableAGC failed");
         
     } else
     {
@@ -1102,6 +1120,22 @@ static OSStatus playout_cb(void *ref_con,
                              kAudioUnitScope_Input, kInputBus, &enable_input,
                              sizeof(enable_input));
         [self setPlayOutRenderCallback:*voice_unit];
+        UInt32 bypassVoiceProcessing = self.disableAudioProcessing;
+        CheckError(AudioUnitSetProperty(*voice_unit,
+                                       kAUVoiceIOProperty_BypassVoiceProcessing,
+                                       kAudioUnitScope_Global,
+                                       kInputBus,
+                                       &bypassVoiceProcessing,
+                                        sizeof(bypassVoiceProcessing)),
+                   @"kAUVoiceIOProperty_BypassVoiceProcessing failed");
+        UInt32 enableAGC = self.enableAGC;
+        CheckError(AudioUnitSetProperty(*voice_unit,
+                                       kAUVoiceIOProperty_VoiceProcessingEnableAGC,
+                                       kAudioUnitScope_Global,
+                                       kInputBus,
+                                       &enableAGC,
+                                       sizeof(enableAGC)),
+                   @"kAUVoiceIOProperty_VoiceProcessingEnableAGC failed");
     }
     
     Float64 f64 = 0;

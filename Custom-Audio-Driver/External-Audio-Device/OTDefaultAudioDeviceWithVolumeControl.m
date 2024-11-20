@@ -23,6 +23,15 @@
     AudioUnit mixerUnit;
 }
 
+- (instancetype)initWithAGC:(BOOL)agc disableAudioProcessing:(BOOL) disbaleAudioProcessing {
+    self = [super init];
+    if (self) {
+        self.enableAGC = agc;
+        self.disableAudioProcessing = disbaleAudioProcessing;
+    }
+    return self;
+    
+}
 - (BOOL)setupAudioUnit:(AudioUnit *)voice_unit playout:(BOOL)isPlayout
 {
     BOOL result = [super setupAudioUnit:voice_unit playout:isPlayout];

@@ -34,8 +34,10 @@ static NSString* const kToken = @"";
 {
     [super viewDidLoad];
     
+//    OTDefaultAudioDeviceWithVolumeControl* audioDevice =
+//    [OTDefaultAudioDeviceWithVolumeControl new];
     OTDefaultAudioDeviceWithVolumeControl* audioDevice =
-    [OTDefaultAudioDeviceWithVolumeControl new];
+    [[OTDefaultAudioDeviceWithVolumeControl alloc] initWithAGC:YES disableAudioProcessing:NO];
     [OTAudioDeviceManager setAudioDevice:audioDevice];
     
     // Step 1: As the view comes into the foreground, initialize a new instance
