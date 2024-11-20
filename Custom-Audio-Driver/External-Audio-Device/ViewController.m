@@ -81,6 +81,7 @@ static NSString* const kToken = @"";
 {
     OTPublisherSettings *settings = [[OTPublisherSettings alloc] init];
     settings.name = [UIDevice currentDevice].name;
+    settings.enableStereo = YES;
     _publisher = [[OTPublisher alloc] initWithDelegate:self settings:settings];
     
     OTError *error = nil;
@@ -233,6 +234,7 @@ didFailWithError:(OTError*)error
     streamCreated:(OTStream *)stream
 {
     NSLog(@"Publishing");
+    [self doSubscribe:stream];
 }
 
 - (void)publisher:(OTPublisherKit*)publisher
