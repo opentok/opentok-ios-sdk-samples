@@ -18,7 +18,6 @@
 
 @implementation OTAudioDeviceRingtone {
     AVAudioPlayer* _audioPlayer;
-    NSMutableArray* _deferredCallbacks;
     BOOL _vibratesWithRingtone;
     NSTimer* _vibrateTimer;
     NSURL * ringtoneURL;
@@ -29,7 +28,6 @@
 - (instancetype)initWithRingtone:(NSURL *)url {
     self = [super init];
     if (self) {
-        _deferredCallbacks = [NSMutableArray new];
         ringtoneURL = url;
     }
    
@@ -74,6 +72,55 @@
     [_audioPlayer play];
 }
 
+- (void)buzz:(NSTimer*)timer {
+    if (_vibratesWithRingtone) {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
+}
+
+
+
+#pragma mark - OTDefaultAudioDevice overrides
+
+// The following callbacks are overridden just in case you want to add logs etc.
+// You could have made a call to the parent methods directly.
+
+- (BOOL)startRendering
+{
+    return [super startRendering];
+}
+
+- (BOOL)stopRendering
+{
+    return [super stopRendering];
+}
+
+- (BOOL)startCapture
+{
+    return [super startCapture];
+}
+
+- (BOOL)stopCapture
+{
+    return [super stopCapture];
+}
+
+#pragma mark - AVAudioPlayerDelegate
+
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player
+                                 error:(NSError * __nullable)error
+{
+    NSLog(@"audioPlayerDecodeErrorDidOccur %@", error);
+    [self stopRingtone];
+}
+
+#pragma mark - Exposed interface methods
+- (void)startRingtone {
+    if (_audioPlayer == nil) {
+        [self playRingtoneFromURL:ringtoneURL];
+    }
+}
+
 - (void)stopRingtone {
     // Stop Audio
     [_audioPlayer stop];
@@ -85,105 +132,11 @@
     
     [self startCapture];
     [self startRendering];
-    // Allow deferred audio callback calls to flow
-    [self flushDeferredCallbacks];
+
 }
 
-- (void)buzz:(NSTimer*)timer {
-    if (_vibratesWithRingtone) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    }
+- (BOOL)isRingTonePlaying {
+    return _audioPlayer != nil;
 }
-
-/**
- * Private method: Can't always do as requested immediately. Defer incoming
- * callbacks from OTAudioBus until we aren't playing anything back
- */
-- (void)enqueueDeferredCallback:(SEL)callback
-{
-    @synchronized(self) {
-        NSString* selectorString = NSStringFromSelector(callback);
-        [_deferredCallbacks addObject:selectorString];
-    }
-}
-
-- (void)flushDeferredCallbacks {
-    while (_deferredCallbacks.count > 0) {
-        NSString* selectorString = [_deferredCallbacks objectAtIndex:0];
-        NSLog(@"performing deferred callback %@", selectorString);
-        SEL callback = NSSelectorFromString(selectorString);
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        [self performSelector:callback];
-#pragma clang diagnostic pop
-        [_deferredCallbacks removeObjectAtIndex:0];
-    }
-}
-
-#pragma mark - OTDefaultAudioDevice overrides
-
-- (BOOL)startRendering
-{
-    if (_audioPlayer) {
-        [self enqueueDeferredCallback:_cmd];
-        return YES;
-    } else {
-        return [super startRendering];
-    }
-}
-
-- (BOOL)stopRendering
-{
-    if (_audioPlayer) {
-        [self enqueueDeferredCallback:_cmd];
-        return YES;
-    } else {
-        return [super stopRendering];
-    }
-}
-
-- (BOOL)startCapture
-{
-    if (_audioPlayer) {
-        [self enqueueDeferredCallback:_cmd];
-        return YES;
-    } else {
-        static dispatch_once_t once;
-        BOOL ret = [super startCapture];
-        dispatch_once(&once, ^{
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [self playRingtoneFromURL:self->ringtoneURL];
-            });
-        });
-        return ret;
-    }
-}
-
-- (BOOL)stopCapture
-{
-    if (_audioPlayer) {
-        [self enqueueDeferredCallback:_cmd];
-        return YES;
-    } else {
-        return [super stopCapture];
-    }
-}
-
-#pragma mark - AVAudioPlayerDelegate
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player
-                       successfully:(BOOL)flag
-{
-    NSLog(@"audioPlayerDidFinishPlaying success=%d", flag);
-    [self stopRingtone];
-}
-
-- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player
-                                 error:(NSError * __nullable)error
-{
-    NSLog(@"audioPlayerDecodeErrorDidOccur %@", error);
-    [self stopRingtone];
-}
-
 
 @end
