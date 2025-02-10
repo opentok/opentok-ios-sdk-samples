@@ -30,6 +30,16 @@
  */
 @property (nonatomic, readonly) BOOL bluetoothDeviceAvailable;
 
+/**
+ AEC and NS are disabled together. No separate disabling is allowed by Apple AU API's. .Default is FALSE.
+ */
+@property (nonatomic) BOOL disableAudioProcessing;
+
+/**
+ Enable Automatic Gain Control. Default is TRUE.
+ */
+@property (nonatomic) BOOL enableAGC;
+
 - (BOOL)setAudioBus:(id<OTAudioBus>)audioBus;
 
 - (OTAudioFormat*)captureFormat;

@@ -1,4 +1,4 @@
-Custom Audio Drvier
+Custom Audio Driver
 ================================
 
 This project implements a controller nearly identical to the hello world sample.
@@ -9,6 +9,10 @@ instance of OTSession or OTPublisher is initialized:
 ```
 _myAudioDevice = [[OTDefaultAudioDevice alloc] init];
 [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
+```
+If you want to test or use audio processing controls like automatic gain control or bypassing audio processing then initialize the audio device with the initializer:
+```
+- (instancetype)initWithAGC:(BOOL)agcEnabled disableAudioProcessing:(BOOL)audioProcessingDisabled;
 ```
 
 `OTDefaultAudioDevice` is a copy of the default device driver used in 
