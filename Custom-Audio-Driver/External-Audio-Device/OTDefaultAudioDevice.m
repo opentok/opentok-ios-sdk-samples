@@ -47,6 +47,8 @@ options:NSNumericSearch] != NSOrderedDescending)
 #endif
 
 static double kPreferredIOBufferDuration = 0.01;
+static double kToMicroSecond = 1000000;
+static UInt8 kMaxPlayoutDelay = 150;
 
 static mach_timebase_info_data_t info;
 
@@ -331,7 +333,7 @@ static OSStatus playout_cb(void *ref_con,
 
 - (uint16_t)estimatedRenderDelay
 {
-    return _playoutDelay;
+    return (uint16_t)MIN(_playoutDelay, (UInt32)kMaxPlayoutDelay);
 }
 
 - (uint16_t)estimatedCaptureDelay
@@ -878,17 +880,18 @@ static void update_playout_delay(OTDefaultAudioDevice* device) {
         // HW output latency
         NSTimeInterval interval = [mySession outputLatency];
         
-        device->_playoutDelay += (int)(interval * 1000000);
+        device->_playoutDelay += (int)(interval * kToMicroSecond);
         
         // HW buffer duration
         interval = [mySession IOBufferDuration];
-        device->_playoutDelay += (int)(interval * 1000000);
+        device->_playoutDelay += (int)(interval * kToMicroSecond);
         
-        device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * 1000000);
+        device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * kToMicroSecond);
         
         // To ms
-        device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
-        
+        if ( device->_playoutDelay >= 500 ) {
+            device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
+        }
         // Reset counter
         device->_playoutDelayMeasurementCounter = 0;
     }
