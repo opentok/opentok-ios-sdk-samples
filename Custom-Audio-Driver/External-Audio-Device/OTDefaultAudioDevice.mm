@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #include <mach/mach.h>
 #include <mach/mach_time.h>
+#include <atomic>
 
 
 /*
@@ -40,14 +41,14 @@ options:NSNumericSearch] != NSOrderedDescending)
 #define OT_AUDIO_DEBUG(fmt, ...)
 #endif
 
-static double kPreferredIOBufferDuration = 0.01;
-static double ks2us = 1000000;
-static double kus2ms = 1000;
-static uint32_t kMaxPlayoutDelay = 150; //ms
-static uint32_t kMaxRecordingDelay = 500; //ms
+static const double kPreferredIOBufferDuration = 0.01;
+static const double ks2us = 1000000.0;
+static const double kus2ms = 1000.0;
+static const uint32_t kMaxPlayoutDelay = 150; // ms
+static const uint32_t kMaxRecordingDelay = 500; // ms
 
 // Really not sure why kLatencyDelay is needed. Looks like it compensates for buffer or audio latency and sound is little bit better.. ...??
-static UInt16 kLatencyDelay = 500; //micro seconds
+static const UInt16 kLatencyDelay = 500; //micro seconds
 
 static mach_timebase_info_data_t info;
 
@@ -76,9 +77,9 @@ static OSStatus playout_cb(void *ref_con,
     
     AudioUnit recording_voice_unit;
     AudioUnit playout_voice_unit;
-    BOOL playing;
+    std::atomic<BOOL> playing;
     BOOL playout_initialized;
-    BOOL recording;
+    std::atomic<BOOL> recording;
     BOOL recording_initialized;
     BOOL interrupted_playback;
     NSString* _previousAVAudioSessionCategory;
@@ -103,8 +104,8 @@ static OSStatus playout_cb(void *ref_con,
     AudioBufferList *buffer_list;
     uint32_t buffer_num_frames;
     uint32_t buffer_size;
-    uint32_t _recordingDelay;
-    uint32_t _playoutDelay;
+    std::atomic<uint32_t> _recordingDelay;
+    std::atomic<uint32_t> _playoutDelay;
     uint32_t _playoutDelayMeasurementCounter;
     uint32_t _recordingDelayHWAndOS;
     uint32_t _recordingDelayMeasurementCounter;
