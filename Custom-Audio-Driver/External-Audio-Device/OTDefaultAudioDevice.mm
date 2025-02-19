@@ -1,5 +1,5 @@
 //
-//  OTDefaultAudioDeviceIOS.m
+//  OTDefaultAudioDevice.m
 //
 //  Copyright (c) 2014 TokBox, Inc. All rights reserved.
 //
@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #include <mach/mach.h>
 #include <mach/mach_time.h>
+#include <atomic>
 
 /*
  *  System Versioning Preprocessor Macros
@@ -30,23 +31,23 @@ options:NSNumericSearch] == NSOrderedAscending)
 ([[[UIDevice currentDevice] systemVersion] compare:v \
 options:NSNumericSearch] != NSOrderedDescending)
 
-
-// Simulator *must* run at 44.1 kHz in order to function properly.
-#if (TARGET_IPHONE_SIMULATOR)
-#define kSampleRate 44100
-#else
-#define kSampleRate 48000
-#endif
-
-#define OT_ENABLE_AUDIO_DEBUG 1
+#define OT_ENABLE_AUDIO_DEBUG 0
 #define RETRY_COUNT 5
+
 #if OT_ENABLE_AUDIO_DEBUG
 #define OT_AUDIO_DEBUG(fmt, ...) NSLog(fmt, ##__VA_ARGS__)
 #else
 #define OT_AUDIO_DEBUG(fmt, ...)
 #endif
 
-static double kPreferredIOBufferDuration = 0.01;
+static const double kPreferredIOBufferDuration = 0.01;
+static const double ks2us = 1000000.0;
+static const double kus2ms = 1000.0;
+static const uint32_t kMaxPlayoutDelay = 150; // ms
+static const uint32_t kMaxRecordingDelay = 500; // ms
+
+// Really not sure why kLatencyDelay is needed. Looks like it compensates for buffer or audio latency and sound is little bit better.. ...??
+static const UInt16 kLatencyDelay = 500; //micro seconds
 
 static mach_timebase_info_data_t info;
 
@@ -75,9 +76,9 @@ static OSStatus playout_cb(void *ref_con,
     
     AudioUnit recording_voice_unit;
     AudioUnit playout_voice_unit;
-    BOOL playing;
+    std::atomic<BOOL> playing;
     BOOL playout_initialized;
-    BOOL recording;
+    std::atomic<BOOL> recording;
     BOOL recording_initialized;
     BOOL interrupted_playback;
     NSString* _previousAVAudioSessionCategory;
@@ -90,20 +91,21 @@ static OSStatus playout_cb(void *ref_con,
     BOOL areListenerBlocksSetup;
     BOOL _isResetting;
     int _restartRetryCount;
+    int sampleRate;
+    OSType component_sub_type;
     
     /* synchronize all access to the audio subsystem */
     dispatch_queue_t _safetyQueue;
-
+    
 @public
     id _audioBus;
     
     AudioBufferList *buffer_list;
     uint32_t buffer_num_frames;
     uint32_t buffer_size;
-    uint32_t _recordingDelay;
-    uint32_t _playoutDelay;
+    std::atomic<uint32_t> _recordingDelay;
+    std::atomic<uint32_t> _playoutDelay;
     uint32_t _playoutDelayMeasurementCounter;
-    uint32_t _recordingDelayHWAndOS;
     uint32_t _recordingDelayMeasurementCounter;
     Float64 _playout_AudioUnitProperty_Latency;
     Float64 _recording_AudioUnitProperty_Latency;
@@ -115,8 +117,20 @@ static OSStatus playout_cb(void *ref_con,
 {
     self = [super init];
     if (self) {
+      
+        sampleRate = [[AVAudioSession sharedInstance] sampleRate];
+
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad &&
+            NSClassFromString(@"NSApplication") != nil) {
+            // Running in "Designed for iPad" mode on macOS
+            component_sub_type = kAudioUnitSubType_RemoteIO;
+        } else {
+            // Running on an actual iPad or iOS
+            component_sub_type = kAudioUnitSubType_VoiceProcessingIO;
+        }
+        
         _audioFormat = [[OTAudioFormat alloc] init];
-        _audioFormat.sampleRate = kSampleRate;
+        _audioFormat.sampleRate = sampleRate;
         _audioFormat.numChannels = 1;
         _safetyQueue = dispatch_queue_create("ot-audio-driver",
                                              DISPATCH_QUEUE_SERIAL);
@@ -130,7 +144,7 @@ static OSStatus playout_cb(void *ref_con,
     OT_AUDIO_DEBUG(@"%s", __PRETTY_FUNCTION__);
     _audioBus = audioBus;
     _audioFormat = [[OTAudioFormat alloc] init];
-    _audioFormat.sampleRate = kSampleRate;
+    _audioFormat.sampleRate = sampleRate;
     _audioFormat.numChannels = 1;
     
     return YES;
@@ -141,6 +155,7 @@ static OSStatus playout_cb(void *ref_con,
     [self removeObservers];
     [self teardownAudio];
     _audioFormat = nil;
+   // [super dealloc];
 }
 
 - (OTAudioFormat*)captureFormat
@@ -238,7 +253,7 @@ static OSStatus playout_cb(void *ref_con,
 {
     @synchronized(self) {
         OT_AUDIO_DEBUG(@"stopRendering started with playing flag = %d", playing);
-        
+
         if (!playing) {
             return YES;
         }
@@ -251,6 +266,10 @@ static OSStatus playout_cb(void *ref_con,
         }
         
         // publisher is already closed
+        // Furthermore in compact mode of ansering phone the
+        // AVAudioSessionInterruptionTypeEnded is not fired if audio is teared down.
+        // So we don't tearDownAudio often , as before.
+        
         if (!recording && !isPlayerInterrupted && !_isResetting)
         {
             OT_AUDIO_DEBUG(@"teardownAudio from stopRendering");
@@ -284,7 +303,7 @@ static OSStatus playout_cb(void *ref_con,
                 return NO;
             }
         }
-
+        
         OSStatus result = AudioOutputUnitStart(recording_voice_unit);
         if (CheckError(result, @"startCapture.AudioOutputUnitStart")) {
             recording = NO;
@@ -298,7 +317,7 @@ static OSStatus playout_cb(void *ref_con,
 {
     @synchronized(self) {
         OT_AUDIO_DEBUG(@"stopCapture started with recording flag = %d", recording);
-        
+
         if (!recording) {
             return YES;
         }
@@ -331,12 +350,18 @@ static OSStatus playout_cb(void *ref_con,
 
 - (uint16_t)estimatedRenderDelay
 {
-    return _playoutDelay;
+    if (_playoutDelay < kMaxPlayoutDelay)
+        return _playoutDelay;
+    else
+        return kMaxPlayoutDelay;
 }
 
 - (uint16_t)estimatedCaptureDelay
 {
-    return _recordingDelay;
+    if (_recordingDelay < kMaxRecordingDelay)
+        return _recordingDelay;
+    else
+        return kMaxRecordingDelay;
 }
 
 #pragma mark - AudioSession Setup
@@ -410,13 +435,14 @@ static bool CheckError(OSStatus error, NSString* function) {
                                 error: nil];
     [mySession setPreferredInputNumberOfChannels:avAudioSessionChannels
                                            error:nil];
-
+    
     AVAudioSessionSetActiveOptions audioOptions = AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation;
     [mySession setActive:NO
              withOptions:audioOptions
                    error:nil];
 
     isAudioSessionSetup = NO;
+
 }
 
 - (void)freeupAudioBuffers
@@ -434,15 +460,14 @@ static bool CheckError(OSStatus error, NSString* function) {
 }
 - (void) setupAudioSession
 {
-    if (isAudioSessionSetup) return;
-    
+    if(isAudioSessionSetup) return;
     AVAudioSession *mySession = [AVAudioSession sharedInstance];
     _previousAVAudioSessionCategory = mySession.category;
     avAudioSessionMode = mySession.mode;
     avAudioSessionPreffSampleRate = mySession.preferredSampleRate;
     avAudioSessionChannels = mySession.inputNumberOfChannels;
     
-    [mySession setPreferredSampleRate: kSampleRate error: nil];
+    [mySession setPreferredSampleRate: sampleRate error: nil];
     [mySession setPreferredInputNumberOfChannels:1 error:nil];
     [mySession setPreferredIOBufferDuration:kPreferredIOBufferDuration
                                       error:nil];
@@ -450,21 +475,17 @@ static bool CheckError(OSStatus error, NSString* function) {
     NSError *error = nil;
     NSUInteger audioOptions = 0;
 #if !(TARGET_OS_TV)
+    audioOptions |= AVAudioSessionCategoryOptionAllowBluetooth ;
+    audioOptions |= AVAudioSessionCategoryOptionDefaultToSpeaker;
     [mySession setCategory:AVAudioSessionCategoryPlayAndRecord
-                        error:nil];
-    AVAudioSessionPortDescription *routePort = mySession.currentRoute.outputs.firstObject;
-    NSString *portType = routePort.portType;
-    if ([portType isEqualToString:@"Receiver"]) {
-           [mySession  overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:&error];
-    } else {
-           [mySession  overrideOutputAudioPort:AVAudioSessionPortOverrideNone error:&error];
-    }
+               withOptions:audioOptions
+                     error:&error];
 #else
     [mySession setCategory:AVAudioSessionCategoryPlayback
                withOptions:audioOptions
                      error:&error];
 #endif
-    
+
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
         [mySession setMode:AVAudioSessionModeVideoChat error:nil];
     }
@@ -482,41 +503,51 @@ static bool CheckError(OSStatus error, NSString* function) {
     
     if (error)
         OT_AUDIO_DEBUG(@"Audiosession setActive %@",error);
-
+    
     if (@available(iOS 15, *)) {
         // do nothing refer comments for self.setBluetoothAsPrefferedInputDevice method.
     } else {
         [self setBluetoothAsPrefferedInputDevice];
     }
+    
     isAudioSessionSetup = YES;
 }
 
-- (void)setBluetoothAsPrefferedInputDevice {
-  // Apple's Bug(???) : Before iOS 15 AVAudioSessionInterruptionTypeEnded notification would
-  // not be called for bluetooth if we dont set bluetooth as preferred input as
-  // in setupAudioSession. In iOS 15 starting a session with BT and then disconnecting it
-  // would cause the camera to freeze for some reason (an Apple Bug again ??)
-  //
-  // This method is also called on AVAudioSessionInterruptionTypeEnded, because BT audio
-  // routing would be lost, if you received a phone call and ended it, while
-  // using BT with OT
-  //
-  // Should work for non bluetooth routes/ports too. This makes both input
-  // and output to bluetooth device if available.
-  NSArray *bluetoothRoutes = @[
-    AVAudioSessionPortBluetoothA2DP, AVAudioSessionPortBluetoothLE,
-    AVAudioSessionPortBluetoothHFP
-  ];
-  NSArray *routes = [[AVAudioSession sharedInstance] availableInputs];
-  for (AVAudioSessionPortDescription *route in routes) {
-    if ([bluetoothRoutes containsObject:route.portType]) {
-      [[AVAudioSession sharedInstance] setPreferredInput:route error:nil];
-      break;
-    }
-  }
+- (void)setBuiltInSpeakerAsPrefferedOutputDevice
+{
+    [[AVAudioSession sharedInstance] overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+                                    error:nil];
 }
 
-#pragma mark - System interruptions and audio route changes
+- (void)setBluetoothAsPrefferedInputDevice
+{
+    // Apple's Bug(???) : Before iOS 15 AVAudioSessionInterruptionTypeEnded notification would
+    // not be called for bluetooth if we dont set bluetooth as preferred input as
+    // in setupAudioSession. In iOS 15 starting a session with BT and then disconnecting it
+    // would cause the camera to freeze for some reason (an Apple Bug again ??)
+    //
+    // This method is also called on AVAudioSessionInterruptionTypeEnded, because BT audio
+    // routing would be lost, if you received a phone call and ended it, while
+    // using BT with OT - https://jira.vonage.com/browse/OPENTOK-46715
+    //
+    // Should work for non bluetooth routes/ports too. This makes both input
+    // and output to bluetooth device if available.
+ 
+    NSArray* bluetoothRoutes = @[AVAudioSessionPortBluetoothA2DP,
+                                 AVAudioSessionPortBluetoothLE,
+                                 AVAudioSessionPortBluetoothHFP];
+    NSArray* routes = [[AVAudioSession sharedInstance] availableInputs];
+    for (AVAudioSessionPortDescription* route in routes)
+    {
+        if ([bluetoothRoutes containsObject:route.portType])
+        {
+            [[AVAudioSession sharedInstance] setPreferredInput:route
+                                                         error:nil];
+            break;
+        }
+    }
+    
+}
 
 - (void) onInterruptionEvent:(NSNotification *) notification
 {
@@ -526,7 +557,7 @@ static bool CheckError(OSStatus error, NSString* function) {
     NSInteger interruptionType =
     [[interruptionDict valueForKey:AVAudioSessionInterruptionTypeKey]
      integerValue];
-
+    
     dispatch_async(_safetyQueue, ^() {
         [self handleInterruptionEvent:interruptionType];
     });
@@ -561,6 +592,7 @@ static bool CheckError(OSStatus error, NSString* function) {
                 } else {
                     // do nothing refer comments for self.setBluetoothAsPrefferedInputDevice method.
                 }
+                
                 if(isRecorderInterrupted)
                 {
                     if([self startCapture] == YES)
@@ -621,7 +653,6 @@ static bool CheckError(OSStatus error, NSString* function) {
                         return;
                     }
                 }
-
             }
                 break;
                 
@@ -649,12 +680,12 @@ static bool CheckError(OSStatus error, NSString* function) {
      integerValue];
 
     // We'll receive a routeChangedEvent when the audio unit starts; don't
-    // process events we caused internally. And when switching calls using
-    // CallKit, iOS system generates a category change which we should Ignore!
-    if (AVAudioSessionRouteChangeReasonRouteConfigurationChange ==
-            routeChangeReason ||
-        AVAudioSessionRouteChangeReasonCategoryChange == routeChangeReason) {
-      return;
+    // process events we caused internally. And when switching calls using CallKit,
+    // iOS system generates a category change which we should Ignore!
+    if (AVAudioSessionRouteChangeReasonRouteConfigurationChange == routeChangeReason ||
+        AVAudioSessionRouteChangeReasonCategoryChange == routeChangeReason)
+    {
+        return;
     }
 
     if(routeChangeReason == AVAudioSessionRouteChangeReasonOverride ||
@@ -687,13 +718,20 @@ static bool CheckError(OSStatus error, NSString* function) {
            currentOutputDeviceName == nil ||  oldOutputDeviceName == nil) {
             return;
         }
+        
         OT_AUDIO_DEBUG(@"routeChanged: old=%@ new=%@",
                        oldOutputDeviceName, currentOutputDeviceName);
     }
+
+    // We've made it here, there's been a legit route change.
+    // Restart the audio units with correct sample rate
+    [self restartAudioUnits];
     
+}
+
+/* Restart the audio units with correct sample rate */
+- (void) restartAudioUnits {
     @synchronized(self) {
-        // We've made it here, there's been a legit route change.
-        // Restart the audio units with correct sample rate
         _isResetting = YES;
         
         if (recording)
@@ -712,9 +750,7 @@ static bool CheckError(OSStatus error, NSString* function) {
         
         _isResetting = NO;
     }
-
 }
-
 /* When ringer is off, we dont get interruption ended callback
  as mentioned in apple doc : "There is no guarantee that a begin
  interruption will have an end interruption."
@@ -729,6 +765,13 @@ static bool CheckError(OSStatus error, NSString* function) {
     });
 }
 
+- (void)onMediaServicesReset:(NSNotification *)notification {
+    OT_AUDIO_DEBUG(@"onMediaServicesReset %@",notification);
+    dispatch_async(_safetyQueue, ^() {
+        [self restartAudioUnits];
+    });
+}
+
 - (void) setupListenerBlocks
 {
     if(!areListenerBlocksSetup)
@@ -736,17 +779,21 @@ static bool CheckError(OSStatus error, NSString* function) {
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         
         [center addObserver:self
-                   selector:@selector(onInterruptionEvent:)
-                       name:AVAudioSessionInterruptionNotification object:nil];
-        
+                    selector:@selector(onInterruptionEvent:)
+                    name:AVAudioSessionInterruptionNotification
+                    object:nil];
         [center addObserver:self
-                   selector:@selector(onRouteChangeEvent:)
-                       name:AVAudioSessionRouteChangeNotification object:nil];
-        
+                    selector:@selector(onRouteChangeEvent:)
+                    name:AVAudioSessionRouteChangeNotification
+                    object:nil];
         [center addObserver:self
-                   selector:@selector(appDidBecomeActive:)
-                       name:UIApplicationDidBecomeActiveNotification
-                     object:nil];
+                    selector:@selector(appDidBecomeActive:)
+                    name:UIApplicationDidBecomeActiveNotification
+                    object:nil];
+        [center addObserver:self
+                    selector:@selector(onMediaServicesReset:)
+                    name:AVAudioSessionMediaServicesWereResetNotification
+                    object:nil];
 
         areListenerBlocksSetup = YES;
     }
@@ -759,39 +806,36 @@ static bool CheckError(OSStatus error, NSString* function) {
     areListenerBlocksSetup = NO;
 }
 
-#pragma mark - native audio callbacks
-
 static void update_recording_delay(OTDefaultAudioDevice* device) {
     
     device->_recordingDelayMeasurementCounter++;
     
     if (device->_recordingDelayMeasurementCounter >= 100) {
         // Update HW and OS delay every second, unlikely to change
-        
-        device->_recordingDelayHWAndOS = 0;
-        
+        uint32_t _tempRecordingDelay = 0;
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
         // HW input latency
         NSTimeInterval interval = [mySession inputLatency];
         
-        device->_recordingDelayHWAndOS += (int)(interval * 1000000);
+        _tempRecordingDelay += (int)(interval * ks2us);
         
         // HW buffer duration
         interval = [mySession IOBufferDuration];
-        device->_recordingDelayHWAndOS += (int)(interval * 1000000);
+        _tempRecordingDelay += (int)(interval * ks2us);
         
-        device->_recordingDelayHWAndOS += (int)(device->_recording_AudioUnitProperty_Latency * 1000000);
-        
-        // To ms
-        device->_recordingDelayHWAndOS =
-        (device->_recordingDelayHWAndOS - 500) / 1000;
-        
+        _tempRecordingDelay += (int)(device->_recording_AudioUnitProperty_Latency * ks2us);
+
+        // To ms and avoid negative values
+        if (_tempRecordingDelay > kLatencyDelay) {
+            _tempRecordingDelay = (_tempRecordingDelay - kLatencyDelay) / kus2ms;
+        } else {
+            _tempRecordingDelay = _tempRecordingDelay / kus2ms;
+        }
         // Reset counter
         device->_recordingDelayMeasurementCounter = 0;
+        device->_recordingDelay = _tempRecordingDelay;
     }
-    
-    device->_recordingDelay = device->_recordingDelayHWAndOS;
 }
 
 static OSStatus recording_cb(void *ref_con,
@@ -801,7 +845,6 @@ static OSStatus recording_cb(void *ref_con,
                              UInt32 num_frames,
                              AudioBufferList *data)
 {
-    
     OTDefaultAudioDevice *dev = (__bridge OTDefaultAudioDevice*) ref_con;
     
     if (!dev->buffer_list || num_frames > dev->buffer_num_frames)
@@ -840,7 +883,7 @@ static OSStatus recording_cb(void *ref_con,
         // Some sample code to generate a sine wave instead of use the mic
         //        static double startingFrameCount = 0;
         //        double j = startingFrameCount;
-        //        double cycleLength = kSampleRate. / 880.0;
+        //        double cycleLength = sampleRate. / 880.0;
         //        int frame = 0;
         //        for (frame = 0; frame < num_frames; ++frame)
         //        {
@@ -870,27 +913,31 @@ static void update_playout_delay(OTDefaultAudioDevice* device) {
     
     if (device->_playoutDelayMeasurementCounter >= 100) {
         // Update HW and OS delay every second, unlikely to change
-        
-        device->_playoutDelay = 0;
+        uint32_t _tempPlayoutDelay = 0;
         
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
         // HW output latency
         NSTimeInterval interval = [mySession outputLatency];
         
-        device->_playoutDelay += (int)(interval * 1000000);
+        _tempPlayoutDelay += (int)(interval * ks2us);
         
         // HW buffer duration
         interval = [mySession IOBufferDuration];
-        device->_playoutDelay += (int)(interval * 1000000);
+        _tempPlayoutDelay += (int)(interval * ks2us);
         
-        device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * 1000000);
+        _tempPlayoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * ks2us);
         
-        // To ms
-        device->_playoutDelay = (device->_playoutDelay - 500) / 1000;
-        
+        // To ms and avoid negative values
+        if (_tempPlayoutDelay > kLatencyDelay) {
+            _tempPlayoutDelay = (_tempPlayoutDelay - kLatencyDelay) / kus2ms;
+        } else {
+            _tempPlayoutDelay = _tempPlayoutDelay / kus2ms;
+        }
+
         // Reset counter
         device->_playoutDelayMeasurementCounter = 0;
+        device->_playoutDelay = _tempPlayoutDelay;
     }
 }
 
@@ -918,7 +965,7 @@ static OSStatus playout_cb(void *ref_con,
     return 0;
 }
 
-#pragma mark - BlueTooth
+#pragma mark BlueTooth
 
 - (BOOL)isBluetoothDevice:(NSString*)portType {
     
@@ -1036,17 +1083,15 @@ static OSStatus playout_cb(void *ref_con,
     stream_format.mBytesPerFrame   = bytesPerSample;
     stream_format.mChannelsPerFrame= 1;
     stream_format.mBitsPerChannel  = 8 * bytesPerSample;
-    stream_format.mSampleRate = (Float64) kSampleRate;
+    stream_format.mSampleRate = (Float64) sampleRate;
     
     AudioComponentDescription audio_unit_description;
     audio_unit_description.componentType = kAudioUnitType_Output;
-    
 #if !(TARGET_OS_TV)
-    audio_unit_description.componentSubType = kAudioUnitSubType_VoiceProcessingIO;
+    audio_unit_description.componentSubType =  component_sub_type;
 #else
     audio_unit_description.componentSubType = kAudioUnitSubType_RemoteIO;
 #endif
-    
     audio_unit_description.componentManufacturer = kAudioUnitManufacturer_Apple;
     audio_unit_description.componentFlags = 0;
     audio_unit_description.componentFlagsMask = 0;
@@ -1082,6 +1127,7 @@ static OSStatus playout_cb(void *ref_con,
                              kAudioUnitScope_Output, kInputBus, &flag,
                              sizeof(flag));
         // Disable Output on record
+        // see OPENTOK-34229
         UInt32 enable_output = 0;
         AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
                              kAudioUnitScope_Output, kOutputBus, &enable_output,
@@ -1097,10 +1143,12 @@ static OSStatus playout_cb(void *ref_con,
                              kAudioUnitScope_Input, kOutputBus,
                              &stream_format, sizeof (stream_format));
         // Disable Input on playout
+        // see OPENTOK-34229
         UInt32 enable_input = 0;
         AudioUnitSetProperty(*voice_unit, kAudioOutputUnitProperty_EnableIO,
                              kAudioUnitScope_Input, kInputBus, &enable_input,
                              sizeof(enable_input));
+
         [self setPlayOutRenderCallback:*voice_unit];
     }
     
@@ -1121,26 +1169,27 @@ static OSStatus playout_cb(void *ref_con,
     
     // Initialize the Voice-Processing I/O unit instance.
     result = AudioUnitInitialize(*voice_unit);
-
+    
     // This patch is picked up from WebRTC audio implementation and
     // is kind of a workaround. We encountered AudioUnitInitialize
-    // failure in iOS 13 with Callkit while switching calls.
+    // failure in iOS 13 with Callkit while switching calls. The failure
+    // code is not public so we can't do much.
     int failed_initalize_attempts = 0;
     int kMaxInitalizeAttempts = 5;
     while (result != noErr) {
-      ++failed_initalize_attempts;
-      if (failed_initalize_attempts == kMaxInitalizeAttempts) {
-        // Max number of initialization attempts exceeded, hence abort.
-        return false;
-      }
-      [NSThread sleepForTimeInterval:0.1f];
-      result = AudioUnitInitialize(*voice_unit);
+        ++failed_initalize_attempts;
+        if (failed_initalize_attempts == kMaxInitalizeAttempts) {
+            // Max number of initialization attempts exceeded, hence abort.
+            return false;
+        }
+        [NSThread sleepForTimeInterval:0.1f];
+        result = AudioUnitInitialize(*voice_unit);
     }
-
+    
     if (CheckError(result, @"setupAudioUnit.AudioUnitInitialize")) {
         return NO;
     }
-
+    
     return YES;
 }
 
@@ -1149,8 +1198,11 @@ static OSStatus playout_cb(void *ref_con,
     AURenderCallbackStruct render_callback;
     render_callback.inputProc = playout_cb;;
     render_callback.inputProcRefCon = (__bridge void *)(self);
-    OSStatus result = AudioUnitSetProperty(unit, kAudioUnitProperty_SetRenderCallback,
-                                           kAudioUnitScope_Input, kOutputBus, &render_callback,
+    OSStatus result = AudioUnitSetProperty(unit,
+                                           kAudioUnitProperty_SetRenderCallback,
+                                           kAudioUnitScope_Input,
+                                           kOutputBus,
+                                           &render_callback,
                                            sizeof(render_callback));
     return (result == 0);
 }
