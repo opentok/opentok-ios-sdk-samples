@@ -11,7 +11,6 @@
 #include <mach/mach_time.h>
 #include <atomic>
 
-
 /*
  *  System Versioning Preprocessor Macros
  */
@@ -107,7 +106,6 @@ static OSStatus playout_cb(void *ref_con,
     std::atomic<uint32_t> _recordingDelay;
     std::atomic<uint32_t> _playoutDelay;
     uint32_t _playoutDelayMeasurementCounter;
-    uint32_t _recordingDelayHWAndOS;
     uint32_t _recordingDelayMeasurementCounter;
     Float64 _playout_AudioUnitProperty_Latency;
     Float64 _recording_AudioUnitProperty_Latency;
@@ -814,30 +812,30 @@ static void update_recording_delay(OTDefaultAudioDevice* device) {
     
     if (device->_recordingDelayMeasurementCounter >= 100) {
         // Update HW and OS delay every second, unlikely to change
-        
-        device->_recordingDelayHWAndOS = 0;
-        
+        uint32_t _tempRecordingDelay = 0;
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
         // HW input latency
         NSTimeInterval interval = [mySession inputLatency];
         
-        device->_recordingDelayHWAndOS += (int)(interval * ks2us);
+        _tempRecordingDelay += (int)(interval * ks2us);
         
         // HW buffer duration
         interval = [mySession IOBufferDuration];
-        device->_recordingDelayHWAndOS += (int)(interval * ks2us);
+        _tempRecordingDelay += (int)(interval * ks2us);
         
-        device->_recordingDelayHWAndOS += (int)(device->_recording_AudioUnitProperty_Latency * ks2us);
+        _tempRecordingDelay += (int)(device->_recording_AudioUnitProperty_Latency * ks2us);
 
-        // To ms
-        device->_recordingDelayHWAndOS = (device->_recordingDelayHWAndOS - kLatencyDelay) / kus2ms;
-        
+        // To ms and avoid negative values
+        if (_tempRecordingDelay > kLatencyDelay) {
+            _tempRecordingDelay = (_tempRecordingDelay - kLatencyDelay) / kus2ms;
+        } else {
+            _tempRecordingDelay = _tempRecordingDelay / kus2ms;
+        }
         // Reset counter
         device->_recordingDelayMeasurementCounter = 0;
+        device->_recordingDelay = _tempRecordingDelay;
     }
-    
-    device->_recordingDelay = device->_recordingDelayHWAndOS;
 }
 
 static OSStatus recording_cb(void *ref_con,
@@ -915,27 +913,31 @@ static void update_playout_delay(OTDefaultAudioDevice* device) {
     
     if (device->_playoutDelayMeasurementCounter >= 100) {
         // Update HW and OS delay every second, unlikely to change
-        
-        device->_playoutDelay = 0;
+        uint32_t _tempPlayoutDelay = 0;
         
         AVAudioSession *mySession = [AVAudioSession sharedInstance];
         
         // HW output latency
         NSTimeInterval interval = [mySession outputLatency];
         
-        device->_playoutDelay += (int)(interval * ks2us);
+        _tempPlayoutDelay += (int)(interval * ks2us);
         
         // HW buffer duration
         interval = [mySession IOBufferDuration];
-        device->_playoutDelay += (int)(interval * ks2us);
+        _tempPlayoutDelay += (int)(interval * ks2us);
         
-        device->_playoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * ks2us);
+        _tempPlayoutDelay += (int)(device->_playout_AudioUnitProperty_Latency * ks2us);
         
-        // To ms
-        device->_playoutDelay = (device->_playoutDelay - kLatencyDelay) / kus2ms;
+        // To ms and avoid negative values
+        if (_tempPlayoutDelay > kLatencyDelay) {
+            _tempPlayoutDelay = (_tempPlayoutDelay - kLatencyDelay) / kus2ms;
+        } else {
+            _tempPlayoutDelay = _tempPlayoutDelay / kus2ms;
+        }
 
         // Reset counter
         device->_playoutDelayMeasurementCounter = 0;
+        device->_playoutDelay = _tempPlayoutDelay;
     }
 }
 
@@ -1168,7 +1170,7 @@ static OSStatus playout_cb(void *ref_con,
     // Initialize the Voice-Processing I/O unit instance.
     result = AudioUnitInitialize(*voice_unit);
     
-    // This patch is pickedup from WebRTC audio implementation and
+    // This patch is picked up from WebRTC audio implementation and
     // is kind of a workaround. We encountered AudioUnitInitialize
     // failure in iOS 13 with Callkit while switching calls. The failure
     // code is not public so we can't do much.
@@ -1196,9 +1198,12 @@ static OSStatus playout_cb(void *ref_con,
     AURenderCallbackStruct render_callback;
     render_callback.inputProc = playout_cb;;
     render_callback.inputProcRefCon = (__bridge void *)(self);
-        OSStatus result = AudioUnitSetProperty(unit, kAudioUnitProperty_SetRenderCallback,
-                                 kAudioUnitScope_Input, kOutputBus, &render_callback,
-                                 sizeof(render_callback));
+    OSStatus result = AudioUnitSetProperty(unit,
+                                           kAudioUnitProperty_SetRenderCallback,
+                                           kAudioUnitScope_Input,
+                                           kOutputBus,
+                                           &render_callback,
+                                           sizeof(render_callback));
     return (result == 0);
 }
 
