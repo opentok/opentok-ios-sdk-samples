@@ -1,8 +1,9 @@
 require_relative '../OpenTokSDKVersion'
 
-platform :ios, '13.0'
+platform :ios, MinIosSdkVersion
 use_frameworks!
 
 target 'Archiving' do
-  pod 'OTXCFramework', '2.25.1'
+  pod 'OTXCFramework', OpenTokSDKVersion
 end
+ 
