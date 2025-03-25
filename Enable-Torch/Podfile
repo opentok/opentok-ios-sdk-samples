@@ -1,0 +1,9 @@
+require_relative '../OpenTokSDKVersion'
+
+platform :ios, MinIosSdkVersion
+use_frameworks!
+
+target 'Enable-Torch' do
+ pod 'OTXCFramework', OpenTokSDKVersion
+ pod 'VonageClientSDKVideoTransformers', OpenTokSDKVersion
+end
