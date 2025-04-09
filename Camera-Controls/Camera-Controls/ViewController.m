@@ -24,8 +24,11 @@ static NSString* const kToken = @"";
 @end
 
 @implementation ViewController
+static double widgetHeight = 240;
+static double widgetWidth = 320;
 
-UIButton *buttonMediaTransformerToggle;
+UIButton *buttonTorch;
+UIButton *buttonZoom;
 
 #pragma mark - View lifecycle
 
@@ -87,19 +90,33 @@ UIButton *buttonMediaTransformerToggle;
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     
-    // Configure toogle button
-    buttonMediaTransformerToggle = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonMediaTransformerToggle.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
-    buttonMediaTransformerToggle.layer.cornerRadius = 5.0;
-    [self.view addSubview:buttonMediaTransformerToggle];
-    [self.view bringSubviewToFront:buttonMediaTransformerToggle];
-    [buttonMediaTransformerToggle setTitle:@"Torch" forState:UIControlStateNormal];
-    buttonMediaTransformerToggle.titleLabel.font = [UIFont systemFontOfSize:12];
-    [buttonMediaTransformerToggle setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-    buttonMediaTransformerToggle.backgroundColor = [UIColor whiteColor];
-    buttonMediaTransformerToggle.layer.borderWidth = 1.0;  // Adjust the width as desired
-    buttonMediaTransformerToggle.layer.borderColor = [UIColor grayColor].CGColor;
-    [buttonMediaTransformerToggle addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    // Configure Torch button
+    buttonTorch = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonTorch.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
+    buttonTorch.layer.cornerRadius = 5.0;
+    [self.view addSubview:buttonTorch];
+    [self.view bringSubviewToFront:buttonTorch];
+    [buttonTorch setTitle:@"Torch" forState:UIControlStateNormal];
+    buttonTorch.titleLabel.font = [UIFont systemFontOfSize:12];
+    [buttonTorch setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    buttonTorch.backgroundColor = [UIColor whiteColor];
+    buttonTorch.layer.borderWidth = 1.0;  // Adjust the width as desired
+    buttonTorch.layer.borderColor = [UIColor grayColor].CGColor;
+    [buttonTorch addTarget:self action:@selector(buttonTorchTapped:) forControlEvents:UIControlEventTouchUpInside];
+
+    // Configure Zoom button
+    buttonZoom = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonZoom.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
+    buttonZoom.layer.cornerRadius = 5.0;
+    [self.view addSubview:buttonZoom];
+    [self.view bringSubviewToFront:buttonZoom];
+    [buttonZoom setTitle:@"Zoom" forState:UIControlStateNormal];
+    buttonZoom.titleLabel.font = [UIFont systemFontOfSize:12];
+    [buttonZoom setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    buttonZoom.backgroundColor = [UIColor whiteColor];
+    buttonZoom.layer.borderWidth = 1.0;  // Adjust the width as desired
+    buttonZoom.layer.borderColor = [UIColor grayColor].CGColor;
+    [buttonZoom addTarget:self action:@selector(buttonZoomTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -265,10 +282,23 @@ didFailWithError:(OTError*)error
     });
 }
 
-- (void)buttonTapped:(UIButton *)sender {
+- (void)buttonTorchTapped:(UIButton *)sender {
     publisher.cameraTorch = !publisher.cameraTorch;
     sender.backgroundColor = publisher.cameraTorch ? [UIColor redColor] : [UIColor greenColor];
 }
 
+float zoomFactor = 1.0f;
+
+- (void)buttonZoomTapped:(UIButton *)sender {
+    if (zoomFactor == 0.5f) {
+        zoomFactor = 1.0f;
+    } else if (zoomFactor == 1.0f) {
+        zoomFactor = 5.0f;
+    } else {
+        zoomFactor = 0.5f;
+    }
+
+    publisher.setCameraZoomFactor = zoomFactor;
+}
 
 @end

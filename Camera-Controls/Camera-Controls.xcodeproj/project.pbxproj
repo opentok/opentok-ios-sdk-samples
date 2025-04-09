@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B275072C1DE02B28D3476F4 /* Pods_Camera_Controls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4647206613849F06E7F97A7D /* Pods_Camera_Controls.framework */; };
 		A05376311EB173CC00645696 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A05376251EB173CC00645696 /* AppDelegate.m */; };
 		A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376261EB173CC00645696 /* Main_iPad.storyboard */; };
 		A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A05376281EB173CC00645696 /* Main_iPhone.storyboard */; };
@@ -14,11 +15,13 @@
 		A05376351EB173CC00645696 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A053762C1EB173CC00645696 /* Images.xcassets */; };
 		A05376361EB173CC00645696 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762D1EB173CC00645696 /* main.m */; };
 		A05376371EB173CC00645696 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A053762F1EB173CC00645696 /* ViewController.m */; };
-		AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */; };
 		D442614C185F92C000E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D442614B185F92BF00E23699 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		026C845C16C7C0D92427E769 /* Pods-Camera-Controls.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camera-Controls.debug.xcconfig"; path = "Target Support Files/Pods-Camera-Controls/Pods-Camera-Controls.debug.xcconfig"; sourceTree = "<group>"; };
+		3939E0E4FEB7164609EC98CA /* Pods-Camera-Controls.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camera-Controls.release.xcconfig"; path = "Target Support Files/Pods-Camera-Controls/Pods-Camera-Controls.release.xcconfig"; sourceTree = "<group>"; };
+		4647206613849F06E7F97A7D /* Pods_Camera_Controls.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Camera_Controls.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A05376221EB173CC00645696 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A05376241EB173CC00645696 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A05376251EB173CC00645696 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,7 +33,7 @@
 		A053762E1EB173CC00645696 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A053762F1EB173CC00645696 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AD08FCCA2A2F8A4300F4F7A1 /* Vonage_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vonage_Logo.png; sourceTree = "<group>"; };
-		D44260F3185F81D800E23699 /* Enable-Torch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enable-Torch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D44260F3185F81D800E23699 /* Camera-Controls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Camera-Controls.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D44260F6185F81D800E23699 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D44260FA185F81D800E23699 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D442614B185F92BF00E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -41,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B275072C1DE02B28D3476F4 /* Pods_Camera_Controls.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,11 +54,13 @@
 		82EBC85A29B2215464A49FD9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				3939E0E4FEB7164609EC98CA /* Pods-Camera-Controls.release.xcconfig */,
+				026C845C16C7C0D92427E769 /* Pods-Camera-Controls.debug.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		A05376211EB173CC00645696 /* Enable-Torch */ = {
+		A05376211EB173CC00645696 /* Camera-Controls */ = {
 			isa = PBXGroup;
 			children = (
 				A05376221EB173CC00645696 /* Info.plist */,
@@ -69,14 +75,14 @@
 				A053762E1EB173CC00645696 /* ViewController.h */,
 				A053762F1EB173CC00645696 /* ViewController.m */,
 			);
-			path = "Enable-Torch";
+			path = "Camera-Controls";
 			sourceTree = "<group>";
 		};
 		D44260EA185F81D800E23699 = {
 			isa = PBXGroup;
 			children = (
 				D442614B185F92BF00E23699 /* README.md */,
-				A05376211EB173CC00645696 /* Enable-Torch */,
+				A05376211EB173CC00645696 /* Camera-Controls */,
 				D44260F5185F81D800E23699 /* Frameworks */,
 				D44260F4185F81D800E23699 /* Products */,
 				82EBC85A29B2215464A49FD9 /* Pods */,
@@ -86,7 +92,7 @@
 		D44260F4185F81D800E23699 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D44260F3185F81D800E23699 /* Enable-Torch.app */,
+				D44260F3185F81D800E23699 /* Camera-Controls.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,6 +102,7 @@
 			children = (
 				D44260F6185F81D800E23699 /* Foundation.framework */,
 				D44260FA185F81D800E23699 /* UIKit.framework */,
+				4647206613849F06E7F97A7D /* Pods_Camera_Controls.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -103,21 +110,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D44260F2185F81D800E23699 /* Enable-Torch */ = {
+		D44260F2185F81D800E23699 /* Camera-Controls */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Enable-Torch" */;
+			buildConfigurationList = D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Camera-Controls" */;
 			buildPhases = (
+				F3591B028E06FC54F957FB44 /* [CP] Check Pods Manifest.lock */,
 				D44260EF185F81D800E23699 /* Sources */,
 				D44260F0185F81D800E23699 /* Frameworks */,
 				D44260F1185F81D800E23699 /* Resources */,
+				A464CC401334DAE63F9235BB /* [CP] Embed Pods Frameworks */,
+				4B356849C82D35F96C67DF7E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Enable-Torch";
+			name = "Camera-Controls";
 			productName = "Hello-World";
-			productReference = D44260F3185F81D800E23699 /* Enable-Torch.app */;
+			productReference = D44260F3185F81D800E23699 /* Camera-Controls.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -135,7 +145,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Enable-Torch" */;
+			buildConfigurationList = D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Camera-Controls" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -148,7 +158,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D44260F2185F81D800E23699 /* Enable-Torch */,
+				D44260F2185F81D800E23699 /* Camera-Controls */,
 			);
 		};
 /* End PBXProject section */
@@ -158,7 +168,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD08FCCB2A2F8A4300F4F7A1 /* Vonage_Logo.png in Resources */,
 				A05376331EB173CC00645696 /* Main_iPhone.storyboard in Resources */,
 				A05376321EB173CC00645696 /* Main_iPad.storyboard in Resources */,
 				A05376351EB173CC00645696 /* Images.xcassets in Resources */,
@@ -168,6 +177,73 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B356849C82D35F96C67DF7E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Camera-Controls/Pods-Camera-Controls-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/OTXCFramework/OTPrivacyResources.bundle",
+				"${PODS_ROOT}/VonageClientSDKVideoTransformers/OpenTokTransformers.xcframework/ios-arm64/OpenTokTransformers.framework/ns_model_1.tflite",
+				"${PODS_ROOT}/VonageClientSDKVideoTransformers/OpenTokTransformers.xcframework/ios-arm64/OpenTokTransformers.framework/ns_model_2.tflite",
+				"${PODS_ROOT}/VonageClientSDKVideoTransformers/OpenTokTransformers.xcframework/ios-arm64/OpenTokTransformers.framework/selfie_segmentation.tflite",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/OTPrivacyResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ns_model_1.tflite",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ns_model_2.tflite",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/selfie_segmentation.tflite",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Camera-Controls/Pods-Camera-Controls-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A464CC401334DAE63F9235BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Camera-Controls/Pods-Camera-Controls-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/VonageClientSDKVideoTransformers/OpenTokTransformers.framework/OpenTokTransformers",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenTokTransformers.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Camera-Controls/Pods-Camera-Controls-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3591B028E06FC54F957FB44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Camera-Controls-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D44260EF185F81D800E23699 /* Sources */ = {
@@ -257,6 +333,7 @@
 		};
 		D442612A185F81D800E23699 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3939E0E4FEB7164609EC98CA /* Pods-Camera-Controls.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -269,7 +346,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Enable-Torch/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Camera-Controls/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Enable-Torch543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -327,6 +404,7 @@
 		};
 		F8DE15D21D95710C00EFFA79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 026C845C16C7C0D92427E769 /* Pods-Camera-Controls.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -339,7 +417,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "";
-				INFOPLIST_FILE = "$(SRCROOT)/Enable-Torch/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Camera-Controls/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Enable-Torch543e";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -351,7 +429,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Enable-Torch" */ = {
+		D44260EE185F81D800E23699 /* Build configuration list for PBXProject "Camera-Controls" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4426127185F81D800E23699 /* Release */,
@@ -360,7 +438,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Enable-Torch" */ = {
+		D4426128185F81D800E23699 /* Build configuration list for PBXNativeTarget "Camera-Controls" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D442612A185F81D800E23699 /* Release */,

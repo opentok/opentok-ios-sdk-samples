@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D44260F2185F81D800E23699"
-               BuildableName = "Enable-Torch.app"
-               BlueprintName = "Enable-Torch"
-               ReferencedContainer = "container:Enable-Torch.xcodeproj">
+               BuildableName = "Camera-Controls.app"
+               BlueprintName = "Camera-Controls"
+               ReferencedContainer = "container:Camera-Controls.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "Enable-Torch.app"
-            BlueprintName = "Enable-Torch"
-            ReferencedContainer = "container:Enable-Torch.xcodeproj">
+            BuildableName = "Camera-Controls.app"
+            BlueprintName = "Camera-Controls"
+            ReferencedContainer = "container:Camera-Controls.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "Enable-Torch.app"
-            BlueprintName = "Enable-Torch"
-            ReferencedContainer = "container:Enable-Torch.xcodeproj">
+            BuildableName = "Camera-Controls.app"
+            BlueprintName = "Camera-Controls"
+            ReferencedContainer = "container:Camera-Controls.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -71,9 +71,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D44260F2185F81D800E23699"
-            BuildableName = "Enable-Torch.app"
-            BlueprintName = "Enable-Torch"
-            ReferencedContainer = "container:Enable-Torch.xcodeproj">
+            BuildableName = "Camera-Controls.app"
+            BlueprintName = "Camera-Controls"
+            ReferencedContainer = "container:Camera-Controls.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
