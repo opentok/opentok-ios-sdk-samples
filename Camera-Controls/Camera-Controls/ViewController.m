@@ -27,6 +27,7 @@ static NSString* const kToken = @"";
 static double widgetHeight = 240;
 static double widgetWidth = 320;
 
+UIButton *buttonSwapCamera;
 UIButton *buttonTorch;
 UIButton *buttonZoom;
 
@@ -90,9 +91,30 @@ UIButton *buttonZoom;
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
     
+    CGFloat buttonCount = 3.0;
+    CGFloat padding = 10.0;
+    CGFloat totalPadding = (buttonCount + 1) * padding;
+    CGFloat buttonWidth = (widgetWidth - totalPadding) / buttonCount;
+    CGFloat buttonHeight = 30.0;
+    CGFloat yPos = 15.0;
+    
+    // Configure Swap Camera button
+    buttonSwapCamera = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonSwapCamera.frame = CGRectMake(padding, yPos, buttonWidth, buttonHeight);
+    buttonSwapCamera.layer.cornerRadius = 5.0;
+    [self.view addSubview:buttonSwapCamera];
+    [self.view bringSubviewToFront:buttonSwapCamera];
+    [buttonSwapCamera setTitle:@"Swap" forState:UIControlStateNormal];
+    buttonSwapCamera.titleLabel.font = [UIFont systemFontOfSize:12];
+    [buttonSwapCamera setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    buttonSwapCamera.backgroundColor = [UIColor whiteColor];
+    buttonSwapCamera.layer.borderWidth = 1.0;
+    buttonSwapCamera.layer.borderColor = [UIColor grayColor].CGColor;
+    [buttonSwapCamera addTarget:self action:@selector(buttonSwapTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Configure Torch button
     buttonTorch = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonTorch.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
+    buttonTorch.frame = CGRectMake(padding * 2 + buttonWidth, yPos, buttonWidth, buttonHeight);
     buttonTorch.layer.cornerRadius = 5.0;
     [self.view addSubview:buttonTorch];
     [self.view bringSubviewToFront:buttonTorch];
@@ -100,13 +122,13 @@ UIButton *buttonZoom;
     buttonTorch.titleLabel.font = [UIFont systemFontOfSize:12];
     [buttonTorch setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     buttonTorch.backgroundColor = [UIColor whiteColor];
-    buttonTorch.layer.borderWidth = 1.0;  // Adjust the width as desired
+    buttonTorch.layer.borderWidth = 1.0;
     buttonTorch.layer.borderColor = [UIColor grayColor].CGColor;
     [buttonTorch addTarget:self action:@selector(buttonTorchTapped:) forControlEvents:UIControlEventTouchUpInside];
 
     // Configure Zoom button
     buttonZoom = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonZoom.frame = CGRectMake(widgetWidth - 65, 15, 50, 25);
+    buttonZoom.frame = CGRectMake(padding * 3 + buttonWidth * 2, yPos, buttonWidth, buttonHeight);
     buttonZoom.layer.cornerRadius = 5.0;
     [self.view addSubview:buttonZoom];
     [self.view bringSubviewToFront:buttonZoom];
@@ -114,7 +136,7 @@ UIButton *buttonZoom;
     buttonZoom.titleLabel.font = [UIFont systemFontOfSize:12];
     [buttonZoom setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     buttonZoom.backgroundColor = [UIColor whiteColor];
-    buttonZoom.layer.borderWidth = 1.0;  // Adjust the width as desired
+    buttonZoom.layer.borderWidth = 1.0;
     buttonZoom.layer.borderColor = [UIColor grayColor].CGColor;
     [buttonZoom addTarget:self action:@selector(buttonZoomTapped:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -282,9 +304,22 @@ didFailWithError:(OTError*)error
     });
 }
 
+AVCaptureDevicePosition cameraPosition = AVCaptureDevicePositionBack;
+
+- (void)buttonSwapTapped:(UIButton *)sender {
+    if (self.publisher != NULL) {
+        if(cameraPosition == AVCaptureDevicePositionBack) {
+            [self.publisher setCameraPosition:AVCaptureDevicePositionFront];
+        } else {
+            [self.publisher setCameraPosition:AVCaptureDevicePositionBack];
+        }
+        
+    }
+}
+
 - (void)buttonTorchTapped:(UIButton *)sender {
-    publisher.cameraTorch = !publisher.cameraTorch;
-    sender.backgroundColor = publisher.cameraTorch ? [UIColor redColor] : [UIColor greenColor];
+    //publisher.cameraTorch = !publisher.cameraTorch;
+    //sender.backgroundColor = _publisher.cameraTorch ? [UIColor redColor] : [UIColor greenColor];
 }
 
 float zoomFactor = 1.0f;
@@ -298,7 +333,7 @@ float zoomFactor = 1.0f;
         zoomFactor = 0.5f;
     }
 
-    publisher.setCameraZoomFactor = zoomFactor;
+    //publisher.setCameraZoomFactor = zoomFactor;
 }
 
 @end
