@@ -318,8 +318,8 @@ AVCaptureDevicePosition cameraPosition = AVCaptureDevicePositionBack;
 }
 
 - (void)buttonTorchTapped:(UIButton *)sender {
-    //publisher.cameraTorch = !publisher.cameraTorch;
-    //sender.backgroundColor = _publisher.cameraTorch ? [UIColor redColor] : [UIColor greenColor];
+    publisher.cameraTorch = !publisher.cameraTorch;
+    sender.backgroundColor = _publisher.cameraTorch ? [UIColor redColor] : [UIColor greenColor];
 }
 
 float zoomFactor = 1.0f;
@@ -333,7 +333,7 @@ float zoomFactor = 1.0f;
         zoomFactor = 0.5f;
     }
 
-    //publisher.setCameraZoomFactor = zoomFactor;
+    publisher.setCameraZoomFactor = zoomFactor;
 }
 
 @end
