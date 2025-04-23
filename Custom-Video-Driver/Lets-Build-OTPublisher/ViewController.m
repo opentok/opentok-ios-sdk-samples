@@ -8,7 +8,8 @@
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
 #import "TBExampleVideoCapture.h"
-#import "TBExampleVideoRender.h"
+#import "TBMTLVideoView.h"
+//#import "TBExampleVideoRender.h"
 #import "TBExampleMultiCamCapture.h"
 #import "TBCaptureMultiCamFactory.h"
 
@@ -35,9 +36,9 @@
     OTPublisher* _rearCamPublisher;
     OTSubscriber* _subscriber;
     
-    TBExampleVideoRender* _subscriberVideoRenderView;
-    TBExampleVideoRender* _frontCamPublisherVideoRenderView;
-    TBExampleVideoRender* _rearCamPublisherVideoRenderView;
+    TBMTLVideoView* _subscriberVideoRenderView;
+    TBMTLVideoView* _frontCamPublisherVideoRenderView;
+    TBMTLVideoView* _rearCamPublisherVideoRenderView;
     
 }
 static double widgetHeight = 180;
@@ -46,11 +47,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"28415832";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"1_MX4yODQxNTgzMn5-MTc0NTM0NDA4NjIyM350SnFPNDZlRk01NmgwSGR1Qlh0ZmI3d2F-fn4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YThjM2JlODQ3MDE4ZTVjNTMxOGY1MDJmMzAwODFiZDc2YTpzZXNzaW9uX2lkPTFfTVg0eU9EUXhOVGd6TW41LU1UYzBOVE0wTkRBNE5qSXlNMzUwU25GUE5EWmxSazAxTm1nd1NHUjFRbGgwWm1JM2QyRi1mbjQmY3JlYXRlX3RpbWU9MTc0NTM0NDA5NSZub25jZT0wLjk3NjA5NTAxNzM3NjUxNjgmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTc0NzkzNjA5NDIzOCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
 #pragma mark - View lifecycle
 
@@ -124,10 +125,10 @@ static NSString* const kToken = @"";
                           initWithDelegate:self settings:pubSettings];
 
    _frontCamPublisherVideoRenderView =
-    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    [[TBMTLVideoView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
 
     // Set mirroring only if the front camera is being used.
-    [_frontCamPublisherVideoRenderView setMirroring:YES];
+    [_frontCamPublisherVideoRenderView.mlRenderer setMirroring:YES];
     [_frontCamPublisher setVideoRender:_frontCamPublisherVideoRenderView];
 
     OTError *error = nil;
@@ -154,9 +155,9 @@ static NSString* const kToken = @"";
                           initWithDelegate:self settings:pubSettings];
     
    _rearCamPublisherVideoRenderView =
-    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    [[TBMTLVideoView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     // Set mirroring only if the front camera is being used.
-    [_rearCamPublisherVideoRenderView setMirroring:false];
+    [_rearCamPublisherVideoRenderView.mlRenderer setMirroring:false];
      
     [_rearCamPublisher setVideoRender:_rearCamPublisherVideoRenderView];
     
@@ -176,11 +177,11 @@ static NSString* const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_frontCamPublisherVideoRenderView clearRenderBuffer];
+    [_frontCamPublisherVideoRenderView.mlRenderer clearFrame];
     [_frontCamPublisher.view removeFromSuperview];
     _frontCamPublisher = nil;
 
-    [_rearCamPublisherVideoRenderView clearRenderBuffer];
+    [_rearCamPublisherVideoRenderView.mlRenderer clearFrame];
     [_rearCamPublisher.view removeFromSuperview];
     _rearCamPublisher = nil;
 
@@ -197,7 +198,7 @@ static NSString* const kToken = @"";
 {
     _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
     _subscriberVideoRenderView =
-    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0,0,1,1)];
+    [[TBMTLVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)];
     [_subscriber setVideoRender:_subscriberVideoRenderView];
     
     OTError *error = nil;
@@ -217,7 +218,7 @@ static NSString* const kToken = @"";
  */
 - (void)cleanupSubscriber
 {
-    [_subscriberVideoRenderView clearRenderBuffer];
+    [_subscriberVideoRenderView.mlRenderer clearFrame];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -313,6 +314,7 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit *)publisher
     streamCreated:(OTStream *)stream
 {
+    [self doSubscribe:stream];
     NSLog(@"Publishing");
 }
 
