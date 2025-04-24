@@ -8,8 +8,7 @@
 #import "ViewController.h"
 #import <OpenTok/OpenTok.h>
 #import "TBExampleVideoCapture.h"
-#import "TBMTLVideoView.h"
-//#import "TBExampleVideoRender.h"
+#import "TBExampleVideoRender.h"
 #import "TBExampleMultiCamCapture.h"
 #import "TBCaptureMultiCamFactory.h"
 
@@ -36,9 +35,9 @@
     OTPublisher* _rearCamPublisher;
     OTSubscriber* _subscriber;
     
-    TBMTLVideoView* _subscriberVideoRenderView;
-    TBMTLVideoView* _frontCamPublisherVideoRenderView;
-    TBMTLVideoView* _rearCamPublisherVideoRenderView;
+    TBExampleVideoRender* _subscriberVideoRenderView;
+    TBExampleVideoRender* _frontCamPublisherVideoRenderView;
+    TBExampleVideoRender* _rearCamPublisherVideoRenderView;
     
 }
 static double widgetHeight = 180;
@@ -125,10 +124,10 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YT
                           initWithDelegate:self settings:pubSettings];
 
    _frontCamPublisherVideoRenderView =
-    [[TBMTLVideoView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
 
     // Set mirroring only if the front camera is being used.
-    [_frontCamPublisherVideoRenderView.mlRenderer setMirroring:YES];
+    [_frontCamPublisherVideoRenderView setMirroring:YES];
     [_frontCamPublisher setVideoRender:_frontCamPublisherVideoRenderView];
 
     OTError *error = nil;
@@ -155,9 +154,9 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YT
                           initWithDelegate:self settings:pubSettings];
     
    _rearCamPublisherVideoRenderView =
-    [[TBMTLVideoView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     // Set mirroring only if the front camera is being used.
-    [_rearCamPublisherVideoRenderView.mlRenderer setMirroring:false];
+    [_rearCamPublisherVideoRenderView setMirroring:false];
      
     [_rearCamPublisher setVideoRender:_rearCamPublisherVideoRenderView];
     
@@ -177,11 +176,11 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YT
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
-    [_frontCamPublisherVideoRenderView.mlRenderer clearFrame];
+    [_frontCamPublisherVideoRenderView clearRenderBuffer];
     [_frontCamPublisher.view removeFromSuperview];
     _frontCamPublisher = nil;
 
-    [_rearCamPublisherVideoRenderView.mlRenderer clearFrame];
+    [_rearCamPublisherVideoRenderView clearRenderBuffer];
     [_rearCamPublisher.view removeFromSuperview];
     _rearCamPublisher = nil;
 
@@ -198,7 +197,7 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YT
 {
     _subscriber = [[OTSubscriber alloc] initWithStream:stream delegate:self];
     _subscriberVideoRenderView =
-    [[TBMTLVideoView alloc] initWithFrame:CGRectMake(0,0,1,1)];
+    [[TBExampleVideoRender alloc] initWithFrame:CGRectMake(0,0,1,1)];
     [_subscriber setVideoRender:_subscriberVideoRenderView];
     
     OTError *error = nil;
@@ -218,7 +217,7 @@ static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YT
  */
 - (void)cleanupSubscriber
 {
-    [_subscriberVideoRenderView.mlRenderer clearFrame];
+    [_subscriberVideoRenderView clearRenderBuffer];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
