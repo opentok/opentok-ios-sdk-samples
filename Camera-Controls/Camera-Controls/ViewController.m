@@ -11,11 +11,11 @@
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"47140004";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"2_MX40NzE0MDAwNH5-MTc0NjczMzcwMjg5Nn5uM21nSzNBUk14VDJHUThzOXdSVUNhN1h-fn4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NzE0MDAwNCZzaWc9OGY3YzMzYjJiM2MwYzg4ODZhNDY4NTNiZDYzYTZjNTYwYzkxMjQwNDpzZXNzaW9uX2lkPTJfTVg0ME56RTBNREF3Tkg1LU1UYzBOamN6TXpjd01qZzVObjV1TTIxblN6TkJVazE0VkRKSFVUaHpPWGRTVlVOaE4xaC1mbjQmY3JlYXRlX3RpbWU9MTc0NjczMzk4OCZub25jZT0wLjQ4NzU0MzU2MjExNzQyODQ0JnJvbGU9bW9kZXJhdG9yJmV4cGlyZV90aW1lPTE3NDY4MjAzODcxMTkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
 
 @interface ViewController ()<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
 @property (nonatomic) OTSession *session;
@@ -307,18 +307,17 @@ didFailWithError:(OTError*)error
 AVCaptureDevicePosition cameraPosition = AVCaptureDevicePositionBack;
 
 - (void)buttonSwapTapped:(UIButton *)sender {
-    if (self.publisher != NULL) {
-        if(cameraPosition == AVCaptureDevicePositionBack) {
-            [self.publisher setCameraPosition:AVCaptureDevicePositionFront];
+    if(self.publisher != NULL) {
+        if (_publisher.cameraPosition == AVCaptureDevicePositionBack) {
+            _publisher.cameraPosition = AVCaptureDevicePositionFront;
         } else {
-            [self.publisher setCameraPosition:AVCaptureDevicePositionBack];
+            _publisher.cameraPosition = AVCaptureDevicePositionBack;
         }
-        
     }
 }
 
 - (void)buttonTorchTapped:(UIButton *)sender {
-    publisher.cameraTorch = !publisher.cameraTorch;
+    _publisher.cameraTorch = !_publisher.cameraTorch;
     sender.backgroundColor = _publisher.cameraTorch ? [UIColor redColor] : [UIColor greenColor];
 }
 
@@ -332,8 +331,7 @@ float zoomFactor = 1.0f;
     } else {
         zoomFactor = 0.5f;
     }
-
-    publisher.setCameraZoomFactor = zoomFactor;
+    _publisher.cameraZoomFactor = zoomFactor;
 }
 
 @end

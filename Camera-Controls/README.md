@@ -18,7 +18,7 @@ camera, the zoom factor will be set with the max value. The value of 1.0 represe
 
   ```objc
   publisher.cameraTorch = YES;
-  setCameraZoomFactor = 5.0;
+  publisher.cameraZoomFactor = 5.0;
   ```
 
 Adding the OpenTok library

@@ -140,7 +140,7 @@
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
 					D44260F2185F81D800E23699 = {
-						DevelopmentTeam = 2A784Y2X3Q;
+						DevelopmentTeam = E37FZSUGQP;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -338,7 +338,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2A784Y2X3Q;
+				DEVELOPMENT_TEAM = E37FZSUGQP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -409,7 +409,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2A784Y2X3Q;
+				DEVELOPMENT_TEAM = E37FZSUGQP;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
