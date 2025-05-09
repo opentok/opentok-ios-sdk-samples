@@ -11,11 +11,11 @@
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"47140004";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"2_MX40NzE0MDAwNH5-MTc0NjczMzcwMjg5Nn5uM21nSzNBUk14VDJHUThzOXdSVUNhN1h-fn4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD00NzE0MDAwNCZzaWc9OGY3YzMzYjJiM2MwYzg4ODZhNDY4NTNiZDYzYTZjNTYwYzkxMjQwNDpzZXNzaW9uX2lkPTJfTVg0ME56RTBNREF3Tkg1LU1UYzBOamN6TXpjd01qZzVObjV1TTIxblN6TkJVazE0VkRKSFVUaHpPWGRTVlVOaE4xaC1mbjQmY3JlYXRlX3RpbWU9MTc0NjczMzk4OCZub25jZT0wLjQ4NzU0MzU2MjExNzQyODQ0JnJvbGU9bW9kZXJhdG9yJmV4cGlyZV90aW1lPTE3NDY4MjAzODcxMTkmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
+static NSString* const kToken = @"";
 
 @interface ViewController ()<OTSessionDelegate, OTSubscriberDelegate, OTPublisherDelegate>
 @property (nonatomic) OTSession *session;
