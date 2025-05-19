@@ -24,7 +24,6 @@ NS_AVAILABLE(10_11, 9_0)
 }
 @property (readonly) int64_t lastFrameTime;
 
-@property (nonatomic) BOOL scalesToFit;
 @property (nonatomic) BOOL mirroring;
 @property (nonatomic, assign) BOOL renderingEnabled;
 

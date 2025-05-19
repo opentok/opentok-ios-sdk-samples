@@ -636,7 +636,6 @@ static const NSInteger kMaxInflightBuffers = 1;
 }
 
 - (BOOL)mirroring {
-    
     return _mlRenderer.mirroring;
 }
 
