@@ -46,11 +46,11 @@ static double widgetWidth = 320;
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"28415832";
+static NSString* const kApiKey = @"";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"1_MX4yODQxNTgzMn5-MTc0NTM0NDA4NjIyM350SnFPNDZlRk01NmgwSGR1Qlh0ZmI3d2F-fn4";
+static NSString* const kSessionId = @"";
 // Replace with your generated token
-static NSString* const kToken = @"T1==cGFydG5lcl9pZD0yODQxNTgzMiZzaWc9NTJhOWQ3YThjM2JlODQ3MDE4ZTVjNTMxOGY1MDJmMzAwODFiZDc2YTpzZXNzaW9uX2lkPTFfTVg0eU9EUXhOVGd6TW41LU1UYzBOVE0wTkRBNE5qSXlNMzUwU25GUE5EWmxSazAxTm1nd1NHUjFRbGgwWm1JM2QyRi1mbjQmY3JlYXRlX3RpbWU9MTc0NTM0NDA5NSZub25jZT0wLjk3NjA5NTAxNzM3NjUxNjgmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTc0NzkzNjA5NDIzOCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+static NSString* const kToken = @"";
 
 #pragma mark - View lifecycle
 
@@ -313,7 +313,6 @@ didFailWithError:(OTError*)error
 - (void)publisher:(OTPublisherKit *)publisher
     streamCreated:(OTStream *)stream
 {
-    [self doSubscribe:stream];
     NSLog(@"Publishing");
 }
 

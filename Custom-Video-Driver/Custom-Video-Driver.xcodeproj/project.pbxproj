@@ -201,8 +201,7 @@
 				ORGANIZATIONNAME = "TokBox, Inc.";
 				TargetAttributes = {
 					D4426159185FA27400E23699 = {
-						DevelopmentTeam = E37FZSUGQP;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -393,8 +392,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E37FZSUGQP;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Custom-Video-Driver-Prefix.pch";
@@ -411,7 +410,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Lets-Build-OTPublisher/Custom-Video-Driver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.jai;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Video-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
@@ -425,8 +424,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = E37FZSUGQP;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Lets-Build-OTPublisher/Custom-Video-Driver-Prefix.pch";
@@ -437,7 +436,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Lets-Build-OTPublisher/Custom-Video-Driver-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tokbox.jai;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Video-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;

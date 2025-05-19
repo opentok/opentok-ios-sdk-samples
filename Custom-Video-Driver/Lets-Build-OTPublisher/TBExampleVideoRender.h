@@ -26,8 +26,9 @@ NS_AVAILABLE(10_11, 9_0)
 
 @property (nonatomic) BOOL scalesToFit;
 @property (nonatomic) BOOL mirroring;
-@property (nonatomic, assign) id<TBRendererDelegate> delegate;
+@property (nonatomic, assign) BOOL renderingEnabled;
 
+@property (nonatomic, assign) id<TBRendererDelegate> delegate;
 - (BOOL)clearRenderBuffer;
 
 
