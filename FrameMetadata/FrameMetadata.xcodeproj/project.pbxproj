@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A0DAF8562086C87800223C9A /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = A0DAF8542086C87800223C9A /* TBExampleVideoCapture.m */; };
-		A0FF8CAC20854BEA00F1DB33 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0FF8CAC20854BEA00F1DB33 /* TBExampleVideoRender.mm in Sources */ = {isa = PBXBuildFile; fileRef = A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D4426168185FA27400E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426166185FA27400E23699 /* InfoPlist.strings */; };
 		D442616A185FA27400E23699 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426169185FA27400E23699 /* main.m */; };
 		D442616E185FA27400E23699 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D442616D185FA27400E23699 /* AppDelegate.m */; };
@@ -24,7 +24,7 @@
 		A0DAF8542086C87800223C9A /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoCapture.m; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/Single-Cam-Capturer/TBExampleVideoCapture.m"; sourceTree = "<group>"; };
 		A0DAF8552086C87800223C9A /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoCapture.h; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/Single-Cam-Capturer/TBExampleVideoCapture.h"; sourceTree = "<group>"; };
 		A0FF8CAA20854BEA00F1DB33 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TBExampleVideoRender.h; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.h"; sourceTree = "<group>"; };
-		A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TBExampleVideoRender.m; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.m"; sourceTree = "<group>"; };
+		A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TBExampleVideoRender.mm; path = "../../Custom-Video-Driver/Lets-Build-OTPublisher/TBExampleVideoRender.mm"; sourceTree = "<group>"; };
 		A0FF8CB020855B0A00F1DB33 /* FrameMetadata.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FrameMetadata.plist; sourceTree = "<group>"; };
 		A5D01FA71A3A124C005D84F9 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		D442615A185FA27400E23699 /* FrameMetadata.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrameMetadata.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +66,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A3D38E118312A34C104A041F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D4426151185FA27400E23699 = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +80,7 @@
 				D4426163185FA27400E23699 /* FrameMetadata */,
 				D442615C185FA27400E23699 /* Frameworks */,
 				D442615B185FA27400E23699 /* Products */,
+				A3D38E118312A34C104A041F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,7 +121,7 @@
 				A0DAF8552086C87800223C9A /* TBExampleVideoCapture.h */,
 				A0DAF8542086C87800223C9A /* TBExampleVideoCapture.m */,
 				A0FF8CAA20854BEA00F1DB33 /* TBExampleVideoRender.h */,
-				A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.m */,
+				A0FF8CAB20854BEA00F1DB33 /* TBExampleVideoRender.mm */,
 				D442616C185FA27400E23699 /* AppDelegate.h */,
 				D442616D185FA27400E23699 /* AppDelegate.m */,
 				D442616F185FA27400E23699 /* Main_iPhone.storyboard */,
@@ -211,7 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A0DAF8562086C87800223C9A /* TBExampleVideoCapture.m in Sources */,
-				A0FF8CAC20854BEA00F1DB33 /* TBExampleVideoRender.m in Sources */,
+				A0FF8CAC20854BEA00F1DB33 /* TBExampleVideoRender.mm in Sources */,
 				D4426177185FA27400E23699 /* ViewController.m in Sources */,
 				D442616E185FA27400E23699 /* AppDelegate.m in Sources */,
 				D442616A185FA27400E23699 /* main.m in Sources */,
