@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F6BC7442DB9619F00BC1BC0 /* TBExampleVideoRender.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1F6BC7432DB9619F00BC1BC0 /* TBExampleVideoRender.mm */; };
 		3C62ECDC23C4084C00F18341 /* TBExampleMultiCamCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */; };
 		3C62ECDD23C4084C00F18341 /* TBCaptureMultiCamFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C62ECDB23C4084C00F18341 /* TBCaptureMultiCamFactory.m */; };
 		D4426168185FA27400E23699 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4426166185FA27400E23699 /* InfoPlist.strings */; };
@@ -17,12 +18,13 @@
 		D4426177185FA27400E23699 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4426176185FA27400E23699 /* ViewController.m */; };
 		D4426179185FA27400E23699 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4426178185FA27400E23699 /* Images.xcassets */; };
 		D44261B2185FA39200E23699 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D44261B1185FA39200E23699 /* README.md */; };
-		D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261B7185FA64100E23699 /* TBExampleVideoRender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C1685371A71932900A507E3 /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		1F6BC7432DB9619F00BC1BC0 /* TBExampleVideoRender.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TBExampleVideoRender.mm; sourceTree = "<group>"; };
+		1F6BC74F2DBADBD900BC1BC0 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoRender.h; sourceTree = "<group>"; };
 		3C62ECD823C4084C00F18341 /* TBCaptureMultiCamFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCaptureMultiCamFactory.h; sourceTree = "<group>"; };
 		3C62ECD923C4084C00F18341 /* TBExampleMultiCamCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleMultiCamCapture.h; sourceTree = "<group>"; };
 		3C62ECDA23C4084C00F18341 /* TBExampleMultiCamCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleMultiCamCapture.m; sourceTree = "<group>"; };
@@ -54,8 +56,6 @@
 		D44261A2185FA37600E23699 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D44261A3185FA37600E23699 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D44261B1185FA39200E23699 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		D44261B6185FA64100E23699 /* TBExampleVideoRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoRender.h; sourceTree = "<group>"; };
-		D44261B7185FA64100E23699 /* TBExampleVideoRender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoRender.m; sourceTree = "<group>"; };
 		D44261D3185FADAB00E23699 /* TBExampleVideoCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBExampleVideoCapture.h; sourceTree = "<group>"; };
 		D44261D4185FADAB00E23699 /* TBExampleVideoCapture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBExampleVideoCapture.m; sourceTree = "<group>"; };
 		D4F8FD9E194125E300364672 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
@@ -72,6 +72,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CD2CCAD3FE7B39A20620C7A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		3C4D8A822433C733003E2F10 /* Single-Cam-Capturer */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +106,7 @@
 				D4426163185FA27400E23699 /* Lets-Build-OTPublisher */,
 				D442615C185FA27400E23699 /* Frameworks */,
 				D442615B185FA27400E23699 /* Products */,
+				1CD2CCAD3FE7B39A20620C7A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,10 +144,10 @@
 		D4426163185FA27400E23699 /* Lets-Build-OTPublisher */ = {
 			isa = PBXGroup;
 			children = (
+				1F6BC74F2DBADBD900BC1BC0 /* TBExampleVideoRender.h */,
+				1F6BC7432DB9619F00BC1BC0 /* TBExampleVideoRender.mm */,
 				3C4D8A832433C7D8003E2F10 /* Multi-Cam-Capturer */,
 				3C4D8A822433C733003E2F10 /* Single-Cam-Capturer */,
-				D44261B6185FA64100E23699 /* TBExampleVideoRender.h */,
-				D44261B7185FA64100E23699 /* TBExampleVideoRender.m */,
 				D442616C185FA27400E23699 /* AppDelegate.h */,
 				D442616D185FA27400E23699 /* AppDelegate.m */,
 				D442616F185FA27400E23699 /* Main_iPhone.storyboard */,
@@ -235,11 +243,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F6BC7442DB9619F00BC1BC0 /* TBExampleVideoRender.mm in Sources */,
 				D4426177185FA27400E23699 /* ViewController.m in Sources */,
 				3C62ECDD23C4084C00F18341 /* TBCaptureMultiCamFactory.m in Sources */,
 				D442616E185FA27400E23699 /* AppDelegate.m in Sources */,
 				D442616A185FA27400E23699 /* main.m in Sources */,
-				D44261BA185FA64100E23699 /* TBExampleVideoRender.m in Sources */,
 				D44261D5185FADAB00E23699 /* TBExampleVideoCapture.m in Sources */,
 				3C62ECDC23C4084C00F18341 /* TBExampleMultiCamCapture.m in Sources */,
 			);
@@ -415,6 +423,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -428,6 +438,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tokbox.Custom-Video-Driver";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
