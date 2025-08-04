@@ -1,25 +1,35 @@
 //
-//  TBExampleVideoRender.h
+//  OTGLKVideoRender.h
+//  otkit-objc-libs
 //
-//  Copyright (c) 2014 Tokbox, Inc. All rights reserved.
+//  Created by Charley Robinson on 5/23/14.
+//
 //
 
+#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <GLKit/GLKit.h>
+#import <Metal/Metal.h>
+#import <MetalKit/MetalKit.h>
 #import <OpenTok/OpenTok.h>
 
 @protocol TBRendererDelegate;
 
-@interface TBExampleVideoRender : UIView <GLKViewDelegate, OTVideoRender>
-
-@property (nonatomic, assign) BOOL mirroring;
-@property (nonatomic, assign) BOOL renderingEnabled;
-@property (nonatomic, assign) id<TBRendererDelegate> delegate;
-
-/*
- * Clears the render buffer to a black frame
+/**
+ * Implementation of RTCMTLRenderer protocol for rendering native nv12 video frames.
  */
-- (void)clearRenderBuffer;
+NS_AVAILABLE(10_11, 9_0)
+@interface TBExampleVideoRender : UIView <MTKViewDelegate, OTVideoRender>
+{
+    
+}
+@property (readonly) int64_t lastFrameTime;
+
+@property (nonatomic) BOOL mirroring;
+@property (nonatomic, assign) BOOL renderingEnabled;
+
+@property (nonatomic, assign) id<TBRendererDelegate> delegate;
+- (BOOL)clearRenderBuffer;
+
 
 @end
 
