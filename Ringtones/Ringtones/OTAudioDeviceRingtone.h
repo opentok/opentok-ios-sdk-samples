@@ -18,5 +18,7 @@
 
 // Immediately stops the ringtone and allows OpenTok audio calls to flow
 - (void)stopRingtone;
+- (void)startRingtone;
+- (BOOL)isRingTonePlaying;
 
 @end
