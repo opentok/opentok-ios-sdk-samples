@@ -13,11 +13,11 @@
 // *** Fill the following variables using your own Project info  ***
 // ***          https://dashboard.tokbox.com/projects            ***
 // Replace with your OpenTok API key
-static NSString* const kApiKey = @"";
+static NSString* const kApiKey = @"47773081";
 // Replace with your generated session ID
-static NSString* const kSessionId = @"";
+static NSString* const kSessionId = @"1_MX40Nzc3MzA4MX5-MTcwMTM2NzYyMzc4OX5INTMyUGJsT0FjM0oyVUE3RVpManI2eUJ-fn4";
 // Replace with your generated token
-static NSString* const kToken = @"";
+static NSString* const kToken = @"T1==cGFydG5lcl9pZD00Nzc3MzA4MSZzaWc9MDJmYTdjMDMyY2FhMjNiNjJiYWU3MTU5MzI1NjRlY2IzYTQwMTQ4YTpzZXNzaW9uX2lkPTFfTVg0ME56YzNNekE0TVg1LU1UY3dNVE0yTnpZeU16YzRPWDVJTlRNeVVHSnNUMEZqTTBveVZVRTNSVnBNYW5JMmVVSi1mbjQmY3JlYXRlX3RpbWU9MTcwMTM2NzYyNCZub25jZT0wLjg1MTg2MzQ4ODU0MjE3MDUmcm9sZT1tb2RlcmF0b3ImZXhwaXJlX3RpbWU9MTcwMzk1OTYyNCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
 
 #define kVideoFrameScaleFactor 0.50
 #define kVideoFrameProcessEvery3rdFrame 3
@@ -230,5 +230,7 @@ static NSString* const kToken = @"";
     //[scaleFilter setValue:@(aspectRatio) forKey:kCIInputAspectRatioKey];
     return _scaleFilter.outputImage;
 }
+
+@synthesize videoContentHint;
 
 @end
