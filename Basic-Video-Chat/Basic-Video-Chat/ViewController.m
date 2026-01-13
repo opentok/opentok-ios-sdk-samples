@@ -21,6 +21,8 @@ static NSString* const kToken = @"";
 @property (nonatomic) OTSession *session;
 @property (nonatomic) OTPublisher *publisher;
 @property (nonatomic) OTSubscriber *subscriber;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+
 @end
 
 @implementation ViewController
@@ -39,6 +41,32 @@ static double widgetWidth = 320;
                                        sessionId:kSessionId
                                         delegate:self];
     [self doConnect];
+
+    self.tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+      [self.view addGestureRecognizer:self.tapGestureRecognizer];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)recognizer {
+    NSLog(@"View controller was tapped!");
+    [self enableTorch:YES];
+}
+
+- (void)enableTorch:(BOOL)enabled {
+    _publisher.cameraPosition = AVCaptureDevicePositionBack;
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (!device || !device.hasTorch) {
+        return;
+    }
+
+    NSError *error = nil;
+    [device lockForConfiguration:&error];
+    if (error) {
+        NSLog(@"Error locking device for configuration: %@", error);
+        return;
+    }
+
+    device.torchMode = enabled ? AVCaptureTorchModeOn : AVCaptureTorchModeOff;
+    [device unlockForConfiguration];
 }
 
 - (BOOL)prefersStatusBarHidden
