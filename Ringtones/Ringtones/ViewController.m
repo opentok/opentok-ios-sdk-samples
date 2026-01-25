@@ -15,7 +15,7 @@
 @property (nonatomic) OTPublisher *publisher;
 @property (nonatomic) OTSubscriber *subscriber;
 @property (nonatomic) OTAudioDeviceRingtone *myAudioDevice;
-@property (nonatomic) BOOL reconnectPlease;
+@property (nonatomic) NSString *pubStreamId;
 @end
 
 @implementation ViewController
@@ -36,34 +36,25 @@ static NSString* const kToken = @"";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     NSString* path = [[NSBundle mainBundle] pathForResource:@"bananaphone"
                                                      ofType:@"mp3"];
     _myAudioDevice = [[OTAudioDeviceRingtone alloc] initWithRingtone:[NSURL URLWithString:path]];
     [OTAudioDeviceManager setAudioDevice:_myAudioDevice];
- 
-    UITapGestureRecognizer* tap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(resetSession)];
-    [self.view addGestureRecognizer:tap];
-    [self resetSession];
-}
-
-- (void)resetSession {
-    if (_session) {
-        [_session disconnect:nil];
-        _reconnectPlease = YES;
-        return;
-    }
-
-    // Step 1: As the view comes into the foreground, initialize a new instance
-    // of OTSession and begin the connection process.
+    
     _session = [[OTSession alloc] initWithApiKey:kApiKey
                                        sessionId:kSessionId
                                         delegate:self];
     
     [self doConnectWithToken:kToken];
-    
+}
+
+- (void) startOrStopRingtone{
+    if ([_myAudioDevice isRingTonePlaying]) {
+        [_myAudioDevice stopRingtone];
+    } else {
+        [_myAudioDevice startRingtone];
+    }
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -111,6 +102,8 @@ static NSString* const kToken = @"";
     
     [self.view addSubview:_publisher.view];
     [_publisher.view setFrame:CGRectMake(0, 0, widgetWidth, widgetHeight)];
+    //start ringtone
+    [self startOrStopRingtone];
 }
 
 /**
@@ -118,6 +111,7 @@ static NSString* const kToken = @"";
  * be attached to the session any more.
  */
 - (void)cleanupPublisher {
+    [_session unpublish:_publisher error:nil];
     [_publisher.view removeFromSuperview];
     _publisher = nil;
     // this is a good place to notify the end-user that publishing has stopped.
@@ -149,6 +143,7 @@ static NSString* const kToken = @"";
  */
 - (void)cleanupSubscriber
 {
+    [_session unsubscribe:_subscriber error:nil];
     [_subscriber.view removeFromSuperview];
     _subscriber = nil;
 }
@@ -170,14 +165,16 @@ static NSString* const kToken = @"";
     [NSString stringWithFormat:@"Session disconnected: (%@)",
      session.sessionId];
     NSLog(@"sessionDidDisconnect (%@)", alertMessage);
-    _session = nil;
+    if (_publisher) {
+        [self cleanupPublisher];
+    }
     if (_subscriber) {
         [self cleanupSubscriber];
     }
-    if (_reconnectPlease) {
-        _reconnectPlease = NO;
-        [self resetSession];
+    if ([_myAudioDevice isRingTonePlaying]) {
+        [_myAudioDevice stopRingtone];
     }
+    _session = nil;
 }
 
 
@@ -232,11 +229,18 @@ didFailWithError:(OTError*)error
 
 - (void)subscriberDidConnectToStream:(OTSubscriberKit*)subscriber
 {
+    // sometimes the old stream comes in and
+    // stops the new stream from playing ringtone, when restarted. This happens
+    // because  media server assumes a drop connection and disconnects after some time
+    // has gone by.
+    if (![subscriber.stream.streamId isEqualToString:self.pubStreamId]){
+        return;
+    }
     NSLog(@"subscriberDidConnectToStream (%@)",
           subscriber.stream.connection.connectionId);
     
     // Stop ringtone from playing, as the subscriber will connect shortly
-    [_myAudioDevice stopRingtone];
+    [self startOrStopRingtone];
     
     assert(_subscriber == subscriber);
     [_subscriber.view setFrame:CGRectMake(0, widgetHeight, widgetWidth,
@@ -264,6 +268,7 @@ didFailWithError:(OTError*)error
     streamCreated:(OTStream *)stream
 {
     NSLog(@"Publishing");
+    self.pubStreamId = stream.streamId;
     // play the ringtone for 10 seconds , it is fun...
     // doSubscribe method will stop it later
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
